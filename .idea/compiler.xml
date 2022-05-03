@@ -6,12 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+<<<<<<< HEAD
         <module name="ECommerce" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="ECommerce" target="1.8" />
     </bytecodeTargetLevel>
+=======
+        <module name="E-CommerceSPA" />
+        <module name="Team-A-P2" />
+      </profile>
+    </annotationProcessing>
+>>>>>>> aa8555daeb5135754580b55c9784cb1a25a7828c
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
