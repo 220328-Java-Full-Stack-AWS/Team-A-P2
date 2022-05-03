@@ -6,11 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="E-CommerceSPA" />
+        <module name="ECommerce" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Team-A-P2" target="1.8" />
+      <module name="ECommerce" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ECommerce" options="-parameters" />
+    </option>
   </component>
 </project>
