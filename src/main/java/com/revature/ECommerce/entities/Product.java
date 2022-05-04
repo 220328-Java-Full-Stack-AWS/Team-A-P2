@@ -1,25 +1,28 @@
-package com.revature.Models;
+package com.revature.ECommerce.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-
-@Table
+@Table(name = "products", schema = "public")
 public class Product {
     @Id
-    private int productId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer productId;
+    @Column(name = "product_name")
     private String productName;
-    private double productPrice;
-    private int productQuantity;
+    @Column(name = "product_price")
+    private Double productPrice;
+    @Column(name = "product_quantity")
+    private Integer productQuantity;
+    @Column(name = "product_descritption")
     private String productDescription;
+    @Column(name = "product_image")
     private String productImage;
 
     public Product() {
     }
 
-    public Product(int productId, String productName, double productPrice, int productQuantity, String productDescription, String productImage) {
+    public Product(Integer productId, String productName, Double productPrice, Integer productQuantity, String productDescription, String productImage) {
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
@@ -28,11 +31,11 @@ public class Product {
         this.productImage = productImage;
     }
 
-    public int getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
@@ -44,11 +47,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public double getProductPrice() {
+    public Double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(double productPrice) {
+    public void setProductPrice(Double productPrice) {
         this.productPrice = productPrice;
     }
 
@@ -60,11 +63,11 @@ public class Product {
         this.productDescription = productDescription;
     }
 
-    public int getProductQuantity() {
+    public Integer getProductQuantity() {
         return productQuantity;
     }
 
-    public void setProductQuantity(int productQuantity) {
+    public void setProductQuantity(Integer productQuantity) {
         this.productQuantity = productQuantity;
     }
 

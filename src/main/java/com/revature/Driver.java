@@ -1,7 +1,7 @@
 package com.revature;
 
-import com.revature.Models.Product;
-import com.revature.Models.User;
+import com.revature.ECommerce.entities.Product;
+import com.revature.ECommerce.entities.User;
 
 import java.text.DecimalFormat;
 

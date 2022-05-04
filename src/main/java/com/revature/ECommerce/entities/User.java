@@ -1,21 +1,30 @@
-package com.revature.Models;
+package com.revature.ECommerce.entities;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Objects;
 @Entity
+@Table(name = "users", schema = "public")
 public class User {
-    private int userId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer userId;
+    @Column(name = "username")
     private String username;
+    @Column(name = "email")
     private String email;
+    @Column(name = "password")
     private String password;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "phone")
     private String phone;
 
     public User() {
     }
 
-    public User(int userId, String username, String email, String password, String firstName, String lastName, String phone) {
+    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String phone) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -25,11 +34,11 @@ public class User {
         this.phone = phone;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
