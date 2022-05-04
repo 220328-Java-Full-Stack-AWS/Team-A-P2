@@ -1,7 +1,14 @@
 package com.revature.Models;
 
-public class Product {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+
+@Table
+public class Product {
+    @Id
     private int productId;
     private String productName;
     private double productPrice;

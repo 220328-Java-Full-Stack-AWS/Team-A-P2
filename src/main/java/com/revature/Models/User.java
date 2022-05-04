@@ -1,7 +1,8 @@
 package com.revature.Models;
 
+import javax.persistence.Entity;
 import java.util.Objects;
-
+@Entity
 public class User {
     private int userId;
     private String username;
