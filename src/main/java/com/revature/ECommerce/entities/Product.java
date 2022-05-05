@@ -94,6 +94,7 @@ public class Product {
                 ", productPrice=" + productPrice +
                 ", productQuantity=" + productQuantity +
                 ", productDescription='" + productDescription + '\'' +
-                ", productImage='" + productImage;
+                ", productImage='" + productImage + '\''+
+                ", productStatus= '" + productStatus;
     }
 }
