@@ -18,7 +18,5 @@ public class Driver {
         System.out.println(product1.getProductName() + " Price:" +  df.format(product1.getProductPrice())+ " Description: " + product1.getProductDescription());
         System.out.println(product2.getProductName() + " Price:" + df.format(product2.getProductPrice()) + " Description: " + product2.getProductDescription());
         System.out.println(user1);
-
-        //test
     }
 }
