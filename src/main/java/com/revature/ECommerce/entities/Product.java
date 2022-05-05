@@ -18,18 +18,20 @@ public class Product {
     private String productDescription;
     @Column(name = "product_image")
     private String productImage;
+    private String productStatus;
 
 
     public Product() {
     }
 
-    public Product(Integer productId, String productName, Double productPrice, Integer productQuantity, String productDescription, String productImage) {
+    public Product(Integer productId, String productName, Double productPrice, Integer productQuantity, String productDescription, String productImage, String productStatus) {
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productQuantity = productQuantity;
         this.productDescription = productDescription;
         this.productImage = productImage;
+        this.productStatus=productStatus;
     }
 
     public Integer getProductId() {
@@ -74,6 +76,14 @@ public class Product {
 
     public void setProductImage(String productImage) {
         this.productImage = productImage;
+    }
+
+    public String getProductStatus() {
+        return productStatus;
+    }
+
+    public void setProductStatus(String productStatus) {
+        this.productStatus = productStatus;
     }
 
     @Override
