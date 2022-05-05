@@ -19,6 +19,7 @@ public class Product {
     @Column(name = "product_image")
     private String productImage;
 
+
     public Product() {
     }
 

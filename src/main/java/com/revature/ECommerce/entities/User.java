@@ -1,6 +1,8 @@
 package com.revature.ECommerce.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 @Entity
 @Table(name = "users", schema = "public")
@@ -20,11 +22,15 @@ public class User {
     private String lastName;
     @Column(name = "phone")
     private String phone;
+    @Column
+    @OneToMany
+    private List<Product> productsList;
 
     public User() {
     }
 
     public User(Integer userId, String username, String email, String password, String firstName, String lastName, String phone) {
+        this.productsList=new ArrayList<>();
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -90,6 +96,14 @@ public class User {
         this.phone = phone;
     }
 
+
+    public void addPurchase(Product product){
+        this.productsList.add(product);
+    }
+
+    public void deletePurchase(Product product){
+        this.productsList.remove(product);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

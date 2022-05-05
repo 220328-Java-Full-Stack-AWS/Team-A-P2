@@ -1,9 +1,10 @@
 package com.revature.ECommerce;
 
+import com.revature.ECommerce.entities.Product;
 import com.revature.ECommerce.entities.User;
+import com.revature.ECommerce.utilities.HibernateManager;
+import com.revature.ECommerce.utilities.TransactionManager;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,12 +13,14 @@ public class ECommerceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ECommerceApplication.class, args);
+		//This initializes our Hibernate manager and passes in the User and Product classes so Hibernate knows what they are
+		HibernateManager hibernateManager= new HibernateManager();
+		hibernateManager.addAnnotatedClass(User.class);
+		hibernateManager.addAnnotatedClass(Product.class);
 
-		Configuration config = new Configuration();
-		SessionFactory sessionFactory = config.buildSessionFactory();
-		Session session = sessionFactory.openSession();
-		User kyle =new User();
-		session.save(kyle);
+		Session session= hibernateManager.initializeDatasource();
+
+
 
 	}
 
