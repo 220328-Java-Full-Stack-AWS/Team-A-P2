@@ -1,51 +1,59 @@
 package com.revature.ECommerce.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 @Entity
 @Table(name = "users", schema = "public")
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
+    private Integer id;
+
     @Column(name = "username")
     private String username;
+
     @Column(name = "email")
     private String email;
+
     @Column(name = "password")
     private String password;
+
     @Column(name = "first_name")
     private String firstName;
+
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "phone")
-    private String phone;
-    @Column
-    @OneToMany
-    private List<Product> productsList;
+
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Payment> payments;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Address> address;
 
     public User() {
     }
 
-    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String phone) {
-        this.productsList=new ArrayList<>();
-        this.userId = userId;
+    public User(String username, String email, String password, String firstName, String lastName) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phone = phone;
+        this.payments = new LinkedList<>();
+        this.address = new LinkedList<>();
     }
 
     public Integer getUserId() {
-        return userId;
+        return id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUserId(Integer id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -88,44 +96,19 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getPhone() {
-        return phone;
+    public void addPayment(Payment payment){
+        this.payments.add(payment);
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void removePayment(Payment payment){
+        this.payments.remove(payment);
     }
 
-
-    public void addPurchase(Product product){
-        this.productsList.add(product);
+    public void addAddress(Address address){
+        this.address.add(address);
     }
 
-    public void deletePurchase(Product product){
-        this.productsList.remove(product);
-    }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return userId == user.userId && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(phone, user.phone);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(userId, username, email, password, firstName, lastName, phone);
-    }
-
-    @Override
-    public String toString() {
-        return "User:" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", phone='" + phone;
+    public void removeAddress(Address address){
+        this.address.remove(address);
     }
 }
