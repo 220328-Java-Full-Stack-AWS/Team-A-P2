@@ -1,14 +1,14 @@
-package com.revature.ECommerce.repositories;
+package com.revature.ECommerce.repositories.User;
 
-import com.revature.ECommerce.entities.Address;
-import com.revature.ECommerce.entities.Payment;
+import com.revature.ECommerce.entities.User.Payment;
+import com.revature.ECommerce.repositories.HibernateRepository;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class PaymentRepository implements HibernateRepository<Payment>{
+public class PaymentRepository implements HibernateRepository<Payment> {
 
     private Session session;
 

@@ -1,8 +1,7 @@
-package com.revature.ECommerce.entities;
+package com.revature.ECommerce.entities.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
 
 @Entity
 @Table(name = "payments", schema = "public")
@@ -22,18 +21,18 @@ public class Payment implements Serializable {
     private String accountNumber;
 
     @Column(name = "expiration")
-    private Date expiration;
+    private String expiration;
 
     public Payment(){
     }
 
-    public Payment(String paymentType, String accountNumber, Date expiration) {
+    public Payment(String paymentType, String accountNumber, String expiration) {
         this.paymentType = paymentType;
         this.accountNumber = accountNumber;
         this.expiration = expiration;
     }
 
-    public Payment(User user, String paymentType, String accountNumber, Date expiration) {
+    public Payment(User user, String paymentType, String accountNumber, String expiration) {
         this.user = user;
         this.paymentType = paymentType;
         this.accountNumber = accountNumber;
@@ -72,11 +71,11 @@ public class Payment implements Serializable {
         this.accountNumber = accountNumber;
     }
 
-    public Date getExpiration() {
+    public String getExpiration() {
         return expiration;
     }
 
-    public void setExpiration(Date expiration) {
+    public void setExpiration(String expiration) {
         this.expiration = expiration;
     }
 }

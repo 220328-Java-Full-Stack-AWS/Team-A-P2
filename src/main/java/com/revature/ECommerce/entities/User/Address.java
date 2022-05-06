@@ -1,4 +1,4 @@
-package com.revature.ECommerce.entities;
+package com.revature.ECommerce.entities.User;
 
 import javax.persistence.*;
 import java.io.Serializable;

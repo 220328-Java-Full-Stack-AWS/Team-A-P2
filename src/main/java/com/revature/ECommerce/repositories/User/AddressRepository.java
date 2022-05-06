@@ -1,13 +1,14 @@
-package com.revature.ECommerce.repositories;
+package com.revature.ECommerce.repositories.User;
 
-import com.revature.ECommerce.entities.Address;
+import com.revature.ECommerce.entities.User.Address;
+import com.revature.ECommerce.repositories.HibernateRepository;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class AddressRepository implements HibernateRepository<Address>{
+public class AddressRepository implements HibernateRepository<Address> {
 
     private Session session;
 

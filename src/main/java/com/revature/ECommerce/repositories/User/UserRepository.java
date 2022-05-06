@@ -1,6 +1,7 @@
-package com.revature.ECommerce.repositories;
+package com.revature.ECommerce.repositories.User;
 
-import com.revature.ECommerce.entities.User;
+import com.revature.ECommerce.entities.User.User;
+import com.revature.ECommerce.repositories.HibernateRepository;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -10,7 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-public class UserRepository implements HibernateRepository<User>{
+public class UserRepository implements HibernateRepository<User> {
 
     private Session session;
 

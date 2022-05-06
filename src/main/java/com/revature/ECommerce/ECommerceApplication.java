@@ -1,8 +1,8 @@
 package com.revature.ECommerce;
 
-import com.revature.ECommerce.entities.Address;
-import com.revature.ECommerce.entities.Payment;
-import com.revature.ECommerce.entities.User;
+import com.revature.ECommerce.entities.User.Address;
+import com.revature.ECommerce.entities.User.Payment;
+import com.revature.ECommerce.entities.User.User;
 import com.revature.ECommerce.utilities.HibernateManager;
 import com.revature.ECommerce.utilities.TransactionManager;
 import org.hibernate.Session;
@@ -30,8 +30,12 @@ public class ECommerceApplication {
 		User leo = new User("leoBarrientos", "leobarrientos02@gmail.com", "password", "Leonel", "Barrientos");
 		Address leoAddress = new Address("630 Shore Rd.", "Long Beach", "New York", "11561", "United States", "516-960-8086");
 		leoAddress.setUser(leo);
+		Payment leoPayment = new Payment("Visa", "374245455400126",  "12/2024");
+		leoPayment.setUser(leo);
+
 
 		session.save(leoAddress);
+		session.save(leoPayment);
 		session.save(leo);
 
 		transactionManager.commitTransaction(tx);//unnecessary over-engineering?
