@@ -21,15 +21,13 @@ public class Category implements Serializable {
 
     public Category(){}
 
-    public Category(Integer id, Product product, String name, String description) {
-        this.id = id;
+    public Category( Product product, String name, String description) {
         this.product = product;
         this.name = name;
         this.description = description;
     }
 
-    public Category(Integer id, String name, String description) {
-        this.id = id;
+    public Category(String name, String description) {
         this.name = name;
         this.description = description;
     }
@@ -65,4 +63,6 @@ public class Category implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 }

@@ -22,6 +22,9 @@ public class Product implements Serializable {
     @Column(name = "price")
     private Double price;
 
+    @Column(name = "image")
+    private String image;
+
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Category> category;
 
@@ -34,10 +37,11 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(String name, String description, Double price) {
+    public Product(String name, String description, Double price, String image) {
         this.name = name;
         this.description = description;
         this.price = price;
+        this.image = image;
         this.inventory = new LinkedList<>();
         this.category = new LinkedList<>();
         this.discount = new LinkedList<>();
@@ -73,6 +77,14 @@ public class Product implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void addCategory(Category category){

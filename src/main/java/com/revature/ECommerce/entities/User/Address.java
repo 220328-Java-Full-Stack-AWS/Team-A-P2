@@ -28,28 +28,24 @@ public class Address implements Serializable {
     @Column(name = "country")
     private String country;
 
-    @Column(name = "phone")
-    private String phone;
 
     public Address(){}
 
-    public Address(User user, String address, String city, String state, String zipCode, String country, String phone) {
+    public Address(User user, String address, String city, String state, String zipCode, String country) {
         this.user = user;
         this.address = address;
         this.city = city;
         this.state = state;
         this.zipCode = zipCode;
         this.country = country;
-        this.phone = phone;
     }
 
-    public Address(String address, String city, String state, String zipCode, String country, String phone) {
+    public Address(String address, String city, String state, String zipCode, String country) {
         this.address = address;
         this.city = city;
         this.state = state;
         this.zipCode = zipCode;
         this.country = country;
-        this.phone = phone;
     }
 
     public Integer getId() {
@@ -108,11 +104,4 @@ public class Address implements Serializable {
         this.country = country;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 }

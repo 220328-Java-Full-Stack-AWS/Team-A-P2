@@ -18,14 +18,12 @@ public class Inventory implements Serializable {
 
     public Inventory() {}
 
-    public Inventory(Integer id, Product product, int quantity) {
-        this.id = id;
+    public Inventory( Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
     }
 
-    public Inventory(Integer id, int quantity) {
-        this.id = id;
+    public Inventory(int quantity) {
         this.quantity = quantity;
     }
 

@@ -27,6 +27,9 @@ public class User implements Serializable {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "phone")
+    private String phone;
+
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Payment> payments;
@@ -37,21 +40,22 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String username, String email, String password, String firstName, String lastName) {
+    public User(String username, String email, String password, String firstName, String lastName, String phone) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.phone = phone;
         this.payments = new LinkedList<>();
         this.address = new LinkedList<>();
     }
 
-    public Integer getUserId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setUserId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -93,6 +97,14 @@ public class User implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public void addPayment(Payment payment){
