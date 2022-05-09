@@ -7,6 +7,7 @@ import com.revature.ECommerce.repositories.SalesRepository;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class SalesService {
     private SalesRepository sRepo;
@@ -14,6 +15,13 @@ public class SalesService {
         this.sRepo=sRepo;
     }
 
+    public Sales getSaleById(Integer id){
+        return sRepo.getById(id);
+    }
+
+    public List<Sales> getSalesByUser(User user){
+        return sRepo.getbyUser(user);
+    }
 
 
     public User checkout(User purchaser, Sales sales){
