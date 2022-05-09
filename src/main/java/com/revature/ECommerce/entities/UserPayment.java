@@ -1,42 +1,39 @@
-package com.revature.ECommerce.entities.User;
+package com.revature.ECommerce.entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-@Table(name = "payments", schema = "public")
-public class Payment implements Serializable {
-
+@Table(name = "user_payment")
+public class UserPayment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "payment_type")
+    @Column(name = "payment_type", length = 100)
     private String paymentType;
 
-    @Column(name = "account_num")
+    @Column(name = "provider", length = 20)
+    private String provider;
+
+    @Column(name = "account_number")
     private String accountNumber;
 
-    @Column(name = "expiration")
-    private String expiration;
+    @Column(name = "expiry", length = 250)
+    private String expiry;
 
-    public Payment(){
+    public UserPayment() {
     }
 
-    public Payment(String paymentType, String accountNumber, String expiration) {
+    public UserPayment(String paymentType, String provider, String accountNumber, String expiry) {
         this.paymentType = paymentType;
+        this.provider = provider;
         this.accountNumber = accountNumber;
-        this.expiration = expiration;
-    }
-
-    public Payment(User user, String paymentType, String accountNumber, String expiration) {
-        this.user = user;
-        this.paymentType = paymentType;
-        this.accountNumber = accountNumber;
-        this.expiration = expiration;
+        this.expiry = expiry;
     }
 
     public Integer getId() {
@@ -63,6 +60,14 @@ public class Payment implements Serializable {
         this.paymentType = paymentType;
     }
 
+    public String getProvider() {
+        return provider;
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
+    }
+
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -71,11 +76,12 @@ public class Payment implements Serializable {
         this.accountNumber = accountNumber;
     }
 
-    public String getExpiration() {
-        return expiration;
+    public String getExpiry() {
+        return expiry;
     }
 
-    public void setExpiration(String expiration) {
-        this.expiration = expiration;
+    public void setExpiry(String expiry) {
+        this.expiry = expiry;
     }
+
 }

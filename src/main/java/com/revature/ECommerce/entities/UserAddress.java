@@ -1,50 +1,42 @@
-package com.revature.ECommerce.entities.User;
+package com.revature.ECommerce.entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-public class Address implements Serializable {
-
+@Table(name = "user_address")
+public class UserAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "address")
+    @Column(name = "address", length = 250)
     private String address;
 
-    @Column(name = "city")
+    @Column(name = "city", length = 250)
     private String city;
 
-    @Column(name = "state")
+    @Column(name = "state", length = 100)
     private String state;
 
-    @Column(name = "zip_code")
-    private String zipCode;
+    @Column(name = "zip", length = 50)
+    private String zip;
 
-    @Column(name = "country")
+    @Column(name = "country", length = 250)
     private String country;
 
-
-    public Address(){}
-
-    public Address(User user, String address, String city, String state, String zipCode, String country) {
-        this.user = user;
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
-        this.country = country;
+    public UserAddress() {
     }
 
-    public Address(String address, String city, String state, String zipCode, String country) {
+    public UserAddress(String address, String city, String state, String zip, String country) {
         this.address = address;
         this.city = city;
         this.state = state;
-        this.zipCode = zipCode;
+        this.zip = zip;
         this.country = country;
     }
 
@@ -88,12 +80,12 @@ public class Address implements Serializable {
         this.state = state;
     }
 
-    public String getZipCode() {
-        return zipCode;
+    public String getZip() {
+        return zip;
     }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 
     public String getCountry() {

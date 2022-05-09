@@ -1,18 +1,18 @@
-package com.revature.ECommerce.repositories.Product;
+package com.revature.ECommerce.repo;
 
-import com.revature.ECommerce.entities.Product.Product;
-import com.revature.ECommerce.repositories.HibernateRepository;
+import com.revature.ECommerce.entities.Discount;
+import com.revature.ECommerce.entities.Product;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class ProductRepository implements HibernateRepository<Product> {
+public class ProductRepo implements HibernateRepo<Product> {
 
     private Session session;
 
-    public ProductRepository(Session session){ this.session = session;}
+    public ProductRepo(Session session){ this.session = session;}
 
     @Override
     public void save(Product product) {
@@ -41,5 +41,12 @@ public class ProductRepository implements HibernateRepository<Product> {
         Transaction tx = session.beginTransaction();
         session.delete(product);
         tx.commit();
+    }
+
+    public List<Product> getByCategoryId(Integer category_id) {
+        String hql = "FROM Product WHERE category_id = :category_id";
+        TypedQuery<Product> query = session.createQuery(hql);
+        query.setParameter("category_id", category_id);
+        return query.getResultList();
     }
 }

@@ -1,21 +1,18 @@
-package com.revature.ECommerce.repositories.User;
+package com.revature.ECommerce.repo;
 
-import com.revature.ECommerce.entities.User.User;
-import com.revature.ECommerce.repositories.HibernateRepository;
+import com.revature.ECommerce.entities.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
 
-public class UserRepository implements HibernateRepository<User> {
+public class UserRepo implements HibernateRepo<User> {
 
     private Session session;
 
-    public UserRepository(Session session){ this.session = session;}
+    public UserRepo(Session session){this.session = session;}
+
     @Override
     public void save(User user) {
         Transaction tx = session.beginTransaction();
@@ -46,12 +43,10 @@ public class UserRepository implements HibernateRepository<User> {
     }
 
     public User getByUsername(String username){
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<User> query = criteriaBuilder.createQuery(User.class);
-
-        Root<User> userTable = query.from(User.class);
-        query.select(userTable).where(criteriaBuilder.equal(userTable.get("username"), username));
-
-        return session.createQuery(query).getSingleResult();
+        String hql = "FROM User WHERE username = :username";
+        TypedQuery<User> query = session.createQuery(hql);
+        query.setParameter("username", username);
+        return query.getSingleResult();
     }
+
 }
