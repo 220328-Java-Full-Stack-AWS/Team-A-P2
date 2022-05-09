@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 @Entity
-@Table(name = "users", schema = "public")
+@Table(name = "users", schema = "tc")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
     @Column(name = "email")
     private String email;
@@ -22,16 +22,15 @@ public class User {
     private String lastName;
     @Column(name = "phone")
     private String phone;
-    @Column
-    @OneToMany
-    private List<Product> productsList;
+    @OneToMany(mappedBy = "purchaser")
+    private List<Sales> saleHistory;
 
     public User() {
     }
 
-    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String phone) {
-        this.productsList=new ArrayList<>();
-        this.userId = userId;
+    public User( String username, String email, String password, String firstName, String lastName, String phone) {
+        this.saleHistory=new ArrayList<>();
+        //this.userId = userId;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -97,12 +96,12 @@ public class User {
     }
 
 
-    public void addPurchase(Product product){
-        this.productsList.add(product);
+    public void addPurchase(Sales sale){
+        this.saleHistory.add(sale);
     }
 
-    public void deletePurchase(Product product){
-        this.productsList.remove(product);
+    public void deletePurchase(Sales sale ){
+        this.saleHistory.remove(sale);
     }
     @Override
     public boolean equals(Object o) {
