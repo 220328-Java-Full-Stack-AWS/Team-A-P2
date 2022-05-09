@@ -20,25 +20,29 @@ public class User {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "address")
+    private String addy; //doing single String address bc I really don't want to deal with City,State,Zip...
+
     @Column
     @OneToMany
-    private List<Product> productsList;
+    private List<Sales> salesList;
 
     public User() {
     }
 
-    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String phone) {
-        this.productsList=new ArrayList<>();
+    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String addy) {
+        this.salesList=new ArrayList<>();
         this.userId = userId;
         this.username = username;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phone = phone;
+        this.addy = addy;
     }
+    // allow users to update password, email address
+    // allow users to update addy
+    // or it's not a said stretch goal but make separate DB for Address and allow users to update,remove & have multiple saved that are just a One2Many relation
 
     public Integer getUserId() {
         return userId;
@@ -88,33 +92,33 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getAddy() {
+        return addy;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setAddy(String phone) {
+        this.addy = phone;
     }
 
 
-    public void addPurchase(Product product){
-        this.productsList.add(product);
+    public void addPurchase(Sales sales){
+        this.salesList.add(sales);
     }
 
-    public void deletePurchase(Product product){
-        this.productsList.remove(product);
+    public void deletePurchase(Sales sales){
+        this.salesList.remove(sales);
     }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return userId == user.userId && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(phone, user.phone);
+        return userId == user.userId && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(addy, user.addy);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, username, email, password, firstName, lastName, phone);
+        return Objects.hash(userId, username, email, password, firstName, lastName, addy);
     }
 
     @Override
@@ -126,6 +130,6 @@ public class User {
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", phone='" + phone;
+                ", addy='" + addy;
     }
 }

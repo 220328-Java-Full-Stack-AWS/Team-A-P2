@@ -12,14 +12,17 @@ public class Product {
     private String productName;
     @Column(name = "product_price")
     private Double productPrice;
-    @Column(name = "product_quantity")
-    private Integer productQuantity;
+    @Column(name = "product_seller")
+    private String productSeller; //not sure if this one is needed...
+    // Are we doing like Amazon or something or like a company specific store so the seller is obvious?
     @Column(name = "product_descritption")
     private String productDescription;
     @Column(name = "product_image")
     private String productImage;
-    private String productStatus;
+    @Column(name="product_category")
+    private String productCategory;
 
+// Product Seller/Category/Price will allow us to have 3 types of filters I am hoping
 
     public Product() {
     }
@@ -28,10 +31,10 @@ public class Product {
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
-        this.productQuantity = productQuantity;
+        this.productSeller = productSeller;
         this.productDescription = productDescription;
         this.productImage = productImage;
-        this.productStatus=productStatus;
+        this.productCategory=productCategory;
     }
 
     public Integer getProductId() {
@@ -66,24 +69,24 @@ public class Product {
         this.productDescription = productDescription;
     }
 
-    public Integer getProductQuantity() {
-        return productQuantity;
+    public String getProductSeller() {
+        return productSeller;
     }
 
-    public void setProductQuantity(Integer productQuantity) {
-        this.productQuantity = productQuantity;
+    public void setProductSeller(String productSeller) {
+        this.productSeller = productSeller;
     }
 
     public void setProductImage(String productImage) {
         this.productImage = productImage;
     }
 
-    public String getProductStatus() {
-        return productStatus;
+    public String getProductCategory() {
+        return productCategory;
     }
 
-    public void setProductStatus(String productStatus) {
-        this.productStatus = productStatus;
+    public void setProductCategory(String productStatus) {
+        this.productCategory = productStatus;
     }
 
     @Override
@@ -92,9 +95,9 @@ public class Product {
                 "productId=" + productId +
                 ", productName='" + productName + '\'' +
                 ", productPrice=" + productPrice +
-                ", productQuantity=" + productQuantity +
+                ", productSeller=" + productSeller +
                 ", productDescription='" + productDescription + '\'' +
                 ", productImage='" + productImage + '\''+
-                ", productStatus= '" + productStatus;
+                ", productCategory= '" + productCategory;
     }
 }
