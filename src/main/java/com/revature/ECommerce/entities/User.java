@@ -20,17 +20,15 @@ public class User {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "phone")
+    @Column(name = "phone_number")
     private String phone;
-    @Column
-    @OneToMany
-    private List<Product> productsList;
+
 
     public User() {
     }
 
     public User(Integer userId, String username, String email, String password, String firstName, String lastName, String phone) {
-        this.productsList=new ArrayList<>();
+
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -97,13 +95,7 @@ public class User {
     }
 
 
-    public void addPurchase(Product product){
-        this.productsList.add(product);
-    }
 
-    public void deletePurchase(Product product){
-        this.productsList.remove(product);
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
