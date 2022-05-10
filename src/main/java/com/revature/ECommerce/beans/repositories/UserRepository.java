@@ -1,24 +1,33 @@
-package com.revature.ECommerce.repositories;
+package com.revature.ECommerce.beans.repositories;
 
+import com.revature.ECommerce.beans.services.HibernateManager;
 import com.revature.ECommerce.entities.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Repository
 public class UserRepository implements HibernateRepository<User>{
+    private HibernateManager hibernateManager;
     private Session session;
-    public UserRepository(Session session){
-        this.session=session;
+    boolean running = false;
+
+    @Autowired
+    public UserRepository(HibernateManager hibernateManager){
+        this.hibernateManager=hibernateManager;
     }
 
     //Thanks to Hibernate this performs both the Create and Update functionalities
     @Override
-    public void save(User user) {
+    public User save(User user) {
         Transaction tx = session.beginTransaction();
         session.save(user);
         tx.commit();
+        return user;
     }
 
     //This allows us to get all users currently in the DB
@@ -47,9 +56,36 @@ public class UserRepository implements HibernateRepository<User>{
         User user = query.getSingleResult();
         return user;
     }
+
+    public boolean checkUsernameExists(String username) {
+        String hql = "FROM User WHERE username = :username";
+        TypedQuery<User> query = session.createQuery(hql, User.class);
+        query.setParameter("username", username);
+        List<User> resultsList = query.getResultList();
+        if(resultsList.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
     public void deleteUser(User user){
         Transaction tx = session.beginTransaction();
         session.remove(user);
         tx.commit();
+    }
+
+    @Override
+    public void start() {
+        this.session=hibernateManager.getSession();
+        running=true;
+    }
+
+    @Override
+    public void stop() {
+        running=false;
+    }
+
+    @Override
+    public boolean isRunning() {
+        return running;
     }
 }

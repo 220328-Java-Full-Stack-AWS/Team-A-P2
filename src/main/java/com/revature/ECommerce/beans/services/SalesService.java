@@ -1,16 +1,22 @@
-package com.revature.ECommerce.services;
+package com.revature.ECommerce.beans.services;
 
 import com.revature.ECommerce.entities.Product;
 import com.revature.ECommerce.entities.Sales;
 import com.revature.ECommerce.entities.User;
-import com.revature.ECommerce.repositories.SalesRepository;
+import com.revature.ECommerce.beans.repositories.SalesRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class SalesService {
     private SalesRepository sRepo;
+
+    @Autowired
     public SalesService(SalesRepository sRepo){
         this.sRepo=sRepo;
     }
@@ -29,22 +35,29 @@ public class SalesService {
         LocalDateTime now = LocalDateTime.now();
         Timestamp timestamp = Timestamp.valueOf(now);
         sales.setPurchaseDate(timestamp);
-        sRepo.save(sales);
+        sales = sRepo.save(sales);
         purchaser.addPurchase(sales);
+        for(Product p : sales.getProductsList()){
+            p.setQuantitySold(0);
+        }
         return purchaser;
     }
 
-    public Sales addToCart(Product product, Sales sale){
+    public Sales addToCart(Product product, Sales sale, int quantity){
         Sales updatedSale = sale;
         Double totalAmount= 0.00;
-        if(product.getProductQuantity()>0&& product.getProductStatus().equals("In Stock")) {
-            updatedSale.getProductsList().add(product);
-            product.setProductQuantity(product.getProductQuantity()-1);
-            totalAmount+= product.getProductPrice();
+        List<Product> productList = new ArrayList<>();
+        if(product.getProductQuantity()>=quantity && product.getProductStatus().equals("In Stock") && quantity>0) {
+            productList.add(product);
+            updatedSale.setProductsList(productList);
+            product.setProductQuantity(product.getProductQuantity()-quantity);
+            totalAmount+= product.getProductPrice()*quantity;
             updatedSale.setAmount(totalAmount);
             return updatedSale;
-        }else{
+        }else if(product.getProductQuantity() <=0){
             System.out.println("Unable to add to cart, item is out of stock");
+        }else if(quantity<=0){
+            System.out.println("please enter a valid quantitiy");
         }
         return null;
     }

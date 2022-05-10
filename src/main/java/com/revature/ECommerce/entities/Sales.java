@@ -19,7 +19,8 @@ public class Sales {
     @Column(name = "purchase_amount")
     private Double amount;
 
-    @OneToMany(mappedBy = "sales")
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sales")
     private List<Product> productsList;
 
 

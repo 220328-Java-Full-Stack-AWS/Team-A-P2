@@ -2,8 +2,10 @@ package com.revature.ECommerce.entities;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "products", schema = "tc")
+@SecondaryTable(name = "product_status", schema = "tc")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +20,15 @@ public class Product {
     private String productDescription;
     @Column(name = "product_image")
     private String productImage;
-    @ManyToOne
-    @JoinColumn(name = "sale_id")
-    private Sales sales;
+    @Column(name = "status", table = "product_status")
     private String productStatus;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinTable(name = "products_in_sale", schema = "tc", joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "productid"),inverseJoinColumns = @JoinColumn(name = "sale_id", referencedColumnName = "salesid") )
+    private Sales sales;
+
+    @Transient
+    int quantitySold;
 
     public Product() {
     }
@@ -33,6 +40,7 @@ public class Product {
         this.productDescription = productDescription;
         this.productImage = productImage;
         this.productStatus=productStatus;
+        this.quantitySold=0;
     }
 
     public Integer getProductId() {
@@ -85,6 +93,18 @@ public class Product {
 
     public void setProductStatus(String productStatus) {
         this.productStatus = productStatus;
+    }
+
+    public int getQuantitySold() {
+        return quantitySold;
+    }
+
+    public void setQuantitySold(int quantitySold) {
+        this.quantitySold = quantitySold;
+    }
+
+    public String getProductImage() {
+        return productImage;
     }
 
     @Override
