@@ -10,6 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication(scanBasePackages = "com.revature.ECommerce.beans")
 public class ECommerceApplication {
@@ -35,6 +37,18 @@ public class ECommerceApplication {
 		User Terrell = new User("shady","shady@mail.com", "123", "Terrell", "Crawford", "55569420");
 		User Stan = new User("sStan", "stan@mail.com", "123", "Stan", "Savelev", "55588390");
 		//User Stan = new User("sStan", "stan@mail.com", "123", "Stan", "Savelev", "55588390",  "23 Skidoo Ln.", "New York", "USA", "NY");
+		Product thing1 = new Product("Dress Pants",99.00, 100, "Some nice dress pants", "imgurl", "In Stock", "Clothes");
+		Sale s1 = new Sale(69, timestamp, thing1);
+		thing1.setSale(s1);
+		Order order= new Order();
+		order.setUser(Terrell);
+		s1.setOrder(order);
+		List<Sale> temp = new ArrayList<>();
+		temp.add(s1);
+		order.setSaleList(temp);
+		List<Order> orders= new ArrayList<>();
+		orders.add(order);
+		Terrell.setListOfOrders(orders);
 		Stan.setAddress(a1);
 		a1.setUser(Stan);
 		Terrell.setAddress(a2);
@@ -43,6 +57,9 @@ public class ECommerceApplication {
 		p1.setUser(Stan);
 		Terrell.setPayment(p1);
 		p2.setUser(Terrell);
+		session.save(order);
+		session.save(thing1);
+		session.save(s1);
 		session.save(Stan);
 		session.save(Terrell);
 

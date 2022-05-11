@@ -27,9 +27,10 @@ public class Sale {
 
     }
 
-    public Sale(Integer quantity, Double cost, Timestamp dateOfPurchase){
+    public Sale(Integer quantity, Timestamp dateOfPurchase, Product product){
         this.quantity=quantity;
-        this.cost=cost;
+        this.product=product;
+        this.cost= product.getProductPrice()*quantity;
         this.dateOfPurchase=dateOfPurchase;
     }
 
