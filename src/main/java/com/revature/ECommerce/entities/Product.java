@@ -26,7 +26,7 @@ public class Product {
     @Column(name = "category")
     private String productCategory;
 
-    @OneToOne(mappedBy = "product")
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
     private Sale sale;
 
 
