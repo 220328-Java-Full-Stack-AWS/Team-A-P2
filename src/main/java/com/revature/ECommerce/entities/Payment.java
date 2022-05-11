@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 @Table(name = "user_payments", schema = "tc")
 public class Payment {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer paymentId;
     @Column(name = "card_number")
     private Integer cardNumber;
