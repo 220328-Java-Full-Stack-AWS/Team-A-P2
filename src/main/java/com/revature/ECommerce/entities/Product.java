@@ -1,12 +1,11 @@
 package com.revature.ECommerce.entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "products")
-public class Product {
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -21,17 +20,15 @@ public class Product {
     @Column(name = "price", precision = 131089)
     private Double price;
 
+    @Column(name = "quantity")
+    private Integer quantity;
+
     @Column(name = "image")
     private String image;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "inventory_id")
-    private ProductInventory inventory;
-
-    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private ProductCategory category;
-
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "discount_id")
@@ -40,10 +37,11 @@ public class Product {
     public Product() {
     }
 
-    public Product(String productName, String description, Double price, String image) {
+    public Product(String productName, String description, Double price, Integer quantity, String image) {
         this.productName = productName;
         this.description = description;
         this.price = price;
+        this.quantity = quantity;
         this.image = image;
     }
 
@@ -87,12 +85,12 @@ public class Product {
         this.image = image;
     }
 
-    public ProductInventory getInventory() {
-        return inventory;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setInventory(ProductInventory inventory) {
-        this.inventory = inventory;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public ProductCategory getCategory() {

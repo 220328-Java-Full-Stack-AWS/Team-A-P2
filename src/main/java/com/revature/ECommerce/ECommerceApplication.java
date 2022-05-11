@@ -2,6 +2,7 @@ package com.revature.ECommerce;
 
 import com.revature.ECommerce.entities.*;
 import com.revature.ECommerce.repo.*;
+import com.revature.ECommerce.services.AuthenticationService;
 import com.revature.ECommerce.utilities.HibernateManager;
 import com.revature.ECommerce.utilities.TransactionManager;
 import org.hibernate.Session;
@@ -9,6 +10,7 @@ import org.hibernate.Transaction;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @SpringBootApplication
@@ -24,9 +26,10 @@ public class ECommerceApplication {
 		hibernateManager.addAnnotatedClass(UserAddress.class);
 		hibernateManager.addAnnotatedClass(Product.class);
 		hibernateManager.addAnnotatedClass(ProductCategory.class);
-		hibernateManager.addAnnotatedClass(ProductInventory.class);
 		hibernateManager.addAnnotatedClass(Discount.class);
 		hibernateManager.addAnnotatedClass(Admin.class);
+		hibernateManager.addAnnotatedClass(OrderDetails.class);
+		hibernateManager.addAnnotatedClass(Order.class);
 
 		Session session = hibernateManager.initializeDatasource();
 
@@ -56,9 +59,7 @@ public class ECommerceApplication {
 
 		// products test
 		transactionManager.beginTransaction();
-		Product product1 = new Product("Banana", "Banana is a delicious fruit that is healthy and can be be used for many things", 7.44, "https://th-thumbnailer.cdn-si-edu.com/4Nq8HbTKgX6djk07DqHqRsRuFq0=/1000x750/filters:no_upscale()/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/d5/24/d5243019-e0fc-4b3c-8cdb-48e22f38bff2/istock-183380744.jpg");
-		ProductInventory product1Inventory = new ProductInventory(2000);
-		product1.setInventory(product1Inventory);
+		Product product1 = new Product("Banana", "Banana is a delicious fruit that is healthy and can be be used for many things", 7.44, 2001,"https://th-thumbnailer.cdn-si-edu.com/4Nq8HbTKgX6djk07DqHqRsRuFq0=/1000x750/filters:no_upscale()/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/d5/24/d5243019-e0fc-4b3c-8cdb-48e22f38bff2/istock-183380744.jpg");
 
 		ProductCategory fruits = new ProductCategory("Fruits", "Healthy food, great for your body and to make amazing healthy recipes.");
 		product1.setCategory(fruits);
@@ -67,7 +68,6 @@ public class ECommerceApplication {
 		session.save(summerSale);
 
 		session.save(fruits);
-		session.save(product1Inventory);
 		session.save(product1);
 		transactionManager.commitTransaction(tx);//unnecessary over-engineering?
 
@@ -86,7 +86,6 @@ public class ECommerceApplication {
 		ProductCategoryRepo productCategoryRepo = new ProductCategoryRepo(session);
 		UserAddressRepo userAddressRepo = new UserAddressRepo(session);
 		UserPaymentRepo userPaymentRepo = new UserPaymentRepo(session);
-		ProductInventoryRepo productInventoryRepo= new ProductInventoryRepo(session);
 		DiscountRepo discountRepo = new DiscountRepo(session);
 		ProductRepo productRepo = new ProductRepo(session);
 
@@ -100,9 +99,9 @@ public class ECommerceApplication {
 
 		List<UserPayment> payments = userPaymentRepo.getByProvider("Visa");
 
-		ProductInventory inventory = productInventoryRepo.getById(1);
 
 		Discount Summer = discountRepo.getByName("Summer Sale");
+
 		transactionManager.commitTransaction(tx);//unnecessary over-engineering?
 
 		for (User user : users){
@@ -123,13 +122,36 @@ public class ECommerceApplication {
 			System.out.println("Visa Payments: " + payment.getPaymentType() + "," + payment.getProvider() + "," + payment.getAccountNumber());
 		}
 
-		System.out.println(inventory.getQuantity());
-
 		System.out.println(Summer.getDiscountName() + ": " + Summer.getDescription());
 
 		for(Product product : products){
 			System.out.println(product.getProductName());
 		}
+
+		transactionManager.beginTransaction();
+		UserAddress address2 = new UserAddress("123 Oak Rd.", "Oceanside", "New Jersey", "11442", "United States");
+		address2.setUser(leo);
+
+		session.save(address2);
+
+		transactionManager.commitTransaction(tx);//unnecessary over-engineering?
+
+
+		AuthenticationService authenticationService = new AuthenticationService(userRepo);
+		authenticationService.login("ElCucuy", "pass");
+
+		transactionManager.beginTransaction();
+		OrderDetails orderDetail = new OrderDetails(product1, product1.getProductName(), product1.getPrice(), 10);
+		Double total = orderDetail.getPrice() * orderDetail.getQuantity();
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
+		Order order1 = new Order(total, ts, leoAddress.getAddress(), leoAddress.getCity(), leoAddress.getState(), leoAddress.getZip(), leoAddress.getCountry());
+		order1.setUser(leo);
+		orderDetail.setOrder(order1);
+
+		session.save(order1);
+		session.save(orderDetail);
+
+		transactionManager.commitTransaction(tx);//unnecessary over-engineering?
 	}
 
 }
