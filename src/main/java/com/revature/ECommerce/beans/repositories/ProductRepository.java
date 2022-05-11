@@ -31,6 +31,20 @@ public class ProductRepository implements HibernateRepository<Product> {
     }
 
     @Override
+    public Product update(Product product) {
+        Product updateProduct = this.getById(product.getProductId());
+        updateProduct.setProductName(product.getProductName());
+        updateProduct.setProductPrice(product.getProductPrice());
+        updateProduct.setProductQuantity(product.getProductQuantity());
+        updateProduct.setProductDescription(product.getProductDescription());
+        updateProduct.setProductImage(product.getProductImage());
+        updateProduct.setProductStatus(product.getProductStatus());
+        updateProduct.setProductCategory(product.getProductCategory());
+        this.save(updateProduct);
+        return updateProduct;
+    }
+
+    @Override
     public void start() {
         this.session=hibernateManager.getSession();
         running=true;

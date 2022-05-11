@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Objects;
 @Entity
 @Table(name = "users", schema = "tc")
-//@SecondaryTable(name = "user_addresses", schema = "tc")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,16 +24,6 @@ public class User {
     private String lastName;
     @Column(name = "phone_number")
     private String phone;
-   /* @Column(name = "address", table = "user_addresses")
-    private String address;
-    @Column(name = "city", table = "user_addresses")
-    private String city;
-    @Column(name = "state", table = "user_addresses")
-    private String state;
-    @Column(name = "zip", table = "user_addresses")
-    private Integer zipCode;
-    @Column(name = "country", table = "user_addresses")
-    private String country;*/
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Address address;
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
@@ -55,19 +44,7 @@ public class User {
         this.phone = phone;
     }
 
-    /*public User( String username, String email, String password, String firstName, String lastName, String phone, String address, String city, String country, String state, Integer zipCode) {
-        this.address=address;
-        this.city=city;
-        this.state=state;
-        this.country=country;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.zipCode=zipCode;
-    }*/
+
 
     public Payment getPayment() {
         return payment;

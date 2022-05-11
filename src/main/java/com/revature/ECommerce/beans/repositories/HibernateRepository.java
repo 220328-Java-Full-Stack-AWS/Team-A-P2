@@ -8,5 +8,6 @@ public interface HibernateRepository<T> extends Lifecycle {
     public T save(T t);
     public List<T> getAll();
     public T getById(Integer id);
+    public T update(T t);
 
 }

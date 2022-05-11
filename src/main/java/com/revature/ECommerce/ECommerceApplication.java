@@ -38,6 +38,7 @@ public class ECommerceApplication {
 		User Stan = new User("sStan", "stan@mail.com", "123", "Stan", "Savelev", "55588390");
 		//User Stan = new User("sStan", "stan@mail.com", "123", "Stan", "Savelev", "55588390",  "23 Skidoo Ln.", "New York", "USA", "NY");
 		Product thing1 = new Product("Dress Pants",99.00, 100, "Some nice dress pants", "imgurl", "In Stock", "Clothes");
+		//Assigning a sale of 69 Dress pants to Terrell then, creating an order with that sale
 		Sale s1 = new Sale(69, timestamp, thing1);
 		thing1.setSale(s1);
 		Order order= new Order();
