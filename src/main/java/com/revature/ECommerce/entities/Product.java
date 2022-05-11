@@ -3,7 +3,7 @@ package com.revature.ECommerce.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "products", schema = "tc")
+@Table(name = "products", schema = "jh")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
