@@ -1,27 +1,47 @@
 package com.revature.ECommerce.beans.repositories;
 
+import com.revature.ECommerce.beans.services.HibernateManager;
+import com.revature.ECommerce.entities.Order;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
+@Repository
+public class OrderRepository implements HibernateRepository<Order>{
+    private HibernateManager hibernateManager;
+    boolean running = false;
+    private Session session;
 
-public class OrderRepository implements HibernateRepository{
+    @Autowired
+    public OrderRepository(HibernateManager hibernateManager){
+        this.hibernateManager=hibernateManager;
+    }
     @Override
-    public Object save(Object o) {
+    public Order save(Order order) {
+        Transaction tx = session.beginTransaction();
+        session.save(order);
+        tx.commit();
+        return order;
+    }
+
+    @Override
+    public List<Order> getAll() {
         return null;
     }
 
     @Override
-    public List getAll() {
+    public Order getById(Integer id) {
         return null;
     }
 
     @Override
-    public Object getById(Integer id) {
+    public Order update(Order order) {
         return null;
     }
 
-    @Override
-    public Object update(Object o) {
-        return null;
-    }
+
 
     @Override
     public void start() {
