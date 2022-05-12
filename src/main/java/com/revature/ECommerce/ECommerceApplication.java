@@ -1,5 +1,7 @@
 package com.revature.ECommerce;
 
+import com.revature.ECommerce.beans.services.OrderService;
+import com.revature.ECommerce.beans.services.UserService;
 import com.revature.ECommerce.entities.*;
 import com.revature.ECommerce.beans.services.HibernateManager;
 import org.apache.tomcat.jni.Time;
@@ -37,6 +39,25 @@ public class ECommerceApplication {
 		User Terrell = new User("shady","shady@mail.com", "123", "Terrell", "Crawford", "55569420");
 		User Stan = new User("sStan", "stan@mail.com", "123", "Stan", "Savelev", "55588390");
 		Product thing1 = new Product("Dress Pants",99.00, 100, "Some nice dress pants", "imgurl", "In Stock", "Clothes");
+		Product thing2= new Product("Dress Shirt",35.00, 100, "A Stylish dress shirt", "imgurl", "In Stock", "Clothes");
+		session.save(thing1);
+		session.save(thing2);
+		tx.commit();
+		UserService uServ = context.getBean(UserService.class);
+		OrderService oServ= context.getBean(OrderService.class);
+		Sale s1 = new Sale(69, timestamp, thing1);
+		Sale s2= new Sale(30, timestamp, thing2);
+		Order order= new Order();
+
+		order=oServ.addToOrder(order,s1);
+		order=oServ.addToOrder(order,s2);
+		try {
+			order=oServ.removeFromOrder(order, s1);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		order=oServ.checkOut(Terrell, order);
+		/*
 		//Assigning a sale of 69 Dress pants to Terrell then, creates an order with that sale
 		Sale s1 = new Sale(69, timestamp, thing1);
 		thing1.setSale(s1);
@@ -64,8 +85,8 @@ public class ECommerceApplication {
 		session.save(s1);
 		session.save(Stan);
 		session.save(Terrell);
+		*/
 
-		tx.commit();
 
 
 	}

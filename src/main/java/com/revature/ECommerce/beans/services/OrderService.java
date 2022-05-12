@@ -13,20 +13,29 @@ import java.util.List;
 @Service
 public class OrderService {
     private OrderRepository oRepo;
+    private UserService uServ;
 
     @Autowired
-    public OrderService(OrderRepository oRepo){
+    public OrderService(OrderRepository oRepo, UserService uServ){
+        this.uServ=uServ;
         this.oRepo=oRepo;
     }
 
-    public Order addToOrder(Order order, Sale sale) throws Exception {
+    public Order addToOrder(Order order, Sale sale) {
         if(oRepo.orderExists(order)){
             List<Sale> tempList=new ArrayList<>();
+            sale.setOrder(order);
             tempList.add(sale);
             order.setSaleList(tempList);
             return order;
         }else{
-            throw new Exception("There is no such order");
+            order=oRepo.save(order);
+            List<Sale> tempList=new ArrayList<>();
+            sale.setOrder(order);
+            tempList.add(sale);
+            order.setSaleList(tempList);
+            order=oRepo.update(order);
+            return order;
         }
     }
 
@@ -51,12 +60,13 @@ public class OrderService {
         tempList.add(order);
         user.setListOfOrders(tempList);
         if(oRepo.orderExists(order)){
-            oRepo.update(order);
-            //save user
+            user=uServ.save(user);
+            order=oRepo.update(order);
+            user=uServ.save(user);
             return order;
         }else{
-            oRepo.save(order);
-            //save user
+            //oRepo.save(order);
+            user=uServ.save(user);
             return order;
         }
     }
@@ -76,6 +86,7 @@ public class OrderService {
     public Order update(Order order){
         return oRepo.update(order);
     }
+
 
 
 }

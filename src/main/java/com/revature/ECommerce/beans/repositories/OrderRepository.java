@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import java.util.List;
 @Repository
@@ -55,7 +56,12 @@ public class OrderRepository implements HibernateRepository<Order>{
         String hql = "FROM Order WHERE id= :id";
         TypedQuery<Order> query = session.createQuery(hql, Order.class);
         query.setParameter("id", order.getOrderId());
-        Order tempOrder = query.getSingleResult();
+        Order tempOrder= new Order();
+        try {
+            tempOrder = query.getSingleResult();
+        }catch(NoResultException e){
+            tempOrder=null;
+        }
         return tempOrder != null;
     }
 
