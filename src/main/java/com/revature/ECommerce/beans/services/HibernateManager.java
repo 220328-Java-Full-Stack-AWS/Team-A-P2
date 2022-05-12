@@ -13,14 +13,16 @@ import java.util.List;
 @Service
 public class HibernateManager implements Lifecycle {
     private boolean running = false;
-    private List<Class> annotatedEntities;
-    private Configuration config;
+
+    private final List<Class> annotatedEntities;
+    private final Configuration config;
     private Session session;
     private SessionFactory sessionFactory;
+
     public HibernateManager(){
         config = new Configuration();
-        sessionFactory= config.buildSessionFactory();
-        annotatedEntities=new ArrayList<>();
+        sessionFactory = config.buildSessionFactory();
+        annotatedEntities = new ArrayList<>();
     }
     public void addAnnotatedClass(Class c){
         annotatedEntities.add(c);

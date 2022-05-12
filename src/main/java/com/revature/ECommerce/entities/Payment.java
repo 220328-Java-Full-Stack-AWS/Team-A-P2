@@ -4,16 +4,17 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "user_payments", schema = "tc")
+@Table(name = "user_payments", schema = "jk")
 public class Payment {
     @Id
     private Integer paymentId;
     @Column(name = "card_number")
     private Integer cardNumber;
     @Column(name = "exp_date")
-    private Timestamp experationDate;
+    private Timestamp expirationDate;
     @Column(name = "cvc")
     private Integer cvc;
+
     @OneToOne
     @JoinColumn(name = "user_id")
     @MapsId
@@ -21,9 +22,9 @@ public class Payment {
 
     public Payment(){}
 
-    public Payment(Integer cardNumber, Timestamp experationDate, Integer cvc){
+    public Payment(Integer cardNumber, Timestamp expirationDate, Integer cvc){
         this.cardNumber=cardNumber;
-        this.experationDate=experationDate;
+        this.expirationDate=expirationDate;
         this.cvc=cvc;
     }
 
@@ -52,12 +53,12 @@ public class Payment {
         this.cardNumber = cardNumber;
     }
 
-    public Timestamp getExperationDate() {
-        return experationDate;
+    public Timestamp getExpirationDate() {
+        return expirationDate;
     }
 
-    public void setExperationDate(Timestamp experationDate) {
-        this.experationDate = experationDate;
+    public void setExpirationDate(Timestamp expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
     public Integer getCvc() {
