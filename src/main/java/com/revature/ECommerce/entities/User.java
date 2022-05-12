@@ -1,12 +1,12 @@
 package com.revature.ECommerce.entities;
 
 import javax.persistence.*;
-import com.revature.ECommerce.entities.Payment;
 
 import java.util.List;
 import java.util.Objects;
+
 @Entity
-@Table(name = "users", schema = "jh")
+@Table(name = "users", schema = _SchemaName.schemaName)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

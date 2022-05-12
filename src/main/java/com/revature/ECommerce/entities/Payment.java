@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "user_payments", schema = "jh")
+@Table(name = "user_payments", schema = _SchemaName.schemaName)
 public class Payment {
     @Id
     private Integer paymentId;
