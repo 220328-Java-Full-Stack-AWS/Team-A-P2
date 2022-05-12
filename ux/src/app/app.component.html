@@ -3,7 +3,7 @@
   <h2>ReValue.com</h2>
   <div class="sign-in">
     <fa-icon [icon]="faUserAstronaut" id="login-icon"></fa-icon>
-    <span>Log In</span>
+    <span (click)="onOpenModal('login')">Log In</span>
   </div>
 </div>
 <!-- header end -->
@@ -12,12 +12,12 @@
 <div class="welcome-card">
   <h1>ReValue</h1>
   <p>Whoever said money can't buy happiness, simply didn't know where to go shopping</p>
-  <a href="#reValueProducts">View Products</a>
+  <a href="#main-container">View Products</a>
 </div>
 <!-- Welcome card end -->
 
 <!-- Store start-->
-<div class="container bootdey" id="reValueProducts">
+<div class="container bootdey" id="main-container">
     <div class="col-md-3">
         <section class="panel">
             <div class="panel-body">
@@ -679,8 +679,8 @@
   <ul>
     <li>Login</li>
     <li>Register</li>
-    <li><a href="#reValueProducts">View Products</a></li>
-    <li><a href="#reValueProducts">View Categories</a></li>
+    <li><a href="#main-container">View Products</a></li>
+    <li><a href="#main-container">View Categories</a></li>
     <li>Reviews</li>
     <li>About ReValue</li>
     <li>Contact Us</li>
@@ -688,4 +688,39 @@
   </ul>
 </Footer>
 <!--Footer End-->
+
+<div class="modal fade" id="loginModal">
+  <form class="login">
+    <div class="login-header">
+      <h1 class="h1">Login</h1>
+      <button data-dismiss="modal" class="btn btn-light">&times;</button>
+    </div>
+    <div class="login-body">
+      <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Email..." required />
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input #x type="password" name="password" id="password" placeholder="Password..." required />
+        <div (click)="x.type=x.type=='password'?'text':'password'" (click)="togglePassword()" class="view-password">
+          <fa-icon [icon]="faFaceRollingEyes"></fa-icon>
+          <span id="viewPasswordText" style="margin-left: .5rem">View Password</span>
+        </div>
+      </div>
+    </div>
+    <div class="login-footer">
+      <div class="login-submit">
+        <button style="margin-right: 1rem" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary">Login</button>
+      </div>
+      <div class="login-help">
+        <a href="#">Forgot Password?</a>
+        <span>Need to register? <a href="#">Register Here</a></span>
+      </div>
+    </div>
+  </form>
+</div>
+
+
 

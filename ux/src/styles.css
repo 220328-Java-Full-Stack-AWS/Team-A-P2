@@ -311,3 +311,76 @@ Footer ul li a:hover{
   color: violet;
 }
 /* Footer End */
+
+/* Login Form Start*/
+.login{
+  position: fixed;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+}
+.login-header{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom: lightgrey solid 1px;
+}
+
+.login-body{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.login-body div{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.login-body div label{
+  font-size: 1.5rem;
+  color: #4e4d4d;
+}
+.login-body div input{
+  width: 100%;
+  font-size: 1.6rem;
+  padding: .2rem .8rem;
+}
+.login-body .view-password{
+  margin: 2px;
+  padding: 0;
+  color: #3b3b3b;
+  display: flex;
+  flex-direction: row;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.login-body .view-password span:hover{
+  text-decoration: underline;
+}
+
+.login-footer{
+  padding: 1rem 0;
+  margin-top: 1rem;
+  border-top: 1px lightgray solid;
+}
+
+.login-footer .login-submit{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.login-footer .login-help{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Login Form End */
