@@ -4,15 +4,14 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "user_payments", schema = "")
+@Table(name = "user_payments", schema = "tc")
 public class Payment {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer paymentId;
     @Column(name = "card_number")
     private Integer cardNumber;
     @Column(name = "exp_date")
-    private Timestamp expirationDate;
+    private Timestamp experationDate;
     @Column(name = "cvc")
     private Integer cvc;
     @OneToOne
@@ -22,9 +21,9 @@ public class Payment {
 
     public Payment(){}
 
-    public Payment(Integer cardNumber, Timestamp expirationDate, Integer cvc){
+    public Payment(Integer cardNumber, Timestamp experationDate, Integer cvc){
         this.cardNumber=cardNumber;
-        this.expirationDate=expirationDate;
+        this.experationDate=experationDate;
         this.cvc=cvc;
     }
 
@@ -54,11 +53,11 @@ public class Payment {
     }
 
     public Timestamp getExperationDate() {
-        return expirationDate;
+        return experationDate;
     }
 
-    public void setExpirationDate(Timestamp expirationDate) {
-        this.expirationDate = expirationDate;
+    public void setExperationDate(Timestamp experationDate) {
+        this.experationDate = experationDate;
     }
 
     public Integer getCvc() {

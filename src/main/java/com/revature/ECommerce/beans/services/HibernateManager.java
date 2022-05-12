@@ -33,7 +33,6 @@ public class HibernateManager implements Lifecycle {
         return session;
     }
 
-
     @Override
     public void start() {
 
@@ -56,3 +55,4 @@ public class HibernateManager implements Lifecycle {
         return running;
     }
 }
+

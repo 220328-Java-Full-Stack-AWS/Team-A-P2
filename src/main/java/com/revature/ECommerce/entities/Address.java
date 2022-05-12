@@ -3,7 +3,7 @@ package com.revature.ECommerce.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user_addresses", schema = "")
+@Table(name = "user_addresses", schema = "tc")
 public class Address {
     @Id
     private Integer addressId;

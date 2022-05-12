@@ -1,28 +1,31 @@
 package com.revature.ECommerce.beans.repositories;
 
+import com.revature.ECommerce.entities.Address;
+
 import java.util.List;
 
-public class AddressRepository implements HibernateRepository{
+public class AddressRepository implements HibernateRepository<Address>{
+
+
     @Override
-    public Object save(Object o) {
+    public Address save(Address address) {
         return null;
     }
 
     @Override
-    public List getAll() {
+    public List<Address> getAll() {
         return null;
     }
 
     @Override
-    public Object getById(Integer id) {
+    public Address getById(Integer id) {
         return null;
     }
 
     @Override
-    public Object update(Object o) {
+    public Address update(Address address) {
         return null;
     }
-
     @Override
     public void start() {
 

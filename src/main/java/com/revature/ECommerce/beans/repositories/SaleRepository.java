@@ -1,28 +1,31 @@
 package com.revature.ECommerce.beans.repositories;
 
+import com.revature.ECommerce.entities.Sale;
+
 import java.util.List;
 
-public class SaleRepository implements HibernateRepository{
+public class SaleRepository implements HibernateRepository<Sale>{
+
+
     @Override
-    public Object save(Object o) {
+    public Sale save(Sale sale) {
         return null;
     }
 
     @Override
-    public List getAll() {
+    public List<Sale> getAll() {
         return null;
     }
 
     @Override
-    public Object getById(Integer id) {
+    public Sale getById(Integer id) {
         return null;
     }
 
     @Override
-    public Object update(Object o) {
+    public Sale update(Sale sale) {
         return null;
     }
-
     @Override
     public void start() {
 

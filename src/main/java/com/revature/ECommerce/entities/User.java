@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "users", schema = "")
-
+@Table(name = "users", schema = "tc")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,7 +44,6 @@ public class User {
         this.lastName = lastName;
         this.phone = phone;
     }
-
 
     public Payment getPayment() {
         return payment;

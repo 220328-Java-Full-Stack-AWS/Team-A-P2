@@ -1,28 +1,31 @@
 package com.revature.ECommerce.beans.repositories;
 
+import com.revature.ECommerce.entities.Payment;
+
 import java.util.List;
 
-public class PaymentRepository implements HibernateRepository{
+public class PaymentRepository implements HibernateRepository<Payment> {
+
+
     @Override
-    public Object save(Object o) {
+    public Payment save(Payment payment) {
         return null;
     }
 
     @Override
-    public List getAll() {
+    public List<Payment> getAll() {
         return null;
     }
 
     @Override
-    public Object getById(Integer id) {
+    public Payment getById(Integer id) {
         return null;
     }
 
     @Override
-    public Object update(Object o) {
+    public Payment update(Payment payment) {
         return null;
     }
-
     @Override
     public void start() {
 
