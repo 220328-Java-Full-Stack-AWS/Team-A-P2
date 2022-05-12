@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faUserAstronaut, faFaceRollingEyes } from '@fortawesome/free-solid-svg-icons';
+import { faUserAstronaut, faFaceRollingEyes, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,6 +13,7 @@ export class AppComponent {
   // Font Awesome Icons
   public faUserAstronaut = faUserAstronaut;
   public faFaceRollingEyes = faFaceRollingEyes;
+  public faAngleRight = faAngleRight;
 
 
   //view password
