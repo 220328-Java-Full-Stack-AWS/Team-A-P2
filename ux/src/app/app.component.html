@@ -3,7 +3,7 @@
   <h2>ReValue.com</h2>
   <div class="sign-in">
     <fa-icon [icon]="faUserAstronaut" id="login-icon"></fa-icon>
-    <a href="#">Log In</a>
+    <span>Log In</span>
   </div>
 </div>
 <!-- header end -->
@@ -124,7 +124,7 @@
         </section>
         <section class="panel">
             <header class="panel-heading">
-                Best Seller
+                Featured Products
             </header>
             <div class="panel-body">
                 <div class="best-seller">
@@ -158,6 +158,43 @@
                 </div>
             </div>
         </section>
+
+        <section class="panel">
+          <header class="panel-heading">
+              Sales
+          </header>
+          <div class="panel-body">
+              <div class="best-seller">
+                  <article class="media">
+                      <a class="pull-left thumb p-thumb">
+                          <img src="https://via.placeholder.com/250x220/FFB6C1/000000" />
+                      </a>
+                      <div class="media-body">
+                          <a href="#" class="p-head">Item One Tittle</a>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                      </div>
+                  </article>
+                  <article class="media">
+                      <a class="pull-left thumb p-thumb">
+                          <img src="https://via.placeholder.com/250x220/A2BE2/000000" />
+                      </a>
+                      <div class="media-body">
+                          <a href="#" class="p-head">Item Two Tittle</a>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                      </div>
+                  </article>
+                  <article class="media">
+                      <a class="pull-left thumb p-thumb">
+                          <img src="https://via.placeholder.com/250x220/6495ED/000000" />
+                      </a>
+                      <div class="media-body">
+                          <a href="#" class="p-head">Item Three Tittle</a>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                      </div>
+                  </article>
+              </div>
+          </div>
+      </section>
     </div>
     <div class="col-md-9">
         <section class="panel">
@@ -468,6 +505,16 @@
 <Footer>
   <h2>ReValue.com</h2>
   <span>Copyright &copy;{{ year }}, ReValue Inc.</span>
+  <ul>
+    <li>Login</li>
+    <li>Register</li>
+    <li><a href="#reValueProducts">View Products</a></li>
+    <li><a href="#reValueProducts">View Categories</a></li>
+    <li>Reviews</li>
+    <li>About ReValue</li>
+    <li>Contact Us</li>
+    <li>Developers</li>
+  </ul>
 </Footer>
 <!--Footer End-->
 

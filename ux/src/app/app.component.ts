@@ -11,9 +11,4 @@ export class AppComponent {
   public year = new Date().getFullYear();
   public faUserAstronaut = faUserAstronaut;
 
-  public navAnimation(){
-    const header = document.querySelector('.header');
-    header?.classList.add('fixed-top');
-  }
-
 }
