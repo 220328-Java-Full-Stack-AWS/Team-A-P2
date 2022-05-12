@@ -1,28 +1,29 @@
 package com.revature.ECommerce;
 
-import com.revature.ECommerce.entities.Product;
-import com.revature.ECommerce.entities.User;
-import com.revature.ECommerce.utilities.HibernateManager;
-
+import com.revature.ECommerce.entities.*;
+import com.revature.ECommerce.beans.services.HibernateManager;
+import org.apache.tomcat.jni.Time;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
-@SpringBootApplication
+
+
+@SpringBootApplication(scanBasePackages = "com.revature.ECommerce.beans")
 public class ECommerceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ECommerceApplication.class, args);
-		//This initializes our Hibernate manager and passes in the User and Product classes so Hibernate knows what they are
-		HibernateManager hibernateManager= new HibernateManager();
+		ConfigurableApplicationContext context =SpringApplication.run(ECommerceApplication.class, args);
+		HibernateManager hibernateManager= context.getBean(HibernateManager.class);
 		hibernateManager.addAnnotatedClass(User.class);
 		hibernateManager.addAnnotatedClass(Product.class);
-
-		Session session= hibernateManager.initializeDatasource();
-
-
-
+		hibernateManager.addAnnotatedClass(Payment.class);
+		hibernateManager.addAnnotatedClass(Order.class);
+		hibernateManager.addAnnotatedClass(Sale.class);
+		hibernateManager.addAnnotatedClass(Address.class);
+		context.start();
+		Session session = hibernateManager.getSession();
 	}
-
-
 }

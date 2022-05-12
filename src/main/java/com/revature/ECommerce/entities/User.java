@@ -1,14 +1,17 @@
 package com.revature.ECommerce.entities;
-
 import javax.persistence.*;
-import java.util.ArrayList;
+import com.revature.ECommerce.entities.Payment;
+
 import java.util.List;
 import java.util.Objects;
+
 @Entity
-@Table(name = "users", schema = "public")
+@Table(name = "users", schema = "")
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Integer userId;
     @Column(name = "username")
     private String username;
@@ -20,29 +23,53 @@ public class User {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "address")
-    private String addy; //doing single String address bc I really don't want to deal with City,State,Zip...
+    @Column(name = "phone_number")
+    private String phone;
 
-    @Column
-    @OneToMany
-    private List<Sales> salesList;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Address address;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Payment payment;
+    @OneToMany(mappedBy = "user")
+    private List<Order> listOfOrders;
+
 
     public User() {
     }
 
-    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String addy) {
-        this.salesList=new ArrayList<>();
-        this.userId = userId;
+    public User( String username, String email, String password, String firstName, String lastName, String phone) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.addy = addy;
+        this.phone = phone;
     }
-    // allow users to update password, email address
-    // allow users to update addy
-    // or it's not a said stretch goal but make separate DB for Address and allow users to update,remove & have multiple saved that are just a One2Many relation
+
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public List<Order> getListOfOrders() {
+        return listOfOrders;
+    }
+
+    public void setListOfOrders(List<Order> listOfOrders) {
+        this.listOfOrders = listOfOrders;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -92,33 +119,25 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getAddy() {
-        return addy;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setAddy(String phone) {
-        this.addy = phone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-
-    public void addPurchase(Sales sales){
-        this.salesList.add(sales);
-    }
-
-    public void deletePurchase(Sales sales){
-        this.salesList.remove(sales);
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return userId == user.userId && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(addy, user.addy);
+        return userId == user.userId && Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(phone, user.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, username, email, password, firstName, lastName, addy);
+        return Objects.hash(userId, username, email, password, firstName, lastName, phone);
     }
 
     @Override
@@ -130,6 +149,6 @@ public class User {
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", addy='" + addy;
+                ", phone='" + phone;
     }
 }

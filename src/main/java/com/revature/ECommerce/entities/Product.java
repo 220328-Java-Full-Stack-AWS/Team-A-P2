@@ -3,38 +3,52 @@ package com.revature.ECommerce.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "products", schema = "public")
+@Table(name = "products", schema = "")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "product_id")
     private Integer productId;
     @Column(name = "product_name")
     private String productName;
-    @Column(name = "product_price")
+    @Column(name = "price")
     private Double productPrice;
-    @Column(name = "product_seller")
-    private String productSeller; //not sure if this one is needed...
-    // Are we doing like Amazon or something or like a company specific store so the seller is obvious?
-    @Column(name = "product_descritption")
+    @Column(name = "quantity")
+    private Integer productQuantity;
+    @Column(name = "descritption")
     private String productDescription;
-    @Column(name = "product_image")
+    @Column(name = "image")
     private String productImage;
-    @Column(name="product_category")
+
+    @Column(name = "status")
+    private String productStatus;
+
+    @Column(name = "category")
     private String productCategory;
 
-// Product Seller/Category/Price will allow us to have 3 types of filters I am hoping
+    @OneToOne(mappedBy = "product")
+    private Sale sale;
+
 
     public Product() {
     }
 
-    public Product(Integer productId, String productName, Double productPrice, Integer productQuantity, String productDescription, String productImage, String productStatus) {
-        this.productId = productId;
+    public Product(String productName, Double productPrice, Integer productQuantity, String productDescription, String productImage, String productStatus, String productCategory) {
         this.productName = productName;
         this.productPrice = productPrice;
-        this.productSeller = productSeller;
+        this.productQuantity = productQuantity;
         this.productDescription = productDescription;
         this.productImage = productImage;
+        this.productStatus=productStatus;
         this.productCategory=productCategory;
+    }
+
+    public Sale getSale() {
+        return sale;
+    }
+
+    public void setSale(Sale sale) {
+        this.sale = sale;
     }
 
     public Integer getProductId() {
@@ -69,24 +83,37 @@ public class Product {
         this.productDescription = productDescription;
     }
 
-    public String getProductSeller() {
-        return productSeller;
+    public Integer getProductQuantity() {
+        return productQuantity;
     }
 
-    public void setProductSeller(String productSeller) {
-        this.productSeller = productSeller;
+    public void setProductQuantity(Integer productQuantity) {
+        this.productQuantity = productQuantity;
     }
 
     public void setProductImage(String productImage) {
         this.productImage = productImage;
     }
 
+    public String getProductStatus() {
+        return productStatus;
+    }
+
+    public void setProductStatus(String productStatus) {
+        this.productStatus = productStatus;
+    }
+
+
+    public String getProductImage() {
+        return productImage;
+    }
+
     public String getProductCategory() {
         return productCategory;
     }
 
-    public void setProductCategory(String productStatus) {
-        this.productCategory = productStatus;
+    public void setProductCategory(String productCategory) {
+        this.productCategory = productCategory;
     }
 
     @Override
@@ -95,9 +122,9 @@ public class Product {
                 "productId=" + productId +
                 ", productName='" + productName + '\'' +
                 ", productPrice=" + productPrice +
-                ", productSeller=" + productSeller +
+                ", productQuantity=" + productQuantity +
                 ", productDescription='" + productDescription + '\'' +
                 ", productImage='" + productImage + '\''+
-                ", productCategory= '" + productCategory;
+                ", productStatus= '" + productStatus;
     }
 }
