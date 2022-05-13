@@ -27,8 +27,6 @@ public class SaleRepository implements HibernateRepository<Sale>{
         return null;
     }
 
-
-
     @Override
     public void start() {
 
