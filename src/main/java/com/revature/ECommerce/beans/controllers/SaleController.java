@@ -25,6 +25,12 @@ public class SaleController {
         return saleService.getAllSales();
     }
 
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Sale getSales(@PathVariable Integer id) {
+        return saleService.getSaleById(id);
+    }
+
     @PostMapping()
     @ResponseStatus(HttpStatus.OK)
     public Sale persistNewSale(@RequestBody Sale newSale){
