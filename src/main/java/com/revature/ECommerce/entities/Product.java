@@ -7,31 +7,48 @@ import javax.persistence.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "product_id")
     private Integer productId;
     @Column(name = "product_name")
     private String productName;
-    @Column(name = "product_price")
+    @Column(name = "price")
     private Double productPrice;
-    @Column(name = "product_quantity")
+    @Column(name = "quantity")
     private Integer productQuantity;
-    @Column(name = "product_descritption")
+    @Column(name = "descritption")
     private String productDescription;
-    @Column(name = "product_image")
+    @Column(name = "image")
     private String productImage;
+
+    @Column(name = "status")
     private String productStatus;
+
+    @Column(name = "category")
+    private String productCategory;
+
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
+    private Sale sale;
 
 
     public Product() {
     }
 
-    public Product(Integer productId, String productName, Double productPrice, Integer productQuantity, String productDescription, String productImage, String productStatus) {
-        this.productId = productId;
+    public Product(String productName, Double productPrice, Integer productQuantity, String productDescription, String productImage, String productStatus, String productCategory) {
         this.productName = productName;
         this.productPrice = productPrice;
         this.productQuantity = productQuantity;
         this.productDescription = productDescription;
         this.productImage = productImage;
         this.productStatus=productStatus;
+        this.productCategory=productCategory;
+    }
+
+    public Sale getSale() {
+        return sale;
+    }
+
+    public void setSale(Sale sale) {
+        this.sale = sale;
     }
 
     public Integer getProductId() {
@@ -84,6 +101,19 @@ public class Product {
 
     public void setProductStatus(String productStatus) {
         this.productStatus = productStatus;
+    }
+
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public String getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(String productCategory) {
+        this.productCategory = productCategory;
     }
 
     @Override

@@ -1,7 +1,8 @@
 package com.revature.ECommerce.entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import com.revature.ECommerce.entities.Payment;
+
 import java.util.List;
 import java.util.Objects;
 @Entity
@@ -9,6 +10,7 @@ import java.util.Objects;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Integer userId;
     @Column(name = "username")
     private String username;
@@ -20,18 +22,19 @@ public class User {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "phone")
+    @Column(name = "phone_number")
     private String phone;
-    @Column
-    @OneToMany
-    private List<Product> productsList;
+    /*@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Address address;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Payment payment;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> listOfOrders;
+*/
 
-    public User() {
-    }
+    public User() {}
 
-    public User(Integer userId, String username, String email, String password, String firstName, String lastName, String phone) {
-        this.productsList=new ArrayList<>();
-        this.userId = userId;
+    public User( String username, String email, String password, String firstName, String lastName, String phone) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -39,6 +42,33 @@ public class User {
         this.lastName = lastName;
         this.phone = phone;
     }
+
+
+/*
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public List<Order> getListOfOrders() {
+        return listOfOrders;
+    }
+
+    public void setListOfOrders(List<Order> listOfOrders) {
+        this.listOfOrders = listOfOrders;
+    }
+ */
 
     public Integer getUserId() {
         return userId;
@@ -97,13 +127,6 @@ public class User {
     }
 
 
-    public void addPurchase(Product product){
-        this.productsList.add(product);
-    }
-
-    public void deletePurchase(Product product){
-        this.productsList.remove(product);
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
