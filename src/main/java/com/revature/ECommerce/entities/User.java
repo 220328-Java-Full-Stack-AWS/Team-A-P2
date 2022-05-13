@@ -28,7 +28,8 @@ public class User {
     private Address address;
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Payment payment;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id")
     private List<Order> listOfOrders;
 
 

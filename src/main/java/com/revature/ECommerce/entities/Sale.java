@@ -19,9 +19,10 @@ public class Sale {
     @OneToOne
     @JoinColumn(name = "product_id")
     private Product product;
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
-    private Order order;
+    private Order order;*/
 
     public Sale(){
 
@@ -74,11 +75,11 @@ public class Sale {
         this.product = product;
     }
 
-    public Order getOrder() {
+   /* public Order getOrder() {
         return order;
     }
 
     public void setOrder(Order order) {
         this.order = order;
-    }
+    }*/
 }

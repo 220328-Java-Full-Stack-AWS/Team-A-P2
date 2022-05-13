@@ -9,11 +9,12 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderId;
-    @ManyToOne(fetch= FetchType.LAZY)
+    /*@ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private User user;*/
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
     List<Sale> saleList;
     public Order(){
 
@@ -35,11 +36,12 @@ public class Order {
         this.orderId = orderId;
     }
 
+    /*
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
-    }
+    }*/
 }

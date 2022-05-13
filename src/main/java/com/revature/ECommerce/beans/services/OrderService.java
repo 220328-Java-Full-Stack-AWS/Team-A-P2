@@ -27,14 +27,14 @@ public class OrderService {
     public Order addToOrder(Order order, Sale sale) {
         if(oRepo.orderExists(order)){
             List<Sale> tempList=new ArrayList<>();
-            sale.setOrder(order);
+            //sale.setOrder(order);
             tempList.add(sale);
             order.setSaleList(tempList);
             return order;
         }else{
             //order=oRepo.save(order);
             List<Sale> tempList=new ArrayList<>();
-            sale.setOrder(order);
+            //sale.setOrder(order);
             tempList.add(sale);
             order.setSaleList(tempList);
             order=oRepo.update(order);
@@ -62,7 +62,7 @@ public class OrderService {
         if(order.getSaleList()== null || order.getSaleList().isEmpty()){
             throw new EmptyCartException("Can't checkout an empty cart");
         }else {
-            order.setUser(user);
+            //order.setUser(user);
             List<Order> tempList = new ArrayList<>();
             tempList.add(order);
             user.setListOfOrders(tempList);
