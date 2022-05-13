@@ -3,11 +3,12 @@ package com.revature.ECommerce.entities;
 import javax.persistence.*;
 import com.revature.ECommerce.entities.Payment;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 @Entity
-@Table(name = "users", schema = "tc")
-public class User {
+@Table(name = "users", schema = "public")
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
