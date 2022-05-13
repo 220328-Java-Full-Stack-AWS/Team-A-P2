@@ -67,7 +67,7 @@ public class OrderRepository implements HibernateRepository<Order>{
 
     @Override
     public Order update(Order order) {
-        Order updateOrder = this.getById(order.getOrderId());
+        Order updateOrder = order;
         this.save(updateOrder);
         return order;
     }

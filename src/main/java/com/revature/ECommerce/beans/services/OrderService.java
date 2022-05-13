@@ -4,6 +4,7 @@ import com.revature.ECommerce.beans.repositories.OrderRepository;
 import com.revature.ECommerce.entities.Order;
 import com.revature.ECommerce.entities.Sale;
 import com.revature.ECommerce.entities.User;
+import com.revature.ECommerce.exceptions.EmptyCartException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +15,13 @@ import java.util.List;
 public class OrderService {
     private OrderRepository oRepo;
     private UserService uServ;
+    private SaleService sServ;
 
     @Autowired
-    public OrderService(OrderRepository oRepo, UserService uServ){
+    public OrderService(OrderRepository oRepo, UserService uServ, SaleService sServ){
         this.uServ=uServ;
         this.oRepo=oRepo;
+        this.sServ=sServ;
     }
 
     public Order addToOrder(Order order, Sale sale) {
@@ -29,7 +32,7 @@ public class OrderService {
             order.setSaleList(tempList);
             return order;
         }else{
-            order=oRepo.save(order);
+            //order=oRepo.save(order);
             List<Sale> tempList=new ArrayList<>();
             sale.setOrder(order);
             tempList.add(sale);
@@ -46,6 +49,7 @@ public class OrderService {
             if (tempList != null && !tempList.isEmpty()) {
                 tempList.remove(sale);
                 order.setSaleList(tempList);
+                sServ.delete(sale);
                 return order;
             }
             throw new Exception("This order has nothing to remove");
@@ -55,18 +59,20 @@ public class OrderService {
     }
 
     public Order checkOut(User user, Order order){
-        order.setUser(user);
-        List<Order>tempList=new ArrayList<>();
-        tempList.add(order);
-        user.setListOfOrders(tempList);
-        if(oRepo.orderExists(order)){
-            user=uServ.save(user);
-            order=oRepo.update(order);
-            user=uServ.save(user);
-            return order;
-        }else{
-            //oRepo.save(order);
-            user=uServ.save(user);
+        if(order.getSaleList()== null || order.getSaleList().isEmpty()){
+            throw new EmptyCartException("Can't checkout an empty cart");
+        }else {
+            order.setUser(user);
+            List<Order> tempList = new ArrayList<>();
+            tempList.add(order);
+            user.setListOfOrders(tempList);
+            if(oRepo.orderExists(order)) {
+                user = uServ.save(user);
+                order = oRepo.update(order);
+            } else {
+                oRepo.save(order);
+            }
+            user = uServ.save(user);
             return order;
         }
     }
@@ -81,6 +87,10 @@ public class OrderService {
 
     public List<Order> getByUser(User user){
         return oRepo.getByUser(user);
+    }
+
+    public List<Order> getAll(){
+        return oRepo.getAll();
     }
 
     public Order update(Order order){

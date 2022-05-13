@@ -19,7 +19,7 @@ public class Sale {
     @OneToOne
     @JoinColumn(name = "product_id")
     private Product product;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
 
