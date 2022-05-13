@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "sales", schema = "gb")
+@Table(name = "sales", schema = _SchemaName.currentSchema)
 public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
