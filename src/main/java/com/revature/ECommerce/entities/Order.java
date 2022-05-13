@@ -2,6 +2,7 @@ package com.revature.ECommerce.entities;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity

@@ -2,6 +2,7 @@ package com.revature.ECommerce.entities;
 import javax.persistence.*;
 import com.revature.ECommerce.entities.Payment;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 

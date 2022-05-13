@@ -1,6 +1,7 @@
 package com.revature.ECommerce.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity

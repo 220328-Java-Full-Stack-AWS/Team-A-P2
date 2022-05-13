@@ -1,9 +1,11 @@
 package com.revature.ECommerce;
 
+import com.revature.ECommerce.beans.repositories.AddressRepository;
+import com.revature.ECommerce.beans.repositories.PaymentRepository;
+import com.revature.ECommerce.beans.repositories.SaleRepository;
 import com.revature.ECommerce.beans.repositories.UserRepository;
 import com.revature.ECommerce.entities.*;
 import com.revature.ECommerce.beans.services.HibernateManager;
-import org.apache.tomcat.jni.Time;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.boot.SpringApplication;
@@ -28,6 +30,7 @@ public class ECommerceApplication {
 		//hibernateManager.addAnnotatedClass(Sale.class);
 		//hibernateManager.addAnnotatedClass(Address.class);
 		context.start();
+
 		Session session = hibernateManager.getSession();
 
 		User Jack = new User("Jak","fake@gmail.com","125","Jack","Jackson","8004206969");
@@ -37,7 +40,6 @@ public class ECommerceApplication {
 		UserRepository userRepository = context.getBean(UserRepository.class);
 		User getUser = userRepository.getById(1);
 		System.out.println(getUser.toString());
-
-
 	}
 }
+

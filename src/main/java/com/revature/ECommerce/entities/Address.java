@@ -1,6 +1,7 @@
 package com.revature.ECommerce.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "user_addresses", schema = "jk")
@@ -23,7 +24,6 @@ public class Address {
     private User user;
 
     public Address(){
-
     }
 
     public Address(String address, String city, String state, Integer zipCode, String country){

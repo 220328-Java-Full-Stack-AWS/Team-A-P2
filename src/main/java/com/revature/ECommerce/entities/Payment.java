@@ -1,6 +1,7 @@
 package com.revature.ECommerce.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
@@ -43,7 +44,6 @@ public class Payment {
     public void setUser(User user) {
         this.user = user;
     }
-
 
     public Integer getCardNumber() {
         return cardNumber;

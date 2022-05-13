@@ -1,6 +1,7 @@
 package com.revature.ECommerce.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "products", schema = "jk")
