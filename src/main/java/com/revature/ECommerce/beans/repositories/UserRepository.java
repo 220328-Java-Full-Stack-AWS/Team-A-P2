@@ -18,8 +18,8 @@ public class UserRepository implements HibernateRepository<User> {
     boolean running = false;
 
     @Autowired
-    public UserRepository(HibernateManager hibernateManager){
-        this.hibernateManager=hibernateManager;
+    public UserRepository(HibernateManager hibernateManager) {
+        this.hibernateManager = hibernateManager;
     }
 
     @Override
@@ -55,11 +55,24 @@ public class UserRepository implements HibernateRepository<User> {
         return user;
     }
 
-    public User getByUsername(String username){
+    public User getByUsername(String username) {
         return null;
     }
 
+    public User removeUser(User user) {
+        Transaction tx = session.beginTransaction();
+        session.delete(user);
+        tx.commit();
+        return null;
+    }
 
+    public void delete(Integer id){
+        Transaction tx = session.beginTransaction();
+        TypedQuery<User> query = session.createQuery("DELETE User WHERE id = :id");
+        query.setParameter("id", id);
+        int result = query.executeUpdate();
+        tx.commit();
+    }
 
     @Override
     public void start() {

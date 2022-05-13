@@ -36,32 +36,18 @@ public class UserController {
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public User newUser(@RequestBody User user){
-        return uServ.createUser(user);
+        return uServ.save(user);
     }
 
     @PutMapping()
     @ResponseStatus(HttpStatus.OK)
-    public User editUser(@RequestBody Order order, @RequestBody Sale sale, @RequestHeader("mode")String mode){
-      /*  switch (mode){
-            case "add":
-                return oServ.addToOrder(order, sale);
-            case "remove":
-                try {
-                    return oServ.removeFromOrder(order, sale);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            case "update":
-                return oServ.update(order);
-            default:
-                throw new InvalidOptionException("That isn't a valid option");
-        }*/
-        return null;
+    public User editUser(@RequestBody User user){
+        return uServ.update(user);
     }
 
     @DeleteMapping()
     @ResponseStatus(HttpStatus.OK)
-    public void delete(User user){
-        //uServ.delete(order);
+    public void delete(@RequestHeader("user_id") String id){
+        uServ.delete(Integer.parseInt(id));
     }
 }

@@ -30,10 +30,6 @@ public class UserService {
         return userRepository.getById(id);
     }
 
-    public User createUser(User user){
-        return userRepository.save(user);
-    }
-
     public User save(User user) {
         return userRepository.save(user);
     }
@@ -49,6 +45,10 @@ public class UserService {
 
     public User update(User user) {
         return userRepository.update(user);
+    }
+
+    public void delete(Integer id){
+        userRepository.delete(id);
     }
 
 
