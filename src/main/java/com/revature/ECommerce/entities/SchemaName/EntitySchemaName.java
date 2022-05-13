@@ -1,10 +1,10 @@
-package com.revature.ECommerce.entities;
+package com.revature.ECommerce.entities.SchemaName;
 
 /**
  * This Class simply holds the name of the schema for testing purposes
  * For the schema to be added to, the schema with the specified name must exist in the database.
  */
-public class _SchemaName {
+public class EntitySchemaName {
     /**
      * Create public final static Strings for each of the schema tables in the database
      */

@@ -1,10 +1,12 @@
 package com.revature.ECommerce.entities;
 
+import com.revature.ECommerce.entities.SchemaName.EntitySchemaName;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "user_payments", schema = _SchemaName.currentSchema)
+@Table(name = "user_payments", schema = EntitySchemaName.currentSchema)
 public class Payment {
     @Id
     private Integer paymentId;

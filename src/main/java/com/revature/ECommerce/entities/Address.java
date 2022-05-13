@@ -1,9 +1,11 @@
 package com.revature.ECommerce.entities;
 
+import com.revature.ECommerce.entities.SchemaName.EntitySchemaName;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user_addresses", schema = _SchemaName.currentSchema)
+@Table(name = "user_addresses", schema = EntitySchemaName.currentSchema)
 public class Address {
     @Id
     private Integer addressId;

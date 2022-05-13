@@ -1,10 +1,12 @@
 package com.revature.ECommerce.entities;
 
+import com.revature.ECommerce.entities.SchemaName.EntitySchemaName;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "sales", schema = _SchemaName.currentSchema)
+@Table(name = "sales", schema = EntitySchemaName.currentSchema)
 public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
