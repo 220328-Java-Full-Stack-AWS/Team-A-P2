@@ -21,7 +21,6 @@ public class HibernateManager implements Lifecycle {
     public HibernateManager(){
         annotatedEntities = new ArrayList<>();
         config = new Configuration();
-        sessionFactory = config.buildSessionFactory();
     }
 
     public void addAnnotatedClass(Class c){

@@ -6,12 +6,13 @@ import com.revature.ECommerce.entities.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.Lifecycle;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 @Repository
-public class UserRepository implements HibernateRepository<User>{
+public class UserRepository implements HibernateRepository<User> {
     private HibernateManager hibernateManager;
     private Session session;
     boolean running = false;
@@ -23,10 +24,11 @@ public class UserRepository implements HibernateRepository<User>{
     }
 
     @Override
-    public void save(User user) {
+    public User save(User user) {
         Transaction tx = session.beginTransaction();
         session.save(user);
         tx.commit();
+        return user;
     }
 
     @Override
@@ -78,13 +80,13 @@ public class UserRepository implements HibernateRepository<User>{
     public void start() {
         this.session=hibernateManager.getSession();
         running=true;
-        System.out.println("This is being started");
     }
 
     @Override
     public void stop() {
         running = false;
     }
+
 
     @Override
     public boolean isRunning() {

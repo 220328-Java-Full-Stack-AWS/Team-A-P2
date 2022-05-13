@@ -19,7 +19,8 @@ public class SaleRepository implements HibernateRepository<Sale>{
         this.hibernateManager=hibernateManager;
     }
     @Override
-    public void save(Sale sale) {
+    public Sale save(Sale sale) {
+        return sale;
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.revature.ECommerce.entities.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.Lifecycle;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
@@ -23,10 +24,11 @@ public class OrderRepository implements HibernateRepository<Order>{
         this.hibernateManager=hibernateManager;
     }
     @Override
-    public void save(Order order) {
+    public Order save(Order order) {
         Transaction tx = session.beginTransaction();
         session.save(order);
         tx.commit();
+        return order;
     }
 
     @Override

@@ -15,7 +15,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import java.sql.Timestamp;
 import java.util.List;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.revature.ECommerce.beans")
 public class ECommerceApplication {
 
 	public static void main(String[] args) {
@@ -36,7 +36,9 @@ public class ECommerceApplication {
 		ConfigurableApplicationContext context =SpringApplication.run(ECommerceApplication.class, args);
 		HibernateManager hibernateManager= context.getBean(HibernateManager.class);
 		hibernateManager.addAnnotatedClass(User.class);
+		System.out.println("sending start signal...");
 		context.start();
+		System.out.println("start signal sent");
 		Session session = hibernateManager.getSession();
 
 		Transaction tx = session.beginTransaction();

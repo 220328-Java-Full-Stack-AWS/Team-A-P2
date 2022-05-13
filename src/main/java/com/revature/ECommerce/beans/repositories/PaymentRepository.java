@@ -8,7 +8,8 @@ public class PaymentRepository implements HibernateRepository<Payment> {
 
 
     @Override
-    public void save(Payment payment) {
+    public Payment save(Payment payment) {
+        return payment;
     }
 
     @Override
