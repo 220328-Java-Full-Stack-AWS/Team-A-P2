@@ -6,6 +6,7 @@ import java.util.List;
 
 public class AddressRepository implements HibernateRepository<Address>{
 
+
     @Override
     public Address save(Address address) {
         return address;
