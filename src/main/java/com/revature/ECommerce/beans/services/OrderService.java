@@ -66,10 +66,17 @@ public class OrderService {
         templist=user.getListOfOrders();
         templist.add(order);
         user.setListOfOrders(templist);
-        oRepo.save(order);
+
+
         if(user.getUserId()==null) {
             uServ.save(user);
         }else uServ.update(user);
+        order.setUser(user);
+        oRepo.save(order);
+        /*for(Sale s: order.getSaleList()){
+            s.setOrder(order);
+        }*/
+        //oRepo.update(order);
         return order;
 
     }

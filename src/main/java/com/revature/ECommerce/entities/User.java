@@ -1,5 +1,7 @@
 package com.revature.ECommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 
@@ -29,8 +31,8 @@ public class User {
     private Address address;
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Payment payment;
-    @OneToMany(cascade = {CascadeType.REMOVE, CascadeType.DETACH})
-    @JoinColumn(name="user_id")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Order> listOfOrders;
 
 

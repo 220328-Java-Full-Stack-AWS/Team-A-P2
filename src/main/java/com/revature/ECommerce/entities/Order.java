@@ -1,6 +1,8 @@
 package com.revature.ECommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,15 +13,18 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "orders_id")
     private Integer orderId;
-    /*@ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;*/
 
-    @OneToMany
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    //@JsonManagedReference
+    @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "order_id")
-    List<Sale> saleList;
+    private List<Sale> saleList;
+
     public Order(){
 
     }
@@ -40,12 +45,12 @@ public class Order {
         this.orderId = orderId;
     }
 
-    /*
+
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
-    }*/
+    }
 }

@@ -44,7 +44,7 @@ public class UserRepository implements HibernateRepository<User>{
         updateUser.setLastName(user.getLastName());
         updateUser.setPassword(user.getPassword());
         updateUser.setListOfOrders(user.getListOfOrders());
-        session.persist(updateUser);
+        session.update(session.get(User.class, updateUser.getUserId()));
         return updateUser;
     }
 

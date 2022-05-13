@@ -1,13 +1,12 @@
 package com.revature.ECommerce.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "sales", schema = "tc")
-
 public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +22,8 @@ public class Sale {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
+    /*@JsonBackReference
+    @JoinColumn(name ="order_id", referencedColumnName = "o")
     private Order order;*/
 
     public Sale(){
@@ -77,8 +76,8 @@ public class Sale {
     public void setProduct(Product product) {
         this.product = product;
     }
-
-   /* public Order getOrder() {
+/*
+    public Order getOrder() {
         return order;
     }
 

@@ -71,7 +71,7 @@ public class OrderRepository implements HibernateRepository<Order>{
     @Override
     public Order update(Order order) {
         Order updateOrder = order;
-        session.persist(order);
+        //session.persist(order);
         session.update(updateOrder);
         return order;
     }
