@@ -2,9 +2,12 @@ package com.revature.ECommerce.beans.repositories;
 
 import com.revature.ECommerce.beans.services.HibernateManager;
 import com.revature.ECommerce.entities.Payment;
+import com.revature.ECommerce.entities.User;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class PaymentRepository implements HibernateRepository<Payment> {
@@ -19,35 +22,54 @@ public class PaymentRepository implements HibernateRepository<Payment> {
 
     @Override
     public Payment save(Payment payment) {
-        return null;
+        Transaction tx = session.beginTransaction();
+        session.save(payment);
+        tx.commit();
+        return payment;
     }
 
     @Override
     public List<Payment> getAll() {
+        String hql = "FROM Payment";
+        TypedQuery<Payment> query = session.createQuery( hql, Payment.class);
         return null;
     }
 
     @Override
     public Payment getById(Integer id) {
-        return null;
+        String hql = "FROM Payment WHERE id = :id";
+        TypedQuery<Payment> query = session.createQuery( hql, Payment.class);
+
+        query.setParameter("id", id);
+
+        Payment pay = query.getSingleResult();
+        return pay;
     }
 
     @Override
     public Payment update(Payment payment) {
-        return null;
+        Payment updatePayment = this.getById(payment.getPaymentId());
+        updatePayment.setUser(payment.getUser());
+        updatePayment.setCardNumber(payment.getCardNumber());
+        updatePayment.setExpirationDate(payment.getExpirationDate());
+        updatePayment.setCvc(payment.getCvc());
+        this.save(updatePayment);
+        return updatePayment;
     }
+
     @Override
     public void start() {
-
+        this.session = hibernateManager.getSession();
+        running = true;
     }
 
     @Override
     public void stop() {
-
+        running = false;
     }
 
     @Override
     public boolean isRunning() {
-        return false;
+        return running;
     }
 }
