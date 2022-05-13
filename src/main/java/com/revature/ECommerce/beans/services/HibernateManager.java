@@ -19,8 +19,8 @@ public class HibernateManager implements Lifecycle {
     private SessionFactory sessionFactory;
     public HibernateManager(){
         config = new Configuration();
+        annotatedEntities=new ArrayList<>();
     }
-
     public void addAnnotatedClass(Class c){
         annotatedEntities.add(c);
     }

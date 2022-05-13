@@ -40,7 +40,6 @@ public class ECommerceApplication {
 		ConfigurableApplicationContext context =SpringApplication.run(ECommerceApplication.class, args);
 		HibernateManager hibernateManager= context.getBean(HibernateManager.class);
 		hibernateManager.addAnnotatedClass(User.class);
-		System.out.println("sending start signal...");
 		context.start();
 		System.out.println("start signal sent");
 		Session session = hibernateManager.getSession();
@@ -134,7 +133,7 @@ public class ECommerceApplication {
 //		session.save(Stan);
 //		session.save(Terrell);
 
-		tx.commit();
+	//	tx.commit();
 
 
 	}

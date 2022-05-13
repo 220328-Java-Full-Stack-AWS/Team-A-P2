@@ -38,22 +38,6 @@ public class UserRepository implements HibernateRepository<User> {
         return users;
     }
 
-    /*public List<Product> getAll() {
-        TypedQuery<Product> query = session.createQuery("FROM Product");
-        List<Product> products = query.getResultList();
-
-        return products;
-    }*/
-
-
-//    @Override
-//    public User getById(Integer id) {
-//        String hql = "FROM User WHERE id= :id";
-//        TypedQuery<User> query = session.createQuery(hql, User.class);
-//        query.setParameter("id", id);
-//        return query.getSingleResult();
-//    }
-
     @Override
     public User getById(Integer id) {
         TypedQuery<User> query = session.createQuery("FROM User WHERE id = :user_id", User.class);
