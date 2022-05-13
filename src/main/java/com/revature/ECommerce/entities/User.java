@@ -6,7 +6,7 @@ import com.revature.ECommerce.entities.Payment;
 import java.util.List;
 import java.util.Objects;
 @Entity
-@Table(name = "users", schema = "tc")
+@Table(name = "users", schema = "sr")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -151,4 +151,6 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", phone='" + phone;
     }
+
+
 }

@@ -5,7 +5,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Entity
-@Table(name = "orders", schema = "tc")
+@Table(name = "orders", schema = "sr")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

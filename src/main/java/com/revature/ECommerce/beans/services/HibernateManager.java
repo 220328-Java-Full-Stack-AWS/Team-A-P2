@@ -17,6 +17,7 @@ public class HibernateManager implements Lifecycle {
     private Configuration config;
     private Session session;
     private SessionFactory sessionFactory;
+
     public HibernateManager(){
         config = new Configuration();
         sessionFactory= config.buildSessionFactory();

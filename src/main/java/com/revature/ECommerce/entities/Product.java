@@ -3,20 +3,25 @@ package com.revature.ECommerce.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "products", schema = "tc")
+@Table(name = "products", schema = "sr")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Integer productId;
+
     @Column(name = "product_name")
     private String productName;
+
     @Column(name = "price")
     private Double productPrice;
+
     @Column(name = "quantity")
     private Integer productQuantity;
+
     @Column(name = "descritption")
     private String productDescription;
+
     @Column(name = "image")
     private String productImage;
 
