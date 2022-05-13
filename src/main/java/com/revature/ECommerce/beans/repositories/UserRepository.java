@@ -1,11 +1,13 @@
 package com.revature.ECommerce.beans.repositories;
 
 import com.revature.ECommerce.beans.services.HibernateManager;
+import com.revature.ECommerce.entities.Product;
 import com.revature.ECommerce.entities.User;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.TypedQuery;
 import java.util.List;
 @Repository
 public class UserRepository implements HibernateRepository<User>{
@@ -27,9 +29,7 @@ public class UserRepository implements HibernateRepository<User>{
     }
 
     @Override
-    public User getById(Integer id) {
-        return null;
-    }
+    public User getById(Integer id) {return null;}
 
     @Override
     public User update(User user) {
