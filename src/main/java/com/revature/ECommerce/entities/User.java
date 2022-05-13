@@ -25,12 +25,12 @@ public class User {
     @Column(name = "phone_number")
     private String phone;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Address address;
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Payment payment;
-    @OneToMany(mappedBy = "user")
-    private List<Order> listOfOrders;
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+//    private Address address;
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+//    private Payment payment;
+//    @OneToMany(mappedBy = "user")
+//    private List<Order> listOfOrders;
 
 
     public User() {
@@ -45,29 +45,29 @@ public class User {
         this.phone = phone;
     }
 
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public List<Order> getListOfOrders() {
-        return listOfOrders;
-    }
-
-    public void setListOfOrders(List<Order> listOfOrders) {
-        this.listOfOrders = listOfOrders;
-    }
+//    public Payment getPayment() {
+//        return payment;
+//    }
+//
+//    public void setPayment(Payment payment) {
+//        this.payment = payment;
+//    }
+//
+//    public Address getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(Address address) {
+//        this.address = address;
+//    }
+//
+//    public List<Order> getListOfOrders() {
+//        return listOfOrders;
+//    }
+//
+//    public void setListOfOrders(List<Order> listOfOrders) {
+//        this.listOfOrders = listOfOrders;
+//    }
 
     public Integer getUserId() {
         return userId;

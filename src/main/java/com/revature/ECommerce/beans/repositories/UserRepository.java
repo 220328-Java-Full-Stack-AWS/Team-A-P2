@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.TypedQuery;
 import java.util.List;
 @Repository
 public class UserRepository implements HibernateRepository<User>{
@@ -34,7 +35,11 @@ public class UserRepository implements HibernateRepository<User>{
 
     @Override
     public User getById(Integer id) {
-        return null;
+        String hql = "FROM User WHERE id = :id";
+        TypedQuery<User> query = session.createQuery(hql, User.class);
+        query.setParameter("id",id);
+        User user = query.getSingleResult();
+        return user;
     }
 
     @Override

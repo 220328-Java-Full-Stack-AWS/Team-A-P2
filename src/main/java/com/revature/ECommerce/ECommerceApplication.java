@@ -1,5 +1,6 @@
 package com.revature.ECommerce;
 
+import com.revature.ECommerce.beans.repositories.UserRepository;
 import com.revature.ECommerce.entities.*;
 import com.revature.ECommerce.beans.services.HibernateManager;
 import org.apache.tomcat.jni.Time;
@@ -21,15 +22,22 @@ public class ECommerceApplication {
 		ConfigurableApplicationContext context = SpringApplication.run(ECommerceApplication.class, args);
 		HibernateManager hibernateManager = context.getBean(HibernateManager.class);
 		hibernateManager.addAnnotatedClass(User.class);
-		hibernateManager.addAnnotatedClass(Product.class);
-		hibernateManager.addAnnotatedClass(Payment.class);
-		hibernateManager.addAnnotatedClass(Order.class);
-		hibernateManager.addAnnotatedClass(Sale.class);
-		hibernateManager.addAnnotatedClass(Address.class);
+		//hibernateManager.addAnnotatedClass(Product.class);
+		//hibernateManager.addAnnotatedClass(Payment.class);
+		//hibernateManager.addAnnotatedClass(Order.class);
+		//hibernateManager.addAnnotatedClass(Sale.class);
+		//hibernateManager.addAnnotatedClass(Address.class);
 		context.start();
 		Session session = hibernateManager.getSession();
 
 		User Jack = new User("Jak","fake@gmail.com","125","Jack","Jackson","8004206969");
+
 		session.save(Jack);
+
+		UserRepository userRepository = context.getBean(UserRepository.class);
+		User getUser = userRepository.getById(1);
+		System.out.println(getUser.toString());
+
+
 	}
 }

@@ -62,7 +62,7 @@ public class AddressRepository implements HibernateRepository<Address>{
         updateAddress.setZipCode(address.getZipCode());
         updateAddress.setCountry(address.getCountry());
         this.save(updateAddress);
-        //Do I need to update User or if I just ignore it then it'll stay same?
+        //Do I need to updateAddress.setUser() or if I just ignore it then it'll stay same?
         return address;
     }
     @Override
