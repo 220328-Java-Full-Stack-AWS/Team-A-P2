@@ -24,13 +24,13 @@ public class User {
     private String lastName;
     @Column(name = "phone_number")
     private String phone;
-    /*@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Address address;
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Payment payment;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     private List<Order> listOfOrders;
-*/
+
 
     public User() {}
 
@@ -44,7 +44,6 @@ public class User {
     }
 
 
-/*
     public Payment getPayment() {
         return payment;
     }
@@ -68,7 +67,6 @@ public class User {
     public void setListOfOrders(List<Order> listOfOrders) {
         this.listOfOrders = listOfOrders;
     }
- */
 
     public Integer getUserId() {
         return userId;

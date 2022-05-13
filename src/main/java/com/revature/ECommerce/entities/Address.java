@@ -22,7 +22,9 @@ public class Address {
     @MapsId
     private User user;
 
-    public Address(){}
+    public Address(){
+
+    }
 
     public Address(String address, String city, String state, Integer zipCode, String country){
         this.address=address;

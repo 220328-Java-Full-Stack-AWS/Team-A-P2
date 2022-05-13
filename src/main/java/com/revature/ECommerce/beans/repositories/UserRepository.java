@@ -23,10 +23,11 @@ public class UserRepository implements HibernateRepository<User>{
     }
 
     @Override
-    public void save(User user) {
+    public User save(User user) {
         Transaction tx = session.beginTransaction();
         session.save(user);
         tx.commit();
+        return user;
     }
 
     @Override
@@ -78,7 +79,6 @@ public class UserRepository implements HibernateRepository<User>{
     public void start() {
         this.session=hibernateManager.getSession();
         running=true;
-        System.out.println("This is being started");
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.revature.ECommerce.beans.services;
 
 import com.revature.ECommerce.beans.repositories.UserRepository;
-
 import com.revature.ECommerce.dtos.AuthDto;
 import com.revature.ECommerce.entities.User;
 import com.revature.ECommerce.exceptions.UnauthorizedUserException;
@@ -12,7 +11,7 @@ import java.util.List;
 
 @Service
 public class UserService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public UserService(UserRepository userRepository) {
@@ -31,8 +30,8 @@ public class UserService {
         return userRepository.getById(id);
     }
 
-    public void save(User user) {
-        userRepository.save(user);
+    public User save(User user) {
+        return userRepository.save(user);
     }
 
     public User authenticateUser(AuthDto authDto) throws Exception {
@@ -47,5 +46,6 @@ public class UserService {
     public User update(User user) {
         return userRepository.update(user);
     }
+
 
 }

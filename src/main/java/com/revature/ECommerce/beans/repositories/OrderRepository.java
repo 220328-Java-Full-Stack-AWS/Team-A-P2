@@ -23,10 +23,11 @@ public class OrderRepository implements HibernateRepository<Order>{
         this.hibernateManager=hibernateManager;
     }
     @Override
-    public void save(Order order) {
+    public Order save(Order order) {
         Transaction tx = session.beginTransaction();
         session.save(order);
         tx.commit();
+        return order;
     }
 
     @Override

@@ -18,7 +18,7 @@ public class ProductRepository implements HibernateRepository<Product> {
         this.hibernateManager=hibernateManager;
     }
     @Override
-    public void save(Product product) {}
+    public Product save(Product product) {return null;}
 
     @Override
     public List<Product> getAll() {
