@@ -2,7 +2,6 @@ package com.revature.ECommerce.beans.repositories;
 
 import com.revature.ECommerce.beans.services.HibernateManager;
 import com.revature.ECommerce.entities.Payment;
-import com.revature.ECommerce.entities.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
