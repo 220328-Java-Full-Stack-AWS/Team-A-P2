@@ -21,7 +21,10 @@ public class SaleRepository implements HibernateRepository<Sale>{
     }
     @Override
     public Sale save(Sale sale) {
-        return null;
+        Transaction tx = session.beginTransaction();
+        session.save(sale);
+        tx.commit();
+        return sale;
     }
 
     @Override
@@ -41,7 +44,7 @@ public class SaleRepository implements HibernateRepository<Sale>{
 
     public void delete(Sale sale){
         Transaction tx = session.beginTransaction();
-        session.remove(sale);
+        session.remove(session.get(Sale.class, sale.getSaleId()));
         tx.commit();
     }
 

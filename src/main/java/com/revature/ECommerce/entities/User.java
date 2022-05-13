@@ -1,18 +1,19 @@
 package com.revature.ECommerce.entities;
 
 import javax.persistence.*;
-import com.revature.ECommerce.entities.Payment;
+
 
 import java.util.List;
 import java.util.Objects;
 @Entity
 @Table(name = "users", schema = "tc")
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Integer userId;
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
     @Column(name = "email")
     private String email;
@@ -28,7 +29,7 @@ public class User {
     private Address address;
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Payment payment;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = {CascadeType.REMOVE, CascadeType.DETACH})
     @JoinColumn(name="user_id")
     private List<Order> listOfOrders;
 

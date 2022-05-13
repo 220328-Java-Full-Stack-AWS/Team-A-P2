@@ -53,6 +53,9 @@ public class OrderRepository implements HibernateRepository<Order>{
     }
 
     public boolean orderExists(Order order){
+        if(order==null){
+            return false;
+        }
         String hql = "FROM Order WHERE id= :id";
         TypedQuery<Order> query = session.createQuery(hql, Order.class);
         query.setParameter("id", order.getOrderId());
@@ -68,13 +71,14 @@ public class OrderRepository implements HibernateRepository<Order>{
     @Override
     public Order update(Order order) {
         Order updateOrder = order;
-        this.save(updateOrder);
+        session.persist(order);
+        session.update(updateOrder);
         return order;
     }
 
     public void deleteOrder(Order order){
         Transaction tx = session.beginTransaction();
-        session.remove(order);
+        session.remove(session.get(Order.class, order.getOrderId()));
         tx.commit();
     }
 

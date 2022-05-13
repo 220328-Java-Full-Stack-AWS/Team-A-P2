@@ -1,19 +1,23 @@
 package com.revature.ECommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "orders", schema = "tc")
+
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "orders_id")
     private Integer orderId;
     /*@ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;*/
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     @JoinColumn(name = "order_id")
     List<Sale> saleList;
     public Order(){

@@ -1,10 +1,13 @@
 package com.revature.ECommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "sales", schema = "tc")
+
 public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

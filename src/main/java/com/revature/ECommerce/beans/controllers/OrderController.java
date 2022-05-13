@@ -1,14 +1,19 @@
 package com.revature.ECommerce.beans.controllers;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.revature.ECommerce.beans.services.OrderService;
 import com.revature.ECommerce.entities.Order;
 import com.revature.ECommerce.entities.Sale;
 import com.revature.ECommerce.entities.User;
 import com.revature.ECommerce.exceptions.InvalidOptionException;
+import com.revature.ECommerce.utilities.HolderClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.ws.Holder;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -42,13 +47,21 @@ public class OrderController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public Order persistOrder(@RequestBody User user, @RequestBody Order order){
-        return oServ.checkOut(user, order);
+    public Order persistOrder(@RequestBody HolderClass holder){
+        User user= holder.getUser();
+        Order order = holder.getOrder();
+        List<Order>temp= user.getListOfOrders();
+        order=(oServ.checkOut(holder.getUser(), holder.getOrder()));
+        temp.add(order);
+         user.setListOfOrders(temp);
+        return order;
     }
 
     @PutMapping()
     @ResponseStatus(HttpStatus.OK)
-    public Order editSalesInOrder(@RequestBody Order order, @RequestBody Sale sale, @RequestHeader("mode")String mode){
+    public Order editSalesInOrder(@RequestBody HolderClass holder, @RequestHeader("mode")String mode){
+        Order order = holder.getOrder();
+        Sale sale = holder.getSale();
         switch (mode){
             case "add":
                 return oServ.addToOrder(order, sale);
@@ -67,7 +80,7 @@ public class OrderController {
 
     @DeleteMapping()
     @ResponseStatus(HttpStatus.OK)
-    public void delete(Order order){
+    public void delete(@RequestBody Order order){
         oServ.delete(order);
     }
 

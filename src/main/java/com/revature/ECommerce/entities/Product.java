@@ -26,8 +26,8 @@ public class Product {
     @Column(name = "category")
     private String productCategory;
 
-    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
-    private Sale sale;
+    /*@OneToOne(cascade = CascadeType.ALL)
+    private Sale sale;*/
 
 
     public Product() {
@@ -43,13 +43,13 @@ public class Product {
         this.productCategory=productCategory;
     }
 
-    public Sale getSale() {
+    /*public Sale getSale() {
         return sale;
     }
 
     public void setSale(Sale sale) {
         this.sale = sale;
-    }
+    }*/
 
     public Integer getProductId() {
         return productId;

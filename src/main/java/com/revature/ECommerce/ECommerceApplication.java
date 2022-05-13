@@ -45,23 +45,27 @@ public class ECommerceApplication {
 		//Sale s2= new Sale(30, timestamp, thing2);
 		session.save(thing1);
 		session.save(thing2);
+		//session.save(s1);
+		//session.save(Terrell);
+		//session.save(s2);
 		tx.commit();
-
+		System.out.println(s1);
 		UserService uServ = context.getBean(UserService.class);
 		OrderService oServ= context.getBean(OrderService.class);
 
 
 
-		Order order= new Order();
+		//Order order= new Order();
 
-		order=oServ.addToOrder(order,s1);
+		//order=oServ.addToOrder(order,s1);
 		//order=oServ.addToOrder(order,s2);
 		/*try {
 			order=oServ.removeFromOrder(order, s1);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}*/
-		order=oServ.checkOut(Terrell, order);
+
+		//order=oServ.checkOut(Terrell, order);
 
 		/*System.out.println(oServ.getById(1));
 		for(Order o : oServ.getByUser(Terrell)){

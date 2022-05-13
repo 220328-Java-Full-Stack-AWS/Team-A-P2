@@ -39,12 +39,13 @@ public class UserRepository implements HibernateRepository<User>{
 
     @Override
     public User update(User user) {
-        User updateUser = this.getById(user.getUserId());
+        User updateUser = user;
         updateUser.setFirstName(user.getFirstName());
         updateUser.setLastName(user.getLastName());
         updateUser.setPassword(user.getPassword());
-        this.save(updateUser);
-        return user;
+        updateUser.setListOfOrders(user.getListOfOrders());
+        session.persist(updateUser);
+        return updateUser;
     }
 
     public User getByUsername(String username){

@@ -15,4 +15,5 @@ public class SaleService {
     public void delete(Sale sale){
         sRepo.delete(sale);
     }
+    public Sale save(Sale sale){return sRepo.save(sale);}
 }

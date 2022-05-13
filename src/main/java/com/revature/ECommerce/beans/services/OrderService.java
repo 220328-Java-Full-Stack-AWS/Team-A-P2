@@ -25,8 +25,10 @@ public class OrderService {
     }
 
     public Order addToOrder(Order order, Sale sale) {
+        sServ.save(sale);
         if(oRepo.orderExists(order)){
             List<Sale> tempList=new ArrayList<>();
+            tempList=order.getSaleList();
             //sale.setOrder(order);
             tempList.add(sale);
             order.setSaleList(tempList);
@@ -34,10 +36,11 @@ public class OrderService {
         }else{
             //order=oRepo.save(order);
             List<Sale> tempList=new ArrayList<>();
+            tempList=order.getSaleList();
             //sale.setOrder(order);
             tempList.add(sale);
             order.setSaleList(tempList);
-            order=oRepo.update(order);
+            //order=oRepo.update(order);
             return order;
         }
     }
@@ -59,25 +62,22 @@ public class OrderService {
     }
 
     public Order checkOut(User user, Order order){
-        if(order.getSaleList()== null || order.getSaleList().isEmpty()){
-            throw new EmptyCartException("Can't checkout an empty cart");
-        }else {
-            //order.setUser(user);
-            List<Order> tempList = new ArrayList<>();
-            tempList.add(order);
-            user.setListOfOrders(tempList);
-            if(oRepo.orderExists(order)) {
-                user = uServ.save(user);
-                order = oRepo.update(order);
-            } else {
-                oRepo.save(order);
-            }
-            user = uServ.save(user);
-            return order;
-        }
+        List<Order>templist= new ArrayList<>();
+        templist=user.getListOfOrders();
+        templist.add(order);
+        user.setListOfOrders(templist);
+        oRepo.save(order);
+        if(user.getUserId()==null) {
+            uServ.save(user);
+        }else uServ.update(user);
+        return order;
+
     }
 
     public void delete(Order order){
+        for(Sale s : order.getSaleList()){
+            sServ.delete(s);
+        }
         oRepo.deleteOrder(order);
     }
 
