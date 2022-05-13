@@ -21,7 +21,7 @@ public class UserController {
         this.uServ=uServ;
     }
 
-    @GetMapping("/allusers")
+    @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     public List<User> getAllUsers() {
         return uServ.getAllUsers();
@@ -30,20 +30,18 @@ public class UserController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public User getById(@PathVariable String id){
-       // return oServ.getById(Integer.parseInt(id));
-        return null;
+        return uServ.getUserById(Integer.parseInt(id));
     }
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public User persistOrder(@RequestBody User user, @RequestBody Order order){
-       // return uServ.checkOut(user, order);
-        return null;
+    public User newUser(@RequestBody User user){
+        return uServ.createUser(user);
     }
 
     @PutMapping()
     @ResponseStatus(HttpStatus.OK)
-    public User editSalesInOrder(@RequestBody Order order, @RequestBody Sale sale, @RequestHeader("mode")String mode){
+    public User editUser(@RequestBody Order order, @RequestBody Sale sale, @RequestHeader("mode")String mode){
       /*  switch (mode){
             case "add":
                 return oServ.addToOrder(order, sale);

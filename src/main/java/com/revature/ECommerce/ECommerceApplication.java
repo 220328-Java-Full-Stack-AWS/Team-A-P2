@@ -54,7 +54,7 @@ public class ECommerceApplication {
 		User user3 = new User("gb", "gb@gmail.com", "simplepassword", "G", "B", "219-999-4543");
 
 
-		Payment p1 = new Payment(435555334, timestamp, 443);
+		//Payment p1 = new Payment(435555334, timestamp, 443);
 		//Payment p2 = new Payment(4332221, timestamp, 233);
 		//Address a1= new Address("23 Skidoo Ln.", "New York", "NY", 66666, "USA");
 		//Address a2 = new Address("69420 High St.", "Los Angeles", "CA", 90210, "USA");
@@ -65,10 +65,10 @@ public class ECommerceApplication {
 		session.save(user3);
 		//session.save(thing1);
 
-		UserRepository uRepo = context.getBean(UserRepository.class);
-		User users = uRepo.getById(2);
+		//UserRepository uRepo = context.getBean(UserRepository.class);
+		//User users = uRepo.getById(2);
 
-		System.out.println(users.getUsername());
+		//System.out.println(users.getUsername());
 
 		tx.commit();
 

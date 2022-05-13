@@ -32,8 +32,8 @@ public class OrderController {
             default:
                 throw new InvalidOptionException("That isn't a valid option");
         }
-
     }
+
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Order getById(@PathVariable String id){

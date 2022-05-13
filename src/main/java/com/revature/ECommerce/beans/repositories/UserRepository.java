@@ -20,7 +20,6 @@ public class UserRepository implements HibernateRepository<User> {
     @Autowired
     public UserRepository(HibernateManager hibernateManager){
         this.hibernateManager=hibernateManager;
-
     }
 
     @Override
@@ -59,6 +58,8 @@ public class UserRepository implements HibernateRepository<User> {
     public User getByUsername(String username){
         return null;
     }
+
+
 
     @Override
     public void start() {
