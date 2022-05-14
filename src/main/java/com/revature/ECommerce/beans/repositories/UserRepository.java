@@ -56,14 +56,10 @@ public class UserRepository implements HibernateRepository<User> {
     }
 
     public User getByUsername(String username) {
-        return null;
-    }
-
-    public User removeUser(User user) {
-        Transaction tx = session.beginTransaction();
-        session.delete(user);
-        tx.commit();
-        return null;
+        TypedQuery<User> query = session.createQuery("FROM User WHERE username = :username", User.class);
+        query.setParameter("username", username);
+        User user = query.getSingleResult();
+        return user;
     }
 
     public void delete(Integer id){

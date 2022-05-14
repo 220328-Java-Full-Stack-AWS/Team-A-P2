@@ -27,10 +27,18 @@ public class UserController {
         return uServ.getAllUsers();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{idorusername}")
     @ResponseStatus(HttpStatus.OK)
-    public User getById(@PathVariable String id){
-        return uServ.getUserById(Integer.parseInt(id));
+    public User getById(@PathVariable String idorusername, @RequestHeader("mode") String mode) throws InvalidOptionException{
+        switch(mode) {
+            case "id":
+                return uServ.getUserById(Integer.parseInt(idorusername));
+            case "username":
+                return uServ.getUserByUsername(idorusername);
+            default:
+                throw new InvalidOptionException("That isn't a valid option");
+        }
+
     }
 
     @PostMapping()
