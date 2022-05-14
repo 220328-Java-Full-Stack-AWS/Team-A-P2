@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
@@ -42,6 +43,14 @@ public class ProductRepository implements HibernateRepository<Product> {
     public Product getById(Integer id) {
         TypedQuery<Product> query = session.createQuery("FROM Product WHERE id = :product_id", Product.class);
         query.setParameter("product_id", id);
+        Product product = query.getSingleResult();
+
+        return product;
+    }
+
+    public Product getByName (String name){
+        TypedQuery<Product> query = session.createQuery("FROM Product WHERE name = :product_name", Product.class);
+        query.setParameter("product_name", name);
         Product product = query.getSingleResult();
 
         return product;

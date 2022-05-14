@@ -1,6 +1,36 @@
 package com.revature.ECommerce.beans.services;
 
-public class ProductService  {
-//Method 1: update the status if quantity is zero.
+import com.revature.ECommerce.beans.repositories.ProductRepository;
+import com.revature.ECommerce.entities.Product;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
+public class ProductService  {
+
+
+    private ProductRepository productRepository;
+
+    @Autowired
+    public ProductService(ProductRepository productRepository){
+        this.productRepository = productRepository;
+    }
+
+    public List<Product> getAllProducts(){
+        return productRepository.getAll();
+    }
+
+    public Product getProductById(Integer id){
+        return productRepository.getById(id);
+    }
+
+    public Product getProductByName(String name){
+        return productRepository.getByName(name);
+    }
+
+    public Product saveProduct(Product product){
+         return  productRepository.save(product);
+    }
 }
