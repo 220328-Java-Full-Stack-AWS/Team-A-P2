@@ -46,20 +46,25 @@ public class OrderService {
     }
 
     public Order removeFromOrder(Order order, Sale sale) throws Exception {
-        if(oRepo.orderExists(order)) {
-            List<Sale> tempList = new ArrayList<>();
-            tempList = order.getSaleList();
-            if (tempList != null && !tempList.isEmpty()) {
-                tempList.remove(sale);
-                order.setSaleList(tempList);
-                sServ.delete(sale);
-                return order;
+        List<Sale>checker=new ArrayList<>();
+        checker=order.getSaleList();
+        boolean checker2= order.getSaleList().contains(sale);
+        if (checker != null && !checker.isEmpty()) {
+            for(int i=0; i<checker.size(); i++){
+                if(checker.get(i).getSaleId().equals(sale.getSaleId())) {
+                    checker.remove(i);
+                    order.setSaleList(checker);
+                    sServ.delete(sale);
+                    return order;
+                }
+
             }
+        }else if(checker.isEmpty()){
             throw new Exception("This order has nothing to remove");
-        }else{
-            throw new Exception("There is no such Order");
         }
+        throw new Exception("There is no such Order");
     }
+
 
     public Order checkOut(User user, Order order){
         List<Order>templist= new ArrayList<>();

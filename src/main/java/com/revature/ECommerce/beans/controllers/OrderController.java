@@ -71,8 +71,6 @@ public class OrderController {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-            case "update":
-                return oServ.update(order);
             default:
                 throw new InvalidOptionException("That isn't a valid option");
         }

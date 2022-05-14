@@ -48,7 +48,7 @@ public class OrderRepository implements HibernateRepository<Order>{
     public List<Order> getByUser(User user){
         String hql = "FROM Order WHERE user_id= :user_id";
         TypedQuery<Order> query = session.createQuery(hql, Order.class);
-        query.setParameter("user_id", user.getUserId());
+        query.setParameter("user_id", (int)user.getUserId());
         return query.getResultList();
     }
 
@@ -72,7 +72,7 @@ public class OrderRepository implements HibernateRepository<Order>{
     public Order update(Order order) {
         Order updateOrder = order;
         //session.persist(order);
-        session.update(updateOrder);
+        session.update(session.get(Order.class, updateOrder.getOrderId()));
         return order;
     }
 
