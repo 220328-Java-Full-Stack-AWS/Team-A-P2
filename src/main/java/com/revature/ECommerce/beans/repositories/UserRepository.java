@@ -50,6 +50,9 @@ public class UserRepository implements HibernateRepository<User> {
         User updateUser = this.getById(user.getUserId());
         updateUser.setFirstName(user.getFirstName());
         updateUser.setLastName(user.getLastName());
+        updateUser.setEmail(user.getEmail());
+        updateUser.setPhone(user.getPhone());
+        updateUser.setUsername(user.getUsername());
         updateUser.setPassword(user.getPassword());
         this.save(updateUser);
         return user;
@@ -66,7 +69,7 @@ public class UserRepository implements HibernateRepository<User> {
         Transaction tx = session.beginTransaction();
         TypedQuery<User> query = session.createQuery("DELETE User WHERE id = :id");
         query.setParameter("id", id);
-        int result = query.executeUpdate();
+        query.executeUpdate();
         tx.commit();
     }
 

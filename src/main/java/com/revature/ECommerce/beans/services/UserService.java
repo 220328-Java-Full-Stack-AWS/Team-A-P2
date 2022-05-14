@@ -34,7 +34,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User authenticateUser(AuthDto authDto) throws Exception {
+    public User authenticateUser(AuthDto authDto) {
         User user = userRepository.getByUsername(authDto.getUsername());
         if(user != null && user.getPassword().equals(authDto.getPassword())) {
             return user;
