@@ -2,11 +2,12 @@ package com.revature.ECommerce.entities;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "orders", schema = "tc")
-public class Order {
+@Table(name = "orders", schema = "public")
+public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderId;
