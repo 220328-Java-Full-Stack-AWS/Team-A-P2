@@ -19,31 +19,41 @@ public class ProductController {
     }
 
     //Gets all products
-    @GetMapping()
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<Product> getAllProducts(){
         return productService.getAllProducts();
     }
 
-    //Gets by id or product name
-    @GetMapping("/{productNameOrId}")
+
+    //Gets item by id
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Product getProduct(@PathVariable String productNameOrId, @RequestHeader("mode") String mode) throws Exception {
-        switch(mode){
-            case "productName":
-                return productService.getProductByName(productNameOrId);
-            case "id":
-                return productService.getProductById(Integer.parseInt(productNameOrId));
-            default:
-                throw new Exception("Invalid product");
-        }
+    public Product getProduct(@PathVariable Integer id) {
+        return productService.getProductById(id);
     }
 
+
     //Posts(adds) new product into the database
-    @PostMapping()
+    @PostMapping("/add")
     @ResponseStatus(HttpStatus.OK)
     public Product persistNewProduct(@RequestBody Product newProduct){
         return productService.saveProduct(newProduct);
+    }
+
+
+    //Updates product
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.OK)
+    public Product updateProduct(@RequestBody Product product) {
+        return productService.updateProduct(product);
+    }
+
+    //Deletes product by id
+    @DeleteMapping("/delete")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteProduct(@PathVariable Integer id) {
+        productService.deleteProductById(id);
     }
 
 }

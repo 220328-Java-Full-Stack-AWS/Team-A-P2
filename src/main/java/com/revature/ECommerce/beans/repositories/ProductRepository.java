@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 @Repository
@@ -23,6 +24,7 @@ public class ProductRepository implements HibernateRepository<Product> {
         this.hibernateManager=hibernateManager;
     }
 
+    //works
     @Override
     public Product save(Product product) {
         Transaction tx = session.beginTransaction();
@@ -31,6 +33,7 @@ public class ProductRepository implements HibernateRepository<Product> {
         return product;
     }
 
+    //works
     @Override
     public List<Product> getAll() {
         TypedQuery<Product> query = session.createQuery("FROM Product");
@@ -39,6 +42,7 @@ public class ProductRepository implements HibernateRepository<Product> {
         return products;
     }
 
+    //works
     @Override
     public Product getById(Integer id) {
         TypedQuery<Product> query = session.createQuery("FROM Product WHERE id = :product_id", Product.class);
@@ -48,6 +52,7 @@ public class ProductRepository implements HibernateRepository<Product> {
         return product;
     }
 
+    //test
     public Product getByName (String name){
         TypedQuery<Product> query = session.createQuery("FROM Product WHERE name = :product_name", Product.class);
         query.setParameter("product_name", name);
@@ -56,6 +61,7 @@ public class ProductRepository implements HibernateRepository<Product> {
         return product;
     }
 
+    //works
     //Returns a list of products based on a selected category.
     public List<Product> getByCategory(String category){
         TypedQuery<Product> query = session.createQuery("FROM Product WHERE category = :category", Product.class);
@@ -65,8 +71,9 @@ public class ProductRepository implements HibernateRepository<Product> {
         return products;
     }
 
+    //works
     //Returns a list of products based on availability.
-    //The two status strings we are using are, In Stock and Out of Stock.
+    //The two status strings we are using are, "In Stock" and "Out of Stock".
     public List<Product> getByStatus(String status){
         TypedQuery<Product> query = session.createQuery("FROM Product WHERE status = :status", Product.class);
         query.setParameter("status", status);
@@ -75,26 +82,30 @@ public class ProductRepository implements HibernateRepository<Product> {
         return products;
     }
 
-    @Override
-    public Product update(Product product) {
-
-        Product updateProduct = this.getById(product.getProductId());
-        updateProduct.setProductName(product.getProductName());
-        updateProduct.setProductPrice(product.getProductPrice());
-        updateProduct.setProductQuantity(product.getProductQuantity());
-        updateProduct.setProductDescription(product.getProductDescription());
-        updateProduct.setProductImage(product.getProductImage());
-        updateProduct.setProductStatus(product.getProductStatus());
-        updateProduct.setProductCategory(product.getProductCategory());
-        this.save(updateProduct);
-
-        return updateProduct;
-    }
-
+    //test
     public void deleteById(Integer id) {
         TypedQuery<Product> query = session.createQuery("Delete Product WHERE id = :product_id");
         query.setParameter("product_id", id);
         query.executeUpdate();
+    }
+
+
+    //Works through Postman
+    //Updates a product quantity by product id.
+    @Override
+    public Product update(Product product) {
+
+            Product updateProduct = this.getById(product.getProductId());
+            updateProduct.setProductName(product.getProductName());
+            updateProduct.setProductPrice(product.getProductPrice());
+            updateProduct.setProductQuantity(product.getProductQuantity());
+            updateProduct.setProductDescription(product.getProductDescription());
+            updateProduct.setProductImage(product.getProductImage());
+            updateProduct.setProductStatus(product.getProductStatus());
+            updateProduct.setProductCategory(product.getProductCategory());
+
+            this.save(updateProduct);
+            return updateProduct;
     }
 
     @Override

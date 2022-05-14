@@ -95,6 +95,7 @@ public class ECommerceApplication {
 			System.out.println(p);
 		}
 
+
 		tx.commit();
 
 	}
