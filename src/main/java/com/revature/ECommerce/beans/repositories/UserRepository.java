@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.TypedQuery;
 import java.util.List;
 @Repository
 public class UserRepository implements HibernateRepository<User>{
@@ -29,12 +30,17 @@ public class UserRepository implements HibernateRepository<User>{
 
     @Override
     public List<User> getAll() {
-        return null;
+        TypedQuery<User> query = session.createQuery("FROM User");
+        List<User> users = query.getResultList();
+        return users;
     }
 
     @Override
     public User getById(Integer id) {
-        return null;
+        TypedQuery<User> query = session.createQuery("FROM User WHERE id = :user_id", User.class);
+        query.setParameter("user_id", id);
+        User user = query.getSingleResult();
+        return user;
     }
 
     @Override
@@ -49,7 +55,18 @@ public class UserRepository implements HibernateRepository<User>{
     }
 
     public User getByUsername(String username){
-        return null;
+        TypedQuery<User> query = session.createQuery("FROM User WHERE username = :username", User.class);
+        query.setParameter("username", username);
+        User user = query.getSingleResult();
+        return user;
+    }
+
+    public void delete(Integer id){
+        Transaction tx = session.beginTransaction();
+        TypedQuery<User> query = session.createQuery("DELETE User WHERE id = :id");
+        query.setParameter("id", id);
+        query.executeUpdate();
+        tx.commit();
     }
 
     @Override

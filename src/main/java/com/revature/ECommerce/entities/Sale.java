@@ -1,13 +1,14 @@
 package com.revature.ECommerce.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "sales", schema = "tc")
-public class Sale {
+public class Sale implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sales_id")
