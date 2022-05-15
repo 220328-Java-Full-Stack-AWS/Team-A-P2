@@ -15,10 +15,9 @@ public class SaleRepository implements HibernateRepository<Sale> {
     private HibernateManager hibernateManager;
     private Session session;
     private boolean running = false;
-
     private String tableName;
-
-    @Autowired
+  
+   @Autowired
     public SaleRepository(HibernateManager hibernateManager) {
         this.hibernateManager = hibernateManager;
     }
@@ -55,12 +54,14 @@ public class SaleRepository implements HibernateRepository<Sale> {
         updateSale.setQuantity(sale.getQuantity());
         updateSale.setDateOfPurchase(sale.getDateOfPurchase());
         updateSale.setProduct(sale.getProduct());
+        OrderFeatureBranch
         //updateSale.setOrder(sale.getOrder());
+
         this.save(updateSale);
         return sale;
     }
 
-    public void delete(Sale sale) {
+    public void delete(Sale sale){
         Transaction tx = session.beginTransaction();
         session.remove(session.get(Sale.class, sale.getSaleId()));
         tx.commit();
@@ -88,7 +89,8 @@ public class SaleRepository implements HibernateRepository<Sale> {
         return query.getResultList();
     }
 
-    public Sale getSaleByOrderId(Integer id) {
+    
+    public Sale getSaleByOrderId(Integer id){
         String hql = "FROM Sale WHERE order_id = :id";
         TypedQuery<Sale> query = session.createQuery(hql, Sale.class);
         query.setParameter("id", id);
@@ -96,7 +98,8 @@ public class SaleRepository implements HibernateRepository<Sale> {
     }
 
     @Value("sales")
-    public void setTableName(String tableName) {
+    public void setTableName(String tableName){
+
         this.tableName = tableName;
     }
 }

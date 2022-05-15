@@ -1,15 +1,13 @@
 package com.revature.ECommerce.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "orders", schema = "tc")
+@Table(name = "orders", schema = "public")
+public class Order{
 
-public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderId;

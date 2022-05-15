@@ -31,7 +31,7 @@
             <div class="panel-body">
                 <ul class="nav prod-cat">
                     <li>
-                        <a href="#" class="active"><i class="fa fa-angle-right"></i> Dress</a>
+                        <a href="#" class="active" ><fa-icon [icon]="faAngleRight"></fa-icon> Dress</a>
                         <ul class="nav">
                             <li class="active"><a href="#">- Shirt</a></li>
                             <li><a href="#">- Pant</a></li>
@@ -677,7 +677,7 @@
   <h2>ReValue.com</h2>
   <span>Copyright &copy;{{ year }}, ReValue Inc.</span>
   <ul>
-    <li>Login</li>
+    <li (click)="onOpenModal('login')">Login</li>
     <li>Register</li>
     <li><a href="#main-container">View Products</a></li>
     <li><a href="#main-container">View Categories</a></li>

@@ -9,12 +9,18 @@ import java.util.List;
 
 @Service
 public class SaleService {
-    private SaleRepository saleRepository;
+    private final SaleRepository saleRepository;
+
     @Autowired
-    public SaleService(SaleRepository sRepo){
-        this.saleRepository=sRepo;
+    public SaleService(SaleRepository saleRepository) {
+        this.saleRepository = saleRepository;
     }
-    public Sale save(Sale sale){return saleRepository.save(sale);}
+
+    public Sale save(Sale sale){
+        return saleRepository.save(sale);
+    }
+
+
     public List<Sale> getAllSales(){ return saleRepository.getAll();}
 
     public Sale getSaleById(Integer id){ return saleRepository.getById(id);}
@@ -24,7 +30,10 @@ public class SaleService {
     public List<Sale> getAllSalesWithProductId(Integer id) { return saleRepository.getAllSalesWithProductId(id);}
 
     public Sale getSaleByOrder(Integer id){ return saleRepository.getSaleByOrderId(id); }
+
     public void delete(Sale sale){
         saleRepository.delete(sale);
     }
+
 }
+

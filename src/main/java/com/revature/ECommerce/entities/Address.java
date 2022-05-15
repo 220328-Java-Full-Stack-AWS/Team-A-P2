@@ -1,10 +1,11 @@
 package com.revature.ECommerce.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "user_addresses", schema = "tc")
-public class Address {
+@Table(name = "address", schema = "public")
+public class Address implements Serializable {
     @Id
     private Integer addressId;
     @Column(name = "address")
@@ -23,7 +24,6 @@ public class Address {
     private User user;
 
     public Address(){
-
     }
 
     public Address(String address, String city, String state, Integer zipCode, String country){
