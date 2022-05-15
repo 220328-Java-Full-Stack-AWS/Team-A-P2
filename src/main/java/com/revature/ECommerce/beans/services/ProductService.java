@@ -22,13 +22,12 @@ public class ProductService  {
         return productRepository.getAll();
     }
 
-    public Product getProductById(Integer id){
-        return productRepository.getById(id);
-    }
+    public Product getProductById(Integer id){return productRepository.getById(id);}
 
-    public Product getProductByName(String name){
-        return productRepository.getByName(name);
-    }
+//    public Product getProductByName(String name){
+//        return productRepository.getByName(name);
+//    }
+    public List<Product> getAllByCategory(String category){return productRepository.getByCategory(category);}
 
     public Product saveProduct(Product product){
          return  productRepository.save(product);

@@ -89,11 +89,13 @@ public class ECommerceApplication {
 
 		ProductRepository productRepository = context.getBean(ProductRepository.class);
 
-		List<Product> products = productRepository.getByStatus("Out of Stock");
-
-		for (Product p : products) {
-			System.out.println(p);
-		}
+//		List<Product> products = productRepository.getByCategory("Clothes");
+//
+//		for (Product p : products) {
+//			System.out.println(p);
+//		}
+		Product product = productRepository.getById(2);
+		System.out.println(product);
 
 
 		tx.commit();
