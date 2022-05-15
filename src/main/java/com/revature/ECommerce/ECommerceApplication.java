@@ -1,9 +1,6 @@
 package com.revature.ECommerce;
 
-import com.revature.ECommerce.beans.repositories.AddressRepository;
-import com.revature.ECommerce.beans.repositories.PaymentRepository;
-import com.revature.ECommerce.beans.repositories.SaleRepository;
-import com.revature.ECommerce.beans.repositories.UserRepository;
+import com.revature.ECommerce.beans.repositories.ProductRepository;
 import com.revature.ECommerce.entities.*;
 import com.revature.ECommerce.beans.services.HibernateManager;
 import org.hibernate.Session;
@@ -11,7 +8,6 @@ import org.hibernate.Transaction;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +16,7 @@ import java.util.List;
 public class ECommerceApplication {
 
 	public static void main(String[] args) {
+
 		ConfigurableApplicationContext context =SpringApplication.run(ECommerceApplication.class, args);
 		HibernateManager hibernateManager= context.getBean(HibernateManager.class);
 
@@ -32,143 +29,5 @@ public class ECommerceApplication {
 
 		context.start();
 
-		Session session = hibernateManager.getSession();
-
-		SaleRepository saleRepository = context.getBean(SaleRepository.class);
-		AddressRepository addressRepository = context.getBean(AddressRepository.class);
-		PaymentRepository paymentRepository = context.getBean(PaymentRepository.class);
-
-		// Add to data to database for testing
-		Timestamp timestamp = new Timestamp(2055, 12, 12, 12, 12, 12,0);
-		Transaction tx = session.beginTransaction();
-		//creating all necessary payment, order, address, user, and product objects
-		Payment p1 = new Payment(435555334, timestamp, 443);
-		Payment p2 = new Payment(4332221, timestamp, 233);
-		Address a1= new Address("23 Skidoo Ln.", "New York", "NY", 66666, "USA");
-		Address a2 = new Address("69420 High St.", "Los Angeles", "CA", 90210, "USA");
-		User Terrell = new User("shady","shady@mail.com", "123", "Terrell", "Crawford", "55569420");
-		User Stan = new User("sStan", "stan@mail.com", "123", "Stan", "Savelev", "55588390");
-		Product thing1 = new Product("Dress Pants",99.00, 100, "Some nice dress pants", "imgurl", "In Stock", "Clothes");
-		//Assigning a sale of 69 Dress pants to Terrell then, creates an order with that sale
-		Sale s1 = new Sale(69, timestamp, thing1);
-		thing1.setSale(s1);
-		Order order= new Order();
-		order.setUser(Terrell);
-		s1.setOrder(order);
-		List<Sale> temp = new ArrayList<>();
-		temp.add(s1);
-		order.setSaleList(temp);
-		List<Order> orders= new ArrayList<>();
-		orders.add(order);
-		Terrell.setListOfOrders(orders);
-		//Sets the addresses and payment methods of Terrell and Stan
-		Stan.setAddress(a1);
-		a1.setUser(Stan);
-		Terrell.setAddress(a2);
-		a2.setUser(Terrell);
-		Stan.setPayment(p2);
-		p1.setUser(Stan);
-		Terrell.setPayment(p1);
-		p2.setUser(Terrell);
-		//persists everything to the DB
-		session.save(order);
-		session.save(thing1);
-		session.save(s1);
-		session.save(Stan);
-		session.save(Terrell);
-		tx.commit();
-
-		// Sales testing
-		List<Sale> sales = saleRepository.getAll();
-		for(Sale s : sales){
-			System.out.println("Sale" + s.getSaleId() + ": " + s.getDateOfPurchase());
-		}
-		Sale sale1 = saleRepository.getById(1);
-		System.out.println(sale1.getQuantity());
-
-		// address testing
-		List<Address> addresses = addressRepository.getAll();
-		System.out.println("All addresses");
-		for(Address a : addresses){
-			System.out.println("Address" + a.getAddressId() + ": " + a.getAddress() + "," + a.getCity() + "," + a.getZipCode() + "," + a.getState());
-		}
-
-		List<Address> aByCity = addressRepository.getByCity("Los Angeles");
-		for(Address a : aByCity){
-			System.out.println("Address from Los Angeles " + a.getAddressId() + ": " + a.getAddress() + "," + a.getCity() + "," + a.getZipCode() + "," + a.getState());
-		}
-
-		List<Address> aByCountry = addressRepository.getByCountry("USA");
-		System.out.println("Addresses from the USA");
-		for(Address a : aByCountry){
-			System.out.println("Address" + a.getAddressId() + ": " + a.getAddress() + "," + a.getCity() + "," + a.getZipCode() + "," + a.getState());
-		}
-
-		List<Address> aByUserId = addressRepository.getByUserId(1);
-		for(Address a : aByUserId){
-			System.out.println( a.getUser().getFirstName() + " address is " + ": " + a.getAddress() + "," + a.getCity() + "," + a.getZipCode() + "," + a.getState());
-		}
-
-		// Payment test
-		Payment payment1 = paymentRepository.getById(1);
-		System.out.println("Payment" + payment1.getPaymentId() + ": " + payment1.getCardNumber() + ", " + payment1.getExperationDate());
-
-	}
+  }
 }
-//System.out.println("Address" + a.getAddressId() + ": " + a.getAddress() + "," + a.getCity() + "," + a.getZipCode() + "," + a.getState());
-
-//	ConfigurableApplicationContext context =SpringApplication.run(ECommerceApplication.class, args);
-//	HibernateManager hibernateManager= context.getBean(HibernateManager.class);
-//
-//		hibernateManager.addAnnotatedClass(User.class);
-//		hibernateManager.addAnnotatedClass(Product.class);
-//		hibernateManager.addAnnotatedClass(Payment.class);
-//		hibernateManager.addAnnotatedClass(Order.class);
-//		hibernateManager.addAnnotatedClass(Sale.class);
-//		hibernateManager.addAnnotatedClass(Address.class);
-//
-//		context.start();
-//		Session session = hibernateManager.getSession();
-//
-//		context.getBean(SaleRepository.class);
-//
-//		Timestamp timestamp = new Timestamp(2055, 12, 12, 12, 12, 12,0);
-//		Transaction tx = session.beginTransaction();
-//		//creating all necessary payment, order, address, user, and product objects
-//		Payment p1 = new Payment(435555334, timestamp, 443);
-//		Payment p2 = new Payment(4332221, timestamp, 233);
-//		Address a1= new Address("23 Skidoo Ln.", "New York", "NY", 66666, "USA");
-//		Address a2 = new Address("69420 High St.", "Los Angeles", "CA", 90210, "USA");
-//		User Terrell = new User("shady","shady@mail.com", "123", "Terrell", "Crawford", "55569420");
-//		User Stan = new User("sStan", "stan@mail.com", "123", "Stan", "Savelev", "55588390");
-//		Product thing1 = new Product("Dress Pants",99.00, 100, "Some nice dress pants", "imgurl", "In Stock", "Clothes");
-//		//Assigning a sale of 69 Dress pants to Terrell then, creates an order with that sale
-//		Sale s1 = new Sale(69, timestamp, thing1);
-//		thing1.setSale(s1);
-//		Order order= new Order();
-//		order.setUser(Terrell);
-//		s1.setOrder(order);
-//		List<Sale> temp = new ArrayList<>();
-//		temp.add(s1);
-//		order.setSaleList(temp);
-//		List<Order> orders= new ArrayList<>();
-//		orders.add(order);
-//		Terrell.setListOfOrders(orders);
-//		//Sets the addresses and payment methods of Terrell and Stan
-//		Stan.setAddress(a1);
-//		a1.setUser(Stan);
-//		Terrell.setAddress(a2);
-//		a2.setUser(Terrell);
-//		Stan.setPayment(p2);
-//		p1.setUser(Stan);
-//		Terrell.setPayment(p1);
-//		p2.setUser(Terrell);
-//		//persists everything to the DB
-//		session.save(order);
-//		session.save(thing1);
-//		session.save(s1);
-//		session.save(Stan);
-//		session.save(Terrell);
-//
-//		tx.commit();
-

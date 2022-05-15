@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "user_payments", schema = "public")
 public class Payment implements Serializable {
+
     @Id
     private Integer paymentId;
     @Column(name = "card_number")

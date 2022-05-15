@@ -1,22 +1,27 @@
 package com.revature.ECommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "orders", schema = "public")
-public class Order implements Serializable {
+public class Order{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderId;
+
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "order")
-    List<Sale> saleList;
+
+    @OneToMany(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "order_id")
+    private List<Sale> saleList;
+
     public Order(){
 
     }
@@ -36,6 +41,7 @@ public class Order implements Serializable {
     public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
+
 
     public User getUser() {
         return user;
