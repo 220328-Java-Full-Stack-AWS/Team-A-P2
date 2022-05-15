@@ -1,11 +1,15 @@
 package com.revature.ECommerce.entities;
 
+
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "sales", schema = "sr")
-public class Sale {
+@Table(name = "sales", schema = "public")
+public class Sale implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sales_id")
@@ -19,9 +23,10 @@ public class Sale {
     @OneToOne
     @JoinColumn(name = "product_id")
     private Product product;
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+
+    /*@JsonBackReference
+    @JoinColumn(name ="order_id", referencedColumnName = "o")
+    private Order order;*/
 
     public Sale(){
 
@@ -73,12 +78,12 @@ public class Sale {
     public void setProduct(Product product) {
         this.product = product;
     }
-
+/*
     public Order getOrder() {
         return order;
     }
 
     public void setOrder(Order order) {
         this.order = order;
-    }
+    }*/
 }

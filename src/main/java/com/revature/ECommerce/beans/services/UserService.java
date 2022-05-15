@@ -1,6 +1,7 @@
 package com.revature.ECommerce.beans.services;
 
 import com.revature.ECommerce.beans.repositories.UserRepository;
+
 import com.revature.ECommerce.dtos.AuthDto;
 import com.revature.ECommerce.entities.User;
 import com.revature.ECommerce.exceptions.UnauthorizedUserException;
@@ -46,6 +47,5 @@ public class UserService {
     public User update(User user) {
         return userRepository.update(user);
     }
-
 
 }

@@ -1,11 +1,13 @@
 package com.revature.ECommerce.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "user_payments", schema = "sr")
-public class Payment {
+@Table(name = "user_payments", schema = "public")
+public class Payment implements Serializable {
+
     @Id
     private Integer paymentId;
     @Column(name = "card_number")
@@ -42,7 +44,6 @@ public class Payment {
     public void setUser(User user) {
         this.user = user;
     }
-
 
     public Integer getCardNumber() {
         return cardNumber;

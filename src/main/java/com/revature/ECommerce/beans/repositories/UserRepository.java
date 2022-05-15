@@ -4,6 +4,7 @@ import com.revature.ECommerce.beans.services.HibernateManager;
 import com.revature.ECommerce.entities.Product;
 import com.revature.ECommerce.entities.User;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,28 +22,53 @@ public class UserRepository implements HibernateRepository<User>{
     }
 
     @Override
-    public User save(User user) {return null;}
-
-    @Override
-    public List<User> getAll() {
-        return null;
-    }
-
-    @Override
-    public User getById(Integer id) {return null;}
-
-    @Override
-    public User update(User user) {
-        User updateUser = this.getById(user.getUserId());
-        updateUser.setFirstName(user.getFirstName());
-        updateUser.setLastName(user.getLastName());
-        updateUser.setPassword(user.getPassword());
-        this.save(updateUser);
+    public User save(User user) {
+        Transaction tx = session.beginTransaction();
+        session.save(user);
+        tx.commit();
         return user;
     }
 
+    @Override
+    public List<User> getAll() {
+        TypedQuery<User> query = session.createQuery("FROM User");
+        List<User> users = query.getResultList();
+        return users;
+    }
+
+    @Override
+    public User getById(Integer id) {
+        TypedQuery<User> query = session.createQuery("FROM User WHERE id = :user_id", User.class);
+        query.setParameter("user_id", id);
+        User user = query.getSingleResult();
+        return user;
+    }
+
+
+    @Override
+    public User update(User user) {
+        User updateUser = user;
+        updateUser.setFirstName(user.getFirstName());
+        updateUser.setLastName(user.getLastName());
+        updateUser.setPassword(user.getPassword());
+        updateUser.setListOfOrders(user.getListOfOrders());
+        session.update(session.get(User.class, updateUser.getUserId()));
+        return updateUser;
+    }
+
     public User getByUsername(String username){
-        return null;
+        TypedQuery<User> query = session.createQuery("FROM User WHERE username = :username", User.class);
+        query.setParameter("username", username);
+        User user = query.getSingleResult();
+        return user;
+    }
+
+    public void delete(Integer id){
+        Transaction tx = session.beginTransaction();
+        TypedQuery<User> query = session.createQuery("DELETE User WHERE id = :id");
+        query.setParameter("id", id);
+        query.executeUpdate();
+        tx.commit();
     }
 
     @Override
