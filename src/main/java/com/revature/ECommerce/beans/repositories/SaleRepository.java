@@ -54,8 +54,10 @@ public class SaleRepository implements HibernateRepository<Sale> {
         updateSale.setQuantity(sale.getQuantity());
         updateSale.setDateOfPurchase(sale.getDateOfPurchase());
         updateSale.setProduct(sale.getProduct());
-        OrderFeatureBranch
         //updateSale.setOrder(sale.getOrder());
+        this.save(updateSale);
+        return sale;
+    }
 
 
     public void delete(Sale sale){
