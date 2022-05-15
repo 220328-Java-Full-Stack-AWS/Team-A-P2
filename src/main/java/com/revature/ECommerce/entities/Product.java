@@ -27,8 +27,8 @@ public class Product implements Serializable {
     @Column(name = "category")
     private String productCategory;
 
-    @OneToOne(mappedBy = "product")
-    private Sale sale;
+    /*@OneToOne(cascade = CascadeType.ALL)
+    private Sale sale;*/
 
 
     public Product() {
@@ -44,13 +44,13 @@ public class Product implements Serializable {
         this.productCategory=productCategory;
     }
 
-    public Sale getSale() {
+    /*public Sale getSale() {
         return sale;
     }
 
     public void setSale(Sale sale) {
         this.sale = sale;
-    }
+    }*/
 
     public Integer getProductId() {
         return productId;
