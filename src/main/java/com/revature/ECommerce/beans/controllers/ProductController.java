@@ -25,15 +25,22 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    //TODO: Test with postman
-    //Gets all productts by catagory
-    @GetMapping("category/{category}")
+
+    //Gets all products by category
+    @GetMapping("/category/{category}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Product> getAllByCategory(@PathVariable String category){
-        return productService.getAllByCategory(category);
+    public List<Product> getByCategory(@PathVariable String category){
+        return productService.getByCategory(category);
     }
 
-    //TODO: Test with postman
+    //Gets all products by status
+    @GetMapping("/status/{status}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Product> getByStatus(@PathVariable String status){
+        return productService.getByStatus(status);
+    }
+
+
     //Gets item by id
     @GetMapping("/id/{id}")
     @ResponseStatus(HttpStatus.OK)

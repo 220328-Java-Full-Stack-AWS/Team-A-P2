@@ -61,7 +61,7 @@ public class ProductRepository implements HibernateRepository<Product> {
 //        return product;
 //    }
 
-    //works in the console
+    //works
     //Returns a list of products based on a selected category.
     public List<Product> getByCategory(String category){
         TypedQuery<Product> query = session.createQuery("FROM Product WHERE category = :category", Product.class);
@@ -71,7 +71,7 @@ public class ProductRepository implements HibernateRepository<Product> {
         return products;
     }
 
-    //works in the console
+    //works
     //Returns a list of products based on availability.
     //The two status strings we are using are, "In Stock" and "Out of Stock".
     public List<Product> getByStatus(String status){

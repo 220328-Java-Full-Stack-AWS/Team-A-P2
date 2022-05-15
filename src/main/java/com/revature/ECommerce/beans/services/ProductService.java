@@ -27,7 +27,9 @@ public class ProductService  {
 //    public Product getProductByName(String name){
 //        return productRepository.getByName(name);
 //    }
-    public List<Product> getAllByCategory(String category){return productRepository.getByCategory(category);}
+    public List<Product> getByCategory(String category){return productRepository.getByCategory(category);}
+
+    public List<Product> getByStatus(String status){return productRepository.getByStatus(status);}
 
     public Product saveProduct(Product product){
          return  productRepository.save(product);

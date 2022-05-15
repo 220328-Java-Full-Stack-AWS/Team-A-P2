@@ -94,8 +94,7 @@ public class ECommerceApplication {
 //		for (Product p : products) {
 //			System.out.println(p);
 //		}
-		Product product = productRepository.getById(2);
-		System.out.println(product);
+
 
 
 		tx.commit();
