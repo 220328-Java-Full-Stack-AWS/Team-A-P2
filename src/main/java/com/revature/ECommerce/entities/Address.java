@@ -6,6 +6,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "address", schema = "public")
 public class Address implements Serializable {
+
     @Id
     private Integer addressId;
     @Column(name = "address")

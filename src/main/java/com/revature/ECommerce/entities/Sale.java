@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "sales", schema = "public")
 public class Sale implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sales_id")

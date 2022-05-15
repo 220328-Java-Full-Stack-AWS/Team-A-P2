@@ -1,5 +1,6 @@
 package com.revature.ECommerce;
 
+import com.revature.ECommerce.beans.repositories.ProductRepository;
 import com.revature.ECommerce.entities.*;
 import com.revature.ECommerce.beans.services.HibernateManager;
 import org.hibernate.Session;
@@ -15,6 +16,7 @@ import java.util.List;
 public class ECommerceApplication {
 
 	public static void main(String[] args) {
+
 		ConfigurableApplicationContext context =SpringApplication.run(ECommerceApplication.class, args);
 		HibernateManager hibernateManager= context.getBean(HibernateManager.class);
 

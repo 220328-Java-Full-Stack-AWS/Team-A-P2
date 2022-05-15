@@ -10,14 +10,19 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Integer productId;
+
     @Column(name = "product_name")
     private String productName;
+
     @Column(name = "price")
     private Double productPrice;
+
     @Column(name = "quantity")
     private Integer productQuantity;
+
     @Column(name = "descritption")
     private String productDescription;
+
     @Column(name = "image")
     private String productImage;
 
@@ -27,8 +32,10 @@ public class Product implements Serializable {
     @Column(name = "category")
     private String productCategory;
 
+
     /*@OneToOne(cascade = CascadeType.ALL)
     private Sale sale;*/
+
 
 
     public Product() {
@@ -44,6 +51,7 @@ public class Product implements Serializable {
         this.productCategory=productCategory;
     }
 
+
     /*public Sale getSale() {
         return sale;
     }
@@ -51,6 +59,7 @@ public class Product implements Serializable {
     public void setSale(Sale sale) {
         this.sale = sale;
     }*/
+
 
     public Integer getProductId() {
         return productId;

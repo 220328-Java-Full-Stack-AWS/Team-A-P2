@@ -1,6 +1,7 @@
 package com.revature.ECommerce.beans.repositories;
 
 import com.revature.ECommerce.beans.services.HibernateManager;
+import com.revature.ECommerce.entities.Product;
 import com.revature.ECommerce.entities.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -42,6 +43,7 @@ public class UserRepository implements HibernateRepository<User>{
         User user = query.getSingleResult();
         return user;
     }
+
 
     @Override
     public User update(User user) {

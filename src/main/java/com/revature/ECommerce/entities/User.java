@@ -11,6 +11,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "users", schema = "public")
 public class User implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", unique = true, nullable = false)
@@ -155,4 +156,6 @@ public class User implements Serializable {
                 ", lastName='" + lastName + '\'' +
                 ", phone='" + phone;
     }
+
+
 }
