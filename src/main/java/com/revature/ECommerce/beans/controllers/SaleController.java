@@ -46,7 +46,7 @@ public class SaleController {
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteSale(@RequestBody Sale sale){
-        saleService.deleteSale(sale);
+        saleService.delete(sale);
     }
 
 }

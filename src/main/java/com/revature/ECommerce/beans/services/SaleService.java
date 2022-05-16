@@ -9,7 +9,6 @@ import java.util.List;
 
 @Service
 public class SaleService {
-
     private final SaleRepository saleRepository;
 
     @Autowired
@@ -21,6 +20,7 @@ public class SaleService {
         return saleRepository.save(sale);
     }
 
+
     public List<Sale> getAllSales(){ return saleRepository.getAll();}
 
     public Sale getSaleById(Integer id){ return saleRepository.getById(id);}
@@ -31,6 +31,9 @@ public class SaleService {
 
     public Sale getSaleByOrder(Integer id){ return saleRepository.getSaleByOrderId(id); }
 
-    public void deleteSale(Sale sale){ saleRepository.delete(sale);}
+    public void delete(Sale sale){
+        saleRepository.delete(sale);
+    }
+
 }
 

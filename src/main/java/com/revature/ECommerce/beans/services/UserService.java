@@ -1,7 +1,8 @@
 package com.revature.ECommerce.beans.services;
 
 import com.revature.ECommerce.beans.repositories.UserRepository;
-import com.revature.ECommerce.beans.services.dtos.AuthDto;
+
+import com.revature.ECommerce.dtos.AuthDto;
 import com.revature.ECommerce.entities.User;
 import com.revature.ECommerce.exceptions.UnauthorizedUserException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User authenticateUser(AuthDto authDto) throws Exception {
+    public User authenticateUser(AuthDto authDto) {
         User user = userRepository.getByUsername(authDto.getUsername());
         if(user != null && user.getPassword().equals(authDto.getPassword())) {
             return user;
@@ -46,4 +47,10 @@ public class UserService {
     public User update(User user) {
         return userRepository.update(user);
     }
+
+    public void delete(Integer id){
+        userRepository.delete(id);
+    }
+
+
 }

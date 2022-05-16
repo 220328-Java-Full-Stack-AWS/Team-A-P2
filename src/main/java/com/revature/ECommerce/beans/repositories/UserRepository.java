@@ -1,23 +1,26 @@
 package com.revature.ECommerce.beans.repositories;
 
 import com.revature.ECommerce.beans.services.HibernateManager;
+import com.revature.ECommerce.entities.Product;
+import com.revature.ECommerce.entities.Order;
 import com.revature.ECommerce.entities.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.Lifecycle;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 @Repository
-public class UserRepository implements HibernateRepository<User>{
+public class UserRepository implements HibernateRepository<User> {
     private HibernateManager hibernateManager;
     private Session session;
     boolean running = false;
 
     @Autowired
-    public UserRepository(HibernateManager hibernateManager){
-        this.hibernateManager=hibernateManager;
+    public UserRepository(HibernateManager hibernateManager) {
+        this.hibernateManager = hibernateManager;
     }
 
     @Override
@@ -25,19 +28,20 @@ public class UserRepository implements HibernateRepository<User>{
         Transaction tx = session.beginTransaction();
         session.save(user);
         tx.commit();
-        return null;
+        return user;
     }
 
     @Override
     public List<User> getAll() {
-        return null;
+        TypedQuery<User> query = session.createQuery("FROM User");
+        List<User> users = query.getResultList();
+        return users;
     }
 
     @Override
     public User getById(Integer id) {
-        String hql = "FROM User WHERE id = :id";
-        TypedQuery<User> query = session.createQuery(hql, User.class);
-        query.setParameter("id",id);
+        TypedQuery<User> query = session.createQuery("FROM User WHERE id = :user_id", User.class);
+        query.setParameter("user_id", id);
         User user = query.getSingleResult();
         return user;
     }
@@ -47,13 +51,27 @@ public class UserRepository implements HibernateRepository<User>{
         User updateUser = this.getById(user.getUserId());
         updateUser.setFirstName(user.getFirstName());
         updateUser.setLastName(user.getLastName());
+        updateUser.setEmail(user.getEmail());
+        updateUser.setPhone(user.getPhone());
+        updateUser.setUsername(user.getUsername());
         updateUser.setPassword(user.getPassword());
         this.save(updateUser);
         return user;
     }
 
-    public User getByUsername(String username){
-        return null;
+    public User getByUsername(String username) {
+        TypedQuery<User> query = session.createQuery("FROM User WHERE username = :username", User.class);
+        query.setParameter("username", username);
+        User user = query.getSingleResult();
+        return user;
+    }
+
+    public void delete(Integer id){
+        Transaction tx = session.beginTransaction();
+        TypedQuery<User> query = session.createQuery("DELETE User WHERE id = :id");
+        query.setParameter("id", id);
+        query.executeUpdate();
+        tx.commit();
     }
 
     @Override
@@ -66,6 +84,7 @@ public class UserRepository implements HibernateRepository<User>{
     public void stop() {
         running = false;
     }
+
 
     @Override
     public boolean isRunning() {

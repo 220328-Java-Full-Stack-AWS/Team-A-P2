@@ -1,23 +1,30 @@
 package com.revature.ECommerce.entities;
 
+import com.revature.ECommerce.entities.SchemaName.EntitySchemaName;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "products", schema = "jk")
-public class Product {
+@Table(name = "products", schema = _SchemaName.schemaName)
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Integer productId;
+
     @Column(name = "product_name")
     private String productName;
+
     @Column(name = "price")
     private Double productPrice;
+
     @Column(name = "quantity")
     private Integer productQuantity;
-    @Column(name = "descritption")
+
+    @Column(name = "description")
     private String productDescription;
+
     @Column(name = "image")
     private String productImage;
 
@@ -27,8 +34,10 @@ public class Product {
     @Column(name = "category")
     private String productCategory;
 
-    @OneToOne(mappedBy = "product")
-    private Sale sale;
+
+    /*@OneToOne(cascade = CascadeType.ALL)
+    private Sale sale;*/
+
 
 
     public Product() {
@@ -44,13 +53,15 @@ public class Product {
         this.productCategory=productCategory;
     }
 
-    public Sale getSale() {
+
+    /*public Sale getSale() {
         return sale;
     }
 
     public void setSale(Sale sale) {
         this.sale = sale;
-    }
+    }*/
+
 
     public Integer getProductId() {
         return productId;

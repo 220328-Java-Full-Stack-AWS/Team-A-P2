@@ -13,6 +13,7 @@ public class HealthController {
     @RequestMapping(value = "/ping", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public String ping() {
+
         return "pong!";
     }
 
@@ -22,3 +23,4 @@ public class HealthController {
         return "ping!";
     }
 }
+

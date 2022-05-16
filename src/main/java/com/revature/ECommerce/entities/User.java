@@ -1,41 +1,44 @@
 package com.revature.ECommerce.entities;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
-import com.revature.ECommerce.entities.Payment;
+
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "users", schema = "jk")
-public class User {
+@Table(name = "users", schema = _SchemaName.schemaName)
+public class User implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "user_id", unique = true, nullable = false)
     private Integer userId;
-    @Column(name = "username")
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
-    @Column(name = "email")
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
-    @Column(name = "phone_number")
+    @Column(name = "phone_number", unique = true, nullable = false)
     private String phone;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Address address;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Payment payment;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<Order> listOfOrders;
 
-//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-//    private Address address;
-//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-//    private Payment payment;
-//    @OneToMany(mappedBy = "user")
-//    private List<Order> listOfOrders;
 
-
-    public User() {
-    }
+    public User() {}
 
     public User( String username, String email, String password, String firstName, String lastName, String phone) {
         this.username = username;
@@ -46,29 +49,30 @@ public class User {
         this.phone = phone;
     }
 
-//    public Payment getPayment() {
-//        return payment;
-//    }
-//
-//    public void setPayment(Payment payment) {
-//        this.payment = payment;
-//    }
-//
-//    public Address getAddress() {
-//        return address;
-//    }
-//
-//    public void setAddress(Address address) {
-//        this.address = address;
-//    }
-//
-//    public List<Order> getListOfOrders() {
-//        return listOfOrders;
-//    }
-//
-//    public void setListOfOrders(List<Order> listOfOrders) {
-//        this.listOfOrders = listOfOrders;
-//    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public List<Order> getListOfOrders() {
+        return listOfOrders;
+    }
+
+    public void setListOfOrders(List<Order> listOfOrders) {
+        this.listOfOrders = listOfOrders;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -150,4 +154,6 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", phone='" + phone;
     }
+
+
 }

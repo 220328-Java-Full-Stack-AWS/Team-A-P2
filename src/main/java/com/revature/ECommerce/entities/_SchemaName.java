@@ -7,5 +7,5 @@ package com.revature.ECommerce.entities;
 public class _SchemaName {
     public final static String jarodSchema = "jh";
     public final static String publicSchema = "public";
-    //Jack Klees = jk
+    public final static String schemaName = publicSchema;
 }

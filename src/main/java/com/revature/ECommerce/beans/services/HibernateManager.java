@@ -5,7 +5,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.context.Lifecycle;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,8 +34,9 @@ public class HibernateManager implements Lifecycle {
         for(Class c : annotatedEntities){
             config.addAnnotatedClass(c);
         }
-        sessionFactory = config.buildSessionFactory();
-        session = sessionFactory.openSession();
+
+        this.sessionFactory = config.buildSessionFactory();
+        this.session = sessionFactory.openSession();
         running = true;
     }
 

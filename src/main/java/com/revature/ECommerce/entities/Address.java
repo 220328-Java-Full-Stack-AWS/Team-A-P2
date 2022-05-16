@@ -1,11 +1,14 @@
 package com.revature.ECommerce.entities;
 
+import com.revature.ECommerce.entities.SchemaName.EntitySchemaName;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "user_addresses", schema = "jk")
-public class Address {
+@Table(name = "address", schema = _SchemaName.schemaName)
+public class Address implements Serializable {
+
     @Id
     private Integer addressId;
     @Column(name = "address")
