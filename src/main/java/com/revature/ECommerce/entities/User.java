@@ -28,14 +28,14 @@ public class User implements Serializable {
     private String lastName;
     @Column(name = "phone_number", unique = true, nullable = false)
     private String phone;
-    /*@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Address address;
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Payment payment;
     @JsonManagedReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Order> listOfOrders;
-*/
+
 
     public User() {}
 
@@ -48,7 +48,7 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-/*
+
     public Payment getPayment() {
         return payment;
     }
@@ -72,7 +72,7 @@ public class User implements Serializable {
     public void setListOfOrders(List<Order> listOfOrders) {
         this.listOfOrders = listOfOrders;
     }
-*/
+
     public Integer getUserId() {
         return userId;
     }
