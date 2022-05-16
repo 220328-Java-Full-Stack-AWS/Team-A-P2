@@ -34,8 +34,9 @@ public class HibernateManager implements Lifecycle {
         for(Class c : annotatedEntities){
             config.addAnnotatedClass(c);
         }
-        sessionFactory = config.buildSessionFactory();
-        session = sessionFactory.openSession();
+
+        this.sessionFactory = config.buildSessionFactory();
+        this.session = sessionFactory.openSession();
         running = true;
     }
 

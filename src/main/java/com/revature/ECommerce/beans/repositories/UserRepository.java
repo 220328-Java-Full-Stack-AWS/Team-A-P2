@@ -2,23 +2,25 @@ package com.revature.ECommerce.beans.repositories;
 
 import com.revature.ECommerce.beans.services.HibernateManager;
 import com.revature.ECommerce.entities.Product;
+import com.revature.ECommerce.entities.Order;
 import com.revature.ECommerce.entities.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.Lifecycle;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 @Repository
-public class UserRepository implements HibernateRepository<User>{
+public class UserRepository implements HibernateRepository<User> {
     private HibernateManager hibernateManager;
     private Session session;
     boolean running = false;
 
     @Autowired
-    public UserRepository(HibernateManager hibernateManager){
-        this.hibernateManager=hibernateManager;
+    public UserRepository(HibernateManager hibernateManager) {
+        this.hibernateManager = hibernateManager;
     }
 
     @Override
@@ -44,19 +46,20 @@ public class UserRepository implements HibernateRepository<User>{
         return user;
     }
 
-
     @Override
     public User update(User user) {
-        User updateUser = user;
+        User updateUser = this.getById(user.getUserId());
         updateUser.setFirstName(user.getFirstName());
         updateUser.setLastName(user.getLastName());
+        updateUser.setEmail(user.getEmail());
+        updateUser.setPhone(user.getPhone());
+        updateUser.setUsername(user.getUsername());
         updateUser.setPassword(user.getPassword());
-        updateUser.setListOfOrders(user.getListOfOrders());
-        session.update(session.get(User.class, updateUser.getUserId()));
-        return updateUser;
+        this.save(updateUser);
+        return user;
     }
 
-    public User getByUsername(String username){
+    public User getByUsername(String username) {
         TypedQuery<User> query = session.createQuery("FROM User WHERE username = :username", User.class);
         query.setParameter("username", username);
         User user = query.getSingleResult();
@@ -81,6 +84,7 @@ public class UserRepository implements HibernateRepository<User>{
     public void stop() {
         running = false;
     }
+
 
     @Override
     public boolean isRunning() {

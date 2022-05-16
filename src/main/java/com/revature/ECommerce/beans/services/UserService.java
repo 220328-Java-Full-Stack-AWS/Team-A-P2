@@ -35,7 +35,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User authenticateUser(AuthDto authDto) throws Exception {
+    public User authenticateUser(AuthDto authDto) {
         User user = userRepository.getByUsername(authDto.getUsername());
         if(user != null && user.getPassword().equals(authDto.getPassword())) {
             return user;
@@ -47,5 +47,10 @@ public class UserService {
     public User update(User user) {
         return userRepository.update(user);
     }
+
+    public void delete(Integer id){
+        userRepository.delete(id);
+    }
+
 
 }
