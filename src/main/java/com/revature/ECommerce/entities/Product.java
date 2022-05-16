@@ -20,7 +20,7 @@ public class Product implements Serializable {
     @Column(name = "quantity")
     private Integer productQuantity;
 
-    @Column(name = "descritption")
+    @Column(name = "description")
     private String productDescription;
 
     @Column(name = "image")
