@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ApiService } from './api.service';
 
 
 @NgModule({
@@ -14,9 +13,9 @@ import { ApiService } from './api.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule,
+    FontAwesomeModule
   ],
-  providers: [ApiService],
+  providers: [AppComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

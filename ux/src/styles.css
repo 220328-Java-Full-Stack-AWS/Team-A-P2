@@ -1,417 +1,48 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800');
-@import url('https://fonts.googleapis.com/css?family=Lobster');
-
-/* global start */
-html {
+body {
   scroll-behavior: smooth;
 }
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-/* global end */
-
-/* Header start */
-.header {
+.navbar {
   width: 100%;
-  position: fixed;
-  z-index: 10;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: .25rem 6rem;
-  background-color: #0093E9;
-  background-image: linear-gradient(90deg, #0093E9 30%, #80D0C7 77%);
-}
-
-@media screen and (max-width: 754px) {
-  .header {
-    padding: .25rem 2rem;
-  }
-}
-
-.header h2{
+  background-color: #2b2d42;
   color: white;
-  font-family: "Lobster", cursive;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.navbar h1 {
   font-size: 2.5rem;
 }
 
-.sign-in{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  color: white;
-}
-#login-icon{
-  font-size: 2rem;
-}
-.sign-in span{
-  margin-left: 1rem;
-  font-size: 2rem;
-  color: white;
-  cursor: pointer;
-  transition: all .4s ease-in-out;
-}
-.sign-in span:hover{
-  font-size: 2.2rem;
-  color: white;
-}
-
-.fixed-top {
-  position: fixed;
-  -webkit-animation: navbar-animation 0.6s;
-  animation: navbar-animation 0.6s;
-  background-color: rgba(0, 0, 0, .9);
-}
-
-/* Header end */
-
-/* Welcome Card Start */
-.welcome-card{
+.footer {
+  background-color: #2b2d42;
   width: 100%;
-  height: 90vh;
-  background-color: #0093E9;
-  background-image: linear-gradient(90deg, #0093E9 30%, #80D0C7 77%);
+  margin-top: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content:center;
-}
-
-.welcome-card h1{
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   color: white;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 800;
-  font-size: 7rem;
+  padding: 4rem;
 }
-
-.welcome-card p{
-  font-size: 2rem;
-  font-weight: 700;
-  color: white;
-  margin: 1.5rem 0;
- }
-
- .welcome-card a{
-   text-decoration: none;
-   font-size: 2rem;
-   font-weight: 500;
-   background-color: #80D0C7;
-   padding: .5rem 1rem;
-   color: white;
-   border-radius: 5px;
-   transition: .4s all ease-in-out;
- }
-
- .welcome-card a:hover{
-   background-color: white;
-   color: #80D0C7;
-   text-decoration: none;
- }
-
- @media screen and (max-width: 754px) {
-  .welcome-card p{
-    width: 90%;
-    text-align: center;
-  }
-}
-/* Welcome Card End */
-
-/* Store Start */
-/*panel*/
-.panel {
-    border: none;
-    box-shadow: none;
-}
-
-.panel-heading {
-    border-color:#eff2f7 ;
-    font-size: 16px;
-    font-weight: 300;
-}
-
-.panel-title {
-    color: #2A3542;
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 0;
-    margin-top: 0;
-    font-family: 'Open Sans', sans-serif;
-}
-
-
-/*product list*/
-
-.prod-cat li a{
-    border-bottom: 1px dashed #d9d9d9;
-}
-
-.prod-cat li a {
-    color: #3b3b3b;
-}
-
-.prod-cat li ul {
-    margin-left: 30px;
-}
-
-.prod-cat li ul li a{
-    border-bottom:none;
-}
-.prod-cat li ul li a:hover,.prod-cat li ul li a:focus, .prod-cat li ul li.active a , .prod-cat li a:hover,.prod-cat li a:focus, .prod-cat li a.active{
-    background: none;
-    color: #ff7261;
-}
-
-.pro-lab{
-    margin-right: 20px;
-    font-weight: normal;
-}
-
-.pro-sort {
-    padding-right: 20px;
-    float: left;
-}
-
-.pro-page-list {
-    margin: 5px 0 0 0;
-}
-
-.product-list img{
-    width: 100%;
-    border-radius: 4px 4px 0 0;
-    -webkit-border-radius: 4px 4px 0 0;
-}
-
-.product-list .pro-img-box {
-    position: relative;
-}
-.adtocart {
-    background: #fc5959;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    color: #fff;
-    display: inline-block;
-    text-align: center;
-    border: 3px solid #fff;
-    left: 45%;
-    bottom: -25px;
-    position: absolute;
-}
-
-.adtocart i{
-    color: #fff;
-    font-size: 25px;
-    line-height: 42px;
-}
-
-.pro-title {
-    color: #5A5A5A;
-    display: inline-block;
-    margin-top: 20px;
-    font-size: 16px;
-}
-
-.product-list .price {
-    color:#fc5959 ;
-    font-size: 15px;
-}
-
-.pro-img-details {
-    margin-left: -15px;
-}
-
-.pro-img-details img {
-    width: 100%;
-}
-
-.pro-d-title {
-    font-size: 16px;
-    margin-top: 0;
-}
-
-.product_meta {
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    padding: 10px 0;
-    margin: 15px 0;
-}
-
-.product_meta span {
-    display: block;
-    margin-bottom: 10px;
-}
-.product_meta a, .pro-price{
-    color:#fc5959 ;
-}
-
-.pro-price, .amount-old {
-    font-size: 18px;
-    padding: 0 10px;
-}
-
-.amount-old {
-    text-decoration: line-through;
-}
-
-.quantity {
-    width: 120px;
-}
-
-.pro-img-list {
-    margin: 10px 0 0 -15px;
-    width: 100%;
-    display: inline-block;
-}
-
-.pro-img-list a {
-    float: left;
-    margin-right: 10px;
-    margin-bottom: 10px;
-}
-
-.pro-d-head {
-    font-size: 18px;
-    font-weight: 300;
-}
-/* Store End */
-
-/* Footer Start */
-Footer{
-  padding: 5rem;
-  width: 100%;
-  background-color:#2c2d3a;
-  color: white;
-  text-align: center;
-}
-Footer h2{
-  font-family: "Lobster", cursive;
-  font-size: 4rem;
-}
-
-Footer ul {
-  margin-top: 2rem;
-  width: 100%;
-  font-size: 1.5rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  list-style: none;
-}
-@media screen and (max-width: 754px) {
-  Footer ul {
-    width: 100%;
-    font-size: 1rem;
-    justify-content: space-around;
-  }
-  Footer ul li{
-    margin-top: 1rem;
-  }
-}
-Footer ul li{
-  padding: .2rem .5rem;
-  border: 1px #2c2d3a solid;
-  border-radius: 3px;
-  transition: all .5s ease;
-  cursor: pointer;
-}
-
-Footer ul li:hover{
-  color: violet;
-  border: violet 1px solid;
-}
-Footer ul li a{
-  color: white;
-  text-decoration: none;
-}
-Footer ul li a:hover{
-  text-decoration: none;
-  color: violet;
-}
-/* Footer End */
-
-/* Login Form Start*/
-.login{
-  position: fixed;
-  top: 20%;
-  left: 30%;
-  width: 40%;
-  padding: 2rem;
-  background-color: white;
-  border-radius: 8px;
-}
-@media screen and (max-width: 754px) {
-  .login{
-    left: 0;
-    left: 5%;
-    width: 90%;
-  }
-}
-.login-header{
-  display: flex;
-  flex-direction: row;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom: lightgrey solid 1px;
-}
-
-.login-body{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.login-body div{
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.login-body div label{
-  font-size: 1.5rem;
-  color: #4e4d4d;
-}
-.login-body div input{
-  width: 100%;
-  font-size: 1.6rem;
-  padding: .2rem .8rem;
-}
-.login-body .view-password{
-  margin: 2px;
-  padding: 0;
-  color: #3b3b3b;
-  display: flex;
-  flex-direction: row;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-.login-body .view-password span:hover{
-  text-decoration: underline;
-}
-
-.login-footer{
-  padding: 1rem 0;
-  margin-top: 1rem;
-  border-top: 1px lightgray solid;
-}
-
-.login-footer .login-submit{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-
-.login-footer .login-help{
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* Login Form End */
+/*# sourceMappingURL=Styles.css.map */

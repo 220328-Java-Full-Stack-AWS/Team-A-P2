@@ -1,0 +1,43 @@
+<div class="navbar">
+  <button>
+    <fa-icon id="icon" [icon]="faUserAstronaut"></fa-icon>
+    Login
+  </button>
+
+  <a href="#">RevTech</a>
+
+  <button>
+    <fa-layers [fixedWidth]="true">
+      <fa-icon [icon]="faShoppingCart"></fa-icon>
+      <fa-layers-counter id="counter" content="0"></fa-layers-counter>
+    </fa-layers>
+  </button>
+</div>
+
+<div class="sort-categories">
+  <input type="text" name="search" id="search" placeholder="Search..." />
+  <select name="categories" id="categories">
+    <option value="Phones">Phones</option>
+    <option value="Phone Accessories">Phone Accessories</option>
+    <option value="Televisons">Televisions</option>
+    <option value="Laptops">Laptops</option>
+    <option value="Computers">Computers</option>
+    <option value="Gaming Consoles">Gaming Consoles</option>
+    <option value="Gaming Accessories">Gaming Accessories</option>
+  </select>
+
+  <button>On Sale</button>
+  <button>Featured</button>
+</div>
+
+<div class="products">
+
+</div>
+
+<div class="footer">
+    <h3>RevTech</h3>
+    <span>
+      <fa-icon [icon]="faCopyright"></fa-icon>
+      {{ year }} RevTech USA, Inc. All rights reserved.
+    </span>
+</div>

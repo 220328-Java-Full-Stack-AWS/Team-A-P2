@@ -1,0 +1,80 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  scroll-behavior: smooth;
+  font-family: 'Roboto', sans-serif;
+}
+
+//navbar start
+.navbar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #2b2d42;
+  padding: 1rem 2rem;
+
+  a{
+    font-size: 2rem;
+    color: white;
+    font-family: 'Lobster', cursive;
+    text-decoration: none;
+  }
+
+  button{
+    border: none;
+    font-size: 1.2rem;
+    color: white;
+    background: none;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    &:hover{
+      color: lightgreen;
+    }
+  }
+
+  #counter{
+    font-size: 1.8rem;
+  }
+}
+// navbar ends
+
+// sort and categories bar start
+.sort-categories{
+  width: 100%;
+  border-bottom: 2px solid whitesmoke;
+  padding: 1rem;
+  margin-bottom: 2.5rem;
+}
+// sort and categories bar end
+
+.products{
+  width: 100%;
+  padding: 0 3rem;
+}
+
+
+// footer start
+.footer {
+  margin-top: 5rem;
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #2b2d42;
+  color: white;
+  h3{
+    margin: 1rem 0;
+    font-size: 3rem;
+    font-family: 'Lobster', cursive
+  }
+}
+// footer start
