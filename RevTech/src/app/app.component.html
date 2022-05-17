@@ -1,19 +1,4 @@
-<!-- top navbar start -->
-<div class="navbar">
-  <button>
-    <fa-icon id="icon" [icon]="faUserAstronaut"></fa-icon>
-    <span id="username">username</span>
-  </button>
-  <a href="#">RevTech</a>
-  <button>
-    <fa-layers [fixedWidth]="true">
-      <fa-icon [icon]="faShoppingCart" size="lg"></fa-icon>
-      <fa-layers-counter id="counter" content="{{counter}}"></fa-layers-counter>
-    </fa-layers>
-  </button>
-</div>
-<!-- top navbar end -->
-
+<app-navbar></app-navbar>
 <!-- sort start -->
 <div class="sort-filter-search">
   <input type="text" name="search" id="search" placeholder="Search..." />
@@ -92,12 +77,4 @@
 </div>
 <!-- product end -->
 
-<!-- Footer start -->
-<div class="footer">
-    <h3>RevTech</h3>
-    <span>
-      <fa-icon [icon]="faCopyright"></fa-icon>
-      {{ year }} RevTech USA, Inc. All rights reserved.
-    </span>
-</div>
-<!-- Footer end -->
+<app-footer></app-footer>

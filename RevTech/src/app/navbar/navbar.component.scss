@@ -1,0 +1,67 @@
+//navbar start
+.navbar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #2b2d42;
+  padding: 1rem 2rem;
+
+  a{
+    font-size: 2rem;
+    color: white;
+    font-family: 'Lobster', cursive;
+    text-decoration: none;
+  }
+
+  button{
+    border: none;
+    font-size: 1.2rem;
+    color: white;
+    background: none;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    &:hover{
+      color: lightgreen;
+    }
+  }
+
+  // number on the cart
+  #counter{
+    font-size: 2rem;
+    font-weight: 700;
+  }
+}
+// navbar ends
+
+.user-menu {
+  position: absolute;
+  display: none;
+  width: 12%;
+  padding-bottom: 1rem;
+  color: white;
+  background-color: #2b2d42;
+  border-bottom-right-radius: 8px;
+  ul{
+    list-style: none;
+    width: 100%;
+    li{
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: .25rem;
+      padding: .2rem 0;
+      width: 100%;
+      text-align: center;
+      &:hover{
+        background:#242536;
+        color: lightblue;
+      }
+    }
+  }
+}
+
+.magic{
+  display: block;
+}

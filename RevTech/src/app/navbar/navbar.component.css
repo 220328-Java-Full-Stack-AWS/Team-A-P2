@@ -1,0 +1,79 @@
+.navbar {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #2b2d42;
+  padding: 1rem 2rem;
+}
+
+.navbar a {
+  font-size: 2rem;
+  color: white;
+  font-family: 'Lobster', cursive;
+  text-decoration: none;
+}
+
+.navbar button {
+  border: none;
+  font-size: 1.2rem;
+  color: white;
+  background: none;
+  cursor: pointer;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+.navbar button:hover {
+  color: lightgreen;
+}
+
+.navbar #counter {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.user-menu {
+  position: absolute;
+  display: none;
+  width: 12%;
+  padding-bottom: 1rem;
+  color: white;
+  background-color: #2b2d42;
+  border-bottom-right-radius: 8px;
+}
+
+.user-menu ul {
+  list-style: none;
+  width: 100%;
+}
+
+.user-menu ul li {
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: .25rem;
+  padding: .2rem 0;
+  width: 100%;
+  text-align: center;
+}
+
+.user-menu ul li:hover {
+  background: #242536;
+  color: lightblue;
+}
+
+.magic {
+  display: block;
+}
+/*# sourceMappingURL=navbar.component.css.map */

@@ -9,49 +9,11 @@ body {
   scroll-behavior: smooth;
   font-family: 'Roboto', sans-serif;
 }
-
-//navbar start
-.navbar {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #2b2d42;
-  padding: 1rem 2rem;
-
-  a{
-    font-size: 2rem;
-    color: white;
-    font-family: 'Lobster', cursive;
-    text-decoration: none;
-  }
-
-  button{
-    border: none;
-    font-size: 1.2rem;
-    color: white;
-    background: none;
-    cursor: pointer;
-    transition: all .3s ease-in-out;
-    &:hover{
-      color: lightgreen;
-    }
-  }
-
-  // number on the cart
-  #counter{
-    font-size: 2rem;
-    font-weight: 700;
-  }
-}
-// navbar ends
-
 // sort and categories bar start
 .sort-filter-search{
   width: 100%;
   border-bottom: 2px solid whitesmoke;
-  padding: 1rem;
+  padding: 1rem 3rem;
   margin-bottom: 2.5rem;
   display: flex;
   flex-direction: row;
@@ -75,26 +37,29 @@ body {
 
     button{
       border: none;
-      background: #2b2d42;
+      background: #3a3c58;
       color: white;
-      border-radius: 7px;
+      border-radius: 8px;
       font-size: .9rem;
       padding: .4rem 1rem;
       cursor: pointer;
       margin-right: .5rem;
-      &:hover{
-        background: #003049;
+      &:hover {
+        background: #2b2d42;
       }
     }
     select{
       border: none;
-      background: #2b2d42;
+      background: #3a3c58;
       color: white;
       font-size: .9rem;
-      border-radius: 7px;
+      border-radius: 8px;
       padding: .4rem 1rem;
       cursor: pointer;
       margin-right: .5rem;
+      &:hover {
+        background: #2b2d42;
+      }
     }
   }
 }
@@ -161,23 +126,3 @@ body {
     }
   }
 }
-
-
-// footer start
-.footer {
-  margin-top: 5rem;
-  width: 100%;
-  height: 30vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #2b2d42;
-  color: white;
-  h3{
-    margin: 1rem 0;
-    font-size: 3rem;
-    font-family: 'Lobster', cursive
-  }
-}
-// footer start

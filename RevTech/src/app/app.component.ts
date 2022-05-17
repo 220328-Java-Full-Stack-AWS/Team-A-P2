@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faUserAstronaut, faFaceRollingEyes, faCopyright, faShoppingCart, faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +8,8 @@ import { faUserAstronaut, faFaceRollingEyes, faCopyright, faShoppingCart, faCart
 })
 export class AppComponent {
   title = 'RevTech';
-  // Current yyear for nav bar
-  public year = new Date().getFullYear();
-    // Font Awesome Icons
-    public faUserAstronaut = faUserAstronaut;
-    public faFaceRollingEyes = faFaceRollingEyes;
-    public faCopyright = faCopyright;
-    public faShoppingCart = faShoppingCart;
-    public faCartPlus = faCartPlus;
+
+  public faCartPlus = faCartPlus;
 
     // Front end add to cart
     public counter = 0;

@@ -1,0 +1,25 @@
+<!-- top navbar start -->
+<div class="navbar">
+  <button (click)="userMenuDropdown()">
+    <fa-icon id="icon" [icon]="faUserAstronaut"></fa-icon>
+    <span id="username">username</span>
+  </button>
+  <a href="#">RevTech</a>
+  <button>
+    <fa-layers [fixedWidth]="true">
+      <fa-icon [icon]="faShoppingCart" size="lg"></fa-icon>
+      <fa-layers-counter id="counter" content="{{counter}}"></fa-layers-counter>
+    </fa-layers>
+  </button>
+</div>
+<!-- top navbar end -->
+<!-- usermenu start -->
+<div class="user-menu">
+  <ul>
+    <li>Profile</li>
+    <li>Settings</li>
+    <li>Orders</li>
+    <li>Log Out</li>
+  </ul>
+</div>
+<!-- usermenu end -->
