@@ -60,7 +60,7 @@
 
 .user-menu ul li {
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   margin-bottom: .25rem;
   padding: .2rem 0;
@@ -73,7 +73,93 @@
   color: lightblue;
 }
 
+@media screen and (max-width: 754px) {
+  .user-menu {
+    width: 25%;
+  }
+  .navbar button {
+    font-size: .9rem;
+  }
+  .navbar a {
+    font-size: 1.5rem;
+  }
+}
+
+.cart {
+  position: absolute;
+  right: -100%;
+  height: 100vh;
+  width: 25%;
+  background-color: white;
+  border-left: 2px solif lightslategrey;
+  -webkit-transition: all .7s ease;
+  transition: all .7s ease;
+}
+
+.cart .close-card {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.cart .close-card button {
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  color: #2b2d42;
+  cursor: pointer;
+}
+
+.cart .close-card button:hover {
+  color: #242536;
+}
+
+.cart .cart-container {
+  padding: 0 1rem;
+}
+
+.cart .cart-container h2 {
+  font-size: 2rem;
+  text-decoration: underline;
+  color: #2b2d42;
+}
+
+.cart .cart-confirm {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.cart .cart-confirm button {
+  border: none;
+  background: #3a3c58;
+  font-size: 1.5rem;
+  color: white;
+  width: 50%;
+  padding: .1rem 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cart .cart-confirm button:hover {
+  background: #2b2d42;
+}
+
 .magic {
   display: block;
+}
+
+.cartMagic {
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  right: 0;
 }
 /*# sourceMappingURL=navbar.component.css.map */

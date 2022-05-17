@@ -1,0 +1,75 @@
+<div class="sort-filter-search">
+  <input type="text" name="search" id="search" placeholder="Search..." />
+  <div class="wrapper">
+    <div class="filter">
+      <button>On Sale</button>
+      <button>Featured</button>
+      <select name="categories" id="categories">
+        <option selected disabled>Category</option>
+        <option value="Phones">Phones</option>
+        <option value="Phone Accessories">Phone Accessories</option>
+        <option value="Televisons">Televisions</option>
+        <option value="Laptops">Laptops</option>
+        <option value="Computers">Computers</option>
+        <option value="Gaming Consoles">Gaming Consoles</option>
+        <option value="Gaming Accessories">Gaming Accessories</option>
+      </select>
+    </div>
+    <div class="sort">
+      <select name="sort" id="sort">
+        <option selected disabled>Sort</option>
+        <option value="priceLowToHigh">Price Low - High</option>
+        <option value="priceHighToLow">Price High - Low</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- sort end -->
+
+<!-- products start -->
+<div class="products">
+
+  <div class="product">
+    <div class="image"></div>
+    <a href="#">Product Name</a>
+    <div class="addToCart">
+      <span class="price">$400.00</span>
+      <button (click)="addOneToCart()">
+        <fa-icon [icon]="faCartPlus"></fa-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="product">
+    <div class="image"></div>
+    <a href="#">Product Name</a>
+    <div class="addToCart">
+      <span class="price">$400.00</span>
+      <button (click)="addOneToCart()">
+        <fa-icon [icon]="faCartPlus"></fa-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="product">
+    <div class="image"></div>
+    <a href="#">Product Name</a>
+    <div class="addToCart">
+      <span class="price">$400.00</span>
+      <button (click)="addOneToCart()">
+        <fa-icon [icon]="faCartPlus"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="product">
+    <div class="image"></div>
+    <a href="#">Product Name</a>
+    <div class="addToCart">
+      <span class="price">$400.00</span>
+      <button (click)="addOneToCart()">
+        <fa-icon [icon]="faCartPlus"></fa-icon>
+      </button>
+    </div>
+  </div>
+</div>
+<!-- product end -->

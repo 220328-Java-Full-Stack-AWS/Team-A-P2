@@ -1,6 +1,7 @@
 package com.revature.ECommerce;
 
 import com.revature.ECommerce.beans.services.HibernateManager;
+import com.revature.ECommerce.entities.Product;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -20,6 +21,9 @@ public class ECommerceApplication {
 		HibernateManager hibernateManager= context.getBean(HibernateManager.class);
 
 		context.start();
+
+		Product p1 = new Product("iPhone 13", 1232.10, 6, "IPhone 13 is the newest and hottest phone on the market made by Apple. Unlock the power of the apple", "","Featured","Phones");
+		Product p2 = new Product("iPhone 12", 1100.10, 4, "IPhone 12 is the second newest and second hottest phone on the market made by Apple. Unlock the power of the apple", "","Available","Phones");
   	}
 	@Bean
 	public CorsFilter corsFilter() {

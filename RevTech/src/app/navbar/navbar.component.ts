@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faUserAstronaut, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faUserAstronaut, faShoppingCart, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +11,7 @@ export class NavbarComponent implements OnInit {
   // Font Awesome Icons
   public faUserAstronaut = faUserAstronaut;
   public faShoppingCart = faShoppingCart;
+  public faWindowClose = faWindowClose;
 
   constructor() { }
 
@@ -25,4 +26,8 @@ export class NavbarComponent implements OnInit {
     userMenu?.classList.toggle('magic');
   }
 
+  public viewCart(){
+    const cart = document.querySelector('.cart');
+    cart?.classList.toggle('cartMagic');
+  }
 }
