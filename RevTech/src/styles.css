@@ -52,7 +52,8 @@ body {
 }
 
 .navbar #counter {
-  font-size: 1.8rem;
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 .sort-categories {
@@ -65,6 +66,89 @@ body {
 .products {
   width: 100%;
   padding: 0 3rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(200px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+}
+
+.products .product {
+  border: 2px solid whitesmoke;
+  background: white;
+  -webkit-box-shadow: rgba(50, 50, 93, 0.2) 0px 13px 27px -5px, rgba(0, 0, 0, 0.2) 0px 8px 16px -8px;
+          box-shadow: rgba(50, 50, 93, 0.2) 0px 13px 27px -5px, rgba(0, 0, 0, 0.2) 0px 8px 16px -8px;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  border-radius: 9px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.products .product .image {
+  width: 15rem;
+  height: 15rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.products .product a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+  color: #2b2d42;
+}
+
+.products .product .addToCart {
+  padding: .5rem 2rem;
+  width: 100%;
+  border-top: 1px whitesmoke solid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.products .product .addToCart .price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #2b2d42;
+}
+
+.products .product .addToCart button {
+  border: none;
+  background: none;
+  color: #d62828;
+  cursor: pointer;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  font-size: 1.2rem;
+}
+
+.products .product .addToCart button:hover {
+  color: #9d0208;
+}
+
+.products .product:hover {
+  -webkit-box-shadow: rgba(128, 0, 144, 0.2) 0px 13px 27px -5px, rgba(128, 0, 144, 0.2) 0px 8px 16px -8px;
+          box-shadow: rgba(128, 0, 144, 0.2) 0px 13px 27px -5px, rgba(128, 0, 144, 0.2) 0px 8px 16px -8px;
 }
 
 .footer {

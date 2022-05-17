@@ -1,19 +1,20 @@
+<!-- top navbar start -->
 <div class="navbar">
   <button>
     <fa-icon id="icon" [icon]="faUserAstronaut"></fa-icon>
-    Login
+    <span id="username">username</span>
   </button>
-
   <a href="#">RevTech</a>
-
   <button>
     <fa-layers [fixedWidth]="true">
-      <fa-icon [icon]="faShoppingCart"></fa-icon>
-      <fa-layers-counter id="counter" content="0"></fa-layers-counter>
+      <fa-icon [icon]="faShoppingCart" size="lg"></fa-icon>
+      <fa-layers-counter id="counter" content="{{counter}}"></fa-layers-counter>
     </fa-layers>
   </button>
 </div>
+<!-- top navbar end -->
 
+<!-- sort start -->
 <div class="sort-categories">
   <input type="text" name="search" id="search" placeholder="Search..." />
   <select name="categories" id="categories">
@@ -29,11 +30,54 @@
   <button>On Sale</button>
   <button>Featured</button>
 </div>
+<!-- sort end -->
 
+<!-- products start -->
 <div class="products">
 
-</div>
+  <div class="product">
+    <div class="image"></div>
+    <a href="#">Product Name</a>
+    <div class="addToCart">
+      <button (click)="AddOneToCart()">
+        <fa-icon [icon]="faCartPlus"></fa-icon>
+      </button>
+    </div>
+  </div>
 
+  <div class="product">
+    <div class="image"></div>
+    <a href="#">Product Name</a>
+    <div class="addToCart">
+      <button (click)="AddOneToCart()">
+        <fa-icon [icon]="faCartPlus"></fa-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="product">
+    <div class="image"></div>
+    <a href="#">Product Name</a>
+    <div class="addToCart">
+      <span class="price">$400.00</span>
+      <button (click)="AddOneToCart()">
+        <fa-icon [icon]="faCartPlus"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="product">
+    <div class="image"></div>
+    <a href="#">Product Name</a>
+    <div class="addToCart">
+      <button (click)="AddOneToCart()">
+        <fa-icon [icon]="faCartPlus"></fa-icon>
+      </button>
+    </div>
+  </div>
+</div>
+<!-- product end -->
+
+<!-- Footer start -->
 <div class="footer">
     <h3>RevTech</h3>
     <span>
@@ -41,3 +85,4 @@
       {{ year }} RevTech USA, Inc. All rights reserved.
     </span>
 </div>
+<!-- Footer end -->
