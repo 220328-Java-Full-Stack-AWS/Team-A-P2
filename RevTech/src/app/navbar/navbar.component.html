@@ -1,0 +1,48 @@
+<!-- top navbar start -->
+<div class="navbar">
+  <button (click)="userMenuDropdown()">
+    <fa-icon id="icon" [icon]="faUserAstronaut"></fa-icon>
+    <span id="username">username</span>
+  </button>
+  <a href="#">RevTech</a>
+  <button (click)="viewCart()">
+    <fa-layers [fixedWidth]="true">
+      <fa-icon [icon]="faShoppingCart" size="lg"></fa-icon>
+      <fa-layers-counter id="counter" content="{{ cartCount }}"></fa-layers-counter>
+    </fa-layers>
+  </button>
+</div>
+<!-- top navbar end -->
+<!-- usermenu start -->
+<div class="user-menu">
+  <ul>
+    <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+    <li><a routerLink="/settings" routerLinkActive="active">Settings</a></li>
+    <li><a routerLink="/orders" routerLinkActive="active">Orders</a></li>
+    <li><a routerLink="/login" routerLinkActive="active">Log Out</a></li>
+  </ul>
+</div>
+<!-- usermenu end -->
+
+<!--View Cart Start-->
+<div class="cart">
+  <div class="close-card">
+  <button (click)="viewCart()" id="closeBtn">
+    <fa-icon [icon]="faWindowClose"></fa-icon>
+  </button>
+  </div>
+  <div class="cart-container">
+    <h2>Cart</h2>
+    <div class="products-in-cart">
+    </div>
+    <div class="total">
+      <label for="total">Current Total</label>
+      <span>$800.22</span>
+    </div>
+  </div>
+  <div class="cart-confirm">
+    <button>Check out</button>
+  </div>
+</div>
+<!--View Cart end-->
+
