@@ -1,6 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { ProductService } from '../services/product.service';
 import { Product } from '../dto/product';
@@ -17,7 +16,6 @@ export class ProductsComponent implements OnInit {
 
   public products!: Product[];
   constructor(private productService: ProductService){}
-
   ngOnInit(): void {
     this.getProducts();
   }
@@ -31,10 +29,6 @@ export class ProductsComponent implements OnInit {
         console.log(error.message)
       }
     )
-  }
-
-  public addToCart(product: Product): void {
-    console.log(product)
   }
 
   public searchProduct(key: string): void {
@@ -51,5 +45,9 @@ export class ProductsComponent implements OnInit {
         this.getProducts();
       }
     }
+  }
+
+  public addToCart(product: Product): void {
+    console.log(product)
   }
 }

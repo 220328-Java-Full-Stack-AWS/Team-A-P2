@@ -31,19 +31,19 @@ public class SaleController {
         return saleService.getSaleById(id);
     }
 
-    @PostMapping()
+    @PostMapping("/add")
     @ResponseStatus(HttpStatus.OK)
     public Sale persistNewSale(@RequestBody Sale newSale){
         return saleService.save(newSale);
     }
 
-    @PutMapping
+    @PutMapping("/update")
     @ResponseStatus(HttpStatus.OK)
     public Sale updateSale(@RequestBody Sale sale){
         return saleService.updateSale(sale);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete")
     @ResponseStatus(HttpStatus.OK)
     public void deleteSale(@RequestBody Sale sale){
         saleService.delete(sale);

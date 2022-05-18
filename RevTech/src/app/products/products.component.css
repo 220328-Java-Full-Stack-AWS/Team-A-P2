@@ -149,11 +149,9 @@
 
 .products .product .image img {
   height: 15rem;
-  width: 16rem;
+  width: 15rem;
   -o-object-fit: fill;
      object-fit: fill;
-  -o-object-position: 15% 100%;
-     object-position: 15% 100%;
   overflow: hidden;
 }
 

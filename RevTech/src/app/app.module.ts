@@ -10,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductService } from './services/product.service';
+import { SaleService } from './services/sale.service';
 
 @NgModule({
   declarations: [
@@ -23,9 +24,9 @@ import { ProductService } from './services/product.service';
     HttpClientModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [ProductService],
+  providers: [ProductService, SaleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
