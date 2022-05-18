@@ -1,22 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { faUserAstronaut, faShoppingCart, faWindowClose } from '@fortawesome/free-solid-svg-icons';
-import { AppComponent } from '../app.component';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
 
+  @Input() cartCount: 0 | undefined;
   // Font Awesome Icons
   public faUserAstronaut = faUserAstronaut;
   public faShoppingCart = faShoppingCart;
   public faWindowClose = faWindowClose;
-
-  public counter = 0;
-  ngOnInit(): void {
-  }
-
 
   public userMenuDropdown(){
     const userMenu = document.querySelector('.user-menu');

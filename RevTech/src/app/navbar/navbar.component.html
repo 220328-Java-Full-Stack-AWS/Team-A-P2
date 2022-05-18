@@ -8,7 +8,7 @@
   <button (click)="viewCart()">
     <fa-layers [fixedWidth]="true">
       <fa-icon [icon]="faShoppingCart" size="lg"></fa-icon>
-      <fa-layers-counter id="counter" content="{{counter}}"></fa-layers-counter>
+      <fa-layers-counter id="counter" content="{{ cartCount }}"></fa-layers-counter>
     </fa-layers>
   </button>
 </div>
@@ -16,10 +16,10 @@
 <!-- usermenu start -->
 <div class="user-menu">
   <ul>
-    <li>Profile</li>
-    <li>Settings</li>
-    <li>Orders</li>
-    <li>Log Out</li>
+    <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+    <li><a routerLink="/settings" routerLinkActive="active">Settings</a></li>
+    <li><a routerLink="/orders" routerLinkActive="active">Orders</a></li>
+    <li><a routerLink="/login" routerLinkActive="active">Log Out</a></li>
   </ul>
 </div>
 <!-- usermenu end -->
@@ -45,3 +45,4 @@
   </div>
 </div>
 <!--View Cart end-->
+

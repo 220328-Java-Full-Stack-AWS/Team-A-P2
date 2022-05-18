@@ -1,8 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { ProductService } from '../services/product.service';
+import { SaleService } from '../services/sale.service';
 import { Product } from '../dto/product';
+import { Sale } from '../dto/sale';
 
 @Component({
   selector: 'app-products',
@@ -15,9 +17,19 @@ export class ProductsComponent implements OnInit {
   public faCartPlus = faCartPlus;
 
   public products!: Product[];
-  constructor(private productService: ProductService){}
+
+  public sale!: Sale;
+
+  constructor(private productService: ProductService, private salesService: SaleService){}
+
   ngOnInit(): void {
     this.getProducts();
+  }
+
+  @Output() addOneToCart = new EventEmitter<any>();
+
+  public OneToCart(value: any){
+    this.addOneToCart.emit(value);
   }
 
   public getProducts():void {
@@ -48,6 +60,6 @@ export class ProductsComponent implements OnInit {
   }
 
   public addToCart(product: Product): void {
-    console.log(product)
+    localStorage.setItem("product", JSON.stringify(product));
   }
 }

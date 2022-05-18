@@ -11,6 +11,11 @@ import { FooterComponent } from './footer/footer.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductService } from './services/product.service';
 import { SaleService } from './services/sale.service';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
+import { ProfilesComponent } from './profiles/profiles.component';
+import { SettingsComponent } from './settings/settings.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +23,11 @@ import { SaleService } from './services/sale.service';
     NavbarComponent,
     FooterComponent,
     ProductsComponent,
+    LoginPageComponent,
+    RegisterPageComponent,
+    ProfilesComponent,
+    SettingsComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,
