@@ -9,7 +9,7 @@ import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
-  { path: 'regsiter', component: RegisterPageComponent },
+  { path: 'register', component: RegisterPageComponent },
   { path: 'shop', component: ProductsComponent },
   { path: 'profile', component: ProfilesComponent },
   { path: 'orders', component: OrdersComponent },

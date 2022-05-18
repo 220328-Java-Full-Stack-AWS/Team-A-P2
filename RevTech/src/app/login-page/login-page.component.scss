@@ -66,4 +66,18 @@
       }
     }
   }
+  .help{
+    margin-top: 1rem;
+    span{
+      color: #2b2d42;
+      font-size: .9rem;
+      a{
+        text-decoration: none;
+        color: #2b2d42;
+        &:hover{
+          text-decoration:underline;
+        }
+      }
+    }
+  }
 }
