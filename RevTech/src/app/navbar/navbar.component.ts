@@ -8,7 +8,9 @@ import { faUserAstronaut, faShoppingCart, faWindowClose } from '@fortawesome/fre
 })
 export class NavbarComponent {
 
-  @Input() cartCount: 0 | undefined;
+  public counter = 0;
+  public loggedIn = false;
+
   // Font Awesome Icons
   public faUserAstronaut = faUserAstronaut;
   public faShoppingCart = faShoppingCart;

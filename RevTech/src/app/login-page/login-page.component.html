@@ -3,12 +3,13 @@
   <form>
     <div class="input-container">
       <label for="username">Username</label>
-      <input type="text" name="username" id="username" required />
+      <input type="text" name="username" placeholder="Username..." id="username" required />
     </div>
 
     <div class="input-container">
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" required />
+      <label for="password">Password</label>
+      <input [type]="show ? 'text' : 'password'" name="password" placeholder="Password..." id="password" required />
+      <span (click)="password()"><fa-icon [icon]="faFaceRollingEyes" id="icon"></fa-icon>{{show ? 'Hide Password' : 'Show Password' }}</span>
     </div>
     <button>Login</button>
   </form>

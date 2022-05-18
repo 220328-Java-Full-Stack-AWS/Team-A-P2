@@ -1,18 +1,19 @@
 <!-- top navbar start -->
 <div class="navbar">
-  <button (click)="userMenuDropdown()">
+  <button (click)="userMenuDropdown()" *ngIf="loggedIn === true">
     <fa-icon id="icon" [icon]="faUserAstronaut"></fa-icon>
     <span id="username">username</span>
   </button>
   <a href="#">RevTech</a>
-  <button (click)="viewCart()">
+  <button (click)="viewCart()" *ngIf="loggedIn === true">
     <fa-layers [fixedWidth]="true">
       <fa-icon [icon]="faShoppingCart" size="lg"></fa-icon>
-      <fa-layers-counter id="counter" content="{{ cartCount }}"></fa-layers-counter>
+      <fa-layers-counter id="counter" content="{{ counter }}"></fa-layers-counter>
     </fa-layers>
   </button>
 </div>
 <!-- top navbar end -->
+
 <!-- usermenu start -->
 <div class="user-menu">
   <ul>
