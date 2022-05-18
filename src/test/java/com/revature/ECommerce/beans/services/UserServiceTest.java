@@ -2,15 +2,20 @@ package com.revature.ECommerce.beans.services;
 
 import com.revature.ECommerce.entities.User;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
+//import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import com.revature.ECommerce.beans.repositories.UserRepository;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
-
-@ExtendWith(MockitoExtension.class)
+//@ExtendWith(MockitoExtension.class)
+@SpringBootTest
 public class UserServiceTest {
     /*
     The Three A's of Testing:
@@ -19,9 +24,9 @@ public class UserServiceTest {
     Assert - check the results
      */
 
-    private UserService sut;
+    private UserService uServ;
 
-    @Mock
+    @MockBean
     private UserRepository mockUserRepository;
 
     //@BeforeAll //apply to method which will be invoked before the suite of tests starts running - was called @BeforeClass in Junit 4
@@ -42,12 +47,12 @@ public class UserServiceTest {
 
     @BeforeEach
     public void initializeTest() {
-        sut = new UserService(mockUserRepository);
+        uServ = new UserService(mockUserRepository);
     }
 
     @AfterEach
     public void tearDownTest() {
-        sut = null;
+        uServ = null;
     }
 
     /**
@@ -55,33 +60,8 @@ public class UserServiceTest {
      *
      */
 
-/*
-    @Test
-    public void test_authenticateUserSuccess() {
-        //arrange
-        String username = "username";
-        String email = "email";
-        String password = "password";
-        String firstName = "firstName";
-        String lastName = "lastName";
-        String phone = "phone";
-        User testUser = new User(username, email, password, firstName, lastName, phone);
-        Mockito.when(mockUserRepository.auth(username, password)).thenReturn(testUser);
-
-
-        //act
-        User authenticatedUser = sut.auth(username, password);
-
-        //assert
-        //what can we check to prove it worked?
-        //in this case we need to make sure that the "authenticatedUser" object returned from our tested method
-        //matches the "testUser" object we made.
-        Assertions.assertEquals(authenticatedUser, testUser);
-
-    }
 
     /*
-    // GetUserByUsernameTest
     @Test
     public void test_authenticateUserSuccess() {
         //arrange
@@ -105,5 +85,31 @@ public class UserServiceTest {
         Assertions.assertEquals(authenticatedUser, testUser);
 
     } */
+
+
+    // GetUserByUsernameTest
+    @Test
+    public void test_getByUsernameSuccess() {
+        //arrange
+        String username = "username";
+        String email = "email";
+        String password = "password";
+        String firstName = "firstName";
+        String lastName = "lastName";
+        String phone = "phone";
+        User testUser = new User(username, email, password, firstName, lastName, phone);
+        Mockito.when(mockUserRepository.getByUsername(username)).thenReturn(testUser);
+
+
+        //act
+        //User authenticatedUser = uServ.auth(username, password);
+
+        //assert
+        //what can we check to prove it worked?
+        //in this case we need to make sure that the "authenticatedUser" object returned from our tested method
+        //matches the "testUser" object we made.
+        //Assertions.assertEquals(authenticatedUser, testUser);
+
+    }
 
 }
