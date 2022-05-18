@@ -19,7 +19,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootApplication(scanBasePackages = "com.revature.ECommerce.beans")
+//@SpringBootApplication(scanBasePackages = "com.revature.ECommerce.beans")
 public class ECommerceApplicationUsers {
 
     public static void main(String[] args) {
