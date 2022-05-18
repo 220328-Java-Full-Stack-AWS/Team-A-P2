@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalComponent } from "./global-component";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent{
   title = 'RevTech';
+  counter = GlobalComponent.counter;
 }

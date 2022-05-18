@@ -1,5 +1,9 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { ProductService } from '../services/product.service';
+import { Product } from '../dto/product';
 
 @Component({
   selector: 'app-products',
@@ -8,12 +12,44 @@ import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  // fa icon
   public faCartPlus = faCartPlus;
 
-  public addOneToCart(){
+  public products!: Product[];
+  constructor(private productService: ProductService){}
+
+  ngOnInit(): void {
+    this.getProducts();
+  }
+
+  public getProducts():void {
+    this.productService.getProducts().subscribe(
+      (response: Product[]) => {
+        this.products = response;
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message)
+      }
+    )
+  }
+
+  public addToCart(product: Product): void {
+    console.log(product)
+  }
+
+  public searchProduct(key: string): void {
+    const results: Product[] = [];
+    for(const product of this.products){
+      if(product.productName.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+        product.productCategory.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+        product.productStatus.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      ){
+        results.push(product);
+      }
+      this.products = results;
+      if(results.length === 0 || !key){
+        this.getProducts();
+      }
+    }
   }
 }

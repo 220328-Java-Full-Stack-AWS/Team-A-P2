@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faUserAstronaut, faShoppingCart, faWindowClose } from '@fortawesome/free-solid-svg-icons';
-
+import { AppComponent } from '../app.component';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -13,13 +13,10 @@ export class NavbarComponent implements OnInit {
   public faShoppingCart = faShoppingCart;
   public faWindowClose = faWindowClose;
 
-  constructor() { }
-
+  public counter = 0;
   ngOnInit(): void {
   }
 
-  // Front end add to cart
-  public counter = 0;
 
   public userMenuDropdown(){
     const userMenu = document.querySelector('.user-menu');

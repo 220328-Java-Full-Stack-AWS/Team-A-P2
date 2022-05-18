@@ -1,5 +1,7 @@
 <div class="sort-filter-search">
-  <input type="text" name="search" id="search" placeholder="Search..." />
+  <form>
+    <input type="search" (ngModelChange)="searchProduct(key.value)" ngModel #key="ngModel" name="key" placeholder="Search Products..." required>
+  </form>
   <div class="wrapper">
     <div class="filter">
       <button>On Sale</button>
@@ -28,48 +30,21 @@
 
 <!-- products start -->
 <div class="products">
-
-  <div class="product">
-    <div class="image"></div>
-    <a href="#">Product Name</a>
+  <div class="product" *ngFor="let product of products">
+    <div class="image">
+      <img src="{{ product.productImage }}" alt="{{ product.productName }}">
+    </div>
+    <a href="#">{{ product.productName }}</a>
+    <div class="description">
+      <span>{{ product.productDescription }}</span>
+    </div>
     <div class="addToCart">
-      <span class="price">$400.00</span>
-      <button (click)="addOneToCart()">
+      <span class="price">${{ product.productPrice.toFixed(2) }}</span>
+      <button (click)="addToCart(product)">
         <fa-icon [icon]="faCartPlus"></fa-icon>
       </button>
     </div>
   </div>
 
-  <div class="product">
-    <div class="image"></div>
-    <a href="#">Product Name</a>
-    <div class="addToCart">
-      <span class="price">$400.00</span>
-      <button (click)="addOneToCart()">
-        <fa-icon [icon]="faCartPlus"></fa-icon>
-      </button>
-    </div>
-  </div>
-
-  <div class="product">
-    <div class="image"></div>
-    <a href="#">Product Name</a>
-    <div class="addToCart">
-      <span class="price">$400.00</span>
-      <button (click)="addOneToCart()">
-        <fa-icon [icon]="faCartPlus"></fa-icon>
-      </button>
-    </div>
-  </div>
-  <div class="product">
-    <div class="image"></div>
-    <a href="#">Product Name</a>
-    <div class="addToCart">
-      <span class="price">$400.00</span>
-      <button (click)="addOneToCart()">
-        <fa-icon [icon]="faCartPlus"></fa-icon>
-      </button>
-    </div>
-  </div>
 </div>
 <!-- product end -->
