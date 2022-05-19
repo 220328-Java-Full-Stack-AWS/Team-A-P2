@@ -17,6 +17,10 @@ export class ProductService {
     return this.http.get<any>(`${this.apiServiceUrl}/products/all`);
   }
 
+  public getProductsByStatus(status: string): Observable<Product[]>{
+    return this.http.get<any>(`${this.apiServiceUrl}/products/status/${status}`);
+  }
+
   public addProduct(product: Product): Observable<Product>{
     return this.http.post<Product>(`${this.apiServiceUrl}/product/add`, product);
   }

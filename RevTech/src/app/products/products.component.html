@@ -4,8 +4,9 @@
   </form>
   <div class="wrapper">
     <div class="filter">
-      <button>On Sale</button>
-      <button>Featured</button>
+      <button (click)="getProducts()">All</button>
+      <button (click)="getProductsByStatus('discount')">On Sale</button>
+      <button (click)="getProductsByStatus('featured')">Featured</button>
       <select name="categories" id="categories">
         <option selected disabled>Category</option>
         <option value="Phones">Phones</option>

@@ -43,6 +43,28 @@ export class ProductsComponent implements OnInit {
     )
   }
 
+  public getProductsByStatus(status: string){
+    this.productService.getProductsByStatus(status).subscribe(
+      (response: Product[]) => {
+        this.products = response;
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message);
+      }
+    )
+  }
+
+  public filter(category: string){
+    let results: Product[] = [];
+    for(const product of this.products){
+      if(product.productStatus.toLowerCase().includes(category)){
+        results.push(product);
+      }
+      this.products = results;
+    }
+  }
+
+
   public searchProduct(key: string): void {
     const results: Product[] = [];
     for(const product of this.products){
