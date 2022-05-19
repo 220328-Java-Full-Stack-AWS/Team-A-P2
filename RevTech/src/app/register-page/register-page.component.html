@@ -1,36 +1,36 @@
 <div class="register">
     <h1>Register</h1>
-    <form>
+    <form #registerForm="ngForm" (ngSubmit)="registerUser(registerForm)" >
       <div class="input-row">
         <div class="input-container">
           <label for="firstName">First Name</label>
-          <input type="text" name="firstName" id="firstName" required placeholder="First Name...">
+          <input ngModel type="text" name="firstName" id="firstName" required placeholder="First Name...">
         </div>
         <div class="input-container">
           <label for="lastName">Last Name</label>
-          <input type="text" name="lastName" id="lastName" required placeholder="Last Name...">
+          <input ngModel type="text" name="lastName" id="lastName" required placeholder="Last Name...">
         </div>
       </div>
       <div class="input-row">
         <div class="input-container">
           <label for="username">Username</label>
-          <input type="text" name="username" placeholder="Username..." id="username" required />
+          <input ngModel type="text" name="username" placeholder="Username..." id="username" required />
         </div>
         <div class="input-container">
           <label for="phone">Phone</label>
-          <input type="phone" name="phone" id="phone" required placeholder="Phone...">
+          <input ngModel type="phone" name="phone" id="phone" required placeholder="Phone...">
         </div>
       </div>
       <div class="input-row-email">
         <div class="input-container">
           <label for="Email">Email</label>
-          <input type="email" name="email" id="email" required placeholder="Email...">
+          <input ngModel type="email" name="email" id="email" required placeholder="Email...">
         </div>
       </div>
       <div class="input-row">
         <div class="input-container">
           <label for="password">Password</label>
-          <input [type]="show ? 'text' : 'password'" name="password" placeholder="Password..." id="password" required />
+          <input ngModel [type]="show ? 'text' : 'password'" name="password" placeholder="Password..." id="password" required />
           <span (click)="password()"><fa-icon [icon]="faFaceRollingEyes" id="icon"></fa-icon>{{show ? 'Hide Password' : 'Show Password' }}</span>
         </div>
         <div class="input-container">
@@ -39,7 +39,7 @@
           <span (click)="confirmPassword()"><fa-icon [icon]="faFaceRollingEyes" id="icon"></fa-icon>{{show2 ? 'Hide Password' : 'Show Password' }}</span>
         </div>
       </div>
-      <button>Register</button>
+      <button id="register-btn">Register</button>
     </form>
     <div class="help">
       <span>Already registered?<a routerLink="/login" routerLinkActive="active">Login</a></span>
