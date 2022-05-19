@@ -2,6 +2,7 @@ package com.revature.ECommerce.beans.controllers;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.revature.ECommerce.beans.services.OrderService;
+import com.revature.ECommerce.beans.services.UserService;
 import com.revature.ECommerce.entities.Order;
 import com.revature.ECommerce.entities.Sale;
 import com.revature.ECommerce.entities.User;
@@ -20,18 +21,20 @@ import java.util.List;
 @RequestMapping("/orders")
 public class OrderController {
     private OrderService oServ;
+    private UserService uServ;
 
     @Autowired
-    public OrderController(OrderService oServ){
+    public OrderController(OrderService oServ, UserService uServ){
+        this.uServ=uServ;
         this.oServ=oServ;
     }
 
-    @GetMapping()
+    @GetMapping("/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Order> getOrders(@RequestBody User user, @RequestHeader("mode")String mode) throws InvalidOptionException {
+    public List<Order> getOrders(@PathVariable String userId, @RequestHeader("mode")String mode) throws InvalidOptionException {
         switch(mode){
             case "user":
-                return oServ.getByUser(user);
+                return oServ.getByUser(uServ.getUserById(Integer.parseInt(userId)));
             case "all":
                 return oServ.getAll();
             default:
@@ -52,8 +55,8 @@ public class OrderController {
         Order order = holder.getOrder();
         List<Order>temp= user.getListOfOrders();
         order=(oServ.checkOut(holder.getUser(), holder.getOrder()));
-        temp.add(order);
-         user.setListOfOrders(temp);
+        //temp.add(order);
+         //user.setListOfOrders(temp);
         return order;
     }
 
@@ -77,10 +80,10 @@ public class OrderController {
         }
     }
 
-    @DeleteMapping()
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void delete(@RequestBody Order order){
-        oServ.delete(order);
+    public void delete(@PathVariable String id){
+        oServ.delete(oServ.getById(Integer.parseInt(id)));
     }
 
 }

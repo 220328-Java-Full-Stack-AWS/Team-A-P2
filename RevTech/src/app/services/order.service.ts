@@ -1,25 +1,79 @@
 import { Injectable } from '@angular/core';
 import { Sale } from '../dto/sale';
-import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+//import { environment } from 'src/environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Order } from '../dto/order';
+import { User } from '../dto/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  private apiServiceUrl = environment.apiBaseUrl;
+
 
   constructor(private http: HttpClient) { }
 
-  public getAllOrders(): any { //Observable<Order[]> { 
+
+  public getAllOrders(userId: any) {
+    return this.http.get<any>('http://localhost:8080/orders/' + userId, {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+        .set('mode', "all")
+    });
+
 
   }
 
-  public getOrderById() {
+  public getOrderByUser(userId: any) {
+    return this.http.get<Order>('http://localhost:8080/orders/' + userId, {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+        .set('mode', "user")
+    });
+
   }
 
-  public deleteOrder() { }
+  public getOrderById(id: any) {
+    return this.http.get<Order>('http://localhost:8080/orders/' + id);
+  }
 
-  public saveOrder() { }
+  public deleteOrder(id: any) {
+    return this.http.delete<void>('http://localhost:8080/orders/' + id);
+  }
+
+
+  public persistOrder(holder: any) {
+    return this.http.post<Order>('http://localhost:8080/orders', JSON.stringify(holder));
+  }
+
+  public addSaleToOrder(holder: any) {
+    return this.http.put<Order>('http://localhost:8080/orders', JSON.stringify(holder), {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+        .set('mode', "add")
+    });
+  }
+
+  public removeSaleFromOrder(holder: any) {
+    return this.http.put<Order>('http://localhost:8080/orders', JSON.stringify(holder), {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+        .set('mode', "remove")
+    });
+  }
+
+
+}
+export class Holder {
+
+  order: Order;
+  sale: Sale;
+  user: User;
+  constructor(order: Order, sale: Sale, user: User) {
+    this.order = order;
+    this.sale = sale;
+    this.user = user;
+  }
+
 }

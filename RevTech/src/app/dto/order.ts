@@ -1,6 +1,6 @@
 import { Sale } from "./sale";
 
 export interface Order {
-    id: number;
+    orderId: any;
     saleList: Sale[];
 }

@@ -16,6 +16,7 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { SettingsComponent } from './settings/settings.component';
 import { OrdersComponent } from './orders/orders.component';
+import { OrderService } from './services/order.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { OrdersComponent } from './orders/orders.component';
     FontAwesomeModule,
     FormsModule,
   ],
-  providers: [ProductService, SaleService],
+  providers: [ProductService, SaleService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
