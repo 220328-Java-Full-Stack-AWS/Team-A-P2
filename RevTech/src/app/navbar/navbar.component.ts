@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { faUserAstronaut, faShoppingCart, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -6,10 +6,26 @@ import { faUserAstronaut, faShoppingCart, faWindowClose } from '@fortawesome/fre
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  ngOnInit(): void {
+    this.checkLogin();
+  }
 
   public counter = 0;
+
   public loggedIn = false;
+
+  public username = sessionStorage.getItem('username');
+
+  // uses session Storage to see if user is logged in
+  public checkLogin(){
+    let cookie = sessionStorage.getItem('username');
+    if(cookie !== ""){ // Named cookie becauase that will be the final product
+      this.loggedIn = true;
+    }else{
+      this.loggedIn = false;
+    }
+  }
 
   // Font Awesome Icons
   public faUserAstronaut = faUserAstronaut;

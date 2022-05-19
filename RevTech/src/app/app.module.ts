@@ -17,7 +17,6 @@ import { ProfilesComponent } from './profiles/profiles.component';
 import { SettingsComponent } from './settings/settings.component';
 import { OrdersComponent } from './orders/orders.component';
 import { UserService } from './services/user.service';
-
 @NgModule({
   declarations: [
     AppComponent,

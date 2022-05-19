@@ -11,7 +11,7 @@
       <input [type]="show ? 'text' : 'password'" name="password" placeholder="Password..." id="password" required />
       <span (click)="password()"><fa-icon [icon]="faFaceRollingEyes" id="icon"></fa-icon>{{show ? 'Hide Password' : 'Show Password' }}</span>
     </div>
-    <button>Login</button>
+    <button (click)="login()">Login</button>
   </form>
   <div class="help">
     <span>Need to register?<a routerLink="/register" routerLinkActive="active">Register</a></span>

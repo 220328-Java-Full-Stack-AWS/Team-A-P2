@@ -2,9 +2,9 @@
 <div class="navbar">
   <button (click)="userMenuDropdown()" *ngIf="loggedIn === true">
     <fa-icon id="icon" [icon]="faUserAstronaut"></fa-icon>
-    <span id="username">username</span>
+    <span id="username">{{ username }}</span>
   </button>
-  <h1>RevTech</h1>
+  <a routerLink="/shop" routerLinkActive="active">RevTech</a>
   <button (click)="viewCart()" *ngIf="loggedIn === true">
     <fa-layers [fixedWidth]="true">
       <fa-icon [icon]="faShoppingCart" size="lg"></fa-icon>

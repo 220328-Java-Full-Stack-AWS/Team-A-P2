@@ -2,6 +2,7 @@ package com.revature.ECommerce;
 
 import com.revature.ECommerce.beans.services.HibernateManager;
 import com.revature.ECommerce.entities.Product;
+import com.revature.ECommerce.entities.User;
 import org.hibernate.Session;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -29,7 +30,10 @@ public class ECommerceApplication {
 		Product p3 = new Product("Apple iPhone 10", 700.00, 2, "IPhone 10 is the third newest and third hottest phone on the market made by Apple. Unlock the power of the apple", "https://i.ebayimg.com/images/g/TdAAAOSwfiReQjj3/s-l600.jpg","Available","Phones");
 		Product p4 = new Product("Apple iPhone 8", 500.40, 10, "IPhone 8 is a bang for your buck phone on the market made by Apple. Unlock the power of the apple", "https://i5.walmartimages.com/asr/03a6ac16-b02f-4217-9331-6b162213830e_1.7f8ac5e0f6bcfa29eed9f2258be83847.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF","Available","Phones");
 		Product p5 = new Product("Apple iPhone 6", 299.99, 2, "IPhone 6 is the cheapest iphone on our website made by Apple. Unlock the power of the apple", "https://i5.walmartimages.com/asr/f5b0c710-5bac-4bf5-8703-847ce5cd08ac_1.fab6b943d4776dfcc52a5d87830e94dd.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF","Available","Phones");
-  		session.save(p1);
+
+		User leo = new User("leobarriento02","leo@gmail.com","password","Leonel","Barrientos", "516-960-8086");
+		session.save(leo);
+		session.save(p1);
   		session.save(p2);
   		session.save(p3);
   		session.save(p4);

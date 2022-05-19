@@ -41,4 +41,5 @@ export class RegisterPageComponent implements OnInit {
   confirmPassword() {
     this.show2 = !this.show2;
   }
+
 }
