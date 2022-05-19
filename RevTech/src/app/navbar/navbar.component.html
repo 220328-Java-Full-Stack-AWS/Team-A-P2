@@ -4,7 +4,7 @@
     <fa-icon id="icon" [icon]="faUserAstronaut"></fa-icon>
     <span id="username">{{ username }}</span>
   </button>
-  <a routerLink="/shop" routerLinkActive="active">RevTech</a>
+  <h2>RevTech</h2>
   <button (click)="viewCart()" *ngIf="loggedIn === true">
     <fa-layers [fixedWidth]="true">
       <fa-icon [icon]="faShoppingCart" size="lg"></fa-icon>
@@ -15,12 +15,12 @@
 <!-- top navbar end -->
 
 <!-- usermenu start -->
-<div class="user-menu">
+<div class="user-menu" *ngIf="loggedIn === true">
   <ul>
     <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
     <li><a routerLink="/settings" routerLinkActive="active">Settings</a></li>
     <li><a routerLink="/orders" routerLinkActive="active">Orders</a></li>
-    <li><a routerLink="/login" routerLinkActive="active">Log Out</a></li>
+    <li (click)="logOut()">Log Out</li>
   </ul>
 </div>
 <!-- usermenu end -->

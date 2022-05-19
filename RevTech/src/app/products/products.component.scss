@@ -102,10 +102,13 @@
     overflow:hidden;
     margin-bottom: 4rem;
     .image{
+      display: flex;
+      align-items: center;
+      justify-content: center;
       img{
-        height: 15rem;
-        width: 15rem;
-        object-fit: fill;
+        height: 16rem;
+        width: 100%;
+        object-fit: contain;
         overflow:hidden;
       }
     }

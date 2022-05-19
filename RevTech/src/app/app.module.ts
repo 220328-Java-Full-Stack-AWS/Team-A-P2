@@ -17,6 +17,7 @@ import { ProfilesComponent } from './profiles/profiles.component';
 import { SettingsComponent } from './settings/settings.component';
 import { OrdersComponent } from './orders/orders.component';
 import { UserService } from './services/user.service';
+import { AuthenticationService } from './services/authentication.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,7 @@ import { UserService } from './services/user.service';
     FontAwesomeModule,
     FormsModule,
   ],
-  providers: [ProductService, SaleService, UserService],
+  providers: [ProductService, SaleService, UserService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

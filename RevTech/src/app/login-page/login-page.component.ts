@@ -1,11 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { faFaceRollingEyes } from '@fortawesome/free-solid-svg-icons';
-import { User } from '../dto/user';
-import { UserService } from '../services/user.service';
-
-import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-login-page',
@@ -17,14 +13,13 @@ export class LoginPageComponent implements OnInit {
 
   public faFaceRollingEyes = faFaceRollingEyes;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private auth: AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
   public login(){
-    sessionStorage.setItem('username', 'leobarriento02');
-    this.router.navigateByUrl('/shop');
+    this.auth.login();
   }
 
   // variable - default false

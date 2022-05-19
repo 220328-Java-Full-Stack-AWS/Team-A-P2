@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faUserAstronaut, faShoppingCart, faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,25 +9,22 @@ import { faUserAstronaut, faShoppingCart, faWindowClose } from '@fortawesome/fre
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  ngOnInit(): void {
-    this.checkLogin();
+
+  ngOnInit(){
+  }
+
+  constructor(private router: Router,private auth: AuthenticationService) {
   }
 
   public counter = 0;
 
-  public loggedIn = false;
+  public loggedIn = this.auth.loggedIn;
+
+  public logOut(){
+    this.auth.logout();
+  }
 
   public username = sessionStorage.getItem('username');
-
-  // uses session Storage to see if user is logged in
-  public checkLogin(){
-    let cookie = sessionStorage.getItem('username');
-    if(cookie !== ""){ // Named cookie becauase that will be the final product
-      this.loggedIn = true;
-    }else{
-      this.loggedIn = false;
-    }
-  }
 
   // Font Awesome Icons
   public faUserAstronaut = faUserAstronaut;
