@@ -9,13 +9,13 @@
       <button (click)="getProductsByStatus('featured')">Featured</button>
       <select name="categories" id="categories">
         <option selected disabled>Category</option>
-        <option value="Phones">Phones</option>
-        <option value="Phone Accessories">Phone Accessories</option>
-        <option value="Televisons">Televisions</option>
-        <option value="Laptops">Laptops</option>
-        <option value="Computers">Computers</option>
-        <option value="Gaming Consoles">Gaming Consoles</option>
-        <option value="Gaming Accessories">Gaming Accessories</option>
+        <option (click)="getProductsByCategory('Phones')" value="Phones">Phones</option>
+        <option (click)="getProductsByCategory('Phone Accessories')" value="Phone Accessories">Phone Accessories</option>
+        <option (click)="getProductsByCategory('Televisons')" value="Televisons">Televisions</option>
+        <option (click)="getProductsByCategory('Laptops')" value="Laptops">Laptops</option>
+        <option (click)="getProductsByCategory('Computers')" value="Computers">Computers</option>
+        <option (click)="getProductsByCategory('Gaming Consoles')" value="Gaming Consoles">Gaming Consoles</option>
+        <option (click)="getProductsByCategory('Gaming Accessories')" value="Gaming Accessories">Gaming Accessories</option>
       </select>
     </div>
     <div class="sort">
@@ -49,3 +49,8 @@
 
 </div>
 <!-- product end -->
+
+<div *ngIf="products?.length == 0" class="noProducts">
+  <h2>NO PRODUCTS</h2>
+  <span>Sorry for the inconvenience!</span>
+</div>

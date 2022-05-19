@@ -54,14 +54,15 @@ export class ProductsComponent implements OnInit {
     )
   }
 
-  public filter(category: string){
-    let results: Product[] = [];
-    for(const product of this.products){
-      if(product.productStatus.toLowerCase().includes(category)){
-        results.push(product);
+  public getProductsByCategory(category: string){
+    this.productService.getProductsByCategory(category).subscribe(
+      (response: Product[]) => {
+        this.products = response;
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message);
       }
-      this.products = results;
-    }
+    )
   }
 
 
