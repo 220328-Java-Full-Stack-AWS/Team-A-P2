@@ -1,5 +1,6 @@
 package com.revature.ECommerce.beans.services;
 
+import com.revature.ECommerce.entities.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -31,6 +32,14 @@ public class HibernateManager implements Lifecycle {
 
     @Override
     public void start() {
+
+        annotatedEntities.add(User.class);
+        annotatedEntities.add(Address.class);
+        annotatedEntities.add(Payment.class);
+        annotatedEntities.add(Product.class);
+        annotatedEntities.add(Order.class);
+        annotatedEntities.add(Sale.class);
+
         for(Class c : annotatedEntities){
             config.addAnnotatedClass(c);
         }

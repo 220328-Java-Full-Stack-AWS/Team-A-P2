@@ -1,0 +1,32 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Product } from '../dto/product';
+import { environment } from 'src/environments/environment';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProductService {
+
+  private apiServiceUrl = environment.apiBaseUrl;
+  constructor(private http: HttpClient) { }
+
+  public getProducts(): Observable<Product[]>{
+    return this.http.get<any>(`${this.apiServiceUrl}/products/all`);
+  }
+
+  public addProduct(product: Product): Observable<Product>{
+    return this.http.post<Product>(`${this.apiServiceUrl}/product/add`, product);
+  }
+
+  public updateproduct(product: Product): Observable<Product>{
+    return this.http.put<Product>(`${this.apiServiceUrl}/product/update`, product);
+  }
+
+  public deleteproduct(id: number): Observable<void>{
+    return this.http.delete<void>(`${this.apiServiceUrl}/product/delete${id}`);
+  }
+
+}
