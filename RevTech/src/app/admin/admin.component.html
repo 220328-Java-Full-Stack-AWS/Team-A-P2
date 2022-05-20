@@ -1,0 +1,43 @@
+<div class="admin-page">
+  <h1>Admin Page</h1>
+  <table id="table">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Category</th>
+      <th>Status</th>
+      <th>Image</th>
+      <th>Option</th>
+    </tr>
+    <tr *ngFor="let product of products">
+      <th>
+        <p>{{ product.id }}</p>
+      </th>
+      <th>
+        <h3>{{ product.productName }}</h3>
+      </th>
+      <th>
+        <span>{{ product.productDescription }}</span>
+      </th>
+      <th>
+        <span>${{ product.productPrice.toFixed(2) }}</span>
+      </th>
+      <th>
+        <p>{{ product.productCategory }}</p>
+      </th>
+      <th>
+        <p>{{ product.productStatus }}</p>
+      </th>
+      <th>
+        <img src="{{ product.productImage }}" alt="{{ product.productName}}">
+      </th>
+      <th>
+        <button>Edit</button>
+        <button>Delete</button>
+      </th>
+    </tr>
+  </table>
+</div>

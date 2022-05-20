@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faCartPlus, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { ProductService } from '../services/product.service';
 import { SaleService } from '../services/sale.service';
