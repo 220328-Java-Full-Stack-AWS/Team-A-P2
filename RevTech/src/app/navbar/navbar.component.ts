@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faUserAstronaut, faShoppingCart, faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { faUserAstronaut, faShoppingCart, faWindowClose, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
@@ -30,10 +30,21 @@ export class NavbarComponent implements OnInit {
   public faUserAstronaut = faUserAstronaut;
   public faShoppingCart = faShoppingCart;
   public faWindowClose = faWindowClose;
+  public faSun = faSun;
+  public faMoon = faMoon;
 
   public userMenuDropdown(){
     const userMenu = document.querySelector('.user-menu');
     userMenu?.classList.toggle('magic');
+  }
+
+  public DarkTheme(){
+    const btn = document.getElementById('dark');
+    btn?.classList.toggle('mode');
+    document.body.classList.add('darkMode');
+  }
+  public LightTheme(){
+    document.body.classList.remove('darkMode');
   }
 
   public viewCart(){
