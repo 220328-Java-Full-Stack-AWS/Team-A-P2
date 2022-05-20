@@ -45,15 +45,13 @@ export class LoginPageComponent implements OnInit {
           city: "",
           state: "",
           zip: 0,
-          country: "",
-          // userId: 0
+          country: ""
         },
         payment: {
           paymentId: 0,
           cardNumber: 0,
           expirationDate: "",
-          cvc: 0,
-          // userId: 0
+          cvc: 0
         }
       }
 
@@ -68,8 +66,8 @@ export class LoginPageComponent implements OnInit {
           sessionStorage.setItem('password', user.password);
           sessionStorage.setItem('firstname', user.firstName);
           sessionStorage.setItem('lastname', user.lastName);
-          sessionStorage.setItem('phonenumber', user.phone);
-
+          sessionStorage.setItem('phone', user.phone);
+          
           this.router.navigateByUrl('/shop');
         },
         (error: HttpErrorResponse) => {
