@@ -100,10 +100,12 @@ export class ProductsComponent implements OnInit {
 
   // dropdown function
   public categoryDropdown(){
+    const arrow = document.getElementById('c-icon');
     const sortList = document.getElementById("sort");
     const categoryList = document.getElementById("categories");
     categoryList?.classList.toggle('show');
     sortList?.classList.remove('show');
+    arrow?.classList.toggle('flip');
   }
   public sortDropdown(){
     const categoryList = document.getElementById("categories");

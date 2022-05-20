@@ -45,7 +45,7 @@ export class OrdersComponent implements OnInit {
     password: "",
     firstName: "",
     lastName: "",
-    phoneNumber: "",
+    phone: "",
     address: {
       addressId: 0,
       address: "",

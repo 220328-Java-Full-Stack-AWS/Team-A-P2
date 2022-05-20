@@ -34,6 +34,7 @@
         background: #2b2d42;
       }
     }
+
     ul{
       list-style: none;
       li{
@@ -42,18 +43,19 @@
           border: none;
           border-radius: 0;
           width: 10rem;
-          border-radius: 1px;
-          width: 9rem;
+          border-radius: 8px;
+          width: 10rem;
         }
       }
       .category-list, .sort-list {
         display: none;
         position: absolute;
+        transform: translateY(-2%);
         background: #3a3c58;
-        width: 9rem;
+        width: 10rem;
         #dropdownBtn{
           border-radius:0;
-          width: 9rem;
+          width: 10rem;
         }
       }
       .show{
