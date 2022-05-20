@@ -14,10 +14,10 @@ import { SaleService } from './services/sale.service';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { ProfilesComponent } from './profiles/profiles.component';
-import { SettingsComponent } from './settings/settings.component';
 import { OrdersComponent } from './orders/orders.component';
 import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +27,6 @@ import { AuthenticationService } from './services/authentication.service';
     LoginPageComponent,
     RegisterPageComponent,
     ProfilesComponent,
-    SettingsComponent,
     OrdersComponent,
   ],
   imports: [

@@ -38,7 +38,6 @@ public class ProductRepository implements HibernateRepository<Product> {
     public List<Product> getAll() {
         TypedQuery<Product> query = session.createQuery("FROM Product");
         List<Product> products = query.getResultList();
-
         return products;
     }
 
