@@ -1,7 +1,7 @@
 package com.revature.ECommerce.beans.controllers;
 
 import com.revature.ECommerce.beans.services.UserService;
-import com.revature.ECommerce.dtos.AuthDto;
+import com.revature.ECommerce.beans.services.dtos.AuthDto;
 import com.revature.ECommerce.entities.User;
 import com.revature.ECommerce.exceptions.InvalidOptionException;
 import org.springframework.beans.factory.annotation.Autowired;

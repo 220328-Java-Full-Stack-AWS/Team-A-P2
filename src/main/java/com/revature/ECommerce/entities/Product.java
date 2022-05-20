@@ -1,12 +1,10 @@
 package com.revature.ECommerce.entities;
 
-import com.revature.ECommerce.entities.SchemaName.EntitySchemaName;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "products", schema = _SchemaName.schemaName)
+@Table(name = "products", schema = "jk")
 public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

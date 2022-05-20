@@ -2,7 +2,7 @@ package com.revature.ECommerce.beans.services;
 
 import com.revature.ECommerce.beans.repositories.UserRepository;
 
-import com.revature.ECommerce.dtos.AuthDto;
+import com.revature.ECommerce.beans.services.dtos.AuthDto;
 import com.revature.ECommerce.entities.User;
 import com.revature.ECommerce.exceptions.UnauthorizedUserException;
 import org.springframework.beans.factory.annotation.Autowired;

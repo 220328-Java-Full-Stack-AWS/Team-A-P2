@@ -6,6 +6,8 @@ import com.revature.ECommerce.entities.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -15,11 +17,6 @@ public class AddressRepository implements HibernateRepository<Address>{
     private HibernateManager hibernateManager;
     private boolean running = false;
     private Session session;
-    private String tableName;
-
-    private final HibernateManager hibernateManager;
-    private boolean running = false;
-    public Session session;
     private String tableName;
 
     @Autowired

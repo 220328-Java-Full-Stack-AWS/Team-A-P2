@@ -1,4 +1,3 @@
-*.properties
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -34,7 +33,6 @@ build/
 .vscode/
 
 .settings/
-target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -48,6 +46,6 @@ buildNumber.properties
 .target/
 .idea/
 *.class
-*.iml
 *.properties
 node_modules/
+*.log
