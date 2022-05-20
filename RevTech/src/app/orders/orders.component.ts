@@ -52,7 +52,7 @@ export class OrdersComponent implements OnInit {
       city: "",
       state: "",
       zip: 0,
-      country: ""
+      country: "",
     },
     payment: {
       paymentId: 0,
