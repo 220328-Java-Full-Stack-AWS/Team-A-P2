@@ -28,7 +28,7 @@ export class OrdersComponent implements OnInit {
     productDescription: "",
     cost: 0,
     product: {
-      id: 0,
+      productId: 0,
       productName: "",
       productDescription: "",
       productCategory: "",
