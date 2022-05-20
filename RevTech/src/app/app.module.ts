@@ -17,6 +17,7 @@ import { ProfilesComponent } from './profiles/profiles.component';
 import { OrdersComponent } from './orders/orders.component';
 import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AuthenticationService } from './services/authentication.service';
     RegisterPageComponent,
     ProfilesComponent,
     OrdersComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
