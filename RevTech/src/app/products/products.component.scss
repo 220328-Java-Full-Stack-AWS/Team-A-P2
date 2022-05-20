@@ -79,21 +79,26 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     input {
-      width: 60%;
-      font-size: 1rem;
+      width: 10rem;
     }
-
     .wrapper {
       margin-top: 1rem;
+      height: 8vh;
       width: 100%;
-      display: flex;
       flex-wrap: wrap;
       flex-direction: row;
-      align-items: center;
       justify-content: center;
-
+    }
+  }
+}
+@media screen and (max-width: 800px) {
+  .sort-filter-search{
+    input {
+      width: 15rem;
+    }
+    .wrapper {
       #sort{
-        margin-top: .5rem;
+        margin-top: 1rem;
       }
     }
   }
