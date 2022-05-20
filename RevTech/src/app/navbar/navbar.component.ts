@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
 
   public counter = 0;
 
-  public loggedIn = this.auth.loggedIn;
+  public loggedIn = true;
 
   public logOut(){
     this.auth.logout();

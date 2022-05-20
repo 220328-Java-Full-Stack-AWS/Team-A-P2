@@ -65,6 +65,17 @@ export class ProductsComponent implements OnInit {
     )
   }
 
+  public sort(sort: string, order: string){
+    this.productService.sort(sort, order).subscribe(
+      (response: Product[]) => {
+        this.products = response;
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message);
+      }
+    )
+  }
+
 
   public searchProduct(key: string): void {
     const results: Product[] = [];

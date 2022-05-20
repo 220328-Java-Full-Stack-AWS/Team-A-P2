@@ -21,8 +21,10 @@
     <div class="sort">
       <select name="sort" id="sort">
         <option selected disabled>Sort</option>
-        <option value="priceLowToHigh">Price Low - High</option>
-        <option value="priceHighToLow">Price High - Low</option>
+        <option (click)="sort('price','asc')" value="priceLowToHigh">Price Low - High</option>
+        <option (click)="sort('price','desc')" value="priceHighToLow">Price High - Low</option>
+        <option (click)="sort('product_name','asc')" value="productNameAtoZ">Product Name A-Z</option>
+        <option (click)="sort('product_name','desc')" value="productNameZtoA">Product Name Z-A</option>
       </select>
     </div>
   </div>

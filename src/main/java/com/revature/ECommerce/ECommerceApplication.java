@@ -60,7 +60,7 @@ public class ECommerceApplication {
 		Product p16 = new Product("Logitech G502 HERO High Performance Gaming Mouse", 52.99, 4, "G502 HERO features an advanced optical sensor for maximum tracking accuracy, customizable RGB lighting, custom game profiles, and from 200-16,000 DPI.","https://www.quill.com/is/image/Quill/sp30225024_s7?iv=RLYpN3&wid=1080&hei=1080&fit=fit,1","available", "Gaming Accessories");
 		session.save(p16);
 		// Phone accessories
-		Product p17 = new Product("TripGrip Window & Vent Mount for Most Cell Phones", 19.99, 8, " Bracketron's TripGrip is two mounts in one. Mount your phone on your windshield or on an air vent.","https://www.quill.com/is/image/Quill/sp30225024_s7?iv=RLYpN3&wid=1080&hei=1080&fit=fit,1","discount", "Phone Accessories");
+		Product p17 = new Product("TripGrip Window & Vent Mount for Most Cell Phones", 19.99, 8, " Bracketron's TripGrip is two mounts in one. Mount your phone on your windshield or on an air vent.","https://sm.pcmag.com/t/pcmag_in/gallery/t/the-best-c/the-best-car-phone-mounts-for-2020_7vnk.1200.jpg","discount", "Phone Accessories");
 		session.save(p17);
 
 		// users

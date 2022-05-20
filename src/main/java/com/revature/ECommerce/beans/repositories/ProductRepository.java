@@ -108,6 +108,28 @@ public class ProductRepository implements HibernateRepository<Product> {
             return updateProduct;
     }
 
+    public List<Product> sortPriceDESC() {
+        TypedQuery<Product> query = session.createQuery("FROM Product ORDER BY price DESC", Product.class);
+        List<Product> products = query.getResultList();
+        return products;
+    }
+    public List<Product> sortPriceASC() {
+        TypedQuery<Product> query = session.createQuery("FROM Product ORDER BY price ASC", Product.class);
+        List<Product> products = query.getResultList();
+        return products;
+    }
+    public List<Product> sortProductNameASC() {
+        TypedQuery<Product> query = session.createQuery("FROM Product ORDER BY productName ASC", Product.class);
+        List<Product> products = query.getResultList();
+        return products;
+    }
+
+    public List<Product> sortProductNameDESC() {
+        TypedQuery<Product> query = session.createQuery("FROM Product ORDER BY productName DESC", Product.class);
+        List<Product> products = query.getResultList();
+        return products;
+    }
+
     @Override
     public void start() {
         this.session=hibernateManager.getSession();
