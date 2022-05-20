@@ -9,8 +9,8 @@
   <h2>RevTech</h2>
   <div class="card">
     <div id="darkModeBtn">
-      <button id="dark" (click)="DarkTheme()"><fa-icon [icon]="faMoon"></fa-icon></button>
-      <button id="light" (click)="LightTheme()"><fa-icon [icon]="faSun"></fa-icon></button>
+      <button id="dark" (click)="DarkTheme()">Dark <fa-icon [icon]="faMoon"></fa-icon></button>
+      <button id="light" (click)="LightTheme()"><fa-icon [icon]="faSun" [pulse]="true"></fa-icon> Light</button>
     </div>
     <button (click)="viewCart()" *ngIf="loggedIn === true">
       <fa-layers [fixedWidth]="true">

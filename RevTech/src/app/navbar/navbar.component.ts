@@ -39,8 +39,6 @@ export class NavbarComponent implements OnInit {
   }
 
   public DarkTheme(){
-    const btn = document.getElementById('dark');
-    btn?.classList.toggle('mode');
     document.body.classList.add('darkMode');
   }
   public LightTheme(){
