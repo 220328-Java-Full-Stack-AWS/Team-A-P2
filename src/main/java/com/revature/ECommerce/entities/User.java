@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 @Entity
-@Table(name = "users", schema = "public")
+@Table(name = "users", schema = _SchemaName.schemaName)
 public class User implements Serializable {
 
     @Id
@@ -37,8 +37,7 @@ public class User implements Serializable {
     private List<Order> listOfOrders;
 
 
-    public User() {
-    }
+    public User() {}
 
     public User( String username, String email, String password, String firstName, String lastName, String phone) {
         this.username = username;
@@ -48,7 +47,6 @@ public class User implements Serializable {
         this.lastName = lastName;
         this.phone = phone;
     }
-
 
 
     public Payment getPayment() {

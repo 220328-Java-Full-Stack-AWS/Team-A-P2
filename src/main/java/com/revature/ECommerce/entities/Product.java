@@ -1,10 +1,12 @@
 package com.revature.ECommerce.entities;
 
+import com.revature.ECommerce.entities.SchemaName.EntitySchemaName;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "products", schema = "public")
+@Table(name = "products", schema = _SchemaName.schemaName)
 public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +22,7 @@ public class Product implements Serializable {
     @Column(name = "quantity")
     private Integer productQuantity;
 
-    @Column(name = "descritption")
+    @Column(name = "description")
     private String productDescription;
 
     @Column(name = "image")

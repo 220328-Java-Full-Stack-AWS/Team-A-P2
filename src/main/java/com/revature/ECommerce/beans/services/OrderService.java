@@ -35,9 +35,12 @@ public class OrderService {
             order.setSaleList(tempList);
             return order;
         }else{
+
             //order=oRepo.save(order);
             List<Sale> tempList=new ArrayList<>();
-            tempList=order.getSaleList();
+            if(order.getSaleList()!=null) {
+                tempList = order.getSaleList();
+            }
             //sale.setOrder(order);
             tempList.add(sale);
             order.setSaleList(tempList);
@@ -63,26 +66,24 @@ public class OrderService {
         }else if(checker.isEmpty()){
             throw new Exception("This order has nothing to remove");
         }
-        throw new Exception("There is no such Order");
+        throw new Exception("There is no such Sale");
     }
 
 
     public Order checkOut(User user, Order order){
-        List<Order>templist= new ArrayList<>();
-        templist=user.getListOfOrders();
-        templist.add(order);
-        user.setListOfOrders(templist);
-
-
         if(user.getUserId()==null) {
-            uServ.save(user);
-        }else uServ.update(user);
+            //uServ.save(user);
+            throw new RuntimeException("Only Registered users can purchase items!");
+        }else{
+            List<Order>templist= new ArrayList<>();
+            templist=user.getListOfOrders();
+            templist.add(order);
+            user.setListOfOrders(templist);
+            uServ.update(user);
+        }
         order.setUser(user);
         oRepo.save(order);
-        /*for(Sale s: order.getSaleList()){
-            s.setOrder(order);
-        }*/
-        //oRepo.update(order);
+
         return order;
 
     }
@@ -91,7 +92,11 @@ public class OrderService {
         for(Sale s : order.getSaleList()){
             sServ.delete(s);
         }
-        oRepo.deleteOrder(order);
+        if(order.getOrderId()==null){
+            throw new RuntimeException("No Such Order exists");
+        }else {
+            oRepo.deleteOrder(order);
+        }
     }
 
     public Order getById(Integer id){
@@ -109,7 +114,5 @@ public class OrderService {
     public Order update(Order order){
         return oRepo.update(order);
     }
-
-
 
 }

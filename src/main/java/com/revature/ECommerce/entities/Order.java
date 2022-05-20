@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "orders", schema = "public")
+@Table(name = "orders", schema = _SchemaName.publicSchema)
 public class Order{
 
     @Id

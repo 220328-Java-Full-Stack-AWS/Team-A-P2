@@ -1,13 +1,12 @@
 package com.revature.ECommerce.entities;
 
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "sales", schema = "public")
+@Table(name = "sales", schema = _SchemaName.schemaName)
 public class Sale implements Serializable {
 
     @Id
