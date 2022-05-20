@@ -37,15 +37,22 @@
     <div class="image">
       <img src="{{ product.productImage }}" alt="{{ product.productName }}">
     </div>
-    <a href="#">{{ product.productName }}</a>
+    <h2>{{ product.productName }}</h2>
     <div class="description">
       <span>{{ product.productDescription }}</span>
     </div>
-    <div class="addToCart">
-      <span class="price">${{ product.productPrice.toFixed(2) }}</span>
-      <button (click)="addToCart(product)">
-        <fa-icon [icon]="faCartPlus"></fa-icon>
-      </button>
+    <div class="productFooter">
+      <div class="cart-card-1">
+        <span class="price">${{ product.productPrice.toFixed(2) }}</span>
+        <span class="quantity">Stock:{{ product.productQuantity }}</span>
+      </div>
+
+      <div class="cart-card-2">
+        <input type="number" name="amount" id="amount">
+        <button (click)="addToCart(product)">
+          <fa-icon [icon]="faCartPlus"></fa-icon>
+        </button>
+      </div>
     </div>
   </div>
 
