@@ -7,5 +7,5 @@ export interface Address {
     state: string;
     zip: number;
     country: string;
-    user: User;
+    userId: number;
   }
