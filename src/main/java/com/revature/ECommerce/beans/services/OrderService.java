@@ -71,7 +71,7 @@ public class OrderService {
 
 
     public Order checkOut(User user, Order order){
-        if(user.getUserId()==null) {
+        if(user.getUserId()==null|| user.getUserId()==0) {
             //uServ.save(user);
             throw new RuntimeException("Only Registered users can purchase items!");
         }else{
@@ -92,7 +92,7 @@ public class OrderService {
         for(Sale s : order.getSaleList()){
             sServ.delete(s);
         }
-        if(order.getOrderId()==null){
+        if(order.getOrderId()==null||order.getOrderId()==0){
             throw new RuntimeException("No Such Order exists");
         }else {
             oRepo.deleteOrder(order);
