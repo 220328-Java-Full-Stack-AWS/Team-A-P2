@@ -4,24 +4,27 @@
   </form>
   <div class="wrapper">
     <div class="filter">
-      <button>On Sale</button>
-      <button>Featured</button>
+      <button (click)="getProducts()">All</button>
+      <button (click)="getProductsByStatus('discount')">On Sale</button>
+      <button (click)="getProductsByStatus('featured')">Featured</button>
       <select name="categories" id="categories">
         <option selected disabled>Category</option>
-        <option value="Phones">Phones</option>
-        <option value="Phone Accessories">Phone Accessories</option>
-        <option value="Televisons">Televisions</option>
-        <option value="Laptops">Laptops</option>
-        <option value="Computers">Computers</option>
-        <option value="Gaming Consoles">Gaming Consoles</option>
-        <option value="Gaming Accessories">Gaming Accessories</option>
+        <option (click)="getProductsByCategory('Phones')" value="Phones">Phones</option>
+        <option (click)="getProductsByCategory('Phone Accessories')" value="Phone Accessories">Phone Accessories</option>
+        <option (click)="getProductsByCategory('Television')" value="Televisons">Televisions</option>
+        <option (click)="getProductsByCategory('Laptops')" value="Laptops">Laptops</option>
+        <option (click)="getProductsByCategory('Computers')" value="Computers">Computers</option>
+        <option (click)="getProductsByCategory('Gaming Consoles')" value="Gaming Consoles">Gaming Consoles</option>
+        <option (click)="getProductsByCategory('Gaming Accessories')" value="Gaming Accessories">Gaming Accessories</option>
       </select>
     </div>
     <div class="sort">
       <select name="sort" id="sort">
         <option selected disabled>Sort</option>
-        <option value="priceLowToHigh">Price Low - High</option>
-        <option value="priceHighToLow">Price High - Low</option>
+        <option (click)="sort('price','asc')" value="priceLowToHigh">Price Low - High</option>
+        <option (click)="sort('price','desc')" value="priceHighToLow">Price High - Low</option>
+        <option (click)="sort('product_name','asc')" value="productNameAtoZ">Product Name A-Z</option>
+        <option (click)="sort('product_name','desc')" value="productNameZtoA">Product Name Z-A</option>
       </select>
     </div>
   </div>
@@ -48,3 +51,8 @@
 
 </div>
 <!-- product end -->
+
+<div *ngIf="products?.length == 0" class="noProducts">
+  <h2>NO PRODUCTS</h2>
+  <span>Sorry for the inconvenience!</span>
+</div>

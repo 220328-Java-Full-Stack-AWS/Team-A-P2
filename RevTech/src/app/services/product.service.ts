@@ -17,6 +17,18 @@ export class ProductService {
     return this.http.get<any>(`${this.apiServiceUrl}/products/all`);
   }
 
+  public getProductsByStatus(status: string): Observable<Product[]>{
+    return this.http.get<any>(`${this.apiServiceUrl}/products/status/${status}`);
+  }
+
+  public sort(sort: string, order: string): Observable<Product[]>{
+    return this.http.get<any>(`${this.apiServiceUrl}/products/sort/${sort}/${order}`);
+  }
+
+  public getProductsByCategory(category: string): Observable<Product[]>{
+    return this.http.get<any>(`${this.apiServiceUrl}/products/category/${category}`);
+  }
+
   public addProduct(product: Product): Observable<Product>{
     return this.http.post<Product>(`${this.apiServiceUrl}/product/add`, product);
   }

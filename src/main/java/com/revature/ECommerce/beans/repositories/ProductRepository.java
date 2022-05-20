@@ -37,9 +37,7 @@ public class ProductRepository implements HibernateRepository<Product> {
     @Override
     public List<Product> getAll() {
         TypedQuery<Product> query = session.createQuery("FROM Product");
-        List<Product> products = query.getResultList();
-
-        return products;
+        return query.getResultList();
     }
 
     //works
@@ -47,9 +45,8 @@ public class ProductRepository implements HibernateRepository<Product> {
     public Product getById(Integer id) {
         TypedQuery<Product> query = session.createQuery("FROM Product WHERE id = :product_id", Product.class);
         query.setParameter("product_id", id);
-        Product product = query.getSingleResult();
 
-        return product;
+        return query.getSingleResult();
     }
 
     //test
@@ -66,9 +63,8 @@ public class ProductRepository implements HibernateRepository<Product> {
     public List<Product> getByCategory(String category){
         TypedQuery<Product> query = session.createQuery("FROM Product WHERE category = :category", Product.class);
         query.setParameter("category", category);
-        List<Product> products = query.getResultList();
 
-        return products;
+        return query.getResultList();
     }
 
     //works
@@ -77,9 +73,8 @@ public class ProductRepository implements HibernateRepository<Product> {
     public List<Product> getByStatus(String status){
         TypedQuery<Product> query = session.createQuery("FROM Product WHERE status = :status", Product.class);
         query.setParameter("status", status);
-        List<Product> products = query.getResultList();
 
-        return products;
+        return query.getResultList();
     }
 
     //test
@@ -106,6 +101,24 @@ public class ProductRepository implements HibernateRepository<Product> {
 
             this.save(updateProduct);
             return updateProduct;
+    }
+
+    public List<Product> sortPriceDESC() {
+        TypedQuery<Product> query = session.createQuery("FROM Product ORDER BY price DESC", Product.class);
+        return query.getResultList();
+    }
+    public List<Product> sortPriceASC() {
+        TypedQuery<Product> query = session.createQuery("FROM Product ORDER BY price ASC", Product.class);
+        return query.getResultList();
+    }
+    public List<Product> sortProductNameASC() {
+        TypedQuery<Product> query = session.createQuery("FROM Product ORDER BY productName ASC", Product.class);
+        return query.getResultList();
+    }
+
+    public List<Product> sortProductNameDESC() {
+        TypedQuery<Product> query = session.createQuery("FROM Product ORDER BY productName DESC", Product.class);
+        return query.getResultList();
     }
 
     @Override

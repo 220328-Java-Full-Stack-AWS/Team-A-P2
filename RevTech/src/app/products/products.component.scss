@@ -100,11 +100,15 @@
     display: flex;
     flex-direction: column;
     overflow:hidden;
+    margin-bottom: 4rem;
     .image{
+      display: flex;
+      align-items: center;
+      justify-content: center;
       img{
-        height: 15rem;
-        width: 15rem;
-        object-fit: fill;
+        height: 16rem;
+        width: 100%;
+        object-fit: contain;
         overflow:hidden;
       }
     }
@@ -153,5 +157,24 @@
     &:hover{
       box-shadow: rgba(128, 0, 144, 0.2) 0px 13px 27px -5px, rgba(128, 0, 144, 0.2) 0px 8px 16px -8px;
     }
+  }
+}
+
+.noProducts{
+  margin: 5rem;
+  padding: 6rem 0;
+  border-radius: 10px;
+  background-color: #0093E9;
+  background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  color: White;
+  h2 {
+    font-size: 3rem;
+  }
+  span{
+    font-size: 2.5rem;
   }
 }

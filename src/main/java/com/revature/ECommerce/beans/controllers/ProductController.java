@@ -71,4 +71,32 @@ public class ProductController {
         productService.deleteProductById(id);
     }
 
+    //Gets all products
+    @GetMapping("/sort/price/asc")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Product> sortPriceAsc(){
+        return productService.sortPriceAsc();
+    }
+
+    //Gets all products
+    @GetMapping("/sort/price/desc")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Product> sortPriceDesc(){
+        return productService.sortPriceDesc();
+    }
+
+    //Gets all products
+    @GetMapping("/sort/product_name/asc")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Product> sortProductNameAsc(){
+        return productService.sortProductNameAsc();
+    }
+
+    //Gets all products
+    @GetMapping("/sort/product_name/desc")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Product> sortProductNameDesc(){
+        return productService.sortProductNameDesc();
+    }
+
 }
