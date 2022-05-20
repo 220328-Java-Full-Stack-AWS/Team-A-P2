@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { ProductService } from '../services/product.service';
 import { SaleService } from '../services/sale.service';
 import { Product } from '../dto/product';
@@ -15,6 +15,7 @@ export class ProductsComponent implements OnInit {
 
   // fa icon
   public faCartPlus = faCartPlus;
+  public faChevronDown = faChevronDown;
 
   public products!: Product[];
 
@@ -95,5 +96,19 @@ export class ProductsComponent implements OnInit {
 
   public addToCart(product: Product): void {
     localStorage.setItem("product", JSON.stringify(product));
+  }
+
+  // dropdown function
+  public categoryDropdown(){
+    const sortList = document.getElementById("sort");
+    const categoryList = document.getElementById("categories");
+    categoryList?.classList.toggle('show');
+    sortList?.classList.remove('show');
+  }
+  public sortDropdown(){
+    const categoryList = document.getElementById("categories");
+    const sortList = document.getElementById("sort");
+    sortList?.classList.toggle('show');
+    categoryList?.classList.remove('show');
   }
 }
