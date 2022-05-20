@@ -3,27 +3,30 @@
     <input type="search" (ngModelChange)="searchProduct(key.value)" ngModel #key="ngModel" name="key" placeholder="Search Products..." required>
   </form>
   <div class="wrapper">
-    <div class="filter">
-      <button>On Sale</button>
-      <button>Featured</button>
-      <select name="categories" id="categories">
-        <option selected disabled>Category</option>
-        <option value="Phones">Phones</option>
-        <option value="Phone Accessories">Phone Accessories</option>
-        <option value="Televisons">Televisions</option>
-        <option value="Laptops">Laptops</option>
-        <option value="Computers">Computers</option>
-        <option value="Gaming Consoles">Gaming Consoles</option>
-        <option value="Gaming Accessories">Gaming Accessories</option>
-      </select>
-    </div>
-    <div class="sort">
-      <select name="sort" id="sort">
-        <option selected disabled>Sort</option>
-        <option value="priceLowToHigh">Price Low - High</option>
-        <option value="priceHighToLow">Price High - Low</option>
-      </select>
-    </div>
+      <button (click)="getProducts()">All</button>
+      <button (click)="getProductsByStatus('discount')">On Sale</button>
+      <button (click)="getProductsByStatus('featured')">Featured</button>
+      <ul>
+        <li><button id="categoriesBtn" (click)="categoryDropdown()">Categories <fa-icon [icon]="faChevronDown" id="c-icon"></fa-icon></button></li>
+        <div class="category-list" id="categories">
+          <li><button id="dropdownBtn" (click)="getProductsByCategory('Phones')">Phones</button></li>
+          <li><button id="dropdownBtn" (click)="getProductsByCategory('Phone Accessories')">Phone Accessories</button></li>
+          <li><button id="dropdownBtn" (click)="getProductsByCategory('Television')">Television</button></li>
+          <li><button id="dropdownBtn" (click)="getProductsByCategory('Laptops')">Laptops</button></li>
+          <li><button id="dropdownBtn" (click)="getProductsByCategory('Computers')">Computers</button></li>
+          <li><button id="dropdownBtn" (click)="getProductsByCategory('Gaming Consoles')">Gaming Consoles</button></li>
+          <li><button id="dropdownBtn" (click)="getProductsByCategory('Gaming Accessories')">Gaming Accessories</button></li>
+        </div>
+      </ul>
+      <ul>
+        <li><button id="sortBtn"  (click)="sortDropdown()">Sort <fa-icon [icon]="faChevronDown" id="s-icon"></fa-icon></button></li>
+        <div class="sort-list" id="sort">
+          <li><button id="dropdownBtn" (click)="sort('price','asc')">Price Low - High</button></li>
+          <li><button id="dropdownBtn" (click)="sort('price','desc')">Price High - Low</button></li>
+          <li><button id="dropdownBtn" (click)="sort('product_name','asc')" >Product Name A-Z</button></li>
+          <li><button id="dropdownBtn" (click)="sort('product_name','desc')">Product Name Z-A</button></li>
+        </div>
+      </ul>
   </div>
 </div>
 <!-- sort end -->
@@ -48,3 +51,8 @@
 
 </div>
 <!-- product end -->
+
+<div *ngIf="products?.length == 0" class="noProducts">
+  <h2>NO PRODUCTS</h2>
+  <span>Sorry for the inconvenience!</span>
+</div>

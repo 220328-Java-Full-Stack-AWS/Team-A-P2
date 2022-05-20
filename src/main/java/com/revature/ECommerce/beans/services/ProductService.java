@@ -43,4 +43,11 @@ public class ProductService  {
         return productRepository.update(product);
     }
 
+    public List<Product> sortPriceDesc(){ return productRepository.sortPriceDESC();}
+
+    public List<Product> sortPriceAsc(){ return productRepository.sortPriceASC();}
+
+    public List<Product> sortProductNameAsc(){ return productRepository.sortProductNameASC();}
+
+    public List<Product> sortProductNameDesc(){ return productRepository.sortProductNameDESC();}
 }

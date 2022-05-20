@@ -1,5 +1,3 @@
-import { User } from "./user";
-
 export interface Address {
     addressId: number;
     address: string;
@@ -7,5 +5,4 @@ export interface Address {
     state: string;
     zip: number;
     country: string;
-    user: User;
   }

@@ -1,16 +1,19 @@
 <div class="login">
   <h1>Login</h1>
-  <form>
+  <form #loginForm="ngForm" (ngSubmit)="loginUser(loginForm)" ngNativeValidate>
     <div class="input-container">
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" required />
+      <label for="usern">Username</label>
+      <input ngModel type="text" name="usern" placeholder="Username..." id="usern" required>
     </div>
 
     <div class="input-container">
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" required />
+      <label for="password">Password</label>
+      <input ngModel [type]="show ? 'text' : 'password'" name="password" placeholder="Password..." id="password" required>
+      <span (click)="password()"><fa-icon [icon]="faFaceRollingEyes" id="icon"></fa-icon>{{show ? 'Hide Password' : 'Show Password' }}</span>
     </div>
-    <button>Login</button>
+    <button type="submit">Login</button>
   </form>
-
+  <div class="help">
+    <span><a routerLink="/register" routerLinkActive="active">Not registered? Click here to register</a></span>
+  </div>
 </div>

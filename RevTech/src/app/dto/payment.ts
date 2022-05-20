@@ -5,5 +5,4 @@ export interface Payment {
     cardNumber: number;
     expirationDate: any;
     cvc: number;
-    user: User;
   }

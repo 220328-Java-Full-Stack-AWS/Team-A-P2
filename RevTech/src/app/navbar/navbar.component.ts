@@ -1,14 +1,31 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faUserAstronaut, faShoppingCart, faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
 
-  @Input() cartCount: 0 | undefined;
+  ngOnInit(){
+  }
+
+  constructor(private router: Router,private auth: AuthenticationService) {
+  }
+
+  public counter = 0;
+
+  public loggedIn = true;
+
+  public logOut(){
+    this.auth.logout();
+  }
+
+  public username = sessionStorage.getItem('username');
+
   // Font Awesome Icons
   public faUserAstronaut = faUserAstronaut;
   public faShoppingCart = faShoppingCart;

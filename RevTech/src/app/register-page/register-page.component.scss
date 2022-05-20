@@ -1,0 +1,115 @@
+.register {
+  width: 100%;
+  height: 90vh;
+  background: #f3f7f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  h1 {
+    font-size: 2.7rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    color: #2b2d42;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  form{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .input-row-email{
+      margin-bottom: .5rem;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      .input-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        label {
+          font-size: 1.2rem;
+          color: #2b2d42;
+        }
+        input {
+          width: 100%;
+          font-size: 1.1rem;
+          color: #1d3557;
+          padding: .4rem .8rem;
+          outline: none;
+          border: solid #24426b 1.1px;
+          border-radius: 5px;
+        }
+      }
+    }
+    .input-row{
+      margin-bottom: .5rem;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      .input-container{
+        width: 48%;
+        display: flex;
+        flex-direction: column;
+        label {
+          font-size: 1.2rem;
+          color: #2b2d42;
+        }
+        input {
+          width: 100%;
+          font-size: 1.1rem;
+          color: #1d3557;
+          padding: .4rem .8rem;
+          outline: none;
+          border: solid #24426b 1.1px;
+          border-radius: 5px;
+        }
+        span{
+          #icon {
+            margin-right: .25rem;
+          }
+          margin-top: .5rem;
+          color: #1d3557;
+          cursor: pointer;
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    button{
+      width: 100%;
+      border: none;
+      color: white;
+      background: #253753;
+      border-radius: 5px;
+      padding: .4rem 0;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: .3s all ease-in-out;
+      &:hover {
+        background: #2b2d42;
+      }
+    }
+  }
+  .help{
+    margin-top: 1rem;
+    span{
+      color: #2b2d42;
+      font-size: .9rem;
+      a{
+        text-decoration: none;
+        color: #2b2d42;
+        &:hover{
+          text-decoration:underline;
+        }
+      }
+    }
+  }
+}
