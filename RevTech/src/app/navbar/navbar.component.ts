@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faUserAstronaut, faShoppingCart, faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { faUserAstronaut, faShoppingCart, faWindowClose, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { Observable } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,30 +12,40 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class NavbarComponent implements OnInit {
 
+  isLoggedIn$: Observable<boolean> | undefined;
+
+  constructor(private router: Router,private auth: AuthenticationService, private productService: ProductService) {}
+
   ngOnInit(){
+    this.isLoggedIn$ = this.auth.isLoggedIn;
   }
 
-  constructor(private router: Router,private auth: AuthenticationService) {
-  }
+  public page = this.router.url;
 
-  public counter = 0;
-
-  public loggedIn = true;
+  public username = "Leonel"
 
   public logOut(){
     this.auth.logout();
   }
 
-  public username = sessionStorage.getItem('username');
 
   // Font Awesome Icons
   public faUserAstronaut = faUserAstronaut;
   public faShoppingCart = faShoppingCart;
   public faWindowClose = faWindowClose;
+  public faSun = faSun;
+  public faMoon = faMoon;
 
   public userMenuDropdown(){
     const userMenu = document.querySelector('.user-menu');
     userMenu?.classList.toggle('magic');
+  }
+
+  public DarkTheme(){
+    document.body.classList.add('darkMode');
+  }
+  public LightTheme(){
+    document.body.classList.remove('darkMode');
   }
 
   public viewCart(){

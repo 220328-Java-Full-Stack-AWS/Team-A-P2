@@ -16,6 +16,7 @@ export class ProductsComponent implements OnInit {
   // fa icon
   public faCartPlus = faCartPlus;
   public faChevronDown = faChevronDown;
+  public count: number = 0;
 
   public products!: Product[];
 
@@ -25,12 +26,6 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
-  }
-
-  @Output() addOneToCart = new EventEmitter<any>();
-
-  public OneToCart(value: any){
-    this.addOneToCart.emit(value);
   }
 
   public getProducts():void {
@@ -92,10 +87,6 @@ export class ProductsComponent implements OnInit {
         this.getProducts();
       }
     }
-  }
-
-  public addToCart(product: Product): void {
-    localStorage.setItem("product", JSON.stringify(product));
   }
 
   // dropdown function
