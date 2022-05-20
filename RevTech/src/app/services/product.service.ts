@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../dto/product';
 import { environment } from 'src/environments/environment';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -40,5 +41,6 @@ export class ProductService {
   public deleteproduct(id: number): Observable<void>{
     return this.http.delete<void>(`${this.apiServiceUrl}/product/delete${id}`);
   }
+
 
 }
