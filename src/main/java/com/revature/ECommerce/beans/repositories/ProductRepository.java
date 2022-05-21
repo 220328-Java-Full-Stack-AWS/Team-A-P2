@@ -4,14 +4,10 @@ import com.revature.ECommerce.beans.services.HibernateManager;
 import com.revature.ECommerce.entities.Product;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
-import java.security.PublicKey;
-import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class ProductRepository implements HibernateRepository<Product> {
@@ -84,6 +80,11 @@ public class ProductRepository implements HibernateRepository<Product> {
         query.executeUpdate();
     }
 
+    public void deleteProduct(Product product){
+        Transaction tx = session.beginTransaction();
+        session.remove(session.get(Product.class, product.getProductId()));
+        tx.commit();
+    }
 
     //Works through Postman
     //Updates a product quantity by product id.

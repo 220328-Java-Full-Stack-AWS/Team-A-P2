@@ -17,28 +17,28 @@
     </tr>
     <tr *ngFor="let product of products">
       <td>
-        <p>{{ product.productId }}</p>
+        <p>{{ product?.productId }}</p>
       </td>
       <td id="productName">
-        <p>{{ product.productName }}</p>
+        <p>{{ product?.productName }}</p>
       </td>
       <td id="productDescription">
-        <span>{{ product.productDescription }}</span>
+        <span>{{ product?.productDescription }}</span>
       </td>
       <td id="productPrice">
-        <span>${{ product.productPrice.toFixed(2) }}</span>
+        <span>${{ product?.productPrice }}</span>
       </td>
       <td id="productQuantity">
-        <p>{{ product.productQuantity }}</p>
+        <p>{{ product?.productQuantity }}</p>
       </td>
       <td id="productCategory">
-        <p>{{ product.productCategory }}</p>
+        <p>{{ product?.productCategory }}</p>
       </td>
       <td id="productStatus">
-        <p>{{ product.productStatus | uppercase }}</p>
+        <p>{{ product?.productStatus | uppercase }}</p>
       </td>
       <td id="productImage">
-        <img src="{{ product.productImage }}" alt="{{ product.productName}}">
+        <img src="{{ product?.productImage }}" alt="{{ product.productName}}">
       </td>
       <td id="productOption">
         <button id="EditProduct" (click)="onOpenModal(product, 'edit')">Edit</button>
@@ -56,36 +56,42 @@
     <h2>Add Product</h2>
     <button (click)="onCloseModal('add')">x</button>
   </div>
-  <div class="modal-body">
-    <div class="modal-input">
-      <label for="productName">Product Name</label>
-      <input type="text" name="productName" id="productName" placeholder="Product Name" />
+  <form #addForm="ngForm" (ngSubmit)="onAddProduct(addForm)" ngNativeValidate>
+    <div class="modal-body">
+      <div class="modal-input">
+        <label for="productName">Product Name</label>
+        <input ngModel type="text" name="productName" id="productName" placeholder="Product Name" />
+      </div>
+      <div class="modal-input">
+        <label for="productQuantity">Product Quantity</label>
+        <input ngModel type="number" name="productQuantity" id="productQuantity" placeholder="Quantity" />
+      </div>
+      <div class="modal-input">
+        <label for="productPrice">Product Price</label>
+        <input ngModel type="number" name="productPrice" id="productPrice" placeholder="Price" />
+      </div>
+      <div class="modal-input">
+        <label for="productDescription">Product Description</label>
+        <input ngModel type="text" name="productDescription" id="productDescription" placeholder="Product Description"/>
+      </div>
+      <div class="modal-input">
+        <label for="productCategory">Product Category</label>
+        <input ngModel type="text" name="productCategory" id="productCategory" placeholder="Product Category"/>
+      </div>
+      <div class="modal-input">
+        <label for="productStatus">Product Status</label>
+        <input ngModel type="text" name="productStatus" id="productStatus" placeholder="Product Status">
+      </div>
+      <div class="modal-input">
+        <label for="productImage">Product Image</label>
+        <input ngModel type="url" name="productImage" id="productImage" placeholder="Product Image" />
+      </div>
     </div>
-    <div class="modal-input">
-      <label for="productQuantity">Product Quantity</label>
-      <input type="number" name="productQuantity" id="productQuantity" placeholder="Quantity" />
+    <div class="modal-footer">
+      <button id="cancel" (click)="onCloseModal('add')">Cancel</button>
+      <button id="confirm">Add</button>
     </div>
-    <div class="modal-input">
-      <label for="productDescription">Product Description</label>
-      <input type="text" name="productDescription" id="productDescription" placeholder="Product Description"/>
-    </div>
-    <div class="modal-input">
-      <label for="productCategory">Product Category</label>
-      <input type="text" name="productCategory" id="productCategory" placeholder="Product Category"/>
-    </div>
-    <div class="modal-input">
-      <label for="productStatus">Product Status</label>
-      <input type="text" name="productStatus" id="productStatus" placeholder="Product Status">
-    </div>
-    <div class="modal-input">
-      <label for="productImage">Product Image</label>
-      <input type="url" name="productImage" id="productImage" placeholder="Product Image" />
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button id="cancel" (click)="onCloseModal('add')">Cancel</button>
-    <button id="confirm">Add</button>
-  </div>
+  </form>
 </div>
 
 <!-- edit modal -->
@@ -94,37 +100,43 @@
     <h2>Edit Product</h2>
     <button (click)="onCloseModal('edit')">x</button>
   </div>
-  <form #editForm="ngForm" class="modal-body">
-    <div class="modal-input">
-      <input ngModel="{{ editProduct?.productId }}" type="hidden" name="id" class="form-control" id="id" placeholder="Email">
-      <label for="productName">Product Name</label>
-      <input ngModel="{{ editProduct?.productName }}" type="text" name="productName" id="productName" placeholder="Product Name" />
+  <form #editForm="ngForm" >
+    <div class="modal-body">
+      <div class="modal-input">
+        <input ngModel="{{ editProduct?.productId }}" type="hidden" name="productId">
+        <label for="productName">Product Name</label>
+        <input ngModel="{{ editProduct?.productName }}" type="text" name="productName" id="productName" placeholder="Product Name" />
+      </div>
+      <div class="modal-input">
+        <label for="productQuantity">Product Quantity</label>
+        <input ngModel="{{ editProduct?.productQuantity }}" type="number" name="productQuantity" id="productQuantity" placeholder="Quantity" />
+      </div>
+      <div class="modal-input">
+        <label for="productPrice">Product Price</label>
+        <input ngModel="{{ editProduct?.productPrice }}" type="number" name="productPrice" id="productPrice" placeholder="Price" />
+      </div>
+      <div class="modal-input">
+        <label for="productDescription">Product Description</label>
+        <input ngModel="{{ editProduct?.productDescription }}" type="text" name="productDescription" id="productDescription" placeholder="Product Description"/>
+      </div>
+      <div class="modal-input">
+        <label for="productCategory">Product Category</label>
+        <input ngModel="{{ editProduct?.productCategory }}" type="text" name="productCategory" id="productCategory" placeholder="Product Category"/>
+      </div>
+      <div class="modal-input">
+        <label for="productStatus">Product Status</label>
+        <input ngModel="{{ editProduct?.productStatus }}" type="text" name="productStatus" id="productStatus" placeholder="Product Status">
+      </div>
+      <div class="modal-input">
+        <label for="productImage">Product Image</label>
+        <input ngModel="{{ editProduct?.productImage }}" type="url" name="productImage" id="productImage" placeholder="Product Image" />
+      </div>
     </div>
-    <div class="modal-input">
-      <label for="productQuantity">Product Quantity</label>
-      <input ngModel="{{ editProduct?.productQuantity }}" type="number" name="productQuantity" id="productQuantity" placeholder="Quantity" />
-    </div>
-    <div class="modal-input">
-      <label for="productDescription">Product Description</label>
-      <input ngModel="{{ editProduct?.productDescription }}" type="text" name="productDescription" id="productDescription" placeholder="Product Description"/>
-    </div>
-    <div class="modal-input">
-      <label for="productCategory">Product Category</label>
-      <input ngModel="{{ editProduct?.productCategory }}" type="text" name="productCategory" id="productCategory" placeholder="Product Category"/>
-    </div>
-    <div class="modal-input">
-      <label for="productStatus">Product Status</label>
-      <input ngModel="{{ editProduct?.productStatus }}" type="text" name="productStatus" id="productStatus" placeholder="Product Status">
-    </div>
-    <div class="modal-input">
-      <label for="productImage">Product Image</label>
-      <input ngModel="{{ editProduct?.productImage }}" type="url" name="productImage" id="productImage" placeholder="Product Image" />
+    <div class="modal-footer">
+      <button id="cancel" (click)="onCloseModal('edit')">Cancel</button>
+      <button id="confirm" (click)="onEditProduct(editForm.value)">Update</button>
     </div>
   </form>
-  <div class="modal-footer">
-    <button id="cancel" (click)="onCloseModal('edit')">Cancel</button>
-    <button id="confirm">Confirm</button>
-  </div>
 </div>
 
 <div class="modal" id="delete-modal">
@@ -138,6 +150,6 @@
   </div>
   <div class="modal-footer">
     <button id="cancel" (click)="onCloseModal('delete')">Cancel</button>
-    <button id="confirm">Delete</button>
+    <button (click)="onDeleteProduct(deleteProduct)" id="confirm">Delete</button>
   </div>
 </div>

@@ -39,6 +39,10 @@ public class ProductService  {
         productRepository.deleteById(id);
     }
 
+    public void deleteProduct(Product product){
+        productRepository.deleteProduct(product);
+    }
+
     public Product updateProduct(Product product){
         return productRepository.update(product);
     }

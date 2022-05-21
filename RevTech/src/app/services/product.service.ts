@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../dto/product';
 import { environment } from 'src/environments/environment';
-import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -31,16 +30,15 @@ export class ProductService {
   }
 
   public addProduct(product: Product): Observable<Product>{
-    return this.http.post<Product>(`${this.apiServiceUrl}/product/add`, product);
+    return this.http.post<Product>(`${this.apiServiceUrl}/products/add`, product);
   }
 
   public updateproduct(product: Product): Observable<Product>{
-    return this.http.put<Product>(`${this.apiServiceUrl}/product/update`, product);
+    return this.http.put<Product>(`${this.apiServiceUrl}/products/update`, product);
   }
 
-  public deleteproduct(id: number): Observable<void>{
-    return this.http.delete<void>(`${this.apiServiceUrl}/product/delete${id}`);
+  public deleteproduct(product: Product): Observable<void>{
+    return this.http.delete<void>(`${this.apiServiceUrl}/products`);
   }
-
 
 }
