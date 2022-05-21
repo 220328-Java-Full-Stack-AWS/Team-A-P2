@@ -20,7 +20,6 @@ public class SaleService {
         return saleRepository.save(sale);
     }
 
-
     public List<Sale> getAllSales(){ return saleRepository.getAll();}
 
     public Sale getSaleById(Integer id){ return saleRepository.getById(id);}

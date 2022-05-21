@@ -72,21 +72,13 @@ public class ECommerceApplication {
 		session.save(p17);
 
 		// users
-		User leo = new User("leobarriento02","leo@gmail.com","password","Leonel","Barrientos", "516-960-8086");
+		User leo = new User("admin","admin@revature.com","password","rev","tech", "000-000-0000");
 		session.save(leo);
 		session.save(p1);
   		session.save(p2);
   		session.save(p3);
   		session.save(p4);
   		session.save(p5);
-
-		User user1 = new User("georgebakhoum", "bakhoumgeorge@gmail.com", "P4ssw0rd!", "George", "Bakhoum", "832-100-1000");
-		User user2 = new User("bakgeo", "bakgeo@gmail.com", "gbsw0rd!", "Geo", "Bak", "832-543-2432");
-		User user3 = new User("gb", "gb@gmail.com", "simplepassword", "G", "B", "219-999-4543");
-
-		session.save(user1);
-		session.save(user2);
-		session.save(user3);
 
 		tx.commit();
 	}
