@@ -1,6 +1,6 @@
 <div class="admin-page" id="main-container">
   <div class="admin-nav">
-    <h1>Manage All Products</h1>
+    <h1 id="adminPageTitle">Manage All Products</h1>
     <button (click)="onOpenModal(product, 'add')">Add Product</button>
   </div>
   <table id="table">
@@ -67,7 +67,7 @@
       </div>
       <div class="modal-input">
         <label for="productPrice">Product Price</label>
-        <input ngModel type="number" name="productPrice" id="productPrice" placeholder="Price" />
+        <input ngModel type="text" name="productPrice" id="productPrice" placeholder="Price" />
       </div>
       <div class="modal-input">
         <label for="productDescription">Product Description</label>

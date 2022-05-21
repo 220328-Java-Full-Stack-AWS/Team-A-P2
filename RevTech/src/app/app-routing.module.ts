@@ -12,10 +12,10 @@ import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
-  { path: 'shop', component: ProductsComponent, /*canActivate:[AuthGuard]*/ },
-  { path: 'profile', component: ProfilesComponent, /*canActivate:[AuthGuard]*/ },
-  { path: 'orders', component: OrdersComponent, /*canActivate:[AuthGuard]*/ },
-  { path: 'admin', component: AdminComponent, /*canActivate:[AuthGuard]*/ },
+  { path: 'shop', component: ProductsComponent /*, canActivate:[AuthGuard]*/ },
+  { path: 'profile', component: ProfilesComponent /*,canActivate:[AuthGuard]*/ },
+  { path: 'orders', component: OrdersComponent/*,canActivate:[AuthGuard]*/},
+  { path: 'admin', component: AdminComponent/*,canActivate:[AuthGuard]*/ },
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: ErrorPageComponent },
 ];

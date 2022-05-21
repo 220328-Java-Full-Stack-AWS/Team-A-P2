@@ -83,7 +83,9 @@ public class ECommerceApplication {
 		User user1 = new User("georgebakhoum", "bakhoumgeorge@gmail.com", "P4ssw0rd!", "George", "Bakhoum", "832-100-1000");
 		User user2 = new User("bakgeo", "bakgeo@gmail.com", "gbsw0rd!", "Geo", "Bak", "832-543-2432");
 		User user3 = new User("gb", "gb@gmail.com", "simplepassword", "G", "B", "219-999-4543");
+		User admin = new User("Admin", "admin@gmail.com", "Password", "admin", "admin", "333-222-1111");
 
+		session.save(admin);
 		session.save(user1);
 		session.save(user2);
 		session.save(user3);

@@ -19,7 +19,7 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @GetMapping()
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<Address> getAllAddress() {
         return addressService.getAllAddress();
@@ -31,13 +31,13 @@ public class AddressController {
         return addressService.getAddressById(id);
     }
 
-    @PostMapping()
+    @PostMapping("/add")
     @ResponseStatus(HttpStatus.OK)
     public Address persistNewAddress(@RequestBody Address newAddress){
         return addressService.save(newAddress);
     }
 
-    @PutMapping
+    @PutMapping("/update")
     @ResponseStatus(HttpStatus.OK)
     public Address updateAddress(@RequestBody Address address){
         return addressService.updateAddress(address);
@@ -49,4 +49,9 @@ public class AddressController {
         addressService.deleteAddress(address);
     }
 
+    @GetMapping("/user/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Address> getAddressesByUserId(@PathVariable Integer userId){
+        return addressService.getByUser(userId);
+    }
 }
