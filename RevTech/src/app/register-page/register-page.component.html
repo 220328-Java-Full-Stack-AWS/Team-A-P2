@@ -15,16 +15,19 @@
       <div class="input-container">
         <label for="username">Username</label>
         <input ngModel type="text" name="username" placeholder="Username..." id="username" required />
+        <span style ="text-decoration: none; cursor: auto;" id="usernametaken">This username is already taken</span>
       </div>
       <div class="input-container">
         <label for="phone">Phone</label>
         <input ngModel type="phone" name="phone" id="phone" required placeholder="Phone...">
+        <span style ="text-decoration: none; cursor: auto;" id="phoneused">This phone number is already being used</span>
       </div>
     </div>
     <div class="input-row-email">
       <div class="input-container">
         <label for="Email">Email</label>
         <input ngModel type="email" name="email" id="email" required placeholder="Email...">
+        <span id="emailused">This email is already being used</span>
       </div>
     </div>
     <div class="input-row">
@@ -35,10 +38,11 @@
       </div>
       <div class="input-container">
         <label for="confirmPassword">Confirm Password</label>
-        <input [type]="show2 ? 'text' : 'password'" name="confirmPassword" placeholder="Confirm Password..." id="confirmPassword" required />
+        <input ngModel [type]="show2 ? 'text' : 'password'" name="confirmPassword" placeholder="Confirm Password..." id="confirmPassword" required />
         <span (click)="confirmPassword()"><fa-icon [icon]="faFaceRollingEyes" id="icon"></fa-icon>{{show2 ? 'Hide Password' : 'Show Password' }}</span>
       </div>
     </div>
+    <span id="nomatchpass">The passwords didn't match, please try again<br><br></span>
     <button id="register-btn">Register</button>
   </form>
   <div class="help">
