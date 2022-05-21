@@ -23,12 +23,20 @@ public class UserService {
         return userRepository.getAll();
     }
 
+    public User getUserById(Integer id ) {
+        return userRepository.getById(id);
+    }
+
     public User getUserByUsername(String username) {
         return userRepository.getByUsername(username);
     }
 
-    public User getUserById(Integer id ) {
-        return userRepository.getById(id);
+    public User getUserByEmail(String email) {
+        return userRepository.getByEmail(email);
+    }
+
+    public User getUserByPhone(String phone) {
+        return userRepository.getByPhone(phone);
     }
 
     public User save(User user) {

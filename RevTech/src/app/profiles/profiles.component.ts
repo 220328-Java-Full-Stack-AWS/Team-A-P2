@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,9 +10,12 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 })
 export class ProfilesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    if(sessionStorage.getItem("username") == null){
+      this.router.navigateByUrl('/login');
+    }
   }
 
 }

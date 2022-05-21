@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 
 export class LoginPageComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     sessionStorage.clear();
@@ -71,7 +71,10 @@ export class LoginPageComponent implements OnInit {
           this.router.navigateByUrl('/shop');
         },
         (error: HttpErrorResponse) => {
-          console.log(error.message)
+          let inv = document.getElementById("invalid");
+          if(inv != null){
+            inv.style.display = "flex";
+          }
         }
       );
     }

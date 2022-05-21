@@ -1,9 +1,9 @@
 package com.revature.ECommerce;
 
 import com.revature.ECommerce.beans.services.HibernateManager;
-import com.revature.ECommerce.entities.Product;
-import com.revature.ECommerce.entities.User;
+import com.revature.ECommerce.entities.*;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -21,9 +21,17 @@ public class ECommerceApplication {
 
 		ConfigurableApplicationContext context =SpringApplication.run(ECommerceApplication.class, args);
 		HibernateManager hibernateManager= context.getBean(HibernateManager.class);
+		hibernateManager.addAnnotatedClass(User.class);
+		hibernateManager.addAnnotatedClass(Product.class);
+		hibernateManager.addAnnotatedClass(Payment.class);
+		hibernateManager.addAnnotatedClass(Order.class);
+		hibernateManager.addAnnotatedClass(Sale.class);
+		hibernateManager.addAnnotatedClass(Address.class);
 
 		context.start();
 		Session session = hibernateManager.getSession();
+
+		Transaction tx = session.beginTransaction();
 
 		// phones
 		Product p1 = new Product("Apple iPhone 13", 1232.10, 6, "IPhone 13 is the newest and hottest phone on the market made by Apple. Unlock the power of the apple", "https://i5.walmartimages.com/asr/904ef03b-71de-47b8-b045-c08c860820e8.12bc5a80ee74c14d63eb98d069b0173b.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF","featured","Phones");
@@ -71,13 +79,23 @@ public class ECommerceApplication {
   		session.save(p3);
   		session.save(p4);
   		session.save(p5);
+
+		User user1 = new User("georgebakhoum", "bakhoumgeorge@gmail.com", "P4ssw0rd!", "George", "Bakhoum", "832-100-1000");
+		User user2 = new User("bakgeo", "bakgeo@gmail.com", "gbsw0rd!", "Geo", "Bak", "832-543-2432");
+		User user3 = new User("gb", "gb@gmail.com", "simplepassword", "G", "B", "219-999-4543");
+
+		session.save(user1);
+		session.save(user2);
+		session.save(user3);
+
+		tx.commit();
 	}
 
 	@Bean
 	public CorsFilter corsFilter() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(true);
-		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200","http://localhost:4200/%22"));
 		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
 				"Accept", "Authorization", "Origin, Accept", "X-Requested-With",
 				"Access-Control-Request-Method", "Access-Control-Request-Headers", "mode"));

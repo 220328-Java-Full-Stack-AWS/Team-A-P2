@@ -62,13 +62,37 @@ import { User } from '../dto/user';
       );
     }
   
-    public getUserUsername(username: string): Observable<User>{
+    public getUserByUsername(username: string): Observable<User>{
       return this.http.get<User>(
         `${this.apiServiceUrl}/users/${username}`, // url
         {
           headers: new HttpHeaders({
             'Content-Type': 'application/json',
             'mode': 'username'
+          })
+        }
+      );
+    }
+
+    public getUserByEmail(email: string): Observable<User>{
+      return this.http.get<User>(
+        `${this.apiServiceUrl}/users/${email}`, // url
+        {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'mode': 'email'
+          })
+        }
+      );
+    }
+
+    public getUserByPhone(phone: string): Observable<User>{
+      return this.http.get<User>(
+        `${this.apiServiceUrl}/users/${phone}`, // url
+        {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'mode': 'phone'
           })
         }
       );

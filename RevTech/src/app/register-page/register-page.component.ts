@@ -32,15 +32,89 @@ export class RegisterPageComponent implements OnInit {
     this.show2 = !this.show2;
   }
 
-  public registerUser(registerForm: NgForm): void {
-    this.userService.registerUser(registerForm.value).subscribe(
+  private completeRegistrationCheck(registerForm: NgForm, validation: boolean){
+    if((registerForm.value.password == registerForm.value.confirmPassword) && validation){
+      this.userService.registerUser(registerForm.value).subscribe(
+        (response: User) => {
+          console.log(response);
+          alert("Registration successful!");
+          this.router.navigateByUrl('/login');
+        },
+        (error: HttpErrorResponse) => {
+          alert("Registration unsuccessful");
+        },
+      );
+    } else if((registerForm.value.password != registerForm.value.confirmPassword)) {
+      let invpass = document.getElementById("nomatchpass");
+      if(invpass != null){
+        invpass.style.display = "flex";
+      }
+    }
+  }
+
+  private checkEmail(registerForm: NgForm, validation: boolean){
+    let invemail = document.getElementById("emailused");
+    this.userService.getUserByEmail(registerForm.value.email).subscribe(
       (response: User) => {
-        console.log(response);
-        this.router.navigateByUrl('/login');
+        if (invemail != null) {
+          validation = false;
+          invemail.style.display = "flex";
+          this.completeRegistrationCheck(registerForm, validation);
+        }
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        this.completeRegistrationCheck(registerForm, validation);
       },
     );
   }
+
+  private checkPhone(registerForm: NgForm, validation: boolean){
+    let invphone = document.getElementById("phoneused");
+      this.userService.getUserByPhone(registerForm.value.phone).subscribe(
+        (response: User) => {
+          if (invphone != null) {
+            validation = false;
+            invphone.style.display = "flex";
+            this.checkEmail(registerForm, validation);
+          }
+        },
+        (error: HttpErrorResponse) => {
+          this.checkEmail(registerForm, validation);
+        },
+      ); 
+  }
+
+  public registerUser(registerForm: NgForm): void {
+    let invpass = document.getElementById("nomatchpass");
+    let invuser = document.getElementById("usernametaken");
+    let invphone = document.getElementById("phoneused");
+    let invemail = document.getElementById("emailused");
+    let validation: boolean = true;
+
+    if(invpass != null){
+      invpass.style.display = "none";
+    }
+    if(invuser != null){
+      invuser.style.display = "none";
+    }
+    if(invphone != null){
+      invphone.style.display = "none";
+    }
+    if(invemail != null){
+      invemail.style.display = "none";
+    }
+
+    this.userService.getUserByUsername(registerForm.value.username).subscribe(
+      (response: User) => {
+        if (invuser != null) {
+          validation = false;
+          invuser.style.display = "flex";
+          this.checkPhone(registerForm, validation);
+        }
+      },
+      (error: HttpErrorResponse) => {
+        this.checkPhone(registerForm, validation);
+      },
+    );
+  } 
 }

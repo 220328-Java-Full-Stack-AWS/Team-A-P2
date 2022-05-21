@@ -14,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import static org.mockito.ArgumentMatchers.any;
+
 //@ExtendWith(MockitoExtension.class)
 @SpringBootTest
 public class UserServiceTest {
@@ -97,19 +99,89 @@ public class UserServiceTest {
         String firstName = "firstName";
         String lastName = "lastName";
         String phone = "phone";
+        // User testUser = new User(username, email, password, firstName, lastName, phone);
         User testUser = new User(username, email, password, firstName, lastName, phone);
-        Mockito.when(mockUserRepository.getByUsername(username)).thenReturn(testUser);
 
-
-        //act
-        //User authenticatedUser = uServ.auth(username, password);
+        Mockito.when(mockUserRepository.getByUsername(any(String.class))).thenReturn(testUser);
 
         //assert
-        //what can we check to prove it worked?
-        //in this case we need to make sure that the "authenticatedUser" object returned from our tested method
-        //matches the "testUser" object we made.
-        //Assertions.assertEquals(authenticatedUser, testUser);
+        Assertions.assertEquals(testUser, uServ.getUserByUsername(username));
+        Mockito.verify(mockUserRepository).getByUsername(username);
+    }
+
+    @Test
+    public void test_getByIDSuccess() {
+        //arrange
+        String username = "username";
+        String email = "email";
+        String password = "password";
+        String firstName = "firstName";
+        String lastName = "lastName";
+        String phone = "phone";
+        // User testUser = new User(username, email, password, firstName, lastName, phone);
+        User testUser1 = new User(username, email, password, firstName, lastName, phone);
+        User testUser2 = new User(username, email, password, firstName, lastName, phone);
+        testUser1.setUserId(1);
+        testUser2.setUserId(2);
+        Mockito.when(mockUserRepository.getById(1)).thenReturn(testUser1);
+        Mockito.when(mockUserRepository.getById(2)).thenReturn(testUser2);
+
+        //assert
+        Assertions.assertEquals(testUser1, uServ.getUserById(1));
+        Assertions.assertEquals(testUser2, uServ.getUserById(2));
+        Mockito.verify(mockUserRepository).getById(1);
+        Mockito.verify(mockUserRepository).getById(2);
+    }
+
+    @Test
+    public void test_getByIDFailure() {
+        Mockito.when(mockUserRepository.getById(any(Integer.class))).thenThrow(RuntimeException.class);
+
+        //assert
+        Assertions.assertThrows(RuntimeException.class, ()->uServ.getUserById(2));
+    }
+
+    @Test
+    public void test_update() {
+        //arrange
+        String username = "username";
+        String email = "email";
+        String password = "password";
+        String firstName = "firstName";
+        String lastName = "lastName";
+        String phone = "phone";
+        // User testUser = new User(username, email, password, firstName, lastName, phone);
+        User testUser1 = new User(username, email, password, firstName, lastName, phone);
+        User testUser2 = new User(username, email, password, firstName, lastName, phone);
+        testUser1.setUserId(2);
+        testUser2.setUserId(2);
+        Mockito.when(mockUserRepository.update(any(User.class))).thenReturn(testUser2);
+
+        //assert
+        Assertions.assertEquals(testUser2, uServ.update(testUser1));
+        Mockito.verify(mockUserRepository).update(testUser1);
+    }
+
+    @Test
+    public void test_delete() {
 
     }
+
+    @Test
+    public void test_getAllUsers() {
+
+        User user1 = new User("georgebakhoum", "bakhoumgeorge@gmail.com", "P4ssw0rd!", "George", "Bakhoum", "832-100-1000");
+        User user2 = new User("bakgeo", "bakgeo@gmail.com", "gbsw0rd!", "Geo", "Bak", "832-543-2432");
+        User user3 = new User("gb", "gb@gmail.com", "simplepassword", "G", "B", "219-999-4543");
+
+
+
+    }
+    @Test
+    public void test_authenticateUser() {
+
+    }
+
+
 
 }

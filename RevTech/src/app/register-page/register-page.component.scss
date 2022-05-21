@@ -112,4 +112,8 @@
       }
     }
   }
+  #usernametaken, #phoneused, #emailused, #nomatchpass {
+    display: none;
+    color: red;
+  }
 }
