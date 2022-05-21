@@ -11,7 +11,10 @@ import org.springframework.context.Lifecycle;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.List;
+
+@Transactional
 @Repository
 public class UserRepository implements HibernateRepository<User> {
     private HibernateManager hibernateManager;
@@ -62,8 +65,19 @@ public class UserRepository implements HibernateRepository<User> {
     public User getByUsername(String username) {
         TypedQuery<User> query = session.createQuery("FROM User WHERE username = :username", User.class);
         query.setParameter("username", username);
-        User user = query.getSingleResult();
-        return user;
+        return query.getSingleResult();
+    }
+
+    public User getByEmail(String email) {
+        TypedQuery<User> query = session.createQuery("FROM User WHERE email = :email", User.class);
+        query.setParameter("email", email);
+        return query.getSingleResult();
+    }
+
+    public User getByPhone(String phone) {
+        TypedQuery<User> query = session.createQuery("FROM User WHERE phone = :phone", User.class);
+        query.setParameter("phone", phone);
+        return query.getSingleResult();
     }
 
     public void delete(Integer id){

@@ -73,7 +73,7 @@ export class LoginPageComponent implements OnInit {
         (error: HttpErrorResponse) => {
           let inv = document.getElementById("invalid");
           if(inv != null){
-            inv.style.display = "block";
+            inv.style.display = "flex";
           }
         }
       );

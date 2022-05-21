@@ -6,6 +6,7 @@ import { Sale } from "../dto/sale";
 import { OrderService, Holder } from '../services/order.service';
 import { SaleService } from '../services/sale.service';
 import { User } from '../dto/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-orders',
@@ -64,10 +65,12 @@ export class OrdersComponent implements OnInit {
 
   currentOrder: Order = this.order;
 
-  constructor(private orderService: OrderService, private salesService: SaleService) { }
+  constructor(private orderService: OrderService, private salesService: SaleService, private router: Router) { }
 
   ngOnInit(): void {
-
+    if(sessionStorage.getItem("username") == null){
+      this.router.navigateByUrl('/login');
+    }
   }
 
   public checkout(order: Order, user: User) {

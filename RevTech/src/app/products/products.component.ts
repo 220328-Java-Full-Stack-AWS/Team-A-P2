@@ -5,6 +5,7 @@ import { ProductService } from '../services/product.service';
 import { SaleService } from '../services/sale.service';
 import { Product } from '../dto/product';
 import { Sale } from '../dto/sale';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -22,9 +23,12 @@ export class ProductsComponent implements OnInit {
 
   public sale!: Sale;
 
-  constructor(private productService: ProductService, private salesService: SaleService){}
+  constructor(private productService: ProductService, private salesService: SaleService, private router: Router){}
 
   ngOnInit(): void {
+    if(sessionStorage.getItem("username") == null){
+      this.router.navigateByUrl('/login');
+    }
     this.getProducts();
   }
 
