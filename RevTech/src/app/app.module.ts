@@ -18,6 +18,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     ProfilesComponent,
     OrdersComponent,
     ErrorPageComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

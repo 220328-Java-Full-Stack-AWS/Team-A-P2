@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
 
   public page = this.router.url;
 
-  public username = "Leonel"
+  public username = sessionStorage.getItem('username');
 
   public logOut(){
     this.auth.logout();
