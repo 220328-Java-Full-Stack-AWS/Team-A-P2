@@ -19,7 +19,6 @@ import java.util.Arrays;
 public class ECommerceApplication {
 
 	public static void main(String[] args) {
-
 		ConfigurableApplicationContext context = SpringApplication.run(ECommerceApplication.class, args);
 		HibernateManager hibernateManager = context.getBean(HibernateManager.class);
 		hibernateManager.addAnnotatedClass(User.class);
@@ -30,10 +29,9 @@ public class ECommerceApplication {
 		hibernateManager.addAnnotatedClass(Address.class);
 		context.start();
 		Session session = hibernateManager.getSession();
-
 		// users
-		User admin = new User("admin","revtech@revature.com","password","admin","admin", "777-777-7777");
-		session.save(admin);
+		//User admin = new User("admin","revtech@revature.com","password","admin","admin", "777-777-7777");
+		//session.save(admin);
 
 	}
 
