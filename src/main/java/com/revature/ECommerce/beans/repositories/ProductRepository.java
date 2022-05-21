@@ -74,10 +74,12 @@ public class ProductRepository implements HibernateRepository<Product> {
     }
 
     //test
-    public void deleteById(Integer id) {
-        TypedQuery<Product> query = session.createQuery("Delete Product WHERE id = :product_id");
-        query.setParameter("product_id", id);
+    public void deleteById(Integer product_id) {
+        Transaction tx = session.beginTransaction();
+        TypedQuery<Product> query = session.createQuery("Delete Product WHERE product_id = :product_id");
+        query.setParameter("product_id", product_id);
         query.executeUpdate();
+        tx.commit();
     }
 
     public void deleteProduct(Product product){

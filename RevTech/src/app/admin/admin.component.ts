@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm} from '@angular/forms';
 import { Product } from '../dto/product';
 import { ProductService } from '../services/product.service';
 
@@ -15,6 +15,7 @@ export class AdminComponent implements OnInit {
   public product!: Product;
   public editProduct!: Product;
   public deleteProduct!: Product;
+  public enableSave: any;
 
   constructor(private productService: ProductService,) { }
 
@@ -40,47 +41,49 @@ export class AdminComponent implements OnInit {
       (response: Product)=> {
         // console.log(response);
         this.getProducts();
+        const screen = document.getElementById('screen');
+        screen?.classList.remove('show');
+        const modal = document.getElementById('add-modal');
+        modal?.classList.remove('show');
       },
       (error: HttpErrorResponse) =>{
         console.log(error.message);
       }
     );
-    const screen = document.getElementById('screen');
-    screen?.classList.remove('show');
-    const modal = document.getElementById('add-modal');
-    modal?.classList.remove('show');
+    productForm.resetForm();
   }
 
-  public onEditProduct(product: Product): void{
-    this.productService.updateproduct(product).subscribe(
+  public onEditProduct(productForm: NgForm): void{
+    document.getElementById('edit-product')?.click();
+    this.productService.updateproduct(productForm.value).subscribe(
       (response: Product) => {
         // console.log(response);
         this.getProducts();
+        const screen = document.getElementById('screen');
+        screen?.classList.remove('show');
+        const modal = document.getElementById('edit-modal');
+        modal?.classList.remove('show');
       },
       (error: HttpErrorResponse) => {
         console.log(error.message);
       }
     );
-    const screen = document.getElementById('screen');
-    screen?.classList.remove('show');
-    const modal = document.getElementById('add-modal');
-    modal?.classList.remove('show');
   }
 
-  public onDeleteProduct(product: Product): void{
-    this.productService.deleteproduct(product).subscribe(
+  public onDeleteProduct(productId: number): void{
+    this.productService.deleteproduct(productId).subscribe(
       (response: void) => {
-        console.log(response);
+        // console.log(response);
         this.getProducts();
+        const screen = document.getElementById('screen');
+        screen?.classList.remove('show');
+        const modal = document.getElementById('delete-modal');
+        modal?.classList.remove('show');
       },
       (error: HttpErrorResponse) => {
         console.log(error.message);
       }
     );
-    const screen = document.getElementById('screen');
-    screen?.classList.remove('show');
-    const modal = document.getElementById('add-modal');
-    modal?.classList.remove('show');
   }
 
   public onOpenModal(product: Product, mode: string): void {

@@ -26,7 +26,7 @@
         <span>{{ product?.productDescription }}</span>
       </td>
       <td id="productPrice">
-        <span>${{ product?.productPrice }}</span>
+        <span>${{ product?.productPrice?.toFixed(2) }}</span>
       </td>
       <td id="productQuantity">
         <p>{{ product?.productQuantity }}</p>
@@ -48,9 +48,8 @@
   </table>
 </div>
 
-<!-- add modal -->
 <div class="screen" id="screen"></div>
-
+<!-- add modal -->
 <div class="modal" id="add-modal">
   <div class="modal-title">
     <h2>Add Product</h2>
@@ -88,8 +87,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button id="cancel" (click)="onCloseModal('add')">Cancel</button>
-      <button id="confirm">Add</button>
+      <button type="submit" id="confirm">Add</button>
     </div>
   </form>
 </div>
@@ -100,7 +98,7 @@
     <h2>Edit Product</h2>
     <button (click)="onCloseModal('edit')">x</button>
   </div>
-  <form #editForm="ngForm" >
+  <form #editForm="ngForm" (ngSubmit)="onEditProduct(editForm)">
     <div class="modal-body">
       <div class="modal-input">
         <input ngModel="{{ editProduct?.productId }}" type="hidden" name="productId">
@@ -113,7 +111,7 @@
       </div>
       <div class="modal-input">
         <label for="productPrice">Product Price</label>
-        <input ngModel="{{ editProduct?.productPrice }}" type="number" name="productPrice" id="productPrice" placeholder="Price" />
+        <input ngModel="{{ editProduct?.productPrice?.toFixed(2) }}" type="number" name="productPrice" id="productPrice" placeholder="Price" />
       </div>
       <div class="modal-input">
         <label for="productDescription">Product Description</label>
@@ -133,8 +131,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button id="cancel" (click)="onCloseModal('edit')">Cancel</button>
-      <button id="confirm" (click)="onEditProduct(editForm.value)">Update</button>
+      <button id="confirm">Update</button>
     </div>
   </form>
 </div>
@@ -149,7 +146,6 @@
     <img id="product-image" src="{{ deleteProduct?.productImage}}" alt="{{ deleteProduct?.productImage}}">
   </div>
   <div class="modal-footer">
-    <button id="cancel" (click)="onCloseModal('delete')">Cancel</button>
-    <button (click)="onDeleteProduct(deleteProduct)" id="confirm">Delete</button>
+    <button (click)="onDeleteProduct(deleteProduct!.productId)" id="confirm">Delete</button>
   </div>
 </div>
