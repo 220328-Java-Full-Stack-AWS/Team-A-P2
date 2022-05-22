@@ -1,0 +1,117 @@
+.profile-page{
+  width: 100%;
+  min-height: 100vh;
+  padding: 3rem 0 4rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+  h2{
+    width: 70%;
+    font-size: 3rem;
+    text-decoration: underline;
+    text-align: left;
+    color: #2b2d42;
+    margin-bottom: 2rem;
+  }
+  .profile{
+    width: 70%;
+    border-radius: 9px;
+    border: 2px solid lightgrey;
+    display: flex;
+    flex-direction: column;
+    .profile-title {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      border-bottom: 2px solid lightgrey;
+      .profile-pic{
+        width: 30%;
+        border-top-left-radius: 9px;
+        border-right: 2px solid lightgrey;
+        background: #3a3c58;
+        display: flex;
+        align-items: center;
+        justify-content:center;
+        padding: 1rem;
+        #icon{
+          padding: 1rem 2rem;
+          border-radius:50%;
+          border: 2px solid white;
+          font-size: 7rem;
+          color: white;
+        }
+      }
+      .username-type{
+        margin-left: 3rem;
+        h2{
+          font-size: 3rem;
+          text-decoration: none;
+          margin: 0;
+          padding: 0;
+        }
+        span{
+          color: grey;
+        }
+      }
+    }
+    .profile-body{
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0 2rem 1rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      h5{
+        width: 100%;
+        text-align: left;
+        font-size: 1.5rem;
+      }
+      .profile-data{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid grey;
+        margin-top: 1rem;
+        padding: 1rem 0;
+        p{
+          font-size: 1.3rem;
+          font-weight: 500;
+          color: #2b2d42
+        }
+        .data{
+          span{
+            font-size: 1.1rem;
+            color: grey;
+          }
+          button{
+            margin-left: 2rem;
+            font-size: .9rem;
+            padding: .2rem 1rem;
+            border: none;
+            background:#3a3c58;
+            color: white;
+            cursor: pointer;
+            border-radius:5px;
+            &:hover{
+              background: #2b2d42;
+            }
+          }
+          #delete{
+            margin-left: 2rem;
+            font-size: .9rem;
+            padding: .2rem 1rem;
+            border: none;
+            background:darkred;
+            color: white;
+            cursor: pointer;
+            border-radius:5px;
+          }
+        }
+      }
+    }
+  }
+}

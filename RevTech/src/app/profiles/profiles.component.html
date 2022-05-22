@@ -1,7 +1,134 @@
-<div class="profile">
-    <br>Name: firstname lastname <button>Edit</button>
-    <br>Username: username <button>Edit</button>
-    <br>Email: email <button>Edit</button>
-    <br>Phone: phone <button>Edit</button>
-    <br>Password: password <button>Edit</button>
+<div class="profile-page">
+  <h2>Profile Page</h2>
+  <div class="profile">
+    <div class="profile-title">
+      <div class="profile-pic">
+        <fa-icon id="icon" *ngIf="auth.username.value === 'Admin'" [icon]="faUserSecret"></fa-icon>
+        <fa-icon id="icon" *ngIf="auth.username.value !== 'Admin'" [icon]="faUserAstronaut"></fa-icon>
+      </div>
+      <div class="username-type">
+        <h2>{{ auth.username.value }}</h2>
+        <span *ngIf="auth.username.value === 'Admin'" >Account Type: Admin</span>
+        <span *ngIf="auth.username.value !== 'Admin'">Account Type: User</span>
+      </div>
+    </div>
+    <div class="profile-body">
+      <h5>Account Information</h5>
+      <div class="profile-data">
+        <p>Full Name</p>
+        <div class="data">
+          <span>{{ name }}</span>
+          <button>Edit</button>
+        </div>
+      </div>
+      <div class="profile-data">
+        <p>Username</p>
+        <div class="data">
+          <span>{{ username }}</span>
+          <button>Edit</button>
+        </div>
+      </div>
+      <div class="profile-data">
+        <p>Email</p>
+        <div class="data">
+          <span>{{ email }}</span>
+          <button>Edit</button>
+        </div>
+      </div>
+      <div class="profile-data">
+        <p>Phone</p>
+        <div class="data">
+          <span>{{ phone }}</span>
+          <button>Edit</button>
+        </div>
+      </div>
+      <div class="profile-data">
+        <p>Password</p>
+        <div class="data">
+          <span>{{ password }}</span>
+          <button>Edit</button>
+        </div>
+      </div>
+      <div class="profile-data">
+        <p>Delete Account</p>
+        <div class="data">
+          <button id="delete">Delete</button>
+        </div>
+      </div>
+    </div>
+    <div class="profile-body">
+      <h5>Address</h5>
+      <div class="profile-data">
+        <p>Street</p>
+        <div class="data">
+          <span>{{ name }}</span>
+          <button>Edit</button>
+        </div>
+      </div>
+      <div class="profile-data">
+        <p>City</p>
+        <div class="data">
+          <span>{{ username }}</span>
+          <button>Edit</button>
+        </div>
+      </div>
+      <div class="profile-data">
+        <p>State</p>
+        <div class="data">
+          <span>{{ email }}</span>
+          <button>Edit</button>
+        </div>
+      </div>
+      <div class="profile-data">
+        <p>Zip Code</p>
+        <div class="data">
+          <span>{{ phone }}</span>
+          <button>Edit</button>
+        </div>
+      </div>
+      <div class="profile-data">
+        <p>Country</p>
+        <div class="data">
+          <span>{{ password }}</span>
+          <button>Edit</button>
+        </div>
+      </div>
+      <div class="profile-data">
+        <p>Delete Address</p>
+        <div class="data">
+          <button id="delete">Delete</button>
+        </div>
+      </div>
+    </div>
+    <div class="profile-body">
+      <h5>Payment</h5>
+      <div class="profile-data">
+        <p>Card Number</p>
+        <div class="data">
+          <span>{{ name }}</span>
+          <button>Edit</button>
+        </div>
+      </div>
+      <div class="profile-data">
+        <p>Expiration Date</p>
+        <div class="data">
+          <span>{{ username }}</span>
+          <button>Edit</button>
+        </div>
+      </div>
+      <div class="profile-data">
+        <p>cvc</p>
+        <div class="data">
+          <span>{{ email }}</span>
+          <button>Edit</button>
+        </div>
+      </div>
+      <div class="profile-data" style="border: none;">
+        <p>Delete Payment</p>
+        <div class="data">
+          <button id="delete">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

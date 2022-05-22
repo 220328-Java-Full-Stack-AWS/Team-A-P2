@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faUserAstronaut, faShoppingCart, faWindowClose, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { faUserAstronaut, faShoppingCart, faWindowClose, faSun, faMoon, faUserSecret } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 import { ProductService } from '../services/product.service';
@@ -31,6 +31,7 @@ export class NavbarComponent implements OnInit {
   public faUserAstronaut = faUserAstronaut;
   public faShoppingCart = faShoppingCart;
   public faWindowClose = faWindowClose;
+  public faUserSecret = faUserSecret;
   public faSun = faSun;
   public faMoon = faMoon;
 

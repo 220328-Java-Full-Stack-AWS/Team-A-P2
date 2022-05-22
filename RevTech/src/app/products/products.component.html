@@ -50,7 +50,7 @@
       <div class="cart-card-2">
         <input type="number" name="amount" id="amount">
         <button>
-          <fa-icon [icon]="faCartPlus"></fa-icon>
+          <fa-icon [icon]="faCartPlus" (click)="addToCartAnimation()"></fa-icon>
         </button>
       </div>
     </div>
@@ -62,4 +62,11 @@
 <div *ngIf="products?.length == 0" class="noProducts">
   <h2>NO PRODUCTS</h2>
   <span>Sorry for the inconvenience!</span>
+</div>
+
+<div class="product-added-notification" id="CartNotification">
+  <div class="content">
+    <span>Added to Cart!</span>
+    <fa-icon id="product-added-icon" [icon]="faFaceGrinTongueSquint" [spin]="true"></fa-icon>
+  </div>
 </div>
