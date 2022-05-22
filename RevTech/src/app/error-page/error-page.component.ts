@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-error-page',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ErrorPageComponent implements OnInit {
 
-  constructor() { }
+  isLoggedIn$!: Observable<boolean>;
 
-  ngOnInit(): void {
+  constructor(public auth: AuthenticationService) { }
+
+  ngOnInit(){
+    this.isLoggedIn$ = this.auth.isLoggedIn;
   }
 
 }
