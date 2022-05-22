@@ -7,6 +7,7 @@ import { Product } from '../dto/product';
 import { Sale } from '../dto/sale';
 import { Router } from '@angular/router';
 import { CheckoutService } from '../services/checkout.service';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class ProductsComponent implements OnInit {
   public sale!: Sale;
 
   public item!: Product;
+  public selectedQuantity!:string;
 
   constructor(private productService: ProductService, private salesService: SaleService, private router: Router, private checkoutService: CheckoutService) { }
 
@@ -37,8 +39,10 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
   }
 
-  addToCart(product: Product) {
+  addToCart(product: Product, selectedQuantity:string) {
+    product.productQuantity = parseInt(selectedQuantity);
     this.checkoutService.addToCart(product)
+
   }
 
 

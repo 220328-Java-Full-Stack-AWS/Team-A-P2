@@ -48,13 +48,13 @@
     </div>
     <div class="productFooter">
       <div class="cart-card-1">
-        <span class="price">${{ product.productPrice.toFixed(2) }}</span>
+        <span class="price">${{product.productPrice.toFixed(2)}}</span>
         <span class="quantity">Quantity in stock:{{ product.productQuantity }}</span>
       </div>
 
       <div class="cart-card-2">
-        <input type="number" min="1" max={{[product.productQuantity]}} name="amount" id="amount">
-        <button (click)="addToCart(product)">
+        <input type="number" min="1" max={{product.productQuantity}} name="amount" id="amount" #selectedQuanity>
+        <button (click)="addToCart(product, selectedQuanity.value)">
           <fa-icon [icon]="faCartPlus"></fa-icon>
         </button>
       </div>

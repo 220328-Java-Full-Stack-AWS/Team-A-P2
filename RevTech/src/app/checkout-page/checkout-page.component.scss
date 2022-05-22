@@ -1,33 +1,45 @@
 #table {
-    border-collapse: collapse;
-    width: 90%;
-  }
+  border-collapse: collapse;
+  width: 90%;
+}
 
-  #table td, #table th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
+#table td,
+#table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
 
-  #table td{
-    font-size: 1rem;
-  }
+#table td {
+  font-size: 1rem;
+}
 
-  #table tr:nth-child(even){background: #f2f2f2;}
+#table tr:nth-child(even) {
+  background: #f2f2f2;
+}
 
-  #table tr:hover {background: #ddd;}
+#table tr:hover {
+  background: #ddd;
+}
 
-  #table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #3a3c58;
-    color: white;
-    font-size: .9rem;
-  }
+#table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #3a3c58;
+  color: white;
+  font-size: .9rem;
+}
 
-  .container{
-      margin-top: 20px;
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: center;
-  }
+.container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+#productImage {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  justify-content: center;
+}
