@@ -1,0 +1,75 @@
+<!-- <div class="container">
+    <table class="cart-header">
+        <thead>
+            <tr>
+                
+                <th>Item Id</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Description</th> -->
+                <!-- <th>Quanity</th> -->
+                <!-- <th>Image</th>
+                <th>Category</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *Ngfor="let product of products">
+                <td>{{product.productName}}</td> -->
+                <!-- <td>{{product.price}}</td> -->
+                <!-- <td>{{product.quantity}}</td> -->
+                <!-- <td>{{product.image}}</td> -->
+                <!-- <td></td>
+                <td></td>
+                <td></td> -->
+                <!--Use a garbage pale icon below-->
+                <!-- <td></td> -->
+            <!-- </tr>
+        </tbody>
+    </table>
+</div> -->
+
+<table id="table">
+    <tr>
+      
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Category</th>
+      <th>Status</th>
+      <th>Image</th>
+      <th>Option</th>
+    </tr>
+    <tr *ngFor="let product of products">
+      <!-- <td>
+        <p>{{ product?.productId }}</p>
+      </td> -->
+      <td id="productName">
+        <p>{{ product?.productName }}</p>
+      </td>
+      <!-- <td id="productDescription">
+        <span>{{ product?.productDescription }}</span>
+      </td>
+      <td id="productPrice">
+        <span>${{ product?.productPrice?.toFixed(2) }}</span>
+      </td>
+      <td id="productQuantity">
+        <p>{{ product?.productQuantity }}</p>
+      </td>
+      <td id="productCategory">
+        <p>{{ product?.productCategory }}</p>
+      </td>
+      <td id="productStatus">
+        <p>{{ product?.productStatus | uppercase }}</p>
+      </td>
+      <td id="productImage">
+        <img src="{{ product?.productImage }}" alt="{{ product.productName}}">
+      </td>
+      <td id="productOption">
+        <button id="EditProduct" (click)="onOpenModal(product, 'edit')">Edit</button>
+        <button id="DeleteProduct" (click)="onOpenModal(product, 'delete')">Delete</button>
+      </td> -->
+    </tr>
+  </table>

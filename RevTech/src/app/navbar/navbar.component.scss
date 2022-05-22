@@ -8,25 +8,28 @@
   background-color: #2b2d42;
   padding: 1rem 2rem;
 
-  h2{
+  h2 {
     font-size: 2rem;
     color: white;
     font-family: 'Lobster', cursive;
     text-decoration: none;
+    cursor: pointer;
   }
 
-  .card{
+  .card {
     width: 20%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    #darkModeBtn{
+
+    #darkModeBtn {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
-      #dark{
+
+      #dark {
         cursor: pointer;
         border: none;
         padding: .3rem .5rem;
@@ -36,7 +39,8 @@
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
       }
-      #light{
+
+      #light {
         cursor: pointer;
         border: none;
         padding: .3rem .5rem;
@@ -48,24 +52,27 @@
       }
     }
   }
-  button{
+
+  button {
     border: none;
     font-size: 1.2rem;
     color: white;
     background: none;
     cursor: pointer;
     transition: all .3s ease-in-out;
-    &:hover{
+
+    &:hover {
       color: lightgreen;
     }
   }
 
   // number on the cart
-  #counter{
+  #counter {
     font-size: 2rem;
     font-weight: 700;
   }
 }
+
 // navbar ends
 
 .user-menu {
@@ -76,15 +83,18 @@
   color: white;
   background-color: #2b2d42;
   border-bottom-right-radius: 8px;
-  ul{
+
+  ul {
     list-style: none;
     width: 100%;
-    .menu-content{
-      li{
-        a{
+
+    .menu-content {
+      li {
+        a {
           text-decoration: none;
           color: white;
         }
+
         cursor: pointer;
         font-size: 1rem;
         font-weight: bold;
@@ -92,29 +102,33 @@
         padding: .2rem 0;
         width: 100%;
         text-align: center;
-        &:hover{
-          background:#242536;
+
+        &:hover {
+          background: #242536;
           color: lightblue;
         }
       }
     }
   }
 }
+
 @media screen and (max-width: 754px) {
   .user-menu {
     width: 25%;
   }
-  .navbar{
-    button{
+
+  .navbar {
+    button {
       font-size: .9rem;
     }
-    a{
+
+    a {
       font-size: 1.5rem;
     }
   }
 }
 
-.cart{
+.cart {
   position: absolute;
   right: -100%;
   height: 100vh;
@@ -122,37 +136,42 @@
   background-color: white;
   border-left: 2px solif lightslategrey;
   transition: all .7s ease;
-  .close-card{
+
+  .close-card {
     width: 100%;
     display: flex;
     justify-content: flex-start;
-    button{
+
+    button {
       border: none;
       background: none;
       font-size: 1.5rem;
       color: #2b2d42;
       cursor: pointer;
-      &:hover{
+
+      &:hover {
         color: #242536;
       }
     }
   }
 
-  .cart-container{
+  .cart-container {
     padding: 0 1rem;
-    h2{
-      font-size:2rem;
+
+    h2 {
+      font-size: 2rem;
       text-decoration: underline;
       color: #2b2d42;
     }
   }
 
 
-  .cart-confirm{
+  .cart-confirm {
     width: 100%;
     display: flex;
-    justify-content:center;
-    button{
+    justify-content: center;
+
+    button {
       border: none;
       background: #3a3c58;
       font-size: 1.5rem;
@@ -161,18 +180,19 @@
       padding: .1rem 0;
       border-radius: 5px;
       cursor: pointer;
-      &:hover{
+
+      &:hover {
         background: #2b2d42;
       }
-  }
+    }
   }
 }
 
-.magic{
+.magic {
   display: block;
 }
 
-.cartMagic{
+.cartMagic {
   transition: all .5s ease-in-out;
   right: 0;
 }

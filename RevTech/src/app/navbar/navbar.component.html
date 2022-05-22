@@ -1,21 +1,27 @@
 <!-- top navbar start -->
 <div class="navbar">
-  <div class="card" *ngIf="isLoggedIn$ | async">
+  <!-- *ngIf="isLoggedIn$ | async" -->
+  <div class="card">
     <button (click)="userMenuDropdown()">
       <fa-icon id="icon" [icon]="faUserAstronaut" size="lg"></fa-icon>
       <span id="username">{{username}}</span>
     </button>
   </div>
-  <h2>RevTech</h2>
-  <div class="card" *ngIf="isLoggedIn$ | async">
+  <h2 routerLink="/shop" routerLinkActive="active">RevTech</h2>
+  <!-- *ngIf="isLoggedIn$ | async" -->
+  <div class="card">
     <div id="darkModeBtn">
       <button id="dark" (click)="DarkTheme()">Dark <fa-icon [icon]="faMoon"></fa-icon></button>
-      <button id="light" (click)="LightTheme()"><fa-icon [icon]="faSun" [pulse]="true"></fa-icon> Light</button>
+      <button id="light" (click)="LightTheme()">
+        <fa-icon [icon]="faSun" [pulse]="true"></fa-icon> Light
+      </button>
     </div>
-    <button (click)="viewCart()">
+    <!-- (click)="viewCart()" -->
+    <!--The button below routes to the checkout page when the cart is clicked-->
+    <button routerLink="/checkout" routerLinkActive="active">
       <fa-layers [fixedWidth]="true">
         <fa-icon [icon]="faShoppingCart" size="lg"></fa-icon>
-        <fa-layers-counter id="counter" content="0"></fa-layers-counter>
+        <fa-layers-counter id="counter" content={{cartLength}}></fa-layers-counter>
       </fa-layers>
     </button>
   </div>
@@ -23,7 +29,8 @@
 <!-- top navbar end -->
 
 <!-- usermenu start -->
-<div class="user-menu" *ngIf="isLoggedIn$ | async">
+<!-- *ngIf="isLoggedIn$ | async" -->
+<div class="user-menu">
   <ul>
     <div class="menu-content">
       <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
@@ -37,9 +44,10 @@
 <!--View Cart Start-->
 <div class="cart">
   <div class="close-card">
-  <button (click)="viewCart()" id="closeBtn">
-    <fa-icon [icon]="faWindowClose"></fa-icon>
-  </button>
+
+    <button (click)="viewCart()" id="closeBtn">
+      <fa-icon [icon]="faWindowClose"></fa-icon>
+    </button>
   </div>
   <div class="cart-container">
     <h2>Cart</h2>
@@ -55,4 +63,3 @@
   </div>
 </div>
 <!--View Cart end-->
-
