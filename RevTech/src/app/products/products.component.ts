@@ -21,6 +21,7 @@ export class ProductsComponent implements OnInit {
   public count: number = 0;
 
   public products!: Product[];
+
   str: number = 0;
   public sale!: Sale;
   public order: Order = {
@@ -143,11 +144,11 @@ export class ProductsComponent implements OnInit {
         this.salesService.addSale(sale).subscribe((data: Sale) => {
 
           sale = data;
-          this.order = this.salesService.invokeOrderFunction(this.order, sale);
+          this.order = this.salesService.invokeOrderFunction(this.order, sale, "add");
         });
       });
 
-
+      this.salesService.orderTotal += sale.cost;
       //alert("Stuff got added successfully");
       localStorage.setItem("product", JSON.stringify(product));
     } else if (sale.product.productQuantity <= 0) {

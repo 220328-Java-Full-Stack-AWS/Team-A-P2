@@ -73,6 +73,9 @@ public class OrderService {
 
 
     public Order checkOut(User user, Order order){
+        if(order.getSaleList()==null || order.getSaleList().isEmpty()){
+            throw new EmptyCartException("There's nothing to checkout! This cart is empty");
+        }
         if(user.getUserId()==null|| user.getUserId()==0) {
             //uServ.save(user);
             throw new RuntimeException("Only Registered users can purchase items!");

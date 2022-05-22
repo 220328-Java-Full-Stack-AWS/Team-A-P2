@@ -16,12 +16,12 @@ export class SaleService {
   private apiServiceUrl = environment.apiBaseUrl;
 
   orderFunction: Function = this.addToOrder; //() => { console.log("This function is empty!") };
-
+  orderRemoveFunction: Function = this.removeFromOrder;
   public orders!: Order[];
   public sales!: Sale[];
   public currentSales!: Sale[];
   public saleToAdd!: Sale;
-
+  public orderTotal!: number;
 
   order: Order = {
     orderId: null,
@@ -71,11 +71,16 @@ export class SaleService {
     this.orderFunction = _function;
   }
 
-  invokeOrderFunction(order: any, sale: any): Order {
-    order = this.orderFunction(order, sale);
+  invokeOrderFunction(order: any, sale: any, mode: string): Order {
+    if (mode == "add") {
+      order = this.orderFunction(order, sale);
+    } else if (mode == "remove") {
+      order = this.orderRemoveFunction(order, sale);
+    }
     return order
 
   }
+
 
   getOrderFunction() {
     return this.orderFunction;
@@ -110,6 +115,14 @@ export class SaleService {
       console.log("Add to Order Finished");
     });
     return this.currentOrder
+  }
+  public removeFromOrder(order: Order, sale: Sale) {
+    let holder = new Holder(order, sale, this.user);
+    this.orderService.removeSaleFromOrder(holder).subscribe((data: any) => {
+      this.currentOrder = data;
+      this.currentSales = data.saleList;
+    });
+
   }
 
   setCurrentOrder(order: Order) {

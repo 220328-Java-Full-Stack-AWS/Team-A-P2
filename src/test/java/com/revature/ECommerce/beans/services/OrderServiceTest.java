@@ -120,7 +120,7 @@ public class OrderServiceTest {
 
     @Test
     public void checkoutPassesWhenOrderIsAddedToUsersListOfOrders(){
-        User user = new User();
+        User user = new User("shady","shady@mail.com","123", "Terrell", "Crawford", "5553427788");
         List<Order>temp= new ArrayList<>();
         List<Order>temp2=new ArrayList<>();
         user.setListOfOrders(temp2);
@@ -133,11 +133,17 @@ public class OrderServiceTest {
         Product p2 = new Product("XBOX Series X", 600.00, 100, "It's an XBOX", "ImgUrl", "In Stock", "Video Games");
         Sale sale = new Sale(3,timestamp,p2);
         Sale s2 = new Sale(50, timestamp2, p1);
+        p1.setProductId(1);
+        p2.setProductId(2);
         s2.setSaleId(1);
         sale.setSaleId(2);
+        saleList1.add(s2);
+        saleList1.add(sale);
         order.setOrderId(1);
         order2.setOrderId(2);
         user.setUserId(1);
+        order.setSaleList(saleList1);
+        order2.setSaleList(saleList1);
         temp.add(order);
         when(mockUserService.update(user)).thenReturn(null);
         when(mockOrderRepo.save(order)).thenReturn(null);

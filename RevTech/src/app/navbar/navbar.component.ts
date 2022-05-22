@@ -19,15 +19,17 @@ import { Sale } from '../dto/sale';
 export class NavbarComponent implements OnInit {
 
   order!: Order;
-  sale!: Sale;
+  sale1!: Sale;
   user!: User;
-
+  public sales!: Sale[];
   isLoggedIn$: Observable<boolean> | undefined;
+  orderTotal: number = this.saleService.orderTotal;
 
   constructor(private router: Router, private auth: AuthenticationService, private productService: ProductService, private saleService: SaleService, private userService: UserService, private orderService: OrderService) { }
 
   ngOnInit() {
     this.isLoggedIn$ = this.auth.isLoggedIn;
+    this.sales = this.saleService.currentSales;
   }
 
   public page = this.router.url;
@@ -68,7 +70,7 @@ export class NavbarComponent implements OnInit {
     let daUser: User;
     this.userService.getUserByUsername(this.username).subscribe((data: User) => {
       daUser = data;
-      let holder = new Holder(this.order, this.sale, daUser);
+      let holder = new Holder(this.order, this.sale1, daUser);
       this.orderService.persistOrder(holder).subscribe((data: Order) => {
         let order1: Order = {
           orderId: null,
@@ -81,6 +83,10 @@ export class NavbarComponent implements OnInit {
 
 
 
+
+  }
+
+  public remove(sale: Sale) {
 
   }
 }
