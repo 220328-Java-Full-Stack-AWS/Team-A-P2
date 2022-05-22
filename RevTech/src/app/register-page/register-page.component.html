@@ -38,7 +38,7 @@
       </div>
       <div class="input-container">
         <label for="confirmPassword">Confirm Password</label>
-        <input ngModel [type]="show2 ? 'text' : 'password'" name="confirmPassword" id="confirmPassword" required placeholder="Confirm Password..." pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,24}$"/>
+        <input ngModel [type]="show2 ? 'text' : 'password'" name="confirmPassword" id="confirmPassword" required placeholder="Confirm Password..." pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])[a-zA-Z0-9!@#$%^&*-]{8,24}$"/>
         <span (click)="confirmPassword()"><fa-icon [icon]="faFaceRollingEyes" id="icon"></fa-icon>{{show2 ? 'Hide Password' : 'Show Password' }}</span>
       </div>
     </div>
