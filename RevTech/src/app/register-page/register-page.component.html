@@ -4,41 +4,41 @@
     <div class="input-row">
       <div class="input-container">
         <label for="firstName">First Name</label>
-        <input ngModel type="text" name="firstName" id="firstName" required placeholder="First Name...">
+        <input ngModel type="text" name="firstName" id="firstName" required placeholder="First Name..." pattern="^[a-zA-Z]{1,12}$" />
       </div>
       <div class="input-container">
         <label for="lastName">Last Name</label>
-        <input ngModel type="text" name="lastName" id="lastName" required placeholder="Last Name...">
+        <input ngModel type="text" name="lastName" id="lastName" required placeholder="Last Name..." pattern="^[a-zA-Z]{1,12}$" />
       </div>
     </div>
     <div class="input-row">
       <div class="input-container">
         <label for="username">Username</label>
-        <input ngModel type="text" name="username" placeholder="Username..." id="username" required />
+        <input ngModel type="text" name="username" id="username" required placeholder="Username..." pattern="^[a-zA-Z0-9]{3,12}$" />
         <span style ="text-decoration: none; cursor: auto;" id="usernametaken">This username is already taken</span>
       </div>
       <div class="input-container">
         <label for="phone">Phone</label>
-        <input ngModel type="phone" name="phone" id="phone" required placeholder="Phone...">
+        <input ngModel type="tel" name="phone" id="phone" required placeholder="###-###-####" pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$" />
         <span style ="text-decoration: none; cursor: auto;" id="phoneused">This phone number is already being used</span>
       </div>
     </div>
     <div class="input-row-email">
       <div class="input-container">
         <label for="Email">Email</label>
-        <input ngModel type="email" name="email" id="email" required placeholder="Email...">
+        <input ngModel type="email" name="email" id="email" required placeholder="RevTech@revature.com" pattern="^[a-zA-Z0-9!$]{3,12}@[a-zA-Z0-9]{3,12}.[a-z]{2,3}$" />
         <span id="emailused">This email is already being used</span>
       </div>
     </div>
     <div class="input-row">
       <div class="input-container">
         <label for="password">Password</label>
-        <input ngModel [type]="show ? 'text' : 'password'" name="password" placeholder="Password..." id="password" required />
+        <input ngModel [type]="show ? 'text' : 'password'" name="password" id="password" required placeholder="Password..." pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])[a-zA-Z0-9!@#$%^&*-]{8,24}$"/>
         <span (click)="password()"><fa-icon [icon]="faFaceRollingEyes" id="icon"></fa-icon>{{show ? 'Hide Password' : 'Show Password' }}</span>
       </div>
       <div class="input-container">
         <label for="confirmPassword">Confirm Password</label>
-        <input ngModel [type]="show2 ? 'text' : 'password'" name="confirmPassword" placeholder="Confirm Password..." id="confirmPassword" required />
+        <input ngModel [type]="show2 ? 'text' : 'password'" name="confirmPassword" id="confirmPassword" required placeholder="Confirm Password..." pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,24}$"/>
         <span (click)="confirmPassword()"><fa-icon [icon]="faFaceRollingEyes" id="icon"></fa-icon>{{show2 ? 'Hide Password' : 'Show Password' }}</span>
       </div>
     </div>
