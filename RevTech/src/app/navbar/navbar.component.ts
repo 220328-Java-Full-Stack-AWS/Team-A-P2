@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   isLoggedIn$!: Observable<boolean>;
 
   public cartLength!: number;
-  constructor(private router: Router, private auth: AuthenticationService, private productService: ProductService, private checkoutService: CheckoutService) { }
+  constructor(private router: Router, public auth: AuthenticationService, private productService: ProductService, private checkoutService: CheckoutService) { }
 
   ngOnInit() {
     this.isLoggedIn$ = this.auth.isLoggedIn;
