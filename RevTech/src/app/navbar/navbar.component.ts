@@ -12,19 +12,17 @@ import { ProductService } from '../services/product.service';
 })
 export class NavbarComponent implements OnInit {
 
-  isLoggedIn$: Observable<boolean> | undefined;
+  isLoggedIn$!: Observable<boolean>;
 
-  constructor(private router: Router,private auth: AuthenticationService, private productService: ProductService) {}
+  constructor(public auth: AuthenticationService, public productService: ProductService) {}
 
   ngOnInit(){
     this.isLoggedIn$ = this.auth.isLoggedIn;
   }
 
-  public page = this.router.url;
+  public username = this.auth.username;
 
-  public username = sessionStorage.getItem('username');
-
-  public logOut(){
+  public onLogOut(){
     this.auth.logout();
   }
 

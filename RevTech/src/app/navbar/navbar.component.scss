@@ -16,6 +16,11 @@
     color: white;
     font-family: 'Lobster', cursive;
     text-decoration: none;
+    cursor: pointer;
+    transition: .9s all ease-in-out;
+    &:hover{
+      color: lightgreen;
+    }
   }
 
   .card{

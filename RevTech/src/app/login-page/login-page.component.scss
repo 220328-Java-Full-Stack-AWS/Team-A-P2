@@ -81,9 +81,12 @@
       }
     }
   }
-  #invalid {
+  .invalid {
     display: none;
     color: red;
+  }
+  .show{
+    display: inline-block;
   }
 }
 @media screen and (max-width: 800px) {

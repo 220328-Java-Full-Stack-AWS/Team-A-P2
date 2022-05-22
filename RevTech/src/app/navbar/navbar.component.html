@@ -1,13 +1,13 @@
 <!-- top navbar start -->
 <div class="navbar">
-  <div class="card">
+  <div class="card" *ngIf="isLoggedIn$ | async as isLoggedIn">
     <button (click)="userMenuDropdown()">
       <fa-icon id="icon" [icon]="faUserAstronaut"></fa-icon>
-      <span id="username">{{username}}</span>
+      <span id="username">{{ auth.username.value }}</span>
     </button>
   </div>
-  <h2>RevTech</h2>
-  <div class="card">
+  <h2 routerLink="/shop" routerLinkActive="active">RevTech</h2>
+  <div class="card" *ngIf="isLoggedIn$ | async as isLoggedIn">
     <div id="darkModeBtn">
       <button id="dark" (click)="DarkTheme()">Dark <fa-icon [icon]="faMoon"></fa-icon></button>
       <button id="light" (click)="LightTheme()"><fa-icon [icon]="faSun" [pulse]="true"></fa-icon> Light</button>
@@ -23,13 +23,13 @@
 <!-- top navbar end -->
 
 <!-- usermenu start -->
-<div class="user-menu">
+<div class="user-menu" *ngIf="isLoggedIn$ | async as isLoggedIn">
   <ul>
     <div class="menu-content">
-      <li *ngIf="username === 'Admin'"><a routerLink="/admin" routerLinkActive="active">Admin</a></li>
+      <li *ngIf="auth.username.value === 'Admin'"><a routerLink="/admin" routerLinkActive="active">Admin</a></li>
       <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
       <li><a routerLink="/orders" routerLinkActive="active">Orders</a></li>
-      <li (click)="logOut()">Log Out</li>
+      <li (click)="onLogOut()">Log Out</li>
     </div>
   </ul>
 </div>
