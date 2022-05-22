@@ -28,5 +28,4 @@ export class CheckoutPageComponent implements OnInit {
     this.checkoutService.emptyCart();
   }
 
-
 }

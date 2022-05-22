@@ -20,10 +20,9 @@ export class CheckoutService {
     this.cartItemList.push(product);
     this.productList.next(this.cartItemList);
 
-    console.log(this.cartItemList)
+    //The below cLog is only needed for testing.
+    // console.log(this.cartItemList)
   }
-
-  
 
   removeCartItem(product: any) {
     this.cartItemList.map((a: any, index: any) => {
@@ -39,6 +38,5 @@ export class CheckoutService {
     this.cartItemList = [];
     this.productList.next(this.cartItemList);
   }
-
 
 }

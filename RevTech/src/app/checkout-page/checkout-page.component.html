@@ -5,6 +5,7 @@
             <th>Name</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Cost</th>
             <!-- <th>Category</th> -->
             <th>Image</th>
             <th>Action</th>
@@ -25,6 +26,10 @@
             <!-- <td id="productCategory">
         <p>{{ product?.productCategory }}</p>
       </td> -->
+            <td id="cost">
+                <!--TODO:Test line 31-->
+                <span>${{ (product.productPrice * product.productQuantity).toFixed(2) }}</span>
+            </td>
 
             <td>
                 <img id="productImage" src="{{ product?.productImage }}" alt="{{ product.productName}}">
