@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Order } from '../dto/order';
 import { User } from '../dto/user';
 import { AuthenticationService } from '../services/authentication.service';
+import { CheckoutService } from '../services/checkout.service';
 import { ProductService } from '../services/product.service';
 import { SaleService } from '../services/sale.service';
 import { UserService } from '../services/user.service';
@@ -26,18 +27,21 @@ export class NavbarComponent implements OnInit {
   isLoggedIn$: Observable<boolean> | undefined;
   orderTotal: number = this.saleService.orderTotal;
 
-
-  constructor(private router: Router, private auth: AuthenticationService, private productService: ProductService, private saleService: SaleService, private userService: UserService, private orderService: OrderService) { }
+  public cartLength!: number;
+  constructor(private router: Router, public auth: AuthenticationService, private productService: ProductService, private saleService: SaleService, private userService: UserService, private orderService: OrderService) { }
 
   ngOnInit() {
     this.isLoggedIn$ = this.auth.isLoggedIn;
     this.sales = this.saleService.currentSales;
+
+    this.checkoutService.getProducts().subscribe(res => {
+      this.cartLength = res.length
+    })
   }
 
-  public page = this.router.url;
+  public username = this.auth.username;
 
-  public username = sessionStorage.getItem('username');
-
+  // public username = "Leonel"
 
   public logOut() {
     this.auth.logout();

@@ -7,6 +7,9 @@ import { Product } from '../dto/product';
 import { Sale } from '../dto/sale';
 import { Router } from '@angular/router';
 import { Order } from '../dto/order';
+import { CheckoutService } from '../services/checkout.service';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-products',
@@ -30,13 +33,18 @@ export class ProductsComponent implements OnInit {
     orderId: null,
     saleList: []
   };
-  constructor(private productService: ProductService, private salesService: SaleService, private router: Router) { }
+  public productList!: Product[];
+  public item!: Product;
+  public selectedQuantity!: string;
+
+  constructor(private productService: ProductService, private salesService: SaleService, private router: Router, private checkoutService: CheckoutService) { }
 
   ngOnInit(): void {
     if (sessionStorage.getItem("username") == null) {
       this.router.navigateByUrl('/login');
     }
     this.getProducts();
+
   }
 
   quantityUpdate(value: any) {
@@ -119,6 +127,13 @@ export class ProductsComponent implements OnInit {
     sortList?.classList.toggle('show');
     categoryList?.classList.remove('show');
   }
+
+  /*
+  public addToCart(product: Product, selectedQuantity: string) {
+    product.productQuantity = parseInt(selectedQuantity);
+    this.checkoutService.addToCart(product);
+  }
+  */
 
   public addToCart(product: Product): void {
 

@@ -1,23 +1,25 @@
 <!-- top navbar start -->
 <div class="navbar">
-  <div class="card">
+  <div class="card" *ngIf="isLoggedIn$ | async as isLoggedIn">
     <button (click)="userMenuDropdown()">
       <fa-icon id="icon" [icon]="faUserAstronaut"></fa-icon>
-      <span id="username">{{username}}</span>
+      <span id="username">{{ auth.username.value }}</span>
     </button>
   </div>
-  <h2>RevTech</h2>
-  <div class="card">
+  <h2 routerLink="/shop" routerLinkActive="active">RevTech</h2>
+  <div class="card" *ngIf="isLoggedIn$ | async as isLoggedIn">
     <div id="darkModeBtn">
       <button id="dark" (click)="DarkTheme()">Dark <fa-icon [icon]="faMoon"></fa-icon></button>
       <button id="light" (click)="LightTheme()">
         <fa-icon [icon]="faSun" [pulse]="true"></fa-icon> Light
       </button>
     </div>
-    <button (click)="viewCart()">
+    <!-- (click)="viewCart()" -->
+    <!--The button below routes to the checkout page when the cart is clicked-->
+    <button routerLink="/checkout" routerLinkActive="active">
       <fa-layers [fixedWidth]="true">
         <fa-icon [icon]="faShoppingCart" size="lg"></fa-icon>
-        <fa-layers-counter id="counter" content="0"></fa-layers-counter>
+        <fa-layers-counter id="counter" content={{cartLength}}></fa-layers-counter>
       </fa-layers>
     </button>
   </div>
@@ -25,10 +27,11 @@
 <!-- top navbar end -->
 
 <!-- usermenu start -->
-<div class="user-menu">
+<div class="user-menu" *ngIf="isLoggedIn$ | async as isLoggedIn">
   <ul>
     <div class="menu-content">
-      <li *ngIf="username === 'Admin'"><a routerLink="/admin" routerLinkActive="active">Admin</a></li>
+      <li *ngIf="auth.username.value === 'Admin'"><a routerLink="/admin" routerLinkActive="active">Admin</a></li>
+      <li><a routerLink="/shop" routerLinkActive="active">Shop</a></li>
       <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
       <li><a routerLink="/orders" routerLinkActive="active">Orders</a></li>
       <li (click)="logOut()">Log Out</li>
