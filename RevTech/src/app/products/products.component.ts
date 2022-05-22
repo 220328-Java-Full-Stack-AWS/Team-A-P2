@@ -125,12 +125,16 @@ export class ProductsComponent implements OnInit {
       if (sale.product.productQuantity == 0) {
         sale.product.productStatus = "out of stock";
       }
-
       product = sale.product;
-      this.productService.updateproduct(product).subscribe((data: Product) => { product = data });
+      this.productService.updateproduct(product).subscribe((data: Product) => {
+        product = data;
+        this.salesService.addSale(sale).subscribe((data: Sale) => {
+          sale = data;
+          this.order = this.salesService.invokeOrderFunction(this.order, sale);
+        });
+      });
 
-      this.salesService.addSale(sale).subscribe((data: Sale) => { sale = data; });
-      this.order = this.salesService.invokeOrderFunction(this.order, sale);
+
       //alert("Stuff got added successfully");
       localStorage.setItem("product", JSON.stringify(product));
     } else if (sale.product.productQuantity <= 0) {

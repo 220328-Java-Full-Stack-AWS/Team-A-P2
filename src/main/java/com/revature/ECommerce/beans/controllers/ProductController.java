@@ -61,6 +61,7 @@ public class ProductController {
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.OK)
     public Product updateProduct(@RequestBody Product product) {
+        System.out.println(product);
         return productService.updateProduct(product);
     }
 
