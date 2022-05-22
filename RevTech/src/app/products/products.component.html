@@ -24,7 +24,7 @@
     </ul>
     <ul>
       <li><button id="sortBtn" (click)="sortDropdown()">Sort <fa-icon [icon]="faChevronDown" id="s-icon"></fa-icon>
-          </button></li>
+        </button></li>
       <div class="sort-list" id="sort">
         <li><button id="dropdownBtn" (click)="sort('price','asc')">Price Low - High</button></li>
         <li><button id="dropdownBtn" (click)="sort('price','desc')">Price High - Low</button></li>
@@ -53,7 +53,8 @@
       </div>
 
       <div class="cart-card-2">
-        <input type="number" name="amount" id="amount" [(ngModel)]="str">
+        <input type="number" min="1" max="{{product.productQuantity}}" name="amount" id="amount" #amount
+          (change)="quantityUpdate(amount.value)">
         <button (click)="addToCart(product)">
           <fa-icon [icon]="faCartPlus"></fa-icon>
         </button>

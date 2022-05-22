@@ -10,6 +10,7 @@ import { SaleService } from '../services/sale.service';
 import { UserService } from '../services/user.service';
 import { OrderService, Holder } from '../services/order.service';
 import { Sale } from '../dto/sale';
+import { Product } from '../dto/product';
 
 @Component({
   selector: 'app-navbar',
@@ -18,12 +19,13 @@ import { Sale } from '../dto/sale';
 })
 export class NavbarComponent implements OnInit {
 
-  order!: Order;
+  order: Order = this.saleService.getCurrentOrder();
   sale1!: Sale;
   user!: User;
   public sales!: Sale[];
   isLoggedIn$: Observable<boolean> | undefined;
   orderTotal: number = this.saleService.orderTotal;
+
 
   constructor(private router: Router, private auth: AuthenticationService, private productService: ProductService, private saleService: SaleService, private userService: UserService, private orderService: OrderService) { }
 
@@ -67,6 +69,7 @@ export class NavbarComponent implements OnInit {
   }
 
   public checkout() {
+    //let order2 = JSON.parse(sessionStorage.getItem('key'));
     let daUser: User;
     this.userService.getUserByUsername(this.username).subscribe((data: User) => {
       daUser = data;
@@ -77,6 +80,7 @@ export class NavbarComponent implements OnInit {
           saleList: []
         };
         this.saleService.setCurrentOrder(order1)
+        this.saleService.setCount(0);
       });
     })
     this.order = this.saleService.getCurrentOrder();
@@ -87,6 +91,14 @@ export class NavbarComponent implements OnInit {
   }
 
   public remove(sale: Sale) {
+    sale.product.productQuantity += sale.quantity;
+    if (sale.product.productStatus == "out of stock") {
+      sale.product.productStatus = "available";
+    }
+    this.productService.updateproduct(sale.product).subscribe((data: Product) => {
+      this.order = this.saleService.invokeOrderFunction(this.order, sale, "remove");
+    })
+
 
   }
 }

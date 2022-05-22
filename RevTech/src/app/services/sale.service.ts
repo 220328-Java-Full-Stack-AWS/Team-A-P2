@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Product } from '../dto/product';
 import { Sale } from '../dto/sale';
 import { Order } from '../dto/order';
@@ -22,6 +22,7 @@ export class SaleService {
   public currentSales!: Sale[];
   public saleToAdd!: Sale;
   public orderTotal!: number;
+  public count!: number;
 
   order: Order = {
     orderId: null,
@@ -66,7 +67,7 @@ export class SaleService {
       cvc: 0
     },
   };
-  currentOrder: Order = this.order;
+  currentOrder!: Order;
   setOrderFunction(_function: Function) {
     this.orderFunction = _function;
   }
@@ -111,6 +112,7 @@ export class SaleService {
     let holder = new Holder(order, sale, this.user);
     this.orderService.addSaleToOrder(holder).subscribe((data: Order) => {
       this.currentOrder = data;
+
       this.currentSales = data.saleList;
       console.log("Add to Order Finished");
     });
@@ -118,7 +120,7 @@ export class SaleService {
   }
   public removeFromOrder(order: Order, sale: Sale) {
     let holder = new Holder(order, sale, this.user);
-    this.orderService.removeSaleFromOrder(holder).subscribe((data: any) => {
+    this.orderService.removeSaleFromOrder(holder).subscribe((data: Order) => {
       this.currentOrder = data;
       this.currentSales = data.saleList;
     });
@@ -131,5 +133,12 @@ export class SaleService {
 
   getCurrentOrder() {
     return this.currentOrder
+  }
+
+  setCount(count: number) {
+    this.count = count;
+  }
+  getCount() {
+    return this.count;
   }
 }

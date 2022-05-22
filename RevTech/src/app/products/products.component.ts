@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { faCartPlus, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { ProductService } from '../services/product.service';
 import { SaleService } from '../services/sale.service';
@@ -22,6 +22,8 @@ export class ProductsComponent implements OnInit {
 
   public products!: Product[];
 
+
+
   str: number = 0;
   public sale!: Sale;
   public order: Order = {
@@ -35,6 +37,10 @@ export class ProductsComponent implements OnInit {
       this.router.navigateByUrl('/login');
     }
     this.getProducts();
+  }
+
+  quantityUpdate(value: any) {
+    this.str = value;
   }
 
   public getProducts(): void {
@@ -115,6 +121,7 @@ export class ProductsComponent implements OnInit {
   }
 
   public addToCart(product: Product): void {
+
     if (product.productQuantity <= 0) {
       alert("This product is currently out of stock");
     }
@@ -145,11 +152,14 @@ export class ProductsComponent implements OnInit {
 
           sale = data;
           this.order = this.salesService.invokeOrderFunction(this.order, sale, "add");
+          this.salesService.setCurrentOrder(this.order);
         });
       });
 
       this.salesService.orderTotal += sale.cost;
-      //alert("Stuff got added successfully");
+      alert("Item successfully added to cart");
+
+
       localStorage.setItem("product", JSON.stringify(product));
     } else if (sale.product.productQuantity <= 0) {
       alert("Sorry, we don't have that much of this product in stock!");
