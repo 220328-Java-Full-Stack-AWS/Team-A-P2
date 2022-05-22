@@ -51,10 +51,9 @@ public class OrderController {
     public Order persistOrder(@RequestBody HolderClass holder){
         User user= holder.getUser();
         Order order = holder.getOrder();
-        List<Order>temp= user.getListOfOrders();
+
         order=(oServ.checkOut(holder.getUser(), holder.getOrder()));
-        //temp.add(order);
-         //user.setListOfOrders(temp);
+
         return order;
     }
 

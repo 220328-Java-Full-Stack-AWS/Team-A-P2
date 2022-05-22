@@ -10,7 +10,9 @@
   <div class="card">
     <div id="darkModeBtn">
       <button id="dark" (click)="DarkTheme()">Dark <fa-icon [icon]="faMoon"></fa-icon></button>
-      <button id="light" (click)="LightTheme()"><fa-icon [icon]="faSun" [pulse]="true"></fa-icon> Light</button>
+      <button id="light" (click)="LightTheme()">
+        <fa-icon [icon]="faSun" [pulse]="true"></fa-icon> Light
+      </button>
     </div>
     <button (click)="viewCart()">
       <fa-layers [fixedWidth]="true">
@@ -38,9 +40,9 @@
 <!--View Cart Start-->
 <div class="cart">
   <div class="close-card">
-  <button (click)="viewCart()" id="closeBtn">
-    <fa-icon [icon]="faWindowClose"></fa-icon>
-  </button>
+    <button (click)="viewCart()" id="closeBtn">
+      <fa-icon [icon]="faWindowClose"></fa-icon>
+    </button>
   </div>
   <div class="cart-container">
     <h2>Cart</h2>
@@ -52,8 +54,7 @@
     </div>
   </div>
   <div class="cart-confirm">
-    <button>Check out</button>
+    <button (click)="checkout()">Check out</button>
   </div>
 </div>
 <!--View Cart end-->
-

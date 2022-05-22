@@ -44,7 +44,10 @@ export class OrderService {
 
 
   public persistOrder(holder: any) {
-    return this.http.post<Order>('http://localhost:8080/orders', JSON.stringify(holder));
+    return this.http.post<Order>('http://localhost:8080/orders', JSON.stringify(holder), {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+    });
   }
 
   public addSaleToOrder(holder: any) {

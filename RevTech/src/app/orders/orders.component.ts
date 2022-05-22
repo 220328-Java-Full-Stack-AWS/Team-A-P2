@@ -26,7 +26,6 @@ export class OrdersComponent implements OnInit {
     saleId: 0,
     quantity: 0,
     dateOfPurchase: null,
-    productDescription: "",
     cost: 0,
     product: {
       productId: 0,
@@ -68,7 +67,7 @@ export class OrdersComponent implements OnInit {
   constructor(private orderService: OrderService, private salesService: SaleService, private router: Router) { }
 
   ngOnInit(): void {
-    if(sessionStorage.getItem("username") == null){
+    if (sessionStorage.getItem("username") == null) {
       this.router.navigateByUrl('/login');
     }
   }

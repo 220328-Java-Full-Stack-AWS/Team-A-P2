@@ -26,7 +26,7 @@ public class OrderService {
 
     public Order addToOrder(Order order, Sale sale) {
         //
-        sServ.save(sale);
+        //sServ.save(sale);
         if(oRepo.orderExists(order)){
             List<Sale> tempList=new ArrayList<>();
             tempList=order.getSaleList();
@@ -76,7 +76,9 @@ public class OrderService {
             throw new RuntimeException("Only Registered users can purchase items!");
         }else{
             List<Order>templist= new ArrayList<>();
-            templist=user.getListOfOrders();
+            if(user.getListOfOrders()!=null) {
+                templist = user.getListOfOrders();
+            }
             templist.add(order);
             user.setListOfOrders(templist);
             uServ.update(user);

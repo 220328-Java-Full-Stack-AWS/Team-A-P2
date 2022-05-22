@@ -2,8 +2,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faUserAstronaut, faShoppingCart, faWindowClose, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
+import { Order } from '../dto/order';
+import { User } from '../dto/user';
 import { AuthenticationService } from '../services/authentication.service';
 import { ProductService } from '../services/product.service';
+import { SaleService } from '../services/sale.service';
+import { UserService } from '../services/user.service';
+import { OrderService, Holder } from '../services/order.service';
+import { Sale } from '../dto/sale';
 
 @Component({
   selector: 'app-navbar',
@@ -12,11 +18,15 @@ import { ProductService } from '../services/product.service';
 })
 export class NavbarComponent implements OnInit {
 
+  order!: Order;
+  sale!: Sale;
+  user!: User;
+
   isLoggedIn$: Observable<boolean> | undefined;
 
-  constructor(private router: Router,private auth: AuthenticationService, private productService: ProductService) {}
+  constructor(private router: Router, private auth: AuthenticationService, private productService: ProductService, private saleService: SaleService, private userService: UserService, private orderService: OrderService) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.isLoggedIn$ = this.auth.isLoggedIn;
   }
 
@@ -24,7 +34,8 @@ export class NavbarComponent implements OnInit {
 
   public username = sessionStorage.getItem('username');
 
-  public logOut(){
+
+  public logOut() {
     this.auth.logout();
   }
 
@@ -36,20 +47,40 @@ export class NavbarComponent implements OnInit {
   public faSun = faSun;
   public faMoon = faMoon;
 
-  public userMenuDropdown(){
+  public userMenuDropdown() {
     const userMenu = document.querySelector('.user-menu');
     userMenu?.classList.toggle('magic');
   }
 
-  public DarkTheme(){
+  public DarkTheme() {
     document.body.classList.add('darkMode');
   }
-  public LightTheme(){
+  public LightTheme() {
     document.body.classList.remove('darkMode');
   }
 
-  public viewCart(){
+  public viewCart() {
     const cart = document.querySelector('.cart');
     cart?.classList.toggle('cartMagic');
+  }
+
+  public checkout() {
+    let daUser: User;
+    this.userService.getUserByUsername(this.username).subscribe((data: User) => {
+      daUser = data;
+      let holder = new Holder(this.order, this.sale, daUser);
+      this.orderService.persistOrder(holder).subscribe((data: Order) => {
+        let order1: Order = {
+          orderId: null,
+          saleList: []
+        };
+        this.saleService.setCurrentOrder(order1)
+      });
+    })
+    this.order = this.saleService.getCurrentOrder();
+
+
+
+
   }
 }
