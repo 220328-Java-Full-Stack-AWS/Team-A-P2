@@ -89,7 +89,6 @@ public class ProductRepository implements HibernateRepository<Product> {
     //Updates a product quantity by product id.
     @Override
     public Product update(Product product) {
-
             Product updateProduct = this.getById(product.getProductId());
             updateProduct.setProductName(product.getProductName());
             updateProduct.setProductPrice(product.getProductPrice());

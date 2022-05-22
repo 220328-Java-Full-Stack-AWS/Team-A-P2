@@ -25,9 +25,9 @@ public class OrderService {
     }
 
     public Order addToOrder(Order order, Sale sale) {
-        //
-        sServ.save(sale);
-        if(oRepo.orderExists(order)){
+
+        //sServ.save(sale);
+        if(order.getOrderId()!= null && oRepo.orderExists(order)){
             List<Sale> tempList=new ArrayList<>();
             tempList=order.getSaleList();
             //sale.setOrder(order);

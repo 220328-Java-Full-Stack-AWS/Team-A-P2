@@ -13,31 +13,31 @@ export class ProductService {
   private apiServiceUrl = environment.apiBaseUrl;
   constructor(private http: HttpClient) { }
 
-  public getProducts(): Observable<Product[]>{
+  public getProducts(): Observable<Product[]> {
     return this.http.get<any>(`${this.apiServiceUrl}/products/all`);
   }
 
-  public getProductsByStatus(status: string): Observable<Product[]>{
+  public getProductsByStatus(status: string): Observable<Product[]> {
     return this.http.get<any>(`${this.apiServiceUrl}/products/status/${status}`);
   }
 
-  public sort(sort: string, order: string): Observable<Product[]>{
+  public sort(sort: string, order: string): Observable<Product[]> {
     return this.http.get<any>(`${this.apiServiceUrl}/products/sort/${sort}/${order}`);
   }
 
-  public getProductsByCategory(category: string): Observable<Product[]>{
+  public getProductsByCategory(category: string): Observable<Product[]> {
     return this.http.get<any>(`${this.apiServiceUrl}/products/category/${category}`);
   }
 
-  public addProduct(product: Product): Observable<Product>{
+  public addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(`${this.apiServiceUrl}/product/add`, product);
   }
 
-  public updateproduct(product: Product): Observable<Product>{
-    return this.http.put<Product>(`${this.apiServiceUrl}/product/update`, product);
+  public updateproduct(product: Product): Observable<Product> {
+    return this.http.put<Product>(`${this.apiServiceUrl}/products/update`, product);
   }
 
-  public deleteproduct(id: number): Observable<void>{
+  public deleteproduct(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServiceUrl}/product/delete${id}`);
   }
 

@@ -5,6 +5,5 @@ export interface Sale {
   quantity: number;
   cost: number;
   dateOfPurchase: any;
-  productDescription: string;
   product: Product;
 }

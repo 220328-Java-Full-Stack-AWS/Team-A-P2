@@ -4,6 +4,7 @@ import com.revature.ECommerce.beans.services.HibernateManager;
 import com.revature.ECommerce.entities.Product;
 import com.revature.ECommerce.entities.User;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -71,6 +72,8 @@ public class ECommerceApplication {
   		session.save(p3);
   		session.save(p4);
   		session.save(p5);
+		System.out.println(p1.getProductId());
+
 	}
 
 	@Bean
