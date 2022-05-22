@@ -8,6 +8,8 @@ import com.revature.ECommerce.exceptions.EmptyCartException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,6 +86,12 @@ public class OrderService {
             uServ.update(user);
         }
         order.setUser(user);
+        LocalDateTime now = LocalDateTime.now();
+        Timestamp timestamp=Timestamp.valueOf(now);
+        for(Sale s : order.getSaleList()){
+            s.setDateOfPurchase(timestamp);
+            sServ.updateSale(s);
+        }
         oRepo.save(order);
 
         return order;
