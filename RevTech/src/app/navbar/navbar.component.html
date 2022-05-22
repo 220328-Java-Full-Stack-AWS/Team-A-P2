@@ -27,6 +27,7 @@
   <ul>
     <div class="menu-content">
       <li *ngIf="auth.username.value === 'Admin'"><a routerLink="/admin" routerLinkActive="active">Admin</a></li>
+      <li><a routerLink="/shop" routerLinkActive="active">Shop</a></li>
       <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
       <li><a routerLink="/orders" routerLinkActive="active">Orders</a></li>
       <li (click)="onLogOut()">Log Out</li>

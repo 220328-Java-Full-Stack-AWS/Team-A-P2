@@ -65,6 +65,7 @@ export class AuthenticationService {
         sessionStorage.setItem('userid', user.userId.toString());
         sessionStorage.setItem('username', user.username);
         sessionStorage.setItem('email', user.email);
+        sessionStorage.setItem('password', user.password);
         sessionStorage.setItem('firstname', user.firstName);
         sessionStorage.setItem('lastname', user.lastName);
         sessionStorage.setItem('phone', user.phone);
