@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CheckoutService } from '../services/checkout.service';
+import { ProductsComponent } from '../products/products.component';
+import { faRefresh } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-checkout-page',
@@ -13,10 +15,18 @@ export class CheckoutPageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.checkoutService.getProducts().subscribe(res=>{
+    this.checkoutService.getProducts().subscribe(res => {
       this.products = res;
     })
 
   }
+  removeItem(product: any) {
+    this.checkoutService.removeCartItem(product);
+  }
+
+  emptyCart(){
+    this.checkoutService.emptyCart();
+  }
+
 
 }

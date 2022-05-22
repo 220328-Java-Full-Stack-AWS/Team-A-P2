@@ -1,7 +1,7 @@
 <!-- top navbar start -->
 <div class="navbar">
   <!-- *ngIf="isLoggedIn$ | async" -->
-  <div class="card">
+  <div class="card" >
     <button (click)="userMenuDropdown()">
       <fa-icon id="icon" [icon]="faUserAstronaut" size="lg"></fa-icon>
       <span id="username">{{username}}</span>
@@ -9,7 +9,7 @@
   </div>
   <h2 routerLink="/shop" routerLinkActive="active">RevTech</h2>
   <!-- *ngIf="isLoggedIn$ | async" -->
-  <div class="card">
+  <div class="card" >
     <div id="darkModeBtn">
       <button id="dark" (click)="DarkTheme()">Dark <fa-icon [icon]="faMoon"></fa-icon></button>
       <button id="light" (click)="LightTheme()">

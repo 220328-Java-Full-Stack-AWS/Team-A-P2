@@ -29,6 +29,7 @@ export class ProductsComponent implements OnInit {
 
   public item!: Product;
   public selectedQuantity!:string;
+  
 
   constructor(private productService: ProductService, private salesService: SaleService, private router: Router, private checkoutService: CheckoutService) { }
 
@@ -39,10 +40,9 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
   }
 
-  addToCart(product: Product, selectedQuantity:string) {
+  addToCart(product: Product, selectedQuantity:string) {  
     product.productQuantity = parseInt(selectedQuantity);
-    this.checkoutService.addToCart(product)
-
+    this.checkoutService.addToCart(product) 
   }
 
 

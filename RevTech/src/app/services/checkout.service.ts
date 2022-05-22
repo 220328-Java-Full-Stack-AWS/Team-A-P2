@@ -31,10 +31,14 @@ export class CheckoutService {
         this.cartItemList.splice(index, 1)
       }
     })
+    //updates number found in the cart
+    this.productList.next(this.cartItemList)
   }
 
   emptyCart() {
     this.cartItemList = [];
     this.productList.next(this.cartItemList);
   }
+
+
 }

@@ -7,7 +7,7 @@
             <th>Quantity</th>
             <!-- <th>Category</th> -->
             <th>Image</th>
-            <!-- <th>Action</th> -->
+            <th>Action</th>
         </tr>
         <tr *ngFor="let product of products">
             <!-- <td>
@@ -29,10 +29,26 @@
             <td>
                 <img id="productImage" src="{{ product?.productImage }}" alt="{{ product.productName}}">
             </td>
+            <td id="deleteButton">
+                <button (click)="removeItem(product)">Delete</button>
+            </td>
             <!-- <td id="productOption">
         <button id="EditProduct" (click)="onOpenModal(product, 'edit')">Edit</button>
         <button id="DeleteProduct" (click)="onOpenModal(product, 'delete')">Delete</button>
-      </td> --> -->
+      </td> -->
+        </tr>
+        <tr>
+            <td>
+                <button (click)="emptyCart()">Empty cart</button>
+            </td>
+            <td>
+                <button>Check Out</button>
+            </td>
+            <td><button routerLink="/shop" routerLinkActive="active">Shop More</button></td>
         </tr>
     </table>
+
+
+
+
 </div>
