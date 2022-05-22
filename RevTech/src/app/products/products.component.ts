@@ -108,4 +108,14 @@ export class ProductsComponent implements OnInit {
     sortList?.classList.toggle('show');
     categoryList?.classList.remove('show');
   }
+
+  public addToCart(product: Product){
+    this.productService.addToCart(product);
+    this.productService.total == product.productPrice;
+  }
+
+  public getAmount(){
+    let amount = document.getElementById("amount");
+    console.log(amount?.textContent)
+  }
 }

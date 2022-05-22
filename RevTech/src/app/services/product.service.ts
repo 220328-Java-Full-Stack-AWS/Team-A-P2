@@ -10,6 +10,9 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductService {
 
+  public cart: Product[] = [];
+  public total: number = 0;
+
   private apiServiceUrl = environment.apiBaseUrl;
   constructor(private http: HttpClient) { }
 
@@ -39,6 +42,14 @@ export class ProductService {
 
   public deleteproduct(id: number): Observable<void>{
     return this.http.delete<void>(`${this.apiServiceUrl}/products/delete/id/${id}`);
+  }
+
+  public addToCart(product: Product){
+    this.cart.push(product);
+    this.total += product.productPrice;
+    // console.log(this.total);
+  }
+  public removeFromCart(product: Product){
   }
 
 }

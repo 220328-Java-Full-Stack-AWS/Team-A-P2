@@ -15,7 +15,7 @@
     <button (click)="viewCart()">
       <fa-layers [fixedWidth]="true">
         <fa-icon [icon]="faShoppingCart" size="lg"></fa-icon>
-        <fa-layers-counter id="counter" content="0"></fa-layers-counter>
+        <fa-layers-counter id="counter" content="{{ cart.length }}"></fa-layers-counter>
       </fa-layers>
     </button>
   </div>
@@ -39,16 +39,24 @@
 <div class="cart">
   <div class="close-card">
   <button (click)="viewCart()" id="closeBtn">
-    <fa-icon [icon]="faWindowClose"></fa-icon>
+    x
   </button>
   </div>
   <div class="cart-container">
     <h2>Cart</h2>
     <div class="products-in-cart">
+      <div class="product-in-cart" *ngFor="let product of cart">
+        <img src="{{product?.productImage}}" alt="{{product?.productName}}">
+        <div class="product-in-cart-description">
+          <h3>{{product?.productName}}</h3>
+          <span>${{product?.productPrice?.toFixed(2)}}</span>
+          <fa-icon [icon]="faTrashCan" id="trash-icon"></fa-icon>
+        </div>
+      </div>
     </div>
     <div class="total">
-      <label for="total">Current Total</label>
-      <span>$800.22</span>
+      <label for="total">Current Total: </label>
+      <span>${{ productService?.total?.toFixed(2) }}</span>
     </div>
   </div>
   <div class="cart-confirm">

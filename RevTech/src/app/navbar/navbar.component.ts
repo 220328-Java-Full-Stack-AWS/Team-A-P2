@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faUserAstronaut, faShoppingCart, faWindowClose, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { faUserAstronaut, faShoppingCart, faWindowClose, faSun, faMoon, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
+import { Product } from '../dto/product';
 import { AuthenticationService } from '../services/authentication.service';
 import { ProductService } from '../services/product.service';
 
@@ -14,13 +15,16 @@ export class NavbarComponent implements OnInit {
 
   isLoggedIn$: Observable<boolean> | undefined;
 
-  constructor(private router: Router,private auth: AuthenticationService, private productService: ProductService) {}
+  constructor(private auth: AuthenticationService, public productService: ProductService) {
+  }
 
   ngOnInit(){
     this.isLoggedIn$ = this.auth.isLoggedIn;
   }
 
-  public page = this.router.url;
+  cart: Product[] = this.productService.cart;
+  itemNumber: number = this.productService.cart.length;
+  total: number = this.productService.total;
 
   public username = sessionStorage.getItem('username');
 
@@ -28,11 +32,10 @@ export class NavbarComponent implements OnInit {
     this.auth.logout();
   }
 
-
   // Font Awesome Icons
   public faUserAstronaut = faUserAstronaut;
   public faShoppingCart = faShoppingCart;
-  public faWindowClose = faWindowClose;
+  public faTrashCan = faTrashCan;
   public faSun = faSun;
   public faMoon = faMoon;
 
@@ -49,7 +52,7 @@ export class NavbarComponent implements OnInit {
   }
 
   public viewCart(){
-    const cart = document.querySelector('.cart');
-    cart?.classList.toggle('cartMagic');
+    const cartLogo = document.querySelector('.cart');
+    cartLogo?.classList.toggle('cartMagic');
   }
 }
