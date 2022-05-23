@@ -36,7 +36,7 @@
 
     <div class="checkout-options">
       <h2 id="checkout-cart-title">Cart</h2>
-      <span id="checkout-cart-total">Total: ${{ total.toFixed(2) }}</span>
+      <span id="checkout-cart-total">Total: ${{ checkoutService.total.toFixed(2) }}</span>
       <button (click)="emptyCart()" id="emptyCart">Empty cart <fa-icon [icon]="faTrashCan"></fa-icon></button>
       <button id="checkoutBtn">Check Out</button>
       <button id="continueShopping" routerLink="/shop" routerLinkActive="active">Continue shopping</button>
