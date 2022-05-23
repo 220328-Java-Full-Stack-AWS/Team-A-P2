@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CheckoutService } from '../services/checkout.service';
 import { ProductsComponent } from '../products/products.component';
-import { faRefresh } from '@fortawesome/free-solid-svg-icons';
+import { faRefresh, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-checkout-page',
@@ -10,8 +10,12 @@ import { faRefresh } from '@fortawesome/free-solid-svg-icons';
 })
 export class CheckoutPageComponent implements OnInit {
 
+  public faTrashCan = faTrashCan;
   public products: any = [];
+
+  public total = 0;
   constructor(private checkoutService: CheckoutService) { }
+
 
   ngOnInit(): void {
 
