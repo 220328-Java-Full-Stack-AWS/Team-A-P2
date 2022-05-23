@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.revature</groupId>
-	<artifactId>ECommerce</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>RevTech</artifactId>
+	<version>0.1</version>
 	<packaging>war</packaging>
-	<name>ECommerce</name>
-	<description>Demo project for Spring Boot</description>
+	<name>RevTech</name>
+	<description>Team A P2 Ecommerce App</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>

@@ -1,0 +1,44 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+  pre_build:
+    commands:
+      - echo ============================pre-build================================
+      # - pwd
+      # - ls -al
+      # s3://[ bucket containing the secret files (i.e. hibernate.properties) ]
+      - aws s3 cp s3://revtech-secret-bucket/hibernate.properties src/main/resources/hibernate.properties
+      # - aws s3 cp s3://revtech-secret-bucket/application.properties src/main/resources/application.properties
+      # - ls -al
+      # - ls -al src/main/resources/
+      # s3://[ s3 bucket name ]/*
+      - aws s3 rm "s3://revtech-ui/" --recursive
+  build:
+    commands:
+      - echo ============================build================================
+      - mvn package -q -DskipTests
+      - cd RevTech/
+      # - pwd
+      # - ls -al
+      - npm install
+      - npm install -g @angular/cli
+      - ng build
+      # - ls -al
+      - cd ..
+  post_build:
+    commands:
+      - echo ============================post-build================================
+      # - ls -al
+      # - ls -al target/
+      # - ls -al dist/rev-tech
+      - cd RevTech/dist/rev-tech # move to the location of the ui build artifacts
+      - aws s3 cp "./" "s3://revtech-ui/" -- recursive # copying all files in location to the s3 bucket
+      - cd ../../..
+      - mv target/RevTech-*.*.war ROOT.war
+artifacts:
+  files: # codebuild hand off
+    - ROOT.war
+    - .ebextensions/**/*
