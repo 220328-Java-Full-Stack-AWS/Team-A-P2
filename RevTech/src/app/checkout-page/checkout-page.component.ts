@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CheckoutService } from '../services/checkout.service';
-import { ProductsComponent } from '../products/products.component';
-import { faRefresh, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faTrashCan, faFaceAngry } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-checkout-page',
@@ -11,6 +10,7 @@ import { faRefresh, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 export class CheckoutPageComponent implements OnInit {
 
   public faTrashCan = faTrashCan;
+  public faFaceAngry = faFaceAngry;
   public products: any = [];
 
   public total = 0;
@@ -26,10 +26,20 @@ export class CheckoutPageComponent implements OnInit {
   }
   removeItem(product: any) {
     this.checkoutService.removeCartItem(product);
+
+    // animation
+    const removeItemNotification = document.getElementById('removeItemNotification');
+    removeItemNotification?.classList.add('showAdded');
+    setTimeout(() => removeItemNotification?.classList.remove('showAdded'), 3000);
   }
 
   emptyCart(){
     this.checkoutService.emptyCart();
+
+     // animation
+     const clearCartNotification = document.getElementById('clearCartNotification');
+     clearCartNotification?.classList.add('showAdded');
+     setTimeout(() => clearCartNotification?.classList.remove('showAdded'), 3000);
   }
 
 }

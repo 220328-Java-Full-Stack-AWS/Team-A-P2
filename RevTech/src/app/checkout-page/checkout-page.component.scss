@@ -134,3 +134,37 @@
     }
   }
 }
+
+.product-remove-notification,.cart-cleared-notification{
+  position: fixed;
+  top: 12%;
+  right: -100%;
+  width: fit-content;
+  padding: .8rem 2rem;
+  background: #ed213a; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ed213a, #93291e); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ed213a, #93291e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border: 1px solid white;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: rgba(128, 0, 144, 0.2) 0px 13px 27px -5px, rgba(128, 0, 144, 0.2) 0px 8px 16px -8px;
+  transition: all .6s ease-in-out;
+  .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    span{
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: white;
+    }
+    #icon{
+      color: white;
+      font-size: 1.25rem
+    }
+  }
+}
+.showAdded {
+  right: 0;
+}

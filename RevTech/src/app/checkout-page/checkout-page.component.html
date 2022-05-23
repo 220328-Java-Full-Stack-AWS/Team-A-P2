@@ -51,16 +51,15 @@
   </div>
 </div>
 
-
-<!-- <div *ngIf="products?.length !== 0" class="container">
-
-
-  </table>
-
-  <div class="options">
-    <button (click)="emptyCart()">Empty cart</button>
-    <button>Check Out</button>
-    <button routerLink="/shop" routerLinkActive="active">Shop More</button>
+<div class="product-remove-notification" id="removeItemNotification">
+  <div class="content">
+    <span>Item removed from Cart!</span>
+    <fa-icon id="icon" [icon]="faFaceAngry" [spin]="true"></fa-icon>
   </div>
 </div>
- -->
+<div class="cart-cleared-notification" id="clearCartNotification">
+  <div class="content">
+    <span>Cart Cleared!</span>
+    <fa-icon id="icon" [icon]="faFaceAngry" [spin]="true"></fa-icon>
+  </div>
+</div>

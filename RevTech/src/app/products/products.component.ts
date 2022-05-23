@@ -44,6 +44,11 @@ export class ProductsComponent implements OnInit {
   public addToCart(product: Product, selectedQuantity: string) {
     product.productQuantity = parseInt(selectedQuantity);
     this.checkoutService.addToCart(product);
+
+    // animation
+    const CartNotification = document.getElementById('CartNotification');
+    CartNotification?.classList.add('showAdded');
+    setTimeout(() => CartNotification?.classList.remove('showAdded'), 3000);
   }
 
 
@@ -124,12 +129,5 @@ export class ProductsComponent implements OnInit {
     sortList?.classList.toggle('show');
     categoryList?.classList.remove('show');
   }
-
-  public addToCartAnimation(){
-    const CartNotification = document.getElementById('CartNotification');
-    CartNotification?.classList.add('showAdded');
-    setTimeout(() => CartNotification?.classList.remove('showAdded'), 3000);
-  }
-
 
 }

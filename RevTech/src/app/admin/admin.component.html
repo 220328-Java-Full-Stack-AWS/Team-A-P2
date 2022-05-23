@@ -149,3 +149,17 @@
     <button (click)="onDeleteProduct(deleteProduct!.productId)" id="confirm">Delete</button>
   </div>
 </div>
+
+<div class="success-notification" id="SuccessNotification">
+  <div class="content">
+    <span>Success!</span>
+    <fa-icon id="icon" [icon]="faFaceSmileWink" [spin]="true"></fa-icon>
+  </div>
+</div>
+
+<div class="error-notification" id="ErrorNotification">
+  <div class="content">
+    <span>Error!</span>
+    <fa-icon id="icon" [icon]="faFaceAngry" [spin]="true"></fa-icon>
+  </div>
+</div>
