@@ -172,6 +172,7 @@ export class ProductsComponent implements OnInit {
           sale = data;
           this.order = this.salesService.invokeOrderFunction(this.order, sale, "add");
           this.salesService.setCurrentOrder(this.order);
+
         });
       });
 

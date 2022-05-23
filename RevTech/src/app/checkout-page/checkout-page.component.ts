@@ -31,6 +31,11 @@ export class CheckoutPageComponent implements OnInit {
   }
   removeItem(product: any) {
     this.checkoutService.removeCartItem(product);
+    this.saleList.forEach(x => {
+      if (x.product.productId == product) {
+        this.saleService.invokeOrderFunction(this.saleService.getCurrentOrder(), x, "remove");
+      }
+    })
   }
 
   emptyCart() {
@@ -42,15 +47,23 @@ export class CheckoutPageComponent implements OnInit {
     this.userService.getUserByUsername(this.username).subscribe((data: User) => {
       let daUser = data;
       let holder = new Holder(order, this.sale, daUser);
-      this.orderService.persistOrder(holder).subscribe((data: Order) => {
-        let emptyOrder: Order = {
-          orderId: null,
-          saleList: []
-        };
-        this.saleService.setCurrentOrder(emptyOrder);
-        this.emptyCart();
+      if (sessionStorage.getItem('paymentid') == null) {
+        alert("A payment method must be linked to your account to checkout. You can add a payment method in profile page");
 
-      })
+      } else {
+        this.orderService.persistOrder(holder).subscribe((data: Order) => {
+          let emptyOrder: Order = {
+            orderId: null,
+            saleList: []
+          };
+          this.saleService.setCurrentOrder(emptyOrder);
+          this.emptyCart();
+          alert("Checkout completed sucessfully! Thank you for your purchase!");
+
+        })
+
+      }
+
     })
   }
 
