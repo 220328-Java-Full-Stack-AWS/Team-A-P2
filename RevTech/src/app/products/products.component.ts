@@ -155,13 +155,17 @@ export class ProductsComponent implements OnInit {
         productQuantity: product.productQuantity - this.str
       },
     };
+
     console.log(sale.product.productQuantity);
     if (sale.product.productQuantity >= 0) {
       if (sale.product.productQuantity == 0) {
         sale.product.productStatus = "out of stock";
       }
+      this.order = this.salesService.currentOrder;
       product = sale.product;
       this.productService.updateproduct(product).subscribe((data: Product) => {
+        product.productQuantity = this.str;
+        this.checkoutService.addToCart(product);
         product = data;
         this.salesService.addSale(sale).subscribe((data: Sale) => {
 
@@ -170,6 +174,7 @@ export class ProductsComponent implements OnInit {
           this.salesService.setCurrentOrder(this.order);
         });
       });
+
 
       this.salesService.orderTotal += sale.cost;
       alert("Item successfully added to cart");

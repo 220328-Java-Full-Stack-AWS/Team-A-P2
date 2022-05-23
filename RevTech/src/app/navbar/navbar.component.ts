@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
   orderTotal: number = this.saleService.orderTotal;
 
   public cartLength!: number;
-  constructor(private router: Router, public auth: AuthenticationService, private productService: ProductService, private saleService: SaleService, private userService: UserService, private orderService: OrderService) { }
+  constructor(private router: Router, public auth: AuthenticationService, private productService: ProductService, private saleService: SaleService, private userService: UserService, private orderService: OrderService, private checkoutService: CheckoutService) { }
 
   ngOnInit() {
     this.isLoggedIn$ = this.auth.isLoggedIn;
@@ -40,6 +40,8 @@ export class NavbarComponent implements OnInit {
   }
 
   public username = this.auth.username;
+  public username1 = sessionStorage.getItem('userid');
+
 
   // public username = "Leonel"
 
@@ -75,7 +77,7 @@ export class NavbarComponent implements OnInit {
   public checkout() {
     //let order2 = JSON.parse(sessionStorage.getItem('key'));
     let daUser: User;
-    this.userService.getUserByUsername(this.username).subscribe((data: User) => {
+    this.userService.getUserByUsername(this.username1).subscribe((data: User) => {
       daUser = data;
       let holder = new Holder(this.order, this.sale1, daUser);
       this.orderService.persistOrder(holder).subscribe((data: Order) => {

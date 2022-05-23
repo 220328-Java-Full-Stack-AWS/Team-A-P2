@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Product } from '../dto/product';
+import { Sale } from '../dto/sale';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,8 @@ export class CheckoutService {
 
   public cartItemList: any = [];
   public productList = new BehaviorSubject<any>([]);
+  public quantityVal!: number;
+  public saleList!: Sale[];
 
   constructor() { }
 
@@ -37,6 +40,22 @@ export class CheckoutService {
   emptyCart() {
     this.cartItemList = [];
     this.productList.next(this.cartItemList);
+  }
+
+  setSales(value: any[]) {
+    this.saleList = value;
+  }
+
+  getSales() {
+    return this.saleList;
+  }
+
+  setQuantity(num: number) {
+    this.quantityVal = num;
+  }
+
+  getQuantity() {
+    return this.quantityVal;
   }
 
 }

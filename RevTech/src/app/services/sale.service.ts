@@ -67,7 +67,7 @@ export class SaleService {
       cvc: 0
     },
   };
-  currentOrder!: Order;
+  currentOrder: Order = this.order;
   setOrderFunction(_function: Function) {
     this.orderFunction = _function;
   }
