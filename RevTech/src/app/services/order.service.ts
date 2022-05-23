@@ -7,6 +7,7 @@ import { Order } from '../dto/order';
 import { User } from '../dto/user';
 import { NonNullAssert } from '@angular/compiler';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -78,6 +79,7 @@ export class Holder {
     this.order = order;
     this.sale = sale;
     this.user = user;
+
   }
 
 }

@@ -28,8 +28,12 @@ public class User implements Serializable {
     private String lastName;
     @Column(name = "phone_number", unique = true, nullable = false)
     private String phone;
+
+    @JsonManagedReference
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Address address;
+
+    @JsonManagedReference
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Payment payment;
     @JsonManagedReference

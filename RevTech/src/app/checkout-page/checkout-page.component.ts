@@ -8,6 +8,8 @@ import { OrderService, Holder } from '../services/order.service';
 import { UserService } from '../services/user.service';
 import { User } from '../dto/user';
 import { Order } from '../dto/order';
+import { ProductService } from '../services/product.service';
+import { Product } from '../dto/product';
 
 @Component({
   selector: 'app-checkout-page',
@@ -20,7 +22,7 @@ export class CheckoutPageComponent implements OnInit {
   public sale!: Sale;
   public saleList!: Sale[];
   public products: any = [];
-  constructor(private checkoutService: CheckoutService, private saleService: SaleService, private orderService: OrderService, private userService: UserService) { }
+  constructor(private checkoutService: CheckoutService, private saleService: SaleService, private orderService: OrderService, private userService: UserService, private productService: ProductService) { }
 
   ngOnInit(): void {
     this.saleList = this.checkoutService.getSales();
@@ -31,11 +33,21 @@ export class CheckoutPageComponent implements OnInit {
   }
   removeItem(product: any) {
     this.checkoutService.removeCartItem(product);
-    this.saleList.forEach(x => {
-      if (x.product.productId == product) {
-        this.saleService.invokeOrderFunction(this.saleService.getCurrentOrder(), x, "remove");
+    sessionStorage.setItem('currentOrder', JSON.stringify(this.saleService.getCurrentOrder()));
+    //for each sale in the current order 
+    for (let i = 0; i < this.saleService.getCurrentOrder().saleList.length; i++) {
+      //remove it if it contains the given product and update the given products quantity 
+      if (this.saleService.getCurrentOrder().saleList[i].product.productId == product.productId) {
+        this.saleService.getCurrentOrder().saleList[i].product.productQuantity = this.saleService.getCurrentOrder().saleList[i].quantity;
+
+        this.productService.updateproduct(this.saleService.getCurrentOrder().saleList[i].product).subscribe((data: Product) => {
+          this.saleService.getCurrentOrder().saleList[i].product = data;
+          this.saleService.invokeOrderFunction(this.saleService.getCurrentOrder(), this.saleService.getCurrentOrder().saleList[i], "remove");
+        })
+
       }
-    })
+    }
+
   }
 
   emptyCart() {
