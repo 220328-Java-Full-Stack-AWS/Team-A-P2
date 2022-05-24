@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "products", schema = _SchemaName.schemaName)
+@Table(name = "products", schema = _SchemaName.stanSchema)
 public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,8 +35,8 @@ public class Product implements Serializable {
     private String productCategory;
 
 
-    /*@OneToOne(cascade = CascadeType.ALL)
-    private Sale sale;*/
+    @OneToOne(cascade = CascadeType.ALL)
+    private Sale sale;
 
 
 
@@ -54,13 +54,13 @@ public class Product implements Serializable {
     }
 
 
-    /*public Sale getSale() {
+    public Sale getSale() {
         return sale;
     }
 
     public void setSale(Sale sale) {
         this.sale = sale;
-    }*/
+    }
 
 
     public Integer getProductId() {
