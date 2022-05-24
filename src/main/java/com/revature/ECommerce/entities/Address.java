@@ -1,12 +1,13 @@
 package com.revature.ECommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.revature.ECommerce.entities.SchemaName.EntitySchemaName;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "address", schema = _SchemaName.schemaName)
+@Table(name = "address", schema = _SchemaName.stanSchema)
 public class Address implements Serializable {
 
     @Id
@@ -21,6 +22,8 @@ public class Address implements Serializable {
     private Integer zipCode;
     @Column(name = "country")
     private String country;
+
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "user_id")
     @MapsId

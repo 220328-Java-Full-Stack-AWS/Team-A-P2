@@ -35,7 +35,6 @@ export class NavbarComponent implements OnInit {
     this.auth.logout();
   }
 
-
   // Font Awesome Icons
   public faUserAstronaut = faUserAstronaut;
   public faShoppingCart = faShoppingCart;
@@ -47,6 +46,10 @@ export class NavbarComponent implements OnInit {
   public userMenuDropdown() {
     const userMenu = document.querySelector('.user-menu');
     userMenu?.classList.toggle('magic');
+  }
+  public closeDropdown() {
+    const userMenu = document.querySelector('.user-menu');
+    userMenu?.classList.remove('magic');
   }
 
   public DarkTheme() {

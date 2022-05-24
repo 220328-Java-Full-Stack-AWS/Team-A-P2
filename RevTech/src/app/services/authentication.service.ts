@@ -48,13 +48,13 @@ export class AuthenticationService {
         address: "",
         city: "",
         state: "",
-        zip: 0,
+        zipCode: 0,
         country: ""
       },
       payment: {
         paymentId: 0,
         cardNumber: 0,
-        expirationDate: "",
+        experationDate: "",
         cvc: 0
       }
     }
