@@ -1,5 +1,12 @@
 .product-page{
   min-height: 60vh;
+  h2{
+    font-size: 4rem;
+    text-decoration: underline;
+    color: #3a3c58;
+    margin-left: 3.5rem;
+    margin-bottom: .5rem;
+  }
 }
 // sort and categories bar start
 .sort-filter-search{
@@ -7,7 +14,7 @@
   width: 100%;
   border-bottom: 1px solid lightgrey;
   padding: 1.3rem 3rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -110,7 +117,7 @@
 
 .products {
   width: 100%;
-  padding: .9rem 3rem;
+  padding: 0 3rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-column-gap: 2rem;

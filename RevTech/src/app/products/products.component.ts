@@ -34,10 +34,8 @@ export class ProductsComponent implements OnInit {
   constructor(private productService: ProductService, private salesService: SaleService, private router: Router, private checkoutService: CheckoutService, public gsap: GsapService) { }
 
   ngOnInit(): void {
-    if (sessionStorage.getItem("username") == null) {
-      this.router.navigateByUrl('/login');
-    }
     this.getProducts();
+    this.openingAnimation();
   }
 
   public addToCart(product: Product, selectedQuantity: string) {
@@ -55,7 +53,6 @@ export class ProductsComponent implements OnInit {
     this.productService.getProducts().subscribe(
       (response: Product[]) => {
         this.products = response;
-        this.openingAnimation();
       },
       (error: HttpErrorResponse) => {
         console.log(error.message)
@@ -120,6 +117,7 @@ export class ProductsComponent implements OnInit {
       this.products = results;
       if (results.length === 0 || !key) {
         this.getProducts();
+
       }
     }
   }

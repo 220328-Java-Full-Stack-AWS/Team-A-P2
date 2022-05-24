@@ -53,7 +53,7 @@
       <div class="profile-data" style="border:none;">
         <p>Password</p>
         <div class="data">
-          <input  ngModel="{{ user?.password }}" [type]="show ? 'text' : 'password'" type="password" name="password" id="password" placeholder="Password" />
+          <p>{{ user?.password }}</p>
           <span id="showP" (click)="showPassword()"><fa-icon [icon]="faFaceRollingEyes"></fa-icon>{{show ? 'Hide Password' : 'Show Password' }}</span>
         </div>
       </div>
@@ -118,7 +118,7 @@
         <div class="payment-data" style="border:none;">
           <p>Cvc</p>
           <div class="data">
-            <input ngModel="{{ user?.payment?.cvc }}" [type]="show2 ? 'text' : 'password'" type="password" name="cvc" id="cvc" placeholder="CVC" />
+            <span>{{ user?.payment?.cvc }}</span>
             <span id="showP" (click)="showPassword2()"><fa-icon [icon]="faFaceRollingEyes"></fa-icon>{{show2 ? 'Hide CVC' : 'View CVC' }}</span>
           </div>
         </div>
