@@ -13,8 +13,7 @@ export class CheckoutPageComponent implements OnInit {
   public faFaceAngry = faFaceAngry;
   public products: any = [];
 
-  public total = 0;
-  constructor(private checkoutService: CheckoutService) { }
+  constructor(public checkoutService: CheckoutService) { }
 
 
   ngOnInit(): void {
