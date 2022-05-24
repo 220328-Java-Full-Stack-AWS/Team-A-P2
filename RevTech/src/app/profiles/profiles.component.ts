@@ -52,7 +52,9 @@ export class ProfilesComponent implements OnInit {
   public openingAnimation(){
     const anim = this.gsap;
     const profile = '#profile';
-    anim.fadeIn(profile, 0.3, 0, 0.2);
+    const profileTitle = '#profile-page-title';
+    anim.slideIn(profile);
+    anim.slideIn(profileTitle);
   }
 
   public getUserData(){

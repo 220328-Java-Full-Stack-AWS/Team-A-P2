@@ -66,7 +66,7 @@ export class ProductsComponent implements OnInit {
   public openingAnimation(){
     const anim = this.gsap;
     const product = '#products';
-    anim.fadeIn(product, 0.6, 0, 0.3);
+    anim.fadeIn(product, 0.5, 0, 0.5);
   }
 
   public getProductsByStatus(status: string) {
