@@ -1,5 +1,6 @@
 package com.revature.ECommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.revature.ECommerce.entities.SchemaName.EntitySchemaName;
 
 import javax.persistence.*;
@@ -18,6 +19,8 @@ public class Payment implements Serializable {
     private Timestamp experationDate;
     @Column(name = "cvc")
     private Integer cvc;
+
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "user_id")
     @MapsId

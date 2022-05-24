@@ -1,21 +1,21 @@
 .profile-page{
   width: 100%;
   min-height: 100vh;
-  padding: 3rem 0 4rem 0;
+  padding: 3rem 15rem;
   display: flex;
   flex-direction: column;
   justify-content:center;
   align-items:center;
   h2{
-    width: 70%;
-    font-size: 3rem;
+    width: 100%;
+    font-size: 2.75rem;
     text-decoration: underline;
     text-align: left;
     color: #2b2d42;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
   .profile{
-    width: 70%;
+    width: 100%;
     border-radius: 9px;
     border: 2px solid lightgrey;
     background: white;
@@ -64,55 +64,267 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      h5{
+      .profile-body-title{
         width: 100%;
-        text-align: left;
-        font-size: 1.5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        h5{
+          font-size: 1.5rem;
+          color: #2b2d42;
+          text-decoration: underline;
+        }
+        button{
+          font-size: 1rem;
+          padding: .2rem 1rem;
+          border: none;
+          background:#3a3c58;
+          color: white;
+          cursor: pointer;
+          border-radius:5px;
+          &:hover{
+            background: #2b2d42;
+          }
+        }
+        #delete{
+          margin-left: 2rem;
+          font-size: 1rem;
+          padding: .2rem 1rem;
+          border: none;
+          background:darkred;
+          color: white;
+          cursor: pointer;
+          border-radius:5px;
+        }
       }
-      .profile-data{
+      .profile-data, .address-data, .payment-data{
         width: 100%;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
         border-bottom: 1px solid grey;
-        margin-top: 1rem;
+        margin-top: .5rem;
         padding: 1rem 0;
         p{
           font-size: 1.3rem;
           font-weight: 500;
-          color: #2b2d42
+          color: #2b2d42;
+        }
+        h5{
+          font-size: 1rem;
+        }
+        span{
+          color: rgb(72, 72, 72);
         }
         .data{
+          display: flex;
+          flex-direction: column;
           span{
             font-size: 1.1rem;
+            color: rgb(72, 72, 72);
+          }
+          input{
+            pointer-events: none;
+            padding: .1rem;
+            font-size: 1rem;
             color: grey;
           }
-          button{
-            margin-left: 2rem;
-            font-size: .9rem;
-            padding: .2rem 1rem;
-            border: none;
-            background:#3a3c58;
-            color: white;
+          #showP{
+            margin-top:.3rem;
+            font-size: .8rem;
+            color: #3a3c58;
             cursor: pointer;
-            border-radius:5px;
             &:hover{
-              background: #2b2d42;
+              text-decoration: underline;
+              color: #2b2d42;
             }
-          }
-          #delete{
-            margin-left: 2rem;
-            font-size: .9rem;
-            padding: .2rem 1rem;
-            border: none;
-            background:darkred;
-            color: white;
-            cursor: pointer;
-            border-radius:5px;
           }
         }
       }
     }
+  }
+}
+
+// screen blackout
+.screen{
+  background-color: rgba(0, 0, 0, 0.144);
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  transition: all 0.3s ease-in-out;
+}
+
+// side forms
+.modal{
+  width: 40%;
+  position: fixed;
+  top: 0;
+  right:-100%;
+  height: 100%;
+  background: white;
+  border-left: 2px solid #2b2d42;
+  padding: 2rem;
+  transition: all 0.3s ease-in-out;
+  .modal-title{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    h2{
+      font-size: 2.5rem;
+      color: #3a3c58;
+      text-decoration: underline;
+    }
+    button{
+      border: none;
+      background: none;
+      color: #3a3c58;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+  }
+  .modal-body{
+    width: 100%;
+    .modal-input{
+      margin: .5rem 0;
+      display: flex;
+      flex-direction: column;
+      label{
+        font-size: 1.1rem;
+        color: #2b2d42;
+      }
+      input{
+        font-size: 1rem;
+        padding: .2rem;
+        color: #2b2d42;
+      }
+      span{
+        margin-top: .4rem;
+        font-size: .8rem;
+        color: #3a3c58;
+        cursor: pointer;
+        &:hover{
+          color: #2b2d42;
+        }
+      }
+    }
+    p{
+      width: 100%;
+      font-size: 1.2rem;
+      margin: 1rem 0;
+      color: #2b2d42;
+    }
+  }
+  .modal-footer{
+    margin-top: 1.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    button{
+      font-size: 1.3rem;
+      padding: .25rem 1rem;
+      border: none;
+      background:#3a3c58;
+      color: white;
+      cursor: pointer;
+      border-radius:7px;
+      &:hover{
+        background: #2b2d42;
+      }
+    }
+  }
+}
+.show{
+  right: 0;
+}
+
+
+// notifications
+.success-notification {
+  position: fixed;
+  top: 15%;
+  left: -100%;
+  width: 15rem;
+  padding: .8rem 2rem;
+  background-image: linear-gradient( 109.6deg,  rgba(102,203,149,1) 11.2%, rgba(39,210,175,1) 98.7% );
+  border: 1px solid white;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow: rgba(128, 0, 144, 0.2) 0px 13px 27px -5px, rgba(128, 0, 144, 0.2) 0px 8px 16px -8px;
+  transition: all .6s ease-in-out;
+  .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    span{
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: white;
+    }
+    #icon{
+      color: white;
+      font-size: 1.25rem
+    }
+  }
+}
+.error-notification {
+  position: fixed;
+  top: 15%;
+  left: -100%;
+  width: 15rem;
+  padding: .8rem 2rem;
+  background: #ed213a; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ed213a, #93291e); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ed213a, #93291e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border: 1px solid white;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow: rgba(128, 0, 144, 0.2) 0px 13px 27px -5px, rgba(128, 0, 144, 0.2) 0px 8px 16px -8px;
+  transition: all .6s ease-in-out;
+  .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    span{
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: white;
+    }
+    #icon{
+      color: white;
+      font-size: 1.25rem
+    }
+  }
+}
+.showAdded3 {
+  left: 0;
+}
+@media screen and (max-width: 754px) {
+  .profile-page{
+    padding: 1rem;
+    h2{
+      font-size: 2.5rem;
+    }
+    .profile{
+      .profile-title {
+        .profile-pic{
+          width: 40%;
+          #icon{
+            font-size: 4rem;
+          }
+        }
+      }
+    }
+  }
+  .modal{
+    width: 70%;
   }
 }

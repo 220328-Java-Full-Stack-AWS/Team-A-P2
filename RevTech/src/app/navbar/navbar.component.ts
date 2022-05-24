@@ -47,6 +47,10 @@ export class NavbarComponent implements OnInit {
     const userMenu = document.querySelector('.user-menu');
     userMenu?.classList.toggle('magic');
   }
+  public closeDropdown() {
+    const userMenu = document.querySelector('.user-menu');
+    userMenu?.classList.remove('magic');
+  }
 
   public DarkTheme() {
     document.body.classList.add('darkMode');
