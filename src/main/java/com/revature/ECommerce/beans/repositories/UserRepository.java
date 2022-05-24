@@ -43,7 +43,7 @@ public class UserRepository implements HibernateRepository<User> {
 
     @Override
     public User getById(Integer id) {
-        TypedQuery<User> query = session.createQuery("FROM User WHERE id = :user_id", User.class);
+        TypedQuery<User> query = session.createQuery("FROM User WHERE user_id = :user_id", User.class);
         query.setParameter("user_id", id);
         User user = query.getSingleResult();
         return user;
