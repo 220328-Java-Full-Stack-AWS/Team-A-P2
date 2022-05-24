@@ -53,7 +53,7 @@
       </div>
 
       <div class="cart-card-2">
-        <input type="number"  min="1" max={{product.productQuantity}} name="amount" id="amount" #selectedQuanity>
+        <input type="number" min="1" max={{product.productQuantity}} name="amount" id="amount" #selectedQuanity>
         <button (click)="addToCart(product, selectedQuanity.value)">
           <fa-icon [icon]="faCartPlus"></fa-icon>
         </button>
