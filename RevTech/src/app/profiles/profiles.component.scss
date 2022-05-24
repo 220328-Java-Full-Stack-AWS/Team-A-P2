@@ -306,3 +306,24 @@
 .showAdded3 {
   left: 0;
 }
+@media screen and (max-width: 754px) {
+  .profile-page{
+    padding: 1rem;
+    h2{
+      font-size: 2.5rem;
+    }
+    .profile{
+      .profile-title {
+        .profile-pic{
+          width: 40%;
+          #icon{
+            font-size: 4rem;
+          }
+        }
+      }
+    }
+  }
+  .modal{
+    width: 70%;
+  }
+}
