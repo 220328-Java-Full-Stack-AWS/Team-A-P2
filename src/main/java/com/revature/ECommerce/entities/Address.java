@@ -22,6 +22,7 @@ public class Address implements Serializable {
     private Integer zipCode;
     @Column(name = "country")
     private String country;
+
     @JsonBackReference
     @OneToOne
     @JoinColumn(name = "user_id")

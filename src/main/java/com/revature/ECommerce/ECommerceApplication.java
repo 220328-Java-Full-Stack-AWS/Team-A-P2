@@ -12,6 +12,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.sql.Timestamp;
 import java.util.Arrays;
 
 @SpringBootApplication(scanBasePackages = "com.revature.ECommerce.beans")
@@ -83,7 +84,24 @@ public class ECommerceApplication {
 		User user2 = new User("bakgeo", "bakgeo@gmail.com", "gbsw0rd!", "Geo", "Bak", "832-543-2432");
 		User user3 = new User("gb", "gb@gmail.com", "simplepassword", "G", "B", "219-999-4543");
 		User admin = new User("Admin", "admin@gmail.com", "Password", "admin", "admin", "333-222-1111");
+		Timestamp timestamp = new Timestamp(2055, 12, 12, 12, 12, 12,0);
+		Payment pay1 = new Payment(435555334, timestamp, 443);
+		Payment pay2 = new Payment(4332221, timestamp, 233);
+		Address a1= new Address("23 Skidoo Ln.", "New York", "NY", 66666, "USA");
+		//Address a2 = new Address("69420 High St.", "Los Angeles", "CA", 90210, "USA");
+		Address leoA = new Address("630 Shore Rd.", "Long Beach", "New York", 11561, "USA");
 
+		leoA.setUser(leo);
+		leo.setAddress(leoA);
+
+		a1.setUser(admin);
+		pay1.setUser(admin);
+		admin.setPayment(pay1);
+		admin.setAddress(a1);
+
+
+		session.save(a1);
+		session.save(pay1);
 		session.save(admin);
 		session.save(user1);
 		session.save(user2);
@@ -141,7 +159,7 @@ public class ECommerceApplication {
 	public CorsFilter corsFilter() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(true);
-		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200","http://localhost:4200/%22"));
+		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
 		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
 				"Accept", "Authorization", "Origin, Accept", "X-Requested-With",
 				"Access-Control-Request-Method", "Access-Control-Request-Headers", "mode", "user_id"));

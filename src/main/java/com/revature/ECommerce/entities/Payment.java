@@ -19,6 +19,7 @@ public class Payment implements Serializable {
     private Timestamp expDate;
     @Column(name = "cvc")
     private Integer cvc;
+
     @JsonBackReference
     @OneToOne
     @JoinColumn(name = "user_id")
