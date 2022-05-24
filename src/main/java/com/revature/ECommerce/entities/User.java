@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 @Entity
-@Table(name = "users", schema = _SchemaName.schemaName)
+@Table(name = "users", schema = _SchemaName.stanSchema)
 public class User implements Serializable {
 
     @Id

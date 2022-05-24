@@ -35,7 +35,6 @@ export class NavbarComponent implements OnInit {
     this.auth.logout();
   }
 
-
   // Font Awesome Icons
   public faUserAstronaut = faUserAstronaut;
   public faShoppingCart = faShoppingCart;
