@@ -89,12 +89,17 @@ public class ECommerceApplication {
 		Payment pay1 = new Payment(435555334, timestamp, 443);
 		Payment pay2 = new Payment(4332221, timestamp, 233);
 		Address a1= new Address("23 Skidoo Ln.", "New York", "NY", 66666, "USA");
-		Address a2 = new Address("69420 High St.", "Los Angeles", "CA", 90210, "USA");
+		//Address a2 = new Address("69420 High St.", "Los Angeles", "CA", 90210, "USA");
+		Address leoA = new Address("630 Shore Rd.", "Long Beach", "New York", 11561, "USA");
+
+		leoA.setUser(leo);
+		leo.setAddress(leoA);
 
 		a1.setUser(admin);
 		pay1.setUser(admin);
 		admin.setPayment(pay1);
 		admin.setAddress(a1);
+
 
 		session.save(a1);
 		session.save(pay1);

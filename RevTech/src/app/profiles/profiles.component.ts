@@ -9,6 +9,7 @@ import { PaymentService } from '../services/payment.service';
 import { AddressService } from '../services/address.service';
 import { Address } from '../dto/address';
 import { Payment } from '../dto/payment';
+import { GsapService } from '../services/gsap.service';
 
 @Component({
   selector: 'app-profiles',
@@ -17,7 +18,7 @@ import { Payment } from '../dto/payment';
 })
 export class ProfilesComponent implements OnInit {
 
-  constructor(public auth: AuthenticationService, public userService: UserService, public paymentService: PaymentService,  public addressService: AddressService) { }
+  constructor(public auth: AuthenticationService, public userService: UserService, public paymentService: PaymentService,  public addressService: AddressService, public gsap: GsapService) { }
 
   // Front end logos
   public faUserAstronaut = faUserAstronaut;
@@ -45,14 +46,19 @@ export class ProfilesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserData();
+    this.openingAnimation();
+  }
+
+  public openingAnimation(){
+    const anim = this.gsap;
+    const profile = '#profile';
+    anim.fadeIn(profile, 0.3, 0, 0.2);
   }
 
   public getUserData(){
     this.userService.getUserByUsername(this.auth.username.value).subscribe(
       (response: User) => {
         this.user = response;
-        this.address = response.address;
-        this.payment = response.payment;
         console.log(response);
       },
       (error: HttpErrorResponse) => {

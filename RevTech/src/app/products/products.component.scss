@@ -1,8 +1,12 @@
+.product-page{
+  min-height: 80vh;
+}
 // sort and categories bar start
 .sort-filter-search{
+  z-index: 100;
   width: 100%;
   border-bottom: 1px solid lightgrey;
-  padding: 1rem 3rem;
+  padding: 1.3rem 3rem;
   margin-bottom: 2.5rem;
   display: flex;
   flex-direction: row;
@@ -73,7 +77,7 @@
   .sort-filter-search{
     width: 100%;
     border-bottom: 2px solid whitesmoke;
-    padding: 1rem;
+    padding: 2rem;
     margin-bottom: 2.5rem;
     flex-direction: column;
     flex-wrap: wrap;
@@ -106,7 +110,7 @@
 
 .products {
   width: 100%;
-  padding: 0 3rem;
+  padding: .9rem 3rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-column-gap: 2rem;
