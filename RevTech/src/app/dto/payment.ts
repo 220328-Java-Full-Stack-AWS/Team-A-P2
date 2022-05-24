@@ -3,6 +3,6 @@ import { User } from "./user";
 export interface Payment {
     paymentId: number;
     cardNumber: number;
-    expirationDate: any;
+    expDate: any;
     cvc: number;
   }

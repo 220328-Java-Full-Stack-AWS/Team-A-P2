@@ -1,7 +1,11 @@
 package com.revature.ECommerce.beans.controllers;
 
+import com.revature.ECommerce.beans.services.AddressService;
+import com.revature.ECommerce.beans.services.PaymentService;
 import com.revature.ECommerce.beans.services.UserService;
 import com.revature.ECommerce.dtos.AuthDto;
+import com.revature.ECommerce.entities.Address;
+import com.revature.ECommerce.entities.Payment;
 import com.revature.ECommerce.entities.User;
 import com.revature.ECommerce.exceptions.InvalidOptionException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +18,14 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
     private UserService uServ;
+    private AddressService aServ;
+    private PaymentService pServ;
 
     @Autowired
-    public UserController(UserService uServ){
+    public UserController(UserService uServ, AddressService aServ, PaymentService pServ){
         this.uServ=uServ;
+        this.aServ=aServ;
+        this.pServ=pServ;
     }
 
     @GetMapping()
@@ -48,7 +56,16 @@ public class UserController {
     public User loginOrRegister(@RequestBody User user, @RequestHeader("mode") String mode) throws Exception {
         switch(mode) {
             case "register":
-                return uServ.save(user);
+                User newUser = uServ.save(user);
+                Address address = new Address();
+                Payment payment = new Payment();
+                address.setUser(newUser);
+                payment.setUser(newUser);
+                aServ.save(address);
+                pServ.save(payment);
+                newUser.setAddress(address);
+                newUser.setPayment(payment);
+                return newUser;
             case "login":
                 AuthDto auth = new AuthDto(user.getUsername(), user.getPassword());
                 return uServ.authenticateUser(auth);

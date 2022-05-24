@@ -4,14 +4,13 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Address } from '../dto/address';
 import { User } from '../dto/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-
-
   constructor( private router: Router, private http: HttpClient) { }
 
 
@@ -43,31 +42,32 @@ export class AuthenticationService {
       firstName: "",
       lastName: "",
       phone: "",
-      address: {
-        addressId: 0,
-        address: "",
-        city: "",
-        state: "",
-        zip: 0,
-        country: ""
-      },
-      payment: {
-        paymentId: 0,
-        cardNumber: 0,
-        expirationDate: "",
-        cvc: 0
-      }
     }
 
     this.Login(user).subscribe(
       (response: User) => {
         user = response;
-        sessionStorage.setItem('userid', user.userId.toString());
-        sessionStorage.setItem('username', user.username);
-        sessionStorage.setItem('email', user.email);
-        sessionStorage.setItem('firstname', user.firstName);
-        sessionStorage.setItem('lastname', user.lastName);
-        sessionStorage.setItem('phone', user.phone);
+        sessionStorage.setItem('userid', response.userId.toString());
+        sessionStorage.setItem('username', response.username);
+        sessionStorage.setItem('email', response.email);
+        sessionStorage.setItem('firstname', response.firstName);
+        sessionStorage.setItem('lastname', response.lastName);
+        sessionStorage.setItem('phone', response.phone);
+        sessionStorage.setItem('password', response.password);
+       
+/*
+        sessionStorage.setItem('address', user.address.address);
+        sessionStorage.setItem('city', user.address.city);
+        sessionStorage.setItem('state', user.address.state);
+        sessionStorage.setItem('zip', user.address.zipCode.toString());
+        sessionStorage.setItem('country', user.address.country);
+
+      //  if(user.payment != null){
+          sessionStorage.setItem('paymentid', user.payment.paymentId.toString());
+          sessionStorage.setItem('cardnumber', user.payment.cardNumber.toString());
+          sessionStorage.setItem('expirationdate', user.payment.expirationDate);
+          sessionStorage.setItem('cvc', user.payment.cvc.toString());
+        //}*/
 
         this.loggedIn.next(true);
         this.router.navigateByUrl('/shop');

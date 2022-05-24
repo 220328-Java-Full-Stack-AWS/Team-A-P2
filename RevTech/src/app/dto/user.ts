@@ -1,3 +1,4 @@
+import { Injectable } from "@angular/core";
 import { Address } from "./address";
 import { Payment } from "./payment";
 
@@ -9,6 +10,4 @@ export interface User {
     firstName: string;
     lastName: string;
     phone: string;
-    address: Address;
-    payment: Payment;
   }

@@ -34,8 +34,8 @@ public class PaymentService {
         return paymentRepository.update(payment);
     }
 
-    public void delete(Payment payment){
-        paymentRepository.delete(payment);
+    public void delete(Integer id){
+        paymentRepository.delete(id);
     }
 
     public List<Payment> getAllPaymentsByUser(Integer id){

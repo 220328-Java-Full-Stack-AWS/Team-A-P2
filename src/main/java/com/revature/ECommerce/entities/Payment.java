@@ -1,5 +1,6 @@
 package com.revature.ECommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.revature.ECommerce.entities.SchemaName.EntitySchemaName;
 
 import javax.persistence.*;
@@ -15,9 +16,10 @@ public class Payment implements Serializable {
     @Column(name = "card_number")
     private Integer cardNumber;
     @Column(name = "exp_date")
-    private Timestamp experationDate;
+    private Timestamp expDate;
     @Column(name = "cvc")
     private Integer cvc;
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "user_id")
     @MapsId
@@ -25,10 +27,11 @@ public class Payment implements Serializable {
 
     public Payment(){}
 
-    public Payment(Integer cardNumber, Timestamp experationDate, Integer cvc){
+    public Payment(Integer cardNumber, Timestamp experationDate, Integer cvc, Integer paymentId){
         this.cardNumber=cardNumber;
-        this.experationDate=experationDate;
+        this.expDate=experationDate;
         this.cvc=cvc;
+        this.paymentId = paymentId;
     }
 
     public Integer getPaymentId() {
@@ -55,12 +58,12 @@ public class Payment implements Serializable {
         this.cardNumber = cardNumber;
     }
 
-    public Timestamp getExperationDate() {
-        return experationDate;
+    public Timestamp getExpDate() {
+        return expDate;
     }
 
-    public void setExperationDate(Timestamp experationDate) {
-        this.experationDate = experationDate;
+    public void setExpDate(Timestamp experationDate) {
+        this.expDate = experationDate;
     }
 
     public Integer getCvc() {
@@ -69,5 +72,16 @@ public class Payment implements Serializable {
 
     public void setCvc(Integer cvc) {
         this.cvc = cvc;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "paymentId=" + paymentId +
+                ", cardNumber=" + cardNumber +
+                ", expDate=" + expDate +
+                ", cvc=" + cvc +
+                ", user=" + user +
+                '}';
     }
 }

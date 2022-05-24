@@ -47,7 +47,15 @@ import { User } from '../dto/user';
     }
   
     public deleteUser(userId: number): Observable<void>{
-      return this.http.delete<void>(`${this.apiServiceUrl}/users`);
+      return this.http.delete<void>(
+        `${this.apiServiceUrl}/users`,
+        {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'user_id': userId.toString()
+          })
+        }
+        );
     }
   
     public getUserById(userId: number): Observable<User>{

@@ -1,7 +1,27 @@
 <div class="profile">
-    <br>Name: firstname lastname <button>Edit</button>
-    <br>Username: username <button>Edit</button>
-    <br>Email: email <button>Edit</button>
-    <br>Phone: phone <button>Edit</button>
-    <br>Password: password <button>Edit</button>
+    <div class="profile-name">
+        <span><br>Name:<br>{{nameHTML}} <button (click)="updateUser('name')">Edit</button></span>
+    </div>
+    <div id="profile-username">
+        <span><br>Username:<br>{{userHTML}} <button (click)="updateUser('username')">Edit</button></span>
+    </div>
+    <div id="profile-email">
+        <span><br>Email:<br>{{emailHTML}} <button (click)="updateUser('email')">Edit</button></span>
+    </div>
+    <div id="profile-phone">
+        <span><br>Phone:<br>{{phoneHTML}} <button (click)="updateUser('phone')">Edit</button></span>
+    </div>
+    <div id="profile-address">
+        <span><br>Address:<br>{{addressHTML}} <button (click)="updateUser('address')">Edit</button><button (click)="deleteAddress()">Delete</button></span>
+    </div>
+    <div id="profile-payment">
+        <span><br>Payment:<br>{{paymentHTML}} <button (click)="updateUser('payment')">Edit</button><button (click)="deletePayment()">Delete</button></span>
+    </div>
+    <div id="profile-password">
+        <span><br>Password:<br>{{passwordHTML}} <button (click)="updateUser('password')">Edit</button></span>
+    </div>
+
+    <div id="delete-user">
+        <span><br>Delete account?<button (click)="deleteUser()">Delete</button></span>
+    </div>
 </div>

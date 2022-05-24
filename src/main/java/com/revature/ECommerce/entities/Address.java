@@ -1,5 +1,6 @@
 package com.revature.ECommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.revature.ECommerce.entities.SchemaName.EntitySchemaName;
 
 import javax.persistence.*;
@@ -21,21 +22,21 @@ public class Address implements Serializable {
     private Integer zipCode;
     @Column(name = "country")
     private String country;
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "user_id")
     @MapsId
     private User user;
 
-    public Address(){
-    }
+    public Address(){}
 
-    public Address(String address, String city, String state, Integer zipCode, String country){
+    public Address(String address, String city, String state, Integer zipCode, String country, Integer addressId){
         this.address=address;
         this.city=city;
         this.state=state;
         this.zipCode=zipCode;
         this.country=country;
-
+        this.addressId=addressId;
     }
 
     public User getUser() {
@@ -92,5 +93,18 @@ public class Address implements Serializable {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "addressId=" + addressId +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zipCode=" + zipCode +
+                ", country='" + country + '\'' +
+                ", user=" + user +
+                '}';
     }
 }

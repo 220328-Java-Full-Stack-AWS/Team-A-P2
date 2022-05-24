@@ -48,7 +48,6 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-
     public Payment getPayment() {
         return payment;
     }

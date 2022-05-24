@@ -2,6 +2,7 @@ package com.revature.ECommerce.beans.controllers;
 
 import com.revature.ECommerce.beans.services.AddressService;
 import com.revature.ECommerce.entities.Address;
+import com.revature.ECommerce.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -45,8 +46,8 @@ public class AddressController {
 
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteAddress(@RequestBody Address address){
-        addressService.deleteAddress(address);
+    public void deleteAddress(@PathVariable Integer id){
+        addressService.deleteAddress(id);
     }
 
     @GetMapping("/user/{id}")

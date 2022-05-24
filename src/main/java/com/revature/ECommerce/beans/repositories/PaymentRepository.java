@@ -3,6 +3,7 @@ package com.revature.ECommerce.beans.repositories;
 import com.revature.ECommerce.beans.services.HibernateManager;
 import com.revature.ECommerce.entities.Address;
 import com.revature.ECommerce.entities.Payment;
+import com.revature.ECommerce.entities.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,16 +54,18 @@ public class PaymentRepository implements HibernateRepository<Payment> {
         Payment updatePayment = this.getById(payment.getPaymentId());
         updatePayment.setPaymentId(payment.getPaymentId());
         updatePayment.setCardNumber(payment.getCardNumber());
-        updatePayment.setExperationDate(payment.getExperationDate());
+        updatePayment.setExpDate(payment.getExpDate());
         updatePayment.setCvc(payment.getCvc());
         updatePayment.setUser(payment.getUser());
         this.save(updatePayment);
         return payment;
     }
 
-    public void delete(Payment payment){
+    public void delete(Integer id){
         Transaction tx = session.beginTransaction();
-        session.remove(payment);
+        TypedQuery<Payment> query = session.createQuery("DELETE Payment WHERE paymentId = :id");
+        query.setParameter("id", id);
+        query.executeUpdate();
         tx.commit();
     }
 
