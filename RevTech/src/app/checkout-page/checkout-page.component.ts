@@ -10,6 +10,7 @@ import { User } from '../dto/user';
 import { Order } from '../dto/order';
 import { ProductService } from '../services/product.service';
 import { Product } from '../dto/product';
+import { faTrashCan, faFaceAngry } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-checkout-page',
@@ -22,7 +23,12 @@ export class CheckoutPageComponent implements OnInit {
   public sale!: Sale;
   public saleList!: Sale[];
   public products: any = [];
-  constructor(private checkoutService: CheckoutService, private saleService: SaleService, private orderService: OrderService, private userService: UserService, private productService: ProductService) { }
+  constructor(public checkoutService: CheckoutService, private saleService: SaleService, private orderService: OrderService, private userService: UserService, private productService: ProductService) { }
+  public faTrashCan = faTrashCan;
+  public faFaceAngry = faFaceAngry;
+
+
+
 
   ngOnInit(): void {
     this.saleList = this.checkoutService.getSales();
@@ -48,10 +54,20 @@ export class CheckoutPageComponent implements OnInit {
       }
     }
 
+
+    // animation
+    const removeItemNotification = document.getElementById('removeItemNotification');
+    removeItemNotification?.classList.add('showAdded');
+    setTimeout(() => removeItemNotification?.classList.remove('showAdded'), 3000);
   }
 
   emptyCart() {
     this.checkoutService.emptyCart();
+
+    // animation
+    const clearCartNotification = document.getElementById('clearCartNotification');
+    clearCartNotification?.classList.add('showAdded');
+    setTimeout(() => clearCartNotification?.classList.remove('showAdded'), 3000);
   }
 
   checkout() {

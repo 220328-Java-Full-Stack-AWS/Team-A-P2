@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm} from '@angular/forms';
 import { Product } from '../dto/product';
 import { ProductService } from '../services/product.service';
+import { faFaceSmileWink,faFaceAngry  } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-admin',
@@ -16,6 +17,8 @@ export class AdminComponent implements OnInit {
   public editProduct!: Product;
   public deleteProduct!: Product;
   public enableSave: any;
+  public faFaceSmileWink = faFaceSmileWink;
+  public faFaceAngry = faFaceAngry;
 
   constructor(private productService: ProductService,) { }
 
@@ -45,9 +48,18 @@ export class AdminComponent implements OnInit {
         screen?.classList.remove('show');
         const modal = document.getElementById('add-modal');
         modal?.classList.remove('show');
+
+        // animation
+        const SuccessNotification = document.getElementById('SuccessNotification');
+        SuccessNotification?.classList.add('showAdded2');
+        setTimeout(() => SuccessNotification?.classList.remove('showAdded2'), 3000);
       },
       (error: HttpErrorResponse) =>{
         console.log(error.message);
+        // animation
+        const ErrorNotification = document.getElementById('ErrorNotification');
+        ErrorNotification?.classList.add('showAdded2');
+        setTimeout(() => ErrorNotification?.classList.remove('showAdded2'), 3000);
       }
     );
     productForm.resetForm();
@@ -63,9 +75,18 @@ export class AdminComponent implements OnInit {
         screen?.classList.remove('show');
         const modal = document.getElementById('edit-modal');
         modal?.classList.remove('show');
+
+        // animation
+        const SuccessNotification = document.getElementById('SuccessNotification');
+        SuccessNotification?.classList.add('showAdded2');
+        setTimeout(() => SuccessNotification?.classList.remove('showAdded2'), 3000);
       },
       (error: HttpErrorResponse) => {
         console.log(error.message);
+        // animation
+        const ErrorNotification = document.getElementById('ErrorNotification');
+        ErrorNotification?.classList.add('showAdded2');
+        setTimeout(() => ErrorNotification?.classList.remove('showAdded2'), 3000);
       }
     );
   }
@@ -79,9 +100,19 @@ export class AdminComponent implements OnInit {
         screen?.classList.remove('show');
         const modal = document.getElementById('delete-modal');
         modal?.classList.remove('show');
+
+        // animation
+        const SuccessNotification = document.getElementById('SuccessNotification');
+        SuccessNotification?.classList.add('showAdded2');
+        setTimeout(() => SuccessNotification?.classList.remove('showAdded'), 3000);
+
       },
       (error: HttpErrorResponse) => {
         console.log(error.message);
+        // animation
+        const ErrorNotification = document.getElementById('ErrorNotification');
+        ErrorNotification?.classList.add('showAdded2');
+        setTimeout(() => ErrorNotification?.classList.remove('showAdded2'), 3000);
       }
     );
   }

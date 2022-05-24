@@ -2,7 +2,8 @@
 <div class="navbar">
   <div class="card" *ngIf="isLoggedIn$ | async as isLoggedIn">
     <button (click)="userMenuDropdown()">
-      <fa-icon id="icon" [icon]="faUserAstronaut"></fa-icon>
+      <fa-icon id="icon" *ngIf="auth.username.value === 'Admin'" [icon]="faUserSecret"></fa-icon>
+      <fa-icon id="icon"  *ngIf="auth.username.value !== 'Admin'" [icon]="faUserAstronaut"></fa-icon>
       <span id="username">{{ auth.username.value }}</span>
     </button>
   </div>
@@ -30,10 +31,10 @@
 <div class="user-menu" *ngIf="isLoggedIn$ | async as isLoggedIn">
   <ul>
     <div class="menu-content">
-      <li *ngIf="auth.username.value === 'Admin'"><a routerLink="/admin" routerLinkActive="active">Admin</a></li>
-      <li><a routerLink="/shop" routerLinkActive="active">Shop</a></li>
-      <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
-      <li><a routerLink="/orders" routerLinkActive="active">Orders</a></li>
+      <li *ngIf="auth.username.value === 'Admin'"><a routerLink="/admin" routerLinkActive="active" (click)="closeDropdown()">Admin</a></li>
+      <li><a routerLink="/shop" routerLinkActive="active" (click)="closeDropdown()" >Shop</a></li>
+      <li><a routerLink="/profile" routerLinkActive="active" (click)="closeDropdown()">Profile</a></li>
+      <li><a routerLink="/orders" routerLinkActive="active" (click)="closeDropdown()">Orders</a></li>
       <li (click)="logOut()">Log Out</li>
     </div>
   </ul>

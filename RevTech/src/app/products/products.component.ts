@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { faCartPlus, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faChevronDown, faFaceGrinTongueSquint } from '@fortawesome/free-solid-svg-icons';
 import { ProductService } from '../services/product.service';
 import { SaleService } from '../services/sale.service';
 import { Product } from '../dto/product';
@@ -8,7 +8,7 @@ import { Sale } from '../dto/sale';
 import { Router } from '@angular/router';
 import { Order } from '../dto/order';
 import { CheckoutService } from '../services/checkout.service';
-import { NgForm } from '@angular/forms';
+import { GsapService } from '../services/gsap.service';
 
 
 @Component({
@@ -21,6 +21,7 @@ export class ProductsComponent implements OnInit {
   // fa icon
   public faCartPlus = faCartPlus;
   public faChevronDown = faChevronDown;
+  public faFaceGrinTongueSquint = faFaceGrinTongueSquint;
   public count: number = 0;
 
   public products!: Product[];
@@ -37,14 +38,11 @@ export class ProductsComponent implements OnInit {
   public item!: Product;
   public selectedQuantity!: string;
 
-  constructor(private productService: ProductService, private salesService: SaleService, private router: Router, private checkoutService: CheckoutService) { }
+  constructor(private productService: ProductService, private salesService: SaleService, private router: Router, private checkoutService: CheckoutService, public gsap: GsapService) { }
 
   ngOnInit(): void {
-    if (sessionStorage.getItem("username") == null) {
-      this.router.navigateByUrl('/login');
-    }
     this.getProducts();
-
+    this.openingAnimation();
   }
 
   quantityUpdate(value: any) {
@@ -62,10 +60,17 @@ export class ProductsComponent implements OnInit {
     )
   }
 
+  public openingAnimation() {
+    const anim = this.gsap;
+    const product = '#products';
+    anim.fadeIn(product, 0.5, 0, 0.5);
+  }
+
   public getProductsByStatus(status: string) {
     this.productService.getProductsByStatus(status).subscribe(
       (response: Product[]) => {
         this.products = response;
+        this.openingAnimation();
       },
       (error: HttpErrorResponse) => {
         console.log(error.message);
@@ -77,6 +82,8 @@ export class ProductsComponent implements OnInit {
     this.productService.getProductsByCategory(category).subscribe(
       (response: Product[]) => {
         this.products = response;
+        this.closeDropdown("categories");
+        this.openingAnimation();
       },
       (error: HttpErrorResponse) => {
         console.log(error.message);
@@ -88,6 +95,8 @@ export class ProductsComponent implements OnInit {
     this.productService.sort(sort, order).subscribe(
       (response: Product[]) => {
         this.products = response;
+        this.closeDropdown("sort");
+        this.openingAnimation();
       },
       (error: HttpErrorResponse) => {
         console.log(error.message);
@@ -108,6 +117,7 @@ export class ProductsComponent implements OnInit {
       this.products = results;
       if (results.length === 0 || !key) {
         this.getProducts();
+
       }
     }
   }
@@ -121,6 +131,12 @@ export class ProductsComponent implements OnInit {
     sortList?.classList.remove('show');
     arrow?.classList.toggle('flip');
   }
+
+  public closeDropdown(id: string) {
+    const element = document.getElementById(`${id}`);
+    element?.classList.remove('show');
+  }
+
   public sortDropdown() {
     const categoryList = document.getElementById("categories");
     const sortList = document.getElementById("sort");
@@ -171,7 +187,12 @@ export class ProductsComponent implements OnInit {
 
           sale = data;
           this.order = this.salesService.invokeOrderFunction(this.order, sale, "add");
+
           this.salesService.setCurrentOrder(this.order);
+          // animation
+          const CartNotification = document.getElementById('CartNotification');
+          CartNotification?.classList.add('showAdded');
+          setTimeout(() => CartNotification?.classList.remove('showAdded'), 3000);
 
         });
       });

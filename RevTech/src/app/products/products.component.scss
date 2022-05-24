@@ -1,9 +1,20 @@
+.product-page{
+  min-height: 60vh;
+  h2{
+    font-size: 4rem;
+    text-decoration: underline;
+    color: #3a3c58;
+    margin-left: 3.5rem;
+    margin-bottom: .5rem;
+  }
+}
 // sort and categories bar start
 .sort-filter-search{
+  z-index: 100;
   width: 100%;
   border-bottom: 1px solid lightgrey;
-  padding: 1rem 3rem;
-  margin-bottom: 2.5rem;
+  padding: 1.3rem 3rem;
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -73,7 +84,7 @@
   .sort-filter-search{
     width: 100%;
     border-bottom: 2px solid whitesmoke;
-    padding: 1rem;
+    padding: 2rem;
     margin-bottom: 2.5rem;
     flex-direction: column;
     flex-wrap: wrap;
@@ -204,8 +215,40 @@
   }
 }
 
+.product-added-notification{
+  position: fixed;
+  top: 12%;
+  right: -100%;
+  width: 20%;
+  padding: .8rem 2rem;
+  background:#0093E9;
+  border: 1px solid white;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: rgba(128, 0, 144, 0.2) 0px 13px 27px -5px, rgba(128, 0, 144, 0.2) 0px 8px 16px -8px;
+  transition: all .6s ease-in-out;
+  .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    span{
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: white;
+    }
+    #product-added-icon{
+      color: white;
+      font-size: 1.25rem
+    }
+  }
+}
+.showAdded {
+  right: 0;
+}
+
 .noProducts{
-  margin: 5rem;
+  margin: 1rem 5rem 5rem 5rem;
   padding: 6rem 0;
   border-radius: 10px;
   background-color: #0093E9;

@@ -174,8 +174,6 @@ public class UserServiceTest {
         User user2 = new User("bakgeo", "bakgeo@gmail.com", "gbsw0rd!", "Geo", "Bak", "832-543-2432");
         User user3 = new User("gb", "gb@gmail.com", "simplepassword", "G", "B", "219-999-4543");
 
-
-
     }
     @Test
     public void test_authenticateUser() {

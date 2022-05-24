@@ -1,59 +1,83 @@
-<div class="container">
-    <table id="table">
-        <tr>
-
-            <th>Name</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Cost</th>
-            <!-- <th>Category</th> -->
-            <th>Image</th>
-            <th>Action</th>
-        </tr>
-        <tr *ngFor="let product of products">
-            <!-- <td>
+<div class="checkout-page">
+  <table id="cart-table">
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Cost</th>
+      <!-- <th>Category</th> -->
+      <th>Image</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let product of products">
+      <!-- <td>
         <p>{{ product?.productId }}</p>
       </td> -->
-            <td id="productName">
-                <p>{{ product?.productName }}</p>
-            </td>
-            <td id="productPrice">
-                <span>${{ product?.productPrice?.toFixed(2) }}</span>
-            </td>
-            <td id="productQuantity">
-                <p>{{ product?.productQuantity }}</p>
-            </td>
-            <!-- <td id="productCategory">
+      <td id="productName">
+        <p>{{ product?.productName }}</p>
+      </td>
+      <td id="productPrice">
+        <span>${{ product?.productPrice?.toFixed(2) }}</span>
+      </td>
+      <td id="productQuantity">
+        <p>{{ product?.productQuantity }}</p>
+      </td>
+      <!-- <td id="productCategory">
         <p>{{ product?.productCategory }}</p>
       </td> -->
-            <td id="cost">
-                <!--TODO:Test line 31-->
-                <span>${{ (product.productPrice * product.productQuantity).toFixed(2) }}</span>
-            </td>
+      <td id="cost">
+        <!--TODO:Test line 31-->
+        <span>${{ (product.productPrice * product.productQuantity).toFixed(2) }}</span>
+      </td>
 
-            <td>
-                <img id="productImage" src="{{ product?.productImage }}" alt="{{ product.productName}}">
-            </td>
-            <td id="deleteButton">
-                <button (click)="removeItem(product)">Delete</button>
-            </td>
-            <!-- <td id="productOption">
+      <td>
+        <img id="productImage" src="{{ product?.productImage }}" alt="{{ product.productName}}">
+      </td>
+      <td id="deleteButton">
+        <button (click)="removeItem(product)">Delete</button>
+      </td>
+      <!-- <td id="productOption">
         <button id="EditProduct" (click)="onOpenModal(product, 'edit')">Edit</button>
         <button id="DeleteProduct" (click)="onOpenModal(product, 'delete')">Delete</button>
       </td> -->
-        </tr>
-        <tr>
-            <td>
-                <button (click)="emptyCart()">Empty cart</button>
-            </td>
-            <td>
-                <button (click)="checkout()">Check Out</button>
-            </td>
-            <td><button routerLink="/shop" routerLinkActive="active">Shop More</button></td>
-        </tr>
-    </table>
+    </tr>
+    <tr>
+      <td>
+        <button (click)="emptyCart()">Empty cart</button>
+      </td>
+      <td>
+        <button (click)="checkout()">Check Out</button>
+      </td>
+      <td><button routerLink="/shop" routerLinkActive="active">Shop More</button></td>
+    </tr>
+  </table>
+
+  <div class="checkout-options">
+    <h2 id="checkout-cart-title">Cart</h2>
+    <span id="checkout-cart-total">Total: ${{ checkoutService.total.toFixed(2) }}</span>
+    <button (click)="emptyCart()" id="emptyCart">Empty cart <fa-icon [icon]="faTrashCan"></fa-icon></button>
+    <button id="checkoutBtn">Check Out</button>
+    <button id="continueShopping" routerLink="/shop" routerLinkActive="active">Continue shopping</button>
+  </div>
+
+</div>
+
+<!-- Empty Cart -->
+<div *ngIf="products?.length == 0" class="emptyCart">
+  <h2>Empty Cart</h2>
+  <span>No items your cart!</span>
+</div>
 
 
-
-
+<div class="product-remove-notification" id="removeItemNotification">
+  <div class="content">
+    <span>Item removed from Cart!</span>
+    <fa-icon id="icon" [icon]="faFaceAngry" [spin]="true"></fa-icon>
+  </div>
+</div>
+<div class="cart-cleared-notification" id="clearCartNotification">
+  <div class="content">
+    <span>Cart Cleared!</span>
+    <fa-icon id="icon" [icon]="faFaceAngry" [spin]="true"></fa-icon>
+  </div>
 </div>

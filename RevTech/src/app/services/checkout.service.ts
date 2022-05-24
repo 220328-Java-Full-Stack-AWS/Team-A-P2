@@ -12,6 +12,7 @@ export class CheckoutService {
   public productList = new BehaviorSubject<any>([]);
   public quantityVal!: number;
   public saleList!: Sale[];
+  public total = 0;
 
   constructor() { }
 
@@ -23,6 +24,7 @@ export class CheckoutService {
     this.cartItemList.push(product);
     this.productList.next(this.cartItemList);
 
+    this.total = this.total + product.productPrice * product.productQuantity;
     //The below cLog is only needed for testing.
     // console.log(this.cartItemList)
   }
@@ -34,7 +36,8 @@ export class CheckoutService {
       }
     })
     //updates number found in the cart
-    this.productList.next(this.cartItemList)
+    this.productList.next(this.cartItemList);
+    this.total = this.total - product.productPrice * product.productQuantity;
   }
 
   emptyCart() {

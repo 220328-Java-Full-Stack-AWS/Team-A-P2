@@ -51,13 +51,13 @@ export class OrdersComponent implements OnInit {
       address: "",
       city: "",
       state: "",
-      zip: 0,
+      zipCode: 0,
       country: "",
     },
     payment: {
       paymentId: 0,
       cardNumber: 0,
-      expirationDate: null,
+      experationDate: null,
       cvc: 0
     },
   };

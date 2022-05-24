@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faUserAstronaut, faShoppingCart, faWindowClose, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { faUserAstronaut, faShoppingCart, faWindowClose, faSun, faMoon, faUserSecret } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { Order } from '../dto/order';
 import { User } from '../dto/user';
@@ -49,17 +49,21 @@ export class NavbarComponent implements OnInit {
     this.auth.logout();
   }
 
-
   // Font Awesome Icons
   public faUserAstronaut = faUserAstronaut;
   public faShoppingCart = faShoppingCart;
   public faWindowClose = faWindowClose;
+  public faUserSecret = faUserSecret;
   public faSun = faSun;
   public faMoon = faMoon;
 
   public userMenuDropdown() {
     const userMenu = document.querySelector('.user-menu');
     userMenu?.classList.toggle('magic');
+  }
+  public closeDropdown() {
+    const userMenu = document.querySelector('.user-menu');
+    userMenu?.classList.remove('magic');
   }
 
   public DarkTheme() {
