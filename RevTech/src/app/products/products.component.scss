@@ -50,7 +50,7 @@
       .category-list, .sort-list {
         display: none;
         position: absolute;
-        transform: translateY(-3%);
+        transform: translateY(-2%);
         background: #3a3c58;
         width: 10rem;
         #dropdownBtn{
@@ -202,6 +202,38 @@
       box-shadow: rgba(128, 0, 144, 0.2) 0px 13px 27px -5px, rgba(128, 0, 144, 0.2) 0px 8px 16px -8px;
     }
   }
+}
+
+.product-added-notification{
+  position: fixed;
+  top: 12%;
+  right: -100%;
+  width: 20%;
+  padding: .8rem 2rem;
+  background:#0093E9;
+  border: 1px solid white;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: rgba(128, 0, 144, 0.2) 0px 13px 27px -5px, rgba(128, 0, 144, 0.2) 0px 8px 16px -8px;
+  transition: all .6s ease-in-out;
+  .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    span{
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: white;
+    }
+    #product-added-icon{
+      color: white;
+      font-size: 1.25rem
+    }
+  }
+}
+.showAdded {
+  right: 0;
 }
 
 .noProducts{

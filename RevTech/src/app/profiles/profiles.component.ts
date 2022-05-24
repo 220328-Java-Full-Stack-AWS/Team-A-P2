@@ -8,6 +8,8 @@ import { User } from '../dto/user';
 import { Address } from '../dto/address';
 import { ResourceLoader } from '@angular/compiler';
 import { Payment } from '../dto/payment';
+import { faUserAstronaut, faUserSecret } from '@fortawesome/free-solid-svg-icons';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-profiles',
@@ -29,9 +31,6 @@ export class ProfilesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(sessionStorage.getItem("username") == null){
-      this.router.navigateByUrl('/login');
-    }
   }
 
   public updateUser(choice: string){

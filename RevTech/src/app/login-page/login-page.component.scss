@@ -1,7 +1,7 @@
 .login{
   width: 100%;
   height: 90vh;
-  background: #f3f7f9;
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,7 +10,7 @@
   h1 {
     width: 30%;
     text-align: center;
-    font-size: 2.7rem;
+    font-size: 3.5rem;
     font-weight: 500;
     color: #2b2d42;
     font-weight: bold;
@@ -28,7 +28,7 @@
       display: flex;
       flex-direction: column;
       label {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
         color: #2b2d42;
       }
       input {

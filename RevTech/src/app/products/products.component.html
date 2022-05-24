@@ -1,32 +1,37 @@
 <div class="sort-filter-search">
   <form>
-    <input type="search" (ngModelChange)="searchProduct(key.value)" ngModel #key="ngModel" name="key" placeholder="Search Products..." required>
+    <input type="search" (ngModelChange)="searchProduct(key.value)" ngModel #key="ngModel" name="key"
+      placeholder="Search Products..." required>
   </form>
   <div class="wrapper">
-      <button (click)="getProducts()">All</button>
-      <button (click)="getProductsByStatus('discount')">On Sale</button>
-      <button (click)="getProductsByStatus('featured')">Featured</button>
-      <ul>
-        <li><button id="categoriesBtn" (click)="categoryDropdown()">Categories <fa-icon [icon]="faChevronDown" id="c-icon"></fa-icon></button></li>
-        <div class="category-list" id="categories">
-          <li><button id="dropdownBtn" (click)="getProductsByCategory('Phones')">Phones</button></li>
-          <li><button id="dropdownBtn" (click)="getProductsByCategory('Phone Accessories')">Phone Accessories</button></li>
-          <li><button id="dropdownBtn" (click)="getProductsByCategory('Television')">Television</button></li>
-          <li><button id="dropdownBtn" (click)="getProductsByCategory('Laptops')">Laptops</button></li>
-          <li><button id="dropdownBtn" (click)="getProductsByCategory('Computers')">Computers</button></li>
-          <li><button id="dropdownBtn" (click)="getProductsByCategory('Gaming Consoles')">Gaming Consoles</button></li>
-          <li><button id="dropdownBtn" (click)="getProductsByCategory('Gaming Accessories')">Gaming Accessories</button></li>
-        </div>
-      </ul>
-      <ul>
-        <li><button id="sortBtn"  (click)="sortDropdown()">Sort <fa-icon [icon]="faChevronDown" id="s-icon"></fa-icon></button></li>
-        <div class="sort-list" id="sort">
-          <li><button id="dropdownBtn" (click)="sort('price','asc')">Price Low - High</button></li>
-          <li><button id="dropdownBtn" (click)="sort('price','desc')">Price High - Low</button></li>
-          <li><button id="dropdownBtn" (click)="sort('product_name','asc')" >Product Name A-Z</button></li>
-          <li><button id="dropdownBtn" (click)="sort('product_name','desc')">Product Name Z-A</button></li>
-        </div>
-      </ul>
+    <button (click)="getProducts()">All</button>
+    <button (click)="getProductsByStatus('discount')">On Sale</button>
+    <button (click)="getProductsByStatus('featured')">Featured</button>
+    <ul>
+      <li><button id="categoriesBtn" (click)="categoryDropdown()">Categories <fa-icon [icon]="faChevronDown"
+            id="c-icon"></fa-icon></button></li>
+      <div class="category-list" id="categories">
+        <li><button id="dropdownBtn" (click)="getProductsByCategory('Phones')">Phones</button></li>
+        <li><button id="dropdownBtn" (click)="getProductsByCategory('Phone Accessories')">Phone Accessories</button>
+        </li>
+        <li><button id="dropdownBtn" (click)="getProductsByCategory('Television')">Television</button></li>
+        <li><button id="dropdownBtn" (click)="getProductsByCategory('Laptops')">Laptops</button></li>
+        <li><button id="dropdownBtn" (click)="getProductsByCategory('Computers')">Computers</button></li>
+        <li><button id="dropdownBtn" (click)="getProductsByCategory('Gaming Consoles')">Gaming Consoles</button></li>
+        <li><button id="dropdownBtn" (click)="getProductsByCategory('Gaming Accessories')">Gaming Accessories</button>
+        </li>
+      </div>
+    </ul>
+    <ul>
+      <li><button id="sortBtn" (click)="sortDropdown()">Sort <fa-icon [icon]="faChevronDown" id="s-icon"></fa-icon>
+        </button></li>
+      <div class="sort-list" id="sort">
+        <li><button id="dropdownBtn" (click)="sort('price','asc')">Price Low - High</button></li>
+        <li><button id="dropdownBtn" (click)="sort('price','desc')">Price High - Low</button></li>
+        <li><button id="dropdownBtn" (click)="sort('product_name','asc')">Product Name A-Z</button></li>
+        <li><button id="dropdownBtn" (click)="sort('product_name','desc')">Product Name Z-A</button></li>
+      </div>
+    </ul>
   </div>
 </div>
 <!-- sort end -->
@@ -43,13 +48,13 @@
     </div>
     <div class="productFooter">
       <div class="cart-card-1">
-        <span class="price">${{ product.productPrice.toFixed(2) }}</span>
+        <span class="price">${{product.productPrice.toFixed(2)}}</span>
         <span class="quantity">Quantity in stock:{{ product.productQuantity }}</span>
       </div>
 
       <div class="cart-card-2">
-        <input type="number" name="amount" id="amount">
-        <button>
+        <input type="number"  min="1" max={{product.productQuantity}} name="amount" id="amount" #selectedQuanity>
+        <button (click)="addToCart(product, selectedQuanity.value)">
           <fa-icon [icon]="faCartPlus"></fa-icon>
         </button>
       </div>
@@ -62,4 +67,11 @@
 <div *ngIf="products?.length == 0" class="noProducts">
   <h2>NO PRODUCTS</h2>
   <span>Sorry for the inconvenience!</span>
+</div>
+
+<div class="product-added-notification" id="CartNotification">
+  <div class="content">
+    <span>Added to Cart!</span>
+    <fa-icon id="product-added-icon" [icon]="faFaceGrinTongueSquint" [spin]="true"></fa-icon>
+  </div>
 </div>

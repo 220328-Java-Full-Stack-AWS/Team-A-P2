@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -19,6 +20,7 @@ import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { AdminComponent } from './admin/admin.component';
+import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { AdminComponent } from './admin/admin.component';
     OrdersComponent,
     ErrorPageComponent,
     AdminComponent,
+    CheckoutPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ import { AdminComponent } from './admin/admin.component';
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
+    CommonModule
   ],
   providers: [ProductService, SaleService, UserService, AuthenticationService],
   bootstrap: [AppComponent]

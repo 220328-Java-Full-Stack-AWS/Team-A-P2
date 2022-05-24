@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { faCartPlus, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faChevronDown, faFaceGrinTongueSquint } from '@fortawesome/free-solid-svg-icons';
 import { ProductService } from '../services/product.service';
 import { SaleService } from '../services/sale.service';
 import { Product } from '../dto/product';
@@ -10,6 +10,9 @@ import { AddressService } from '../services/address.service';
 import { Address } from '../dto/address';
 import { PaymentService } from '../services/payment.service';
 import { Payment } from '../dto/payment';
+import { CheckoutService } from '../services/checkout.service';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-products',
@@ -21,16 +24,21 @@ export class ProductsComponent implements OnInit {
   // fa icon
   public faCartPlus = faCartPlus;
   public faChevronDown = faChevronDown;
+  public faFaceGrinTongueSquint = faFaceGrinTongueSquint;
   public count: number = 0;
 
   public products!: Product[];
 
+  public productList!: Product[];
   public sale!: Sale;
 
-  constructor(private productService: ProductService, private salesService: SaleService, private addressService: AddressService, private paymentService: PaymentService, private router: Router){}
+  public item!: Product;
+  public selectedQuantity!: string;
+
+  constructor(private productService: ProductService, private salesService: SaleService, private router: Router, private addressService: AddressService, private paymentService: PaymentService, private checkoutService: CheckoutService) { }
 
   ngOnInit(): void {
-    if(sessionStorage.getItem("username") == null){
+    if (sessionStorage.getItem("username") == null) {
       this.router.navigateByUrl('/login');
     }
     this.getProducts();
@@ -61,7 +69,18 @@ export class ProductsComponent implements OnInit {
     )
   }
 
-  public getProducts():void {
+  public addToCart(product: Product, selectedQuantity: string) {
+    product.productQuantity = parseInt(selectedQuantity);
+    this.checkoutService.addToCart(product);
+
+    // animation
+    const CartNotification = document.getElementById('CartNotification');
+    CartNotification?.classList.add('showAdded');
+    setTimeout(() => CartNotification?.classList.remove('showAdded'), 3000);
+  }
+
+
+  public getProducts(): void {
     this.productService.getProducts().subscribe(
       (response: Product[]) => {
         this.products = response;
@@ -72,7 +91,7 @@ export class ProductsComponent implements OnInit {
     )
   }
 
-  public getProductsByStatus(status: string){
+  public getProductsByStatus(status: string) {
     this.productService.getProductsByStatus(status).subscribe(
       (response: Product[]) => {
         this.products = response;
@@ -83,7 +102,7 @@ export class ProductsComponent implements OnInit {
     )
   }
 
-  public getProductsByCategory(category: string){
+  public getProductsByCategory(category: string) {
     this.productService.getProductsByCategory(category).subscribe(
       (response: Product[]) => {
         this.products = response;
@@ -94,7 +113,7 @@ export class ProductsComponent implements OnInit {
     )
   }
 
-  public sort(sort: string, order: string){
+  public sort(sort: string, order: string) {
     this.productService.sort(sort, order).subscribe(
       (response: Product[]) => {
         this.products = response;
@@ -108,22 +127,22 @@ export class ProductsComponent implements OnInit {
 
   public searchProduct(key: string): void {
     const results: Product[] = [];
-    for(const product of this.products){
-      if(product.productName.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+    for (const product of this.products) {
+      if (product.productName.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
         product.productCategory.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
         product.productStatus.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      ){
+      ) {
         results.push(product);
       }
       this.products = results;
-      if(results.length === 0 || !key){
+      if (results.length === 0 || !key) {
         this.getProducts();
       }
     }
   }
 
   // dropdown function
-  public categoryDropdown(){
+  public categoryDropdown() {
     const arrow = document.getElementById('c-icon');
     const sortList = document.getElementById("sort");
     const categoryList = document.getElementById("categories");
@@ -131,10 +150,12 @@ export class ProductsComponent implements OnInit {
     sortList?.classList.remove('show');
     arrow?.classList.toggle('flip');
   }
+
   public sortDropdown(){
     const categoryList = document.getElementById("categories");
     const sortList = document.getElementById("sort");
     sortList?.classList.toggle('show');
     categoryList?.classList.remove('show');
   }
+
 }

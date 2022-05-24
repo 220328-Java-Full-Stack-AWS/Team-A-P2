@@ -20,9 +20,12 @@ body {
   #adminPageTitle{
     color: white;
   }
-  #table{
+  #table, #cart-table{
     tr{
       background-color: white;
     }
+  }
+  #checkout-cart-title, #profile-title, #checkout-cart-total, #checkout-cart-page-title{
+    color: white;
   }
 }

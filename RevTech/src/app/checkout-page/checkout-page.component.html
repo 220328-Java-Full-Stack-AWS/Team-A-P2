@@ -1,0 +1,65 @@
+<div class="checkout-page">
+
+  <h1 *ngIf="products?.length !== 0" id="checkout-cart-page-title">Check Out</h1>
+  <div class="checkout" *ngIf="products?.length !== 0"  >
+    <!-- table -->
+    <table id="cart-table">
+      <tr>
+        <th>Product Name</th>
+        <th>Product Price</th>
+        <th>Quantity</th>
+        <th>Cost</th>
+        <th>Product Image</th>
+        <th>Action</th>
+      </tr>
+      <tr *ngFor="let product of products">
+        <td id="productName">
+            <span>{{ product?.productName }}</span>
+        </td>
+        <td id="productPrice">
+            <span>${{ product?.productPrice?.toFixed(2) }}</span>
+        </td>
+        <td id="productQuantity">
+            <span>{{ product?.productQuantity }}</span>
+        </td>
+        <td id="cost">
+          <span>${{ (product.productPrice * product.productQuantity).toFixed(2) }}</span>
+        </td>
+        <td>
+          <img id="cart-product-image" src="{{ product?.productImage }}" alt="{{ product.productName}}">
+        </td>
+        <td>
+          <button id="removeItem" (click)="removeItem(product)">Remove Item</button>
+        </td>
+      </tr>
+    </table>
+
+    <div class="checkout-options">
+      <h2 id="checkout-cart-title">Cart</h2>
+      <span id="checkout-cart-total">Total: ${{ checkoutService.total.toFixed(2) }}</span>
+      <button (click)="emptyCart()" id="emptyCart">Empty cart <fa-icon [icon]="faTrashCan"></fa-icon></button>
+      <button id="checkoutBtn">Check Out</button>
+      <button id="continueShopping" routerLink="/shop" routerLinkActive="active">Continue shopping</button>
+    </div>
+
+  </div>
+
+  <!-- Empty Cart -->
+  <div *ngIf="products?.length == 0" class="emptyCart">
+    <h2>Empty Cart</h2>
+    <span>No items your cart!</span>
+  </div>
+</div>
+
+<div class="product-remove-notification" id="removeItemNotification">
+  <div class="content">
+    <span>Item removed from Cart!</span>
+    <fa-icon id="icon" [icon]="faFaceAngry" [spin]="true"></fa-icon>
+  </div>
+</div>
+<div class="cart-cleared-notification" id="clearCartNotification">
+  <div class="content">
+    <span>Cart Cleared!</span>
+    <fa-icon id="icon" [icon]="faFaceAngry" [spin]="true"></fa-icon>
+  </div>
+</div>

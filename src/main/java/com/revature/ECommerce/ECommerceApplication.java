@@ -71,7 +71,7 @@ public class ECommerceApplication {
 		session.save(p17);
 
 		// users
-		User leo = new User("leobarriento02","leo@gmail.com","password","Leonel","Barrientos", "516-960-8086");
+		User leo = new User("leobarrientos02","leo@gmail.com","password","Leonel","Barrientos", "516-960-8086");
 		session.save(leo);
 		session.save(p1);
   		session.save(p2);
