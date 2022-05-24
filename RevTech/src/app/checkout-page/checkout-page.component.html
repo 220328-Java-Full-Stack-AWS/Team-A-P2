@@ -1,73 +1,55 @@
 <div class="checkout-page">
-  <table id="cart-table">
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Cost</th>
-      <!-- <th>Category</th> -->
-      <th>Image</th>
-      <th>Action</th>
-    </tr>
-    <tr *ngFor="let product of products">
-      <!-- <td>
-        <p>{{ product?.productId }}</p>
-      </td> -->
-      <td id="productName">
-        <p>{{ product?.productName }}</p>
-      </td>
-      <td id="productPrice">
-        <span>${{ product?.productPrice?.toFixed(2) }}</span>
-      </td>
-      <td id="productQuantity">
-        <p>{{ product?.productQuantity }}</p>
-      </td>
-      <!-- <td id="productCategory">
-        <p>{{ product?.productCategory }}</p>
-      </td> -->
-      <td id="cost">
-        <!--TODO:Test line 31-->
-        <span>${{ (product.productPrice * product.productQuantity).toFixed(2) }}</span>
-      </td>
 
-      <td>
-        <img id="productImage" src="{{ product?.productImage }}" alt="{{ product.productName}}">
-      </td>
-      <td id="deleteButton">
-        <button (click)="removeItem(product)">Delete</button>
-      </td>
-      <!-- <td id="productOption">
-        <button id="EditProduct" (click)="onOpenModal(product, 'edit')">Edit</button>
-        <button id="DeleteProduct" (click)="onOpenModal(product, 'delete')">Delete</button>
-      </td> -->
-    </tr>
-    <tr>
-      <td>
-        <button (click)="emptyCart()">Empty cart</button>
-      </td>
-      <td>
-        <button (click)="checkout()">Check Out</button>
-      </td>
-      <td><button routerLink="/shop" routerLinkActive="active">Shop More</button></td>
-    </tr>
-  </table>
+  <h1 *ngIf="products?.length !== 0" id="checkout-cart-page-title">Check Out</h1>
+  <div class="checkout" *ngIf="products?.length !== 0">
+    <!-- table -->
+    <table id="cart-table">
+      <tr>
+        <th>Product Name</th>
+        <th>Product Price</th>
+        <th>Quantity</th>
+        <th>Cost</th>
+        <th>Product Image</th>
+        <th>Action</th>
+      </tr>
+      <tr *ngFor="let product of products">
+        <td id="productName">
+          <span>{{ product?.productName }}</span>
+        </td>
+        <td id="productPrice">
+          <span>${{ product?.productPrice?.toFixed(2) }}</span>
+        </td>
+        <td id="productQuantity">
+          <span>{{ product?.productQuantity }}</span>
+        </td>
+        <td id="cost">
+          <span>${{ (product.productPrice * product.productQuantity).toFixed(2) }}</span>
+        </td>
+        <td>
+          <img id="cart-product-image" src="{{ product?.productImage }}" alt="{{ product.productName}}">
+        </td>
+        <td>
+          <button id="removeItem" (click)="removeItem(product)">Remove Item</button>
+        </td>
+      </tr>
+    </table>
 
-  <div class="checkout-options">
-    <h2 id="checkout-cart-title">Cart</h2>
-    <span id="checkout-cart-total">Total: ${{ checkoutService.total.toFixed(2) }}</span>
-    <button (click)="emptyCart()" id="emptyCart">Empty cart <fa-icon [icon]="faTrashCan"></fa-icon></button>
-    <button id="checkoutBtn">Check Out</button>
-    <button id="continueShopping" routerLink="/shop" routerLinkActive="active">Continue shopping</button>
+    <div class="checkout-options">
+      <h2 id="checkout-cart-title">Cart</h2>
+      <span id="checkout-cart-total">Total: ${{ checkoutService.total.toFixed(2) }}</span>
+      <button (click)="emptyCart()" id="emptyCart">Empty cart <fa-icon [icon]="faTrashCan"></fa-icon></button>
+      <button id="checkoutBtn" (click)="checkout()">Check Out</button>
+      <button id="continueShopping" routerLink="/shop" routerLinkActive="active">Continue shopping</button>
+    </div>
+
   </div>
 
+  <!-- Empty Cart -->
+  <div *ngIf="products?.length == 0" class="emptyCart">
+    <h2>Empty Cart</h2>
+    <span>No items your cart!</span>
+  </div>
 </div>
-
-<!-- Empty Cart -->
-<div *ngIf="products?.length == 0" class="emptyCart">
-  <h2>Empty Cart</h2>
-  <span>No items your cart!</span>
-</div>
-
 
 <div class="product-remove-notification" id="removeItemNotification">
   <div class="content">
@@ -81,3 +63,15 @@
     <fa-icon id="icon" [icon]="faFaceAngry" [spin]="true"></fa-icon>
   </div>
 </div>
+© 2022 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
