@@ -93,12 +93,15 @@ public class ECommerceApplication {
 		tx.commit();
 	}
 
-	/*
+
 	@Bean
 	public CorsFilter corsFilter() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(true);
-		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200","http://localhost:4200/%22"));
+		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200","http://localhost:4200/%22",
+				"http://http://revtech-ui.s3-website-us-west-1.amazonaws.com", "http://http://revtech-ui.s3-website-us-west-1.amazonaws.com/%22",
+				"http://revtechteamap2-env-1.eba-x9awq5nc.us-west-1.elasticbeanstalk.com",
+				"http://revtechteamap2-env-1.eba-x9awq5nc.us-west-1.elasticbeanstalk.com/%22"));
 		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
 				"Accept", "Authorization", "Origin, Accept", "X-Requested-With",
 				"Access-Control-Request-Method", "Access-Control-Request-Headers", "mode"));
@@ -108,5 +111,5 @@ public class ECommerceApplication {
 		UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
 		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
 		return new CorsFilter(urlBasedCorsConfigurationSource);
-	} */
+	}
 }

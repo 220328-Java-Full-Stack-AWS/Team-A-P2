@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
-
+/**
 @Component
 public class CorsFilter extends OncePerRequestFilter {
     @Override
@@ -21,10 +21,11 @@ public class CorsFilter extends OncePerRequestFilter {
         resp.setHeader("Access-Control-Allow-Methods", "*");
 //        resp.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         resp.setHeader("Access-Control-Allow-Headers", "*");
-        /* resp.setHeader("Access-Control-Allow-Headers", "Origin, Access-Control-Allow-Origin, Content-Type, " +
-                            "Accept, Authorization, Origin, Accept, X-Requested-With, " +
-                            "Access-Control-Request-Method, Access-Control-Request-Headers, mode");
-                            */
+//        resp.setHeader("Access-Control-Allow-Headers", "Origin, Access-Control-Allow-Origin, Content-Type, " +
+//                            "Accept, Authorization, Origin, Accept, X-Requested-With, " +
+//                            "Access-Control-Request-Method, Access-Control-Request-Headers, mode");
         chain.doFilter(req, resp);
+        System.out.println("HELLO I AM HERE IN THE CORS FILTER");
     }
 }
+*/
