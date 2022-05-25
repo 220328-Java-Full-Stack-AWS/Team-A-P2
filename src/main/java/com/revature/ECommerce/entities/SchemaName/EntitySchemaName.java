@@ -11,8 +11,6 @@ public class EntitySchemaName {
     public final static String jarodSchema = "jh";
     public final static String georgeSchema = "gb";
     public final static String publicSchema = "public";
-
-
     public final static String currentSchema = georgeSchema;
 
 }

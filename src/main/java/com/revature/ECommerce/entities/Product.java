@@ -1,5 +1,7 @@
 package com.revature.ECommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.revature.ECommerce.entities.SchemaName.EntitySchemaName;
 
 import javax.persistence.*;
@@ -34,7 +36,7 @@ public class Product implements Serializable {
     @Column(name = "category")
     private String productCategory;
 
-
+    @JsonBackReference
     @OneToOne(cascade = CascadeType.ALL)
     private Sale sale;
 

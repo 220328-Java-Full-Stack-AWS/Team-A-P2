@@ -40,6 +40,7 @@ public class OrderController {
         }
 
     }
+
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Order getById(@PathVariable String id){
@@ -84,4 +85,9 @@ public class OrderController {
         oServ.delete(oServ.getById(Integer.parseInt(id)));
     }
 
+    @GetMapping("/user/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void getUsersOrders(@PathVariable Integer id){
+        oServ.getByUserId(id);
+    }
 }

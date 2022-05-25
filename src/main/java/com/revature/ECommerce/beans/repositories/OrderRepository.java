@@ -84,7 +84,12 @@ public class OrderRepository implements HibernateRepository<Order>{
         tx.commit();
     }
 
-
+    public List<Order> getByUserId(Integer user_id){
+        String hql = "FROM Order WHERE user_id= :user_id";
+        TypedQuery<Order> query = session.createQuery(hql, Order.class);
+        query.setParameter("user_id", user_id);
+        return query.getResultList();
+    }
 
     @Override
     public void start() {

@@ -1,5 +1,8 @@
 package com.revature.ECommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -12,12 +15,15 @@ public class Sale implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sales_id")
     private Integer saleId;
+
     @Column(name = "quantity")
     private Integer quantity;
     @Column(name = "cost")
     private Double cost;
     @Column(name = "dop")
     private Timestamp dateOfPurchase;
+
+    @JsonManagedReference
     @OneToOne
     @JoinColumn(name = "product_id")
     private Product product;

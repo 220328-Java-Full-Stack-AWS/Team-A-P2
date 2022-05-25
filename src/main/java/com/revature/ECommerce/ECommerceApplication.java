@@ -14,6 +14,8 @@ import org.springframework.web.filter.CorsFilter;
 
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 @SpringBootApplication(scanBasePackages = "com.revature.ECommerce.beans")
 public class ECommerceApplication {
@@ -100,7 +102,6 @@ public class ECommerceApplication {
 		admin.setPayment(pay1);
 		admin.setAddress(a1);
 
-
 		session.save(a1);
 		session.save(pay1);
 		session.save(admin);
@@ -108,6 +109,22 @@ public class ECommerceApplication {
 		session.save(user2);
 		session.save(user3);
 
+		Sale purchase = new Sale(2, timestamp, p4);
+		List<Sale> sale = new LinkedList<Sale>();
+		sale.add(purchase);
+		Order leoOrder = new Order();
+		List<Order> orders = new LinkedList<Order>();
+
+		leoOrder.setUser(leo);
+		leoOrder.setSaleList(sale);
+		List<Order> leoOrders = new LinkedList<>();
+		leoOrders.add(leoOrder);
+		leo.setListOfOrders(leoOrders);
+
+
+		session.save(purchase);
+		session.save(leoOrder);
+		session.save(leo);
 		tx.commit();
 	}
 
