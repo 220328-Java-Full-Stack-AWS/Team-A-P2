@@ -21,6 +21,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { AdminComponent } from './admin/admin.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
+import { OrdersPageComponent } from './orders-page/orders-page.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
     ErrorPageComponent,
     AdminComponent,
     CheckoutPageComponent,
+    OrdersPageComponent,
   ],
   imports: [
     BrowserModule,
