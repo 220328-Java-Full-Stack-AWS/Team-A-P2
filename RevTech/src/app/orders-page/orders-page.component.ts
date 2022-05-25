@@ -16,16 +16,17 @@ export class OrdersPageComponent implements OnInit {
   constructor(public auth: AuthenticationService, public userService: UserService) { }
 
   public data: any = {};
-  public username = sessionStorage.getItem('username');
 
   ngOnInit(): void {
     this.getUserData();
   }
 
   public faFaceAngry = faFaceAngry;
-  public shippmentStatus: string = "Shipped";
+
+  public shippmentStatus: string = "Shipping";
+
   public getUserData() {
-    this.userService.getUserByUsername(this.username).subscribe(
+    this.userService.getUserByUsername(this.auth.username.value).subscribe(
       (response: any) => {
         this.data = response;
         console.log(this.data);
