@@ -26,7 +26,7 @@ export class CheckoutPageComponent implements OnInit {
   constructor(public checkoutService: CheckoutService, private saleService: SaleService, private orderService: OrderService, private userService: UserService, private productService: ProductService) { }
   public faTrashCan = faTrashCan;
   public faFaceAngry = faFaceAngry;
-
+  public cardnumber = sessionStorage.getItem('cardnumber');
 
 
 
@@ -75,7 +75,8 @@ export class CheckoutPageComponent implements OnInit {
     this.userService.getUserByUsername(this.username).subscribe((data: User) => {
       let daUser = data;
       let holder = new Holder(order, this.sale, daUser);
-      if (sessionStorage.getItem('paymentid') == null) {
+      console.log(this.cardnumber);
+      if (this.cardnumber == 'null') {
         alert("A payment method must be linked to your account to checkout. You can add a payment method in profile page");
 
       } else {
