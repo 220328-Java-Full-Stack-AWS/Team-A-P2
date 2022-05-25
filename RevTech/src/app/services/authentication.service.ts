@@ -4,20 +4,20 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Address } from '../dto/address';
 import { User } from '../dto/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-
-
   constructor(private router: Router, private http: HttpClient) { }
 
 
   private apiServiceUrl = environment.apiBaseUrl;
 
   public username = new BehaviorSubject<any>(sessionStorage.getItem('username'));
+  public userId = new BehaviorSubject<number>(parseInt(sessionStorage.getItem('username')!));
 
   public loggedIn = new BehaviorSubject<boolean>(this.checkLoginStatus());
 
@@ -48,13 +48,13 @@ export class AuthenticationService {
     this.Login(user).subscribe(
       (response: User) => {
         user = response;
-        sessionStorage.setItem('userid', user.userId.toString());
-        sessionStorage.setItem('username', user.username);
-        sessionStorage.setItem('email', user.email);
-        sessionStorage.setItem('password', user.password);
-        sessionStorage.setItem('firstname', user.firstName);
-        sessionStorage.setItem('lastname', user.lastName);
-        sessionStorage.setItem('phone', user.phone);
+        sessionStorage.setItem('userid', response.userId.toString());
+        sessionStorage.setItem('username', response.username);
+        sessionStorage.setItem('email', response.email);
+        sessionStorage.setItem('firstname', response.firstName);
+        sessionStorage.setItem('lastname', response.lastName);
+        sessionStorage.setItem('phone', response.phone);
+        sessionStorage.setItem('password', response.password);
 
         this.loggedIn.next(true);
         this.router.navigateByUrl('/shop');

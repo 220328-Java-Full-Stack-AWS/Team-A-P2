@@ -47,7 +47,15 @@ export class UserService {
   }
 
   public deleteUser(userId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServiceUrl}/users`);
+    return this.http.delete<void>(
+      `${this.apiServiceUrl}/users`,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'user_id': userId.toString()
+        })
+      }
+    );
   }
 
   public getUserById(userId: number): Observable<User> {
@@ -62,7 +70,7 @@ export class UserService {
     );
   }
 
-  public getUserByUsername(username: string | null): Observable<User> {
+  public getUserByUsername(username: string): Observable<User> {
     return this.http.get<User>(
       `${this.apiServiceUrl}/users/${username}`, // url
       {

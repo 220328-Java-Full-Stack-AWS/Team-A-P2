@@ -1,24 +1,23 @@
 package com.revature.ECommerce.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.revature.ECommerce.entities.SchemaName.EntitySchemaName;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "user_payments", schema = _SchemaName.stanSchema)
+@Table(name = "user_payments", schema = _SchemaName.schemaName)
 public class Payment implements Serializable {
 
     @Id
     private Integer paymentId;
     @Column(name = "card_number")
-    private Integer cardNumber;
+    private String cardNumber;
     @Column(name = "exp_date")
-    private Timestamp experationDate;
+    private String expDate;
     @Column(name = "cvc")
-    private Integer cvc;
+    private String cvc;
 
     @JsonBackReference
     @OneToOne
@@ -28,10 +27,11 @@ public class Payment implements Serializable {
 
     public Payment(){}
 
-    public Payment(Integer cardNumber, Timestamp experationDate, Integer cvc){
+    public Payment(String cardNumber, String expDate, String cvc, Integer paymentId){
         this.cardNumber=cardNumber;
-        this.experationDate=experationDate;
+        this.expDate=expDate;
         this.cvc=cvc;
+        this.paymentId = paymentId;
     }
 
     public Integer getPaymentId() {
@@ -50,27 +50,38 @@ public class Payment implements Serializable {
         this.user = user;
     }
 
-    public Integer getCardNumber() {
+    public String getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(Integer cardNumber) {
+    public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 
-    public Timestamp getExperationDate() {
-        return experationDate;
+    public String getExpDate() {
+        return expDate;
     }
 
-    public void setExperationDate(Timestamp experationDate) {
-        this.experationDate = experationDate;
+    public void setExpDate(String expDate) {
+        this.expDate = expDate;
     }
 
-    public Integer getCvc() {
+    public String getCvc() {
         return cvc;
     }
 
-    public void setCvc(Integer cvc) {
+    public void setCvc(String cvc) {
         this.cvc = cvc;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "paymentId=" + paymentId +
+                ", cardNumber=" + cardNumber +
+                ", expDate=" + expDate +
+                ", cvc=" + cvc +
+                ", user=" + user +
+                '}';
     }
 }

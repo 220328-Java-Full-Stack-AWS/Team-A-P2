@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Address } from '../dto/address';
 import { environment } from 'src/environments/environment';
+import { User } from '../dto/user';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,8 @@ export class AddressService {
   }
 
   // add address
-  public addNewAddress(address: Address): Observable<Address> {
-    return this.http.post<Address>(`${this.apiServiceUrl}/address/add`, address);
+  public addNewAddress(address: Address, id: number): Observable<Address> {
+    return this.http.post<Address>(`${this.apiServiceUrl}/address/add/${id}`, address);
   }
 
   // update address

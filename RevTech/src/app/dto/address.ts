@@ -1,8 +1,8 @@
 export interface Address {
-    addressId: number;
-    address: string;
-    city: string;
-    state: string;
-    zipCode: number;
-    country: string;
-  }
+  addressId: number;
+  address: any;
+  city: any;
+  state: any;
+  zipCode: any;
+  country: any;
+}

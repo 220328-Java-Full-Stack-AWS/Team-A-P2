@@ -46,20 +46,6 @@ export class OrdersComponent implements OnInit {
     firstName: "",
     lastName: "",
     phone: "",
-    address: {
-      addressId: 0,
-      address: "",
-      city: "",
-      state: "",
-      zipCode: 0,
-      country: "",
-    },
-    payment: {
-      paymentId: 0,
-      cardNumber: 0,
-      experationDate: null,
-      cvc: 0
-    },
   };
 
   currentOrder: Order = this.order;

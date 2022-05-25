@@ -7,6 +7,10 @@ import { Product } from '../dto/product';
 import { Sale } from '../dto/sale';
 import { Router } from '@angular/router';
 import { Order } from '../dto/order';
+import { AddressService } from '../services/address.service';
+import { Address } from '../dto/address';
+import { PaymentService } from '../services/payment.service';
+import { Payment } from '../dto/payment';
 import { CheckoutService } from '../services/checkout.service';
 import { GsapService } from '../services/gsap.service';
 
@@ -38,10 +42,36 @@ export class ProductsComponent implements OnInit {
   public item!: Product;
   public selectedQuantity!: string;
 
-  constructor(private productService: ProductService, private salesService: SaleService, private router: Router, private checkoutService: CheckoutService, public gsap: GsapService) { }
+  constructor(private productService: ProductService, private salesService: SaleService, private router: Router, private addressService: AddressService, private paymentService: PaymentService, private checkoutService: CheckoutService, public gsap: GsapService) { }
 
   ngOnInit(): void {
     this.getProducts();
+
+    this.addressService.getAddressByAddressId(parseInt(sessionStorage.getItem("userid")!)).subscribe(
+      (response: Address) => {
+        sessionStorage.setItem('address', response.address);
+        sessionStorage.setItem('city', response.city);
+        sessionStorage.setItem('state', response.state);
+
+        if (response.zipCode == null) { sessionStorage.setItem('zip', "null"); }
+        else { sessionStorage.setItem('zip', response.zipCode.toString()); }
+
+        sessionStorage.setItem('country', response.country);
+      }
+    )
+
+    this.paymentService.getPaymentByPaymentId(parseInt(sessionStorage.getItem("userid")!)).subscribe(
+      (response: Payment) => {
+        if (response.cardNumber == null) { sessionStorage.setItem('cardnumber', "null"); }
+        else { sessionStorage.setItem('cardnumber', response.cardNumber.toString()); }
+
+        if (response.cvc == null) { sessionStorage.setItem('cvc', "null"); }
+        else { sessionStorage.setItem('cardnumber', response.cvc.toString()); }
+
+        sessionStorage.setItem('expirationdate', response.expDate);
+      }
+    )
+
     this.openingAnimation();
   }
 

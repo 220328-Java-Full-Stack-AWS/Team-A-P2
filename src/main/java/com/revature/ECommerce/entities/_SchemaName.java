@@ -8,5 +8,5 @@ public class _SchemaName {
     public final static String jarodSchema = "jh";
     public final static String publicSchema = "public";
     public final static String schemaName = publicSchema;
-    public final static String stanSchema = "sr";
+    public final static String stanSchema = "public";
 }
