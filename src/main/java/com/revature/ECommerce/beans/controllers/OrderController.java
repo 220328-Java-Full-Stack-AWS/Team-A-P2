@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -52,7 +53,13 @@ public class OrderController {
         Order order = holder.getOrder();
 
         order=(oServ.checkOut(holder.getUser(), holder.getOrder()));
-
+        user= uServ.getUserByUsername(holder.getUser().getUsername());
+        if(user.getListOfOrders()==null){
+            List<Order>tempList = new ArrayList<>();
+            user.setListOfOrders(tempList);
+        }
+        user.getListOfOrders().add(order);
+        uServ.update(user);
         return order;
     }
 

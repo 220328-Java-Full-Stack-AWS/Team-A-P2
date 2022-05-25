@@ -7,6 +7,7 @@ import { Product } from '../dto/product';
 import { Sale } from '../dto/sale';
 import { Router } from '@angular/router';
 import { Order } from '../dto/order';
+import { OrderService } from '../services/order.service';
 import { AddressService } from '../services/address.service';
 import { Address } from '../dto/address';
 import { PaymentService } from '../services/payment.service';
@@ -42,7 +43,7 @@ export class ProductsComponent implements OnInit {
   public item!: Product;
   public selectedQuantity!: string;
 
-  constructor(private productService: ProductService, private salesService: SaleService, private router: Router, private addressService: AddressService, private paymentService: PaymentService, private checkoutService: CheckoutService, public gsap: GsapService) { }
+  constructor(private productService: ProductService, private salesService: SaleService, private router: Router, private addressService: AddressService, private paymentService: PaymentService, private checkoutService: CheckoutService, public gsap: GsapService, private orderService: OrderService) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -218,7 +219,7 @@ export class ProductsComponent implements OnInit {
           sale = data;
           this.order = this.salesService.invokeOrderFunction(this.order, sale, "add");
 
-          this.salesService.setCurrentOrder(this.order);
+
           // animation
           const CartNotification = document.getElementById('CartNotification');
           CartNotification?.classList.add('showAdded');

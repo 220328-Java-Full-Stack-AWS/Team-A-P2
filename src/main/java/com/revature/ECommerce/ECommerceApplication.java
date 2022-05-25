@@ -82,9 +82,9 @@ public class ECommerceApplication {
 
 		User user1 = new User("georgebakhoum", "bakhoumgeorge@gmail.com", "P4ssw0rd!", "George", "Bakhoum", "832-100-1000");
 		User user2 = new User("bakgeo", "bakgeo@gmail.com", "gbsw0rd!", "Geo", "Bak", "832-543-2432");
-		User user3 = new User("gb", "gb@gmail.com", "simplepassword", "G", "B", "219-999-4543");
+		User user3 = new User("gb", "gb@gmail.com", "123", "G", "B", "219-999-4543");
 		User admin = new User("Admin", "admin@gmail.com", "Password", "admin", "admin", "333-222-1111");
-		
+
 		session.save(admin);
 		session.save(user1);
 		session.save(user2);
@@ -109,9 +109,9 @@ public class ECommerceApplication {
 		admin.setPayment(payment2);
 
 		Address address3 = new Address();
-		Payment payment3 = new Payment();
-		address3.setUser(user1);
-		payment3.setUser(user1);
+		Payment payment3 = new Payment("1234-5678-9012-3456", "", "911", 0);
+		address3.setUser(user3);
+		payment3.setUser(user3);
 		session.save(address3);
 		session.save(payment3);
 		user1.setAddress(address3);
@@ -128,8 +128,8 @@ public class ECommerceApplication {
 
 		Address address5 = new Address();
 		Payment payment5 = new Payment();
-		address5.setUser(user3);
-		payment5.setUser(user3);
+		address5.setUser(user1);
+		payment5.setUser(user1);
 		session.save(address5);
 		session.save(payment5);
 		user3.setAddress(address5);

@@ -19,6 +19,7 @@ export class OrdersPageComponent implements OnInit {
   constructor(public auth: AuthenticationService, public userService: UserService, public orderService: OrderService, public saleService: SaleService) { }
 
   public data: any = {};
+  public username = sessionStorage.getItem('username');
 
   ngOnInit(): void {
     this.getUserData();
@@ -26,8 +27,8 @@ export class OrdersPageComponent implements OnInit {
 
   public faFaceAngry = faFaceAngry;
   public shippmentStatus: string = "Shipped";
-  public getUserData(){
-    this.userService.getUserByUsername(this.auth.username.value).subscribe(
+  public getUserData() {
+    this.userService.getUserByUsername(this.username).subscribe(
       (response: any) => {
         this.data = response;
         console.log(this.data);

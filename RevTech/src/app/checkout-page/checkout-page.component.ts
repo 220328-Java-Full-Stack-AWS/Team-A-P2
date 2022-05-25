@@ -39,12 +39,11 @@ export class CheckoutPageComponent implements OnInit {
   }
   removeItem(product: any) {
     this.checkoutService.removeCartItem(product);
-    sessionStorage.setItem('currentOrder', JSON.stringify(this.saleService.getCurrentOrder()));
     //for each sale in the current order 
     for (let i = 0; i < this.saleService.getCurrentOrder().saleList.length; i++) {
       //remove it if it contains the given product and update the given products quantity 
       if (this.saleService.getCurrentOrder().saleList[i].product.productId == product.productId) {
-        this.saleService.getCurrentOrder().saleList[i].product.productQuantity = this.saleService.getCurrentOrder().saleList[i].quantity;
+        this.saleService.getCurrentOrder().saleList[i].product.productQuantity += this.saleService.getCurrentOrder().saleList[i].quantity;
 
         this.productService.updateproduct(this.saleService.getCurrentOrder().saleList[i].product).subscribe((data: Product) => {
           this.saleService.getCurrentOrder().saleList[i].product = data;
@@ -85,6 +84,7 @@ export class CheckoutPageComponent implements OnInit {
             orderId: null,
             saleList: []
           };
+
           this.saleService.setCurrentOrder(emptyOrder);
           this.emptyCart();
           alert("Checkout completed sucessfully! Thank you for your purchase!");

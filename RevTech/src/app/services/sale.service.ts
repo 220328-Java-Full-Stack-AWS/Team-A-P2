@@ -102,7 +102,6 @@ export class SaleService {
     let holder = new Holder(order, sale, this.user);
     this.orderService.addSaleToOrder(holder).subscribe((data: Order) => {
       this.currentOrder = data;
-
       this.currentSales = data.saleList;
       console.log("Add to Order Finished");
     });

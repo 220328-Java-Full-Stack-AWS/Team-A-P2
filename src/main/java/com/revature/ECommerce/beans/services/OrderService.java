@@ -35,7 +35,7 @@ public class OrderService {
             //sale.setOrder(order);
             tempList.add(sale);
             order.setSaleList(tempList);
-            return order;
+            return oRepo.update(order);
         }else{
 
             //order=oRepo.save(order);
