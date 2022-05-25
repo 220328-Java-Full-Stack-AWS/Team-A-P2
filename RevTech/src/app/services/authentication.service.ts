@@ -17,7 +17,7 @@ export class AuthenticationService {
   private apiServiceUrl = environment.apiBaseUrl;
 
   public username =  new BehaviorSubject<any>(sessionStorage.getItem('username'));
-  public userId = new BehaviorSubject<number>(parseInt(sessionStorage.getItem('username')!));
+  public userId = new BehaviorSubject<number>(parseInt(sessionStorage.getItem('userid')!));
 
   public loggedIn = new BehaviorSubject<boolean>(this.checkLoginStatus());
 

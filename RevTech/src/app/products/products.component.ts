@@ -40,30 +40,30 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
 
-    this.addressService.getAddressByAddressId(parseInt(sessionStorage.getItem("userid")!)).subscribe(
-      (response: Address) => {
-       sessionStorage.setItem('address', response.address);
-       sessionStorage.setItem('city', response.city);
-       sessionStorage.setItem('state', response.state);
+    // this.addressService.getAddressByAddressId(parseInt(sessionStorage.getItem("userid")!)).subscribe(
+    //   (response: Address) => {
+    //    sessionStorage.setItem('address', response.address);
+    //    sessionStorage.setItem('city', response.city);
+    //    sessionStorage.setItem('state', response.state);
 
-       if(response.zipCode == null){sessionStorage.setItem('zip', "null");}
-       else{sessionStorage.setItem('zip', response.zipCode.toString());}
+    //    if(response.zipCode == null){sessionStorage.setItem('zip', "null");}
+    //    else{sessionStorage.setItem('zip', response.zipCode.toString());}
 
-       sessionStorage.setItem('country', response.country);
-      }
-    )
+    //    sessionStorage.setItem('country', response.country);
+    //   }
+    // )
 
-    this.paymentService.getPaymentByPaymentId(parseInt(sessionStorage.getItem("userid")!)).subscribe(
-      (response: Payment) => {
-        if(response.cardNumber == null){sessionStorage.setItem('cardnumber', "null");}
-        else{sessionStorage.setItem('cardnumber', response.cardNumber.toString());}
+    // this.paymentService.getPaymentByPaymentId(parseInt(sessionStorage.getItem("userid")!)).subscribe(
+    //   (response: Payment) => {
+    //     if(response.cardNumber == null){sessionStorage.setItem('cardnumber', "null");}
+    //     else{sessionStorage.setItem('cardnumber', response.cardNumber.toString());}
 
-        if(response.cvc == null){sessionStorage.setItem('cvc', "null");}
-        else{sessionStorage.setItem('cardnumber', response.cvc.toString());}
+    //     if(response.cvc == null){sessionStorage.setItem('cvc', "null");}
+    //     else{sessionStorage.setItem('cardnumber', response.cvc.toString());}
 
-        sessionStorage.setItem('expirationdate', response.expDate);
-       }
-    )
+    //     sessionStorage.setItem('expirationdate', response.expirationDate);
+    //    }
+    // )
 
     this.openingAnimation();
   }
