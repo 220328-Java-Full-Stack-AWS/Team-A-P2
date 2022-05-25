@@ -12,30 +12,30 @@ import { User } from '../dto/user';
 export class AuthenticationService {
 
 
-  constructor( private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
 
   private apiServiceUrl = environment.apiBaseUrl;
 
-  public username =  new BehaviorSubject<any>(sessionStorage.getItem('username'));
+  public username = new BehaviorSubject<any>(sessionStorage.getItem('username'));
 
   public loggedIn = new BehaviorSubject<boolean>(this.checkLoginStatus());
 
-  get isLoggedIn(){
+  get isLoggedIn() {
     return this.loggedIn.asObservable();
   }
 
-  checkLoginStatus() : boolean {
+  checkLoginStatus(): boolean {
     var loginCookie = sessionStorage.getItem('LoggedIn');
-    if(loginCookie == "1"){
+    if (loginCookie == "1") {
       return true;
-    }else{
-    return false;
+    } else {
+      return false;
     }
   }
 
-  public login(loginForm: NgForm):void{
-    let user : User = {
+  public login(loginForm: NgForm): void {
+    let user: User = {
       userId: 0,
       username: loginForm.value.username,
       email: "",
@@ -43,20 +43,6 @@ export class AuthenticationService {
       firstName: "",
       lastName: "",
       phone: "",
-      address: {
-        addressId: 0,
-        address: "",
-        city: "",
-        state: "",
-        zipCode: 0,
-        country: ""
-      },
-      payment: {
-        paymentId: 0,
-        cardNumber: 0,
-        experationDate: "",
-        cvc: 0
-      }
     }
 
     this.Login(user).subscribe(
@@ -86,7 +72,7 @@ export class AuthenticationService {
     )
   }
 
-  private Login(user: User): Observable<User>{
+  private Login(user: User): Observable<User> {
     return this.http.post<User>(
       `${this.apiServiceUrl}/users`,// url
       user, // object being passed
@@ -99,7 +85,7 @@ export class AuthenticationService {
     );
   }
 
-  public logout(){
+  public logout() {
     this.loggedIn.next(false);
     this.router.navigateByUrl('/login');
     sessionStorage.clear();
