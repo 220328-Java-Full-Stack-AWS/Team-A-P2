@@ -102,10 +102,14 @@ export class ProfilesComponent implements OnInit {
         sessionStorage.setItem("phone", response.phone);
 
         // animation
+        const screen = document.getElementById('screen');
+        screen?.classList.remove('show');
+        const modal = document.getElementById('edit-account-modal');
+        modal?.classList.remove('show');
         const SuccessNotification = document.getElementById('SuccessNotification');
         SuccessNotification?.classList.add('showAdded3');
         setTimeout(() => SuccessNotification?.classList.remove('showAdded3'), 3000);
-        setTimeout(() => location.reload(), 2000);
+        setTimeout(() => location.reload(), 4000);
         this.getUserData();
       }
     );
