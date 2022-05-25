@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { faCartPlus, faChevronDown, faFaceGrinTongueSquint } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faChevronDown, faFaceGrinTongueSquint, faFaceGrinTears } from '@fortawesome/free-solid-svg-icons';
 import { ProductService } from '../services/product.service';
 import { SaleService } from '../services/sale.service';
 import { Product } from '../dto/product';
@@ -27,6 +27,7 @@ export class ProductsComponent implements OnInit {
   public faCartPlus = faCartPlus;
   public faChevronDown = faChevronDown;
   public faFaceGrinTongueSquint = faFaceGrinTongueSquint;
+  public faFaceGrinTears = faFaceGrinTears;
   public count: number = 0;
 
   public products!: Product[];
@@ -185,7 +186,11 @@ export class ProductsComponent implements OnInit {
   public addToCart(product: Product): void {
 
     if (product.productQuantity <= 0) {
-      alert("This product is currently out of stock");
+      // alert("This product is currently out of stock");
+      // animation
+      const OutofStock = document.getElementById('product-out-of-stock');
+      OutofStock?.classList.add('showAdded');
+      setTimeout(() => OutofStock?.classList.remove('showAdded'), 3000);
     }
     let sale = {
       quantity: this.str,
@@ -225,7 +230,7 @@ export class ProductsComponent implements OnInit {
 
 
       this.salesService.orderTotal += sale.cost;
-      alert("Item successfully added to cart");
+      // alert("Item successfully added to cart");
       // animation
       const CartNotification = document.getElementById('CartNotification');
       CartNotification?.classList.add('showAdded');
@@ -234,7 +239,12 @@ export class ProductsComponent implements OnInit {
 
       localStorage.setItem("product", JSON.stringify(product));
     } else if (sale.product.productQuantity <= 0) {
-      alert("Sorry, we don't have that much of this product in stock!");
+      // alert("Sorry, we don't have that much of this product in stock!");
+      // animation
+      const LowStock = document.getElementById('product-low-in-stock');
+      LowStock?.classList.add('showAdded');
+      setTimeout(() => LowStock?.classList.remove('showAdded'), 3000);
+
     }
 
   }
