@@ -8,11 +8,11 @@
       </div>
       <div class="username-type">
         <h2>{{ auth?.username?.value }}</h2>
-        <span *ngIf="auth?.username?.value === 'Admin'" >Account Type: Admin</span>
+        <span *ngIf="auth?.username?.value === 'Admin'">Account Type: Admin</span>
         <span *ngIf="auth?.username?.value !== 'Admin'">Account Type: User</span>
       </div>
     </div>
-    <div  class="profile-body">
+    <div class="profile-body">
       <div class="profile-body-title">
         <h5>Account</h5>
         <div class="option">
@@ -23,38 +23,41 @@
       <div class="profile-data">
         <p>First Name</p>
         <div class="data">
-          <span>{{ user?.firstName }}</span>
+          <span>{{ data?.firstName }}</span>
         </div>
       </div>
       <div class="profile-data">
         <p>Last Name</p>
         <div class="data">
-          <span>{{ user?.lastName }}</span>
+          <span>{{ data?.lastName }}</span>
         </div>
       </div>
       <div class="profile-data">
         <p>Username</p>
         <div class="data">
-          <span>{{ user?.username }}</span>
+          <span>{{ data?.username }}</span>
         </div>
       </div>
       <div class="profile-data">
         <p>Email</p>
         <div class="data">
-          <span>{{ user?.username }}</span>
+          <span>{{ data?.email }}</span>
         </div>
       </div>
       <div class="profile-data">
         <p>Phone</p>
         <div class="data">
-          <span>{{ user?.phone }}</span>
+          <span>{{ data?.phone }}</span>
         </div>
       </div>
       <div class="profile-data" style="border:none;">
         <p>Password</p>
         <form class="data">
-            <input ngModel="{{ user?.password }}"  [type]="show ? 'text' : 'password'"type="password" name="password" id="password" placeholder="Password" />
-            <span id="showP" (click)="showPassword()"><fa-icon [icon]="faFaceRollingEyes"></fa-icon>{{show ? 'Hide Password' : 'Show Password' }}</span>
+          <input ngModel="{{ data?.password }}" [type]="show ? 'text' : 'password'" type="password" name="password"
+            id="password" placeholder="Password" />
+          <span id="showP" (click)="showPassword()">
+            <fa-icon [icon]="faFaceRollingEyes"></fa-icon>{{show ? 'Hide Password' : 'Show Password' }}
+          </span>
         </form>
       </div>
     </div>
@@ -63,35 +66,37 @@
       <div class="profile-body-title">
         <h5>Address</h5>
         <div class="option">
-          <button *ngIf="user?.address === null" (click)="onOpenModal('add','address')">Add Address</button>
-          <button *ngIf="user?.address !== null" (click)="onOpenModal('edit', 'address')">Edit</button>
-          <button id="delete" *ngIf="address !== null" (click)="onOpenModal('delete', 'address')">Delete</button>
+          <button *ngIf="data?.address?.address === null" (click)="onOpenModal('add','address')">Add Address</button>
+          <button *ngIf="data?.address?.address !== null" (click)="onOpenModal('edit', 'address')">Edit</button>
+          <button id="delete" *ngIf="data?.address?.address !== null"
+            (click)="onOpenModal('delete', 'address')">Delete</button>
         </div>
       </div>
-      <div class="address" *ngIf="address !== null">
+      <div class="address" *ngIf="data?.address.address !== null">
         <div class="address-data">
           <p>Street</p>
-          <span>{{ user?.address?.address }}</span>
+          <span>{{ data?.address?.address }}</span>
         </div>
         <div class="address-data">
           <p>City/Town</p>
-          <span>{{ user?.address?.city }}</span>
+          <span>{{ data?.address?.city }}</span>
         </div>
         <div class="address-data">
           <p>Zip Code</p>
-          <span>{{ user?.address?.zipCode }}</span>
+          <span>{{ data?.address?.zipCode }}</span>
         </div>
         <div class="address-data">
           <p>State</p>
-          <span>{{ user?.address?.state }}</span>
+          <span>{{ data?.address?.state }}</span>
         </div>
         <div style="border: none;" class="address-data">
           <p>Country</p>
-          <span>{{ user?.address?.country }}</span>
+          <span>{{ data?.address?.country }}</span>
         </div>
       </div>
       <!-- if user has no address -->
-      <div class="none" *ngIf="user?.address === null">
+      <div class="none" *ngIf="data?.address?.address === null">
+        <br>
         <h4>No Address</h4>
       </div>
     </div>
@@ -101,35 +106,38 @@
       <div class="profile-body-title">
         <h5>Payment</h5>
         <div class="option">
-          <button *ngIf="user?.payment === null" (click)="onOpenModal('add','payment')">Add Payment</button>
-          <button *ngIf="user?.payment !== null" (click)="onOpenModal('edit', 'payment')">Edit</button>
-          <button id="delete" *ngIf="user?.payment !== null" (click)="onOpenModal('delete', 'payment')">Remove</button>
+          <button *ngIf="data?.payment?.cardNumber === null" (click)="onOpenModal('add','payment')">Add Payment</button>
+          <button *ngIf="data?.payment?.cardNumber !== null" (click)="onOpenModal('edit', 'payment')">Edit</button>
+          <button id="delete" *ngIf="data?.payment?.cardNumber !== null"
+            (click)="onOpenModal('delete', 'payment')">Remove</button>
         </div>
       </div>
-      <div class="payment" *ngIf="user?.payment !== null">
+      <div class="payment" *ngIf="data?.payment?.cardNumber !== null">
         <div class="payment-data">
           <p>Card Number</p>
-          <h5>{{ user?.payment?.cardNumber }}</h5>
+          <h5>{{ data?.payment?.cardNumber }}</h5>
         </div>
         <div class="payment-data">
           <p>Expiration Date</p>
-          <span>{{ user?.payment?.experationDate | date }}</span>
+          <span>{{ data?.payment?.expDate }}</span>
         </div>
         <div class="payment-data" style="border:none;">
           <p>Cvc</p>
           <form class="data">
-            <input ngModel="{{ user?.payment?.cvc }}"  [type]="show2 ? 'text' : 'password'" name="cvc" id="cvc" placeholder="CVC" />
-            <span id="showP" (click)="showPassword2()"><fa-icon [icon]="faFaceRollingEyes"></fa-icon>{{show2 ? 'Hide CVC' : 'View CVC' }}</span>
+            <input ngModel="{{ data?.payment?.cvc }}" [type]="show2 ? 'text' : 'password'" name="cvc" id="cvc"
+              placeholder="CVC" />
+            <span id="showP" (click)="showPassword2()">
+              <fa-icon [icon]="faFaceRollingEyes"></fa-icon>{{show2 ? 'Hide CVC' : 'View CVC' }}
+            </span>
           </form>
         </div>
       </div>
-      <div class="none" *ngIf="user?.payment === null">
+      <div class="none" *ngIf="data?.payment?.cardNumber === null">
+        <br>
         <h4>No Payment Method</h4>
       </div>
     </div>
   </div>
-
-
 </div>
 
 <!-- FORMS -->
@@ -141,7 +149,7 @@
     <h2>Add Address</h2>
     <button (click)="onCloseModal('add','address')">x</button>
   </div>
-  <form #addAddressForm="ngForm">
+  <form #addAddressForm="ngForm" (ngSubmit)="editAddress(addAddressForm)" ngNativeValidate>
     <div class="modal-body">
       <div class="modal-input">
         <label for="address">Address</label>
@@ -153,7 +161,8 @@
       </div>
       <div class="modal-input">
         <label for="zip">Zip Code</label>
-        <input ngModel type="text" name="zip" id="zip" placeholder="Zip code..." required />
+        <input ngModel type="text" name="zip" id="zip" pattern="^[0-9]{5}$" autocomplete="postal-code"
+          placeholder="XXXXX" required />
       </div>
       <div class="modal-input">
         <label for="state">State</label>
@@ -176,20 +185,23 @@
     <h2>Add Payment</h2>
     <button (click)="onCloseModal('add','payment')">x</button>
   </div>
-  <form #addPaymentForm="ngForm" (ngSubmit)="onAddPayment(addPaymentForm)" ngNativeValidate>
+  <form #addPaymentForm="ngForm" (ngSubmit)="editPayment(addPaymentForm)" ngNativeValidate>
     <div class="modal-body">
       <div class="modal-input">
         <input ngModel="{{ user.userId }}" type="hidden" id="userId" name="userId">
         <label for="cardNumber">Card Number</label>
-        <input ngModel type="text" name="cardNumber" id="cardNumber" placeholder="Card Number..." required />
+        <input ngModel type="tel" inputmode="numeric" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}"
+          autocomplete="cc-number" maxlength="19" placeholder="XXXX-XXXX-XXXX-XXXX" name="cardNumber" id="cardNumber"
+          required />
       </div>
       <div class="modal-input">
-        <label for="experationDate">Expiration Date</label>
-        <input ngModel type="date" name="experationDate" id="experationDate" required />
+        <label for="expDate">Expiration Date</label>
+        <input ngModel type="date" name="expDate" id="expDate" required />
       </div>
       <div class="modal-input">
         <label for="cvc">CVC</label>
-        <input ngModel type="number" name="cvc" id="cvc" placeholder="CVC" required />
+        <input ngModel type="text" pattern="^[0-9]{3,4}$" autocomplete="cc-csc" maxlength="4" id="cvc" name="cvc"
+          placeholder="XXX or XXXX" required />
       </div>
     </div>
     <div class="modal-footer">
@@ -204,33 +216,36 @@
     <h2>Edit Account</h2>
     <button (click)="onCloseModal('edit','account')">x</button>
   </div>
-  <form #editForm="ngForm" (ngSubmit)="onEditUser(editForm)">
+  <form #editUserForm="ngForm" (ngSubmit)="editUser(editUserForm)" ngNativeValidate>
     <div class="modal-body">
       <div class="modal-input">
         <input ngModel type="hidden" id="user_id" name="user_id">
         <label for="firstName">First Name</label>
-        <input ngModel="{{ user.firstName }}"  type="text" name="firstName" id="firstName" placeholder="First Name" />
+        <input ngModel="{{ user.firstName }}" type="text" name="firstName" id="firstName" placeholder="First Name" />
       </div>
       <div class="modal-input">
         <label for="lastName">Last Name</label>
-        <input ngModel="{{ user.lastName }}"  type="text" name="lastName" id="lastName" placeholder="Last Name" />
+        <input ngModel="{{ user.lastName }}" type="text" name="lastName" id="lastName" placeholder="Last Name" />
       </div>
       <div class="modal-input">
         <label for="username">Username</label>
-        <input ngModel="{{ user.username }}"  type="text" name="username" id="username" placeholder="Username" />
+        <input ngModel="{{ user.username }}" type="text" name="username" id="username" placeholder="Username" />
       </div>
       <div class="modal-input">
         <label for="Email">Email</label>
-        <input ngModel="{{ user.email }}"  type="email" name="email" id="email" placeholder="Email" />
+        <input ngModel="{{ user.email }}" type="email" name="email" id="email" placeholder="Email" />
       </div>
       <div class="modal-input">
         <label for="phone">Phone</label>
-        <input ngModel="{{ user.phone }}"  type="text" name="phone" id="phone" placeholder="Phone" />
+        <input ngModel="{{ user.phone }}" type="text" name="phone" id="phone" placeholder="Phone" />
       </div>
       <div class="modal-input">
         <label for="password">Password</label>
-        <input ngModel="{{ user.password }}"  [type]="show ? 'text' : 'password'"type="password" name="password" id="password" placeholder="Password" />
-        <span (click)="showPassword()"><fa-icon [icon]="faFaceRollingEyes"></fa-icon>{{show ? 'Hide Password' : 'Show Password' }}</span>
+        <input ngModel="{{ user.password }}" [type]="show ? 'text' : 'password'" type="password" name="password"
+          id="password" placeholder="Password" />
+        <span (click)="showPassword()">
+          <fa-icon [icon]="faFaceRollingEyes"></fa-icon>{{show ? 'Hide Password' : 'Show Password' }}
+        </span>
       </div>
     </div>
     <div class="modal-footer">
@@ -245,27 +260,30 @@
     <h2>Edit Address</h2>
     <button (click)="onCloseModal('edit','address')">x</button>
   </div>
-  <form #addAddressForm="ngForm">
+  <form #editAddressForm="ngForm" (ngSubmit)="editAddress(editAddressForm)" ngNativeValidate>
     <div class="modal-body">
       <div class="modal-input">
         <label for="address">Address</label>
-        <input ngModel="{{ user?.address?.address }}" type="text" name="address" id="address" placeholder="Address 1..." required />
+        <input ngModel="{{ address?.address }}" type="text" name="address" id="address" placeholder="Address 1..."
+          required />
       </div>
       <div class="modal-input">
         <label for="city">City</label>
-        <input ngModel="{{ user?.address?.city }}" type="text" name="city" id="city" placeholder="City" required />
+        <input ngModel="{{ address?.city }}" type="text" name="city" id="city" placeholder="City" required />
       </div>
       <div class="modal-input">
         <label for="zip">Zip Code</label>
-        <input ngModel="{{ user?.address?.zipCode }}"  type="text" name="zip" id="zip" placeholder="Zip code..." required />
+        <input ngModel="{{ address?.zipCode }}" type="text" name="zip" id="zip" pattern="^[0-9]{5}$"
+          autocomplete="postal-code" placeholder="XXXXX" required />
       </div>
       <div class="modal-input">
         <label for="state">State</label>
-        <input ngModel="{{ user?.address?.state }}"  type="text" name="state" id="state" placeholder="State" required />
+        <input ngModel="{{ address?.state }}" type="text" name="state" id="state" placeholder="State" required />
       </div>
       <div class="modal-input">
         <label for="country">Country</label>
-        <input ngModel="{{ user?.address?.country }}"  type="text" name="country" id="country" placeholder="Country..." required />
+        <input ngModel="{{ address?.country }}" type="text" name="country" id="country" placeholder="Country..."
+          required />
       </div>
     </div>
     <div class="modal-footer">
@@ -279,19 +297,22 @@
     <h2>Edit Payment</h2>
     <button (click)="onCloseModal('edit','payment')">x</button>
   </div>
-  <form #addPaymentForm="ngForm">
+  <form #editPaymentForm="ngForm" (ngSubmit)="editPayment(editPaymentForm)" ngNativeValidate>
     <div class="modal-body">
       <div class="modal-input">
         <label for="cardNumber">Card Number</label>
-        <input ngModel="{{ user?.payment?.cardNumber }}" type="text" name="cardNumber" id="cardNumber" placeholder="Card Number..." required />
+        <input ngModel="{{ payment?.cardNumber }}" type="tel" inputmode="numeric"
+          pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" autocomplete="cc-number" maxlength="19"
+          placeholder="XXXX-XXXX-XXXX-XXXX" name="cardNumber" id="cardNumber" required />
       </div>
       <div class="modal-input">
-        <label for="experationDate">Expiration Date</label>
-        <input ngModel="{{ user?.payment?.experationDate | date }}" type="text" name="experationDate" id="experationDate" required />
+        <label for="expDate">Expiration Date</label>
+        <input ngModel="{{ payment?.expDate }}" type="date" name="expDate" id="expDate" required />
       </div>
       <div class="modal-input">
         <label for="cvc">CVC</label>
-        <input ngModel="{{ user?.payment?.cvc }}" type="text" name="cvc" id="cvc" placeholder="CVC" required />
+        <input ngModel="{{ payment?.cvc }}" type="text" pattern="^[0-9]{3,4}$" autocomplete="cc-csc" maxlength="4"
+          id="cvc" name="cvc" placeholder="XXX or XXXX" required />
       </div>
     </div>
     <div class="modal-footer">
@@ -311,7 +332,7 @@
     <p>Are you sure you want to delete this account?</p>
   </div>
   <div class="modal-footer">
-    <button id="confirm">Delete</button>
+    <button (click)="deleteUser()" id="confirm">Delete</button>
   </div>
 </div>
 
@@ -325,7 +346,7 @@
     <p>Are you sure you want to delete this address?</p>
   </div>
   <div class="modal-footer">
-    <button id="confirm">Delete</button>
+    <button (click)="deleteAddress()" id="confirm">Delete</button>
   </div>
 </div>
 
@@ -339,7 +360,7 @@
     <p>Are you sure you want to delete this payment?</p>
   </div>
   <div class="modal-footer">
-    <button id="confirm">Delete</button>
+    <button (click)="deletePayment()" id="confirm">Delete</button>
   </div>
 </div>
 

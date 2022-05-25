@@ -34,8 +34,8 @@ public class AddressService {
         return addressRepository.update(address);
     }
 
-    public void deleteAddress(Address address){
-        addressRepository.delete(address);
+    public void deleteAddress(Integer id){
+        addressRepository.delete(id);
     }
 
     public List<Address> getByState(String state){

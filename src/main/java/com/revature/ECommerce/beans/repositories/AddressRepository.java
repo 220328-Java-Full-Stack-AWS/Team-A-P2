@@ -2,6 +2,7 @@ package com.revature.ECommerce.beans.repositories;
 
 import com.revature.ECommerce.beans.services.HibernateManager;
 import com.revature.ECommerce.entities.Address;
+import com.revature.ECommerce.entities.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -41,10 +43,13 @@ public class AddressRepository implements HibernateRepository<Address>{
 
     @Override
     public Address getById(Integer id) {
+        Transaction tx = session.beginTransaction();
         String hql = "FROM Address WHERE addressId = :id";
         TypedQuery<Address> query = session.createQuery(hql, Address.class);
         query.setParameter("id", id);
-        return query.getSingleResult();
+        Address address = query.getSingleResult();
+        tx.commit();
+        return address;
     }
 
     @Override
@@ -61,9 +66,11 @@ public class AddressRepository implements HibernateRepository<Address>{
         return address;
     }
 
-    public void delete(Address address){
+    public void delete(Integer id){
         Transaction tx = session.beginTransaction();
-        session.remove(address);
+        TypedQuery<Address> query = session.createQuery("DELETE Address WHERE addressId = :id");
+        query.setParameter("id", id);
+        query.executeUpdate();
         tx.commit();
     }
 

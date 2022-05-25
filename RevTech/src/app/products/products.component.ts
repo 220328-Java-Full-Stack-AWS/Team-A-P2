@@ -1,11 +1,17 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { faCartPlus, faChevronDown, faFaceGrinTongueSquint } from '@fortawesome/free-solid-svg-icons';
 import { ProductService } from '../services/product.service';
 import { SaleService } from '../services/sale.service';
 import { Product } from '../dto/product';
 import { Sale } from '../dto/sale';
 import { Router } from '@angular/router';
+import { Order } from '../dto/order';
+import { OrderService } from '../services/order.service';
+import { AddressService } from '../services/address.service';
+import { Address } from '../dto/address';
+import { PaymentService } from '../services/payment.service';
+import { Payment } from '../dto/payment';
 import { CheckoutService } from '../services/checkout.service';
 import { GsapService } from '../services/gsap.service';
 
@@ -25,29 +31,54 @@ export class ProductsComponent implements OnInit {
 
   public products!: Product[];
 
-  public productList!: Product[];
-  public sale!: Sale;
 
+
+  str: number = 0;
+  public sale!: Sale;
+  public order: Order = {
+    orderId: null,
+    saleList: []
+  };
+  public productList!: Product[];
   public item!: Product;
   public selectedQuantity!: string;
 
-  constructor(private productService: ProductService, private salesService: SaleService, private router: Router, private checkoutService: CheckoutService, public gsap: GsapService) { }
+  constructor(private productService: ProductService, private salesService: SaleService, private router: Router, private addressService: AddressService, private paymentService: PaymentService, private checkoutService: CheckoutService, public gsap: GsapService, private orderService: OrderService) { }
 
   ngOnInit(): void {
     this.getProducts();
+
+    this.addressService.getAddressByAddressId(parseInt(sessionStorage.getItem("userid")!)).subscribe(
+      (response: Address) => {
+        sessionStorage.setItem('address', response.address);
+        sessionStorage.setItem('city', response.city);
+        sessionStorage.setItem('state', response.state);
+
+        if (response.zipCode == null) { sessionStorage.setItem('zip', "null"); }
+        else { sessionStorage.setItem('zip', response.zipCode.toString()); }
+
+        sessionStorage.setItem('country', response.country);
+      }
+    )
+
+    this.paymentService.getPaymentByPaymentId(parseInt(sessionStorage.getItem("userid")!)).subscribe(
+      (response: Payment) => {
+        if (response.cardNumber == null) { sessionStorage.setItem('cardnumber', "null"); }
+        else { sessionStorage.setItem('cardnumber', response.cardNumber.toString()); }
+
+        if (response.cvc == null) { sessionStorage.setItem('cvc', "null"); }
+        else { sessionStorage.setItem('cardnumber', response.cvc.toString()); }
+
+        sessionStorage.setItem('expirationdate', response.expDate);
+      }
+    )
+
     this.openingAnimation();
   }
 
-  public addToCart(product: Product, selectedQuantity: string) {
-    product.productQuantity = parseInt(selectedQuantity);
-    this.checkoutService.addToCart(product);
-
-    // animation
-    const CartNotification = document.getElementById('CartNotification');
-    CartNotification?.classList.add('showAdded');
-    setTimeout(() => CartNotification?.classList.remove('showAdded'), 3000);
+  quantityUpdate(value: any) {
+    this.str = value;
   }
-
 
   public getProducts(): void {
     this.productService.getProducts().subscribe(
@@ -60,7 +91,7 @@ export class ProductsComponent implements OnInit {
     )
   }
 
-  public openingAnimation(){
+  public openingAnimation() {
     const anim = this.gsap;
     const product = '#products';
     anim.fadeIn(product, 0.5, 0, 0.5);
@@ -137,11 +168,75 @@ export class ProductsComponent implements OnInit {
     element?.classList.remove('show');
   }
 
-  public sortDropdown(){
+  public sortDropdown() {
     const categoryList = document.getElementById("categories");
     const sortList = document.getElementById("sort");
     sortList?.classList.toggle('show');
     categoryList?.classList.remove('show');
   }
 
+  /*
+  public addToCart(product: Product, selectedQuantity: string) {
+    product.productQuantity = parseInt(selectedQuantity);
+    this.checkoutService.addToCart(product);
+  }
+  */
+
+  public addToCart(product: Product): void {
+
+    if (product.productQuantity <= 0) {
+      alert("This product is currently out of stock");
+    }
+    let sale = {
+      quantity: this.str,
+      dateOfPurchase: null,
+      cost: product.productPrice * this.str,
+      product: {
+        productId: product.productId,
+        productName: product.productName,
+        productDescription: product.productDescription,
+        productCategory: product.productCategory,
+        productImage: product.productImage,
+        productStatus: product.productStatus,
+        productPrice: product.productPrice,
+        productQuantity: product.productQuantity - this.str
+      },
+    };
+
+    console.log(sale.product.productQuantity);
+    if (sale.product.productQuantity >= 0) {
+      if (sale.product.productQuantity == 0) {
+        sale.product.productStatus = "out of stock";
+      }
+      this.order = this.salesService.currentOrder;
+      product = sale.product;
+      this.productService.updateproduct(product).subscribe((data: Product) => {
+        product.productQuantity = this.str;
+        this.checkoutService.addToCart(product);
+        product = data;
+        this.salesService.addSale(sale).subscribe((data: Sale) => {
+
+          sale = data;
+          this.order = this.salesService.invokeOrderFunction(this.order, sale, "add");
+
+
+          // animation
+          const CartNotification = document.getElementById('CartNotification');
+          CartNotification?.classList.add('showAdded');
+          setTimeout(() => CartNotification?.classList.remove('showAdded'), 3000);
+
+        });
+      });
+
+
+      this.salesService.orderTotal += sale.cost;
+      alert("Item successfully added to cart");
+
+
+      localStorage.setItem("product", JSON.stringify(product));
+    } else if (sale.product.productQuantity <= 0) {
+      alert("Sorry, we don't have that much of this product in stock!");
+    }
+
+  }
 }

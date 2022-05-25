@@ -11,15 +11,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-
-import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 @SpringBootApplication(scanBasePackages = "com.revature.ECommerce.beans")
 public class ECommerceApplication {
-
 	public static void main(String[] args) {
 
 		ConfigurableApplicationContext context =SpringApplication.run(ECommerceApplication.class, args);
@@ -88,50 +85,59 @@ public class ECommerceApplication {
 		User user3 = new User("gb", "gb@gmail.com", "simplepassword", "G", "B", "219-999-4543");
 		User admin = new User("Admin", "admin@gmail.com", "Password", "admin", "admin", "333-222-1111");
 
-		Timestamp timestamp = new Timestamp(2024, 12, 18, 12, 12, 12,0);
-		Timestamp timestamp2 = new Timestamp(2023, 4, 11, 9, 9, 9,0);
-
-		Payment pay1 = new Payment(435555334, timestamp, 443);
-		Payment pay2 = new Payment(4332221, timestamp2, 233);
-
-		Address a1= new Address("23 Skidoo Ln.", "New York", "NY", 66666, "USA");
-		//Address a2 = new Address("69420 High St.", "Los Angeles", "CA", 90210, "USA");
-		Address leoA = new Address("630 Shore Rd.", "Long Beach", "New York", 11561, "USA");
-
-		leoA.setUser(leo);
-		leo.setAddress(leoA);
-		pay2.setUser(leo);
-		leo.setPayment(pay2);
-
-		a1.setUser(admin);
-		pay1.setUser(admin);
-		admin.setPayment(pay1);
-		admin.setAddress(a1);
-
-		session.save(a1);
-		session.save(pay1);
-		session.save(pay2);
 		session.save(admin);
 		session.save(user1);
 		session.save(user2);
 		session.save(user3);
 
-		Timestamp SaleTimestamp = new Timestamp(System.currentTimeMillis());
-		Sale purchase = new Sale(2, SaleTimestamp, p4);
-		List<Sale> sale = new LinkedList<Sale>();
-		sale.add(purchase);
-		Order leoOrder = new Order();
-		List<Order> orders = new LinkedList<Order>();
 
-		leoOrder.setUser(leo);
-		leoOrder.setSaleList(sale);
-		List<Order> leoOrders = new LinkedList<>();
-		leoOrders.add(leoOrder);
-		leo.setListOfOrders(leoOrders);
+		Address address1 = new Address();
+		Payment payment1 = new Payment();
+		address1.setUser(leo);
+		payment1.setUser(leo);
+		session.save(address1);
+		session.save(payment1);
+		leo.setAddress(address1);
+		leo.setPayment(payment1);
 
-		session.save(purchase);
-		session.save(leoOrder);
-		session.save(leo);
+
+		Address address2 = new Address();
+		Payment payment2 = new Payment();
+		address2.setUser(admin);
+		payment2.setUser(admin);
+		session.save(address1);
+		session.save(payment1);
+		admin.setAddress(address2);
+		admin.setPayment(payment2);
+
+		Address address3 = new Address();
+		Payment payment3 = new Payment();
+		address3.setUser(user1);
+		payment3.setUser(user1);
+		session.save(address3);
+		session.save(payment3);
+		user1.setAddress(address3);
+		user1.setPayment(payment3);
+
+		Address address4 = new Address();
+		Payment payment4 = new Payment();
+		address4.setUser(user2);
+		payment4.setUser(user2);
+		session.save(address4);
+		session.save(payment4);
+		user2.setAddress(address4);
+		user2.setPayment(payment4);
+
+		Address address5 = new Address();
+		Payment payment5 = new Payment();
+		address5.setUser(user3);
+		payment5.setUser(user3);
+		session.save(address5);
+		session.save(payment5);
+		user3.setAddress(address5);
+		user3.setPayment(payment5);
+
+
 
 		tx.commit();
 	}
@@ -140,10 +146,10 @@ public class ECommerceApplication {
 	public CorsFilter corsFilter() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(true);
-		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200","http://localhost:4200/%22"));
 		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
 				"Accept", "Authorization", "Origin, Accept", "X-Requested-With",
-				"Access-Control-Request-Method", "Access-Control-Request-Headers", "mode"));
+				"Access-Control-Request-Method", "Access-Control-Request-Headers", "mode", "user_id"));
 		corsConfiguration.setExposedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Authorization",
 				"Access-Control-Allow-Origin", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "mode"));
 		corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));

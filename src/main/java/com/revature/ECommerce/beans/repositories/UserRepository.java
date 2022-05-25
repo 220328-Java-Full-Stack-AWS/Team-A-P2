@@ -29,7 +29,7 @@ public class UserRepository implements HibernateRepository<User> {
     @Override
     public User save(User user) {
         Transaction tx = session.beginTransaction();
-        session.save(user);
+        session.saveOrUpdate(user);
         tx.commit();
         return user;
     }

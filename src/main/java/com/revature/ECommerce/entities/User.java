@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 @Entity
-@Table(name = "users", schema = _SchemaName.stanSchema)
+@Table(name = "users", schema = _SchemaName.schemaName)
 public class User implements Serializable {
 
     @Id
@@ -28,9 +28,11 @@ public class User implements Serializable {
     private String lastName;
     @Column(name = "phone_number", unique = true, nullable = false)
     private String phone;
+
     @JsonManagedReference
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Address address;
+
     @JsonManagedReference
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Payment payment;
@@ -42,7 +44,7 @@ public class User implements Serializable {
 
     public User() {}
 
-    public User( String username, String email, String password, String firstName, String lastName, String phone) {
+    public User(String username, String email, String password, String firstName, String lastName, String phone) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -50,7 +52,6 @@ public class User implements Serializable {
         this.lastName = lastName;
         this.phone = phone;
     }
-
 
     public Payment getPayment() {
         return payment;

@@ -1,7 +1,7 @@
 <div class="checkout-page">
 
   <h1 *ngIf="products?.length !== 0" id="checkout-cart-page-title">Check Out</h1>
-  <div class="checkout" *ngIf="products?.length !== 0"  >
+  <div class="checkout" *ngIf="products?.length !== 0">
     <!-- table -->
     <table id="cart-table">
       <tr>
@@ -14,13 +14,13 @@
       </tr>
       <tr *ngFor="let product of products">
         <td id="productName">
-            <span>{{ product?.productName }}</span>
+          <span>{{ product?.productName }}</span>
         </td>
         <td id="productPrice">
-            <span>${{ product?.productPrice?.toFixed(2) }}</span>
+          <span>${{ product?.productPrice?.toFixed(2) }}</span>
         </td>
         <td id="productQuantity">
-            <span>{{ product?.productQuantity }}</span>
+          <span>{{ product?.productQuantity }}</span>
         </td>
         <td id="cost">
           <span>${{ (product.productPrice * product.productQuantity).toFixed(2) }}</span>
@@ -38,7 +38,7 @@
       <h2 id="checkout-cart-title">Cart</h2>
       <span id="checkout-cart-total">Total: ${{ checkoutService.total.toFixed(2) }}</span>
       <button (click)="emptyCart()" id="emptyCart">Empty cart <fa-icon [icon]="faTrashCan"></fa-icon></button>
-      <button id="checkoutBtn">Check Out</button>
+      <button id="checkoutBtn" (click)="checkout()">Check Out</button>
       <button id="continueShopping" routerLink="/shop" routerLinkActive="active">Continue shopping</button>
     </div>
 

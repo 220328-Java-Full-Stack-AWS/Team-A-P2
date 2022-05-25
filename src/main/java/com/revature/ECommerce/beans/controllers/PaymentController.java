@@ -41,12 +41,13 @@ public class PaymentController {
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.OK)
     public Payment updatePayment(@RequestBody Payment payment){
+        System.out.println("you have reached here");
         return paymentService.updatePayment(payment);
     }
 
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deletePayment(@RequestBody Payment payment){ paymentService.delete(payment);
+    public void deletePayment(@PathVariable Integer id){ paymentService.delete(id);
     }
 
     @GetMapping("/user/{id}")

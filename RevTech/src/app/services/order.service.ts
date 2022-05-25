@@ -5,6 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Order } from '../dto/order';
 import { User } from '../dto/user';
+import { NonNullAssert } from '@angular/compiler';
+
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +46,10 @@ export class OrderService {
 
 
   public persistOrder(holder: any) {
-    return this.http.post<Order>('http://localhost:8080/orders', JSON.stringify(holder));
+    return this.http.post<Order>('http://localhost:8080/orders', JSON.stringify(holder), {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+    });
   }
 
   public addSaleToOrder(holder: any) {
@@ -67,13 +72,14 @@ export class OrderService {
 }
 export class Holder {
 
-  order: Order;
+  order: Order | null;
   sale: Sale;
   user: User;
-  constructor(order: Order, sale: Sale, user: User) {
+  constructor(order: Order | null, sale: Sale, user: User) {
     this.order = order;
     this.sale = sale;
     this.user = user;
+
   }
 
 }

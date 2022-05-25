@@ -1,6 +1,5 @@
 package com.revature.ECommerce.beans.controllers;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.revature.ECommerce.beans.services.OrderService;
 import com.revature.ECommerce.beans.services.UserService;
 import com.revature.ECommerce.entities.Order;
@@ -10,9 +9,9 @@ import com.revature.ECommerce.exceptions.InvalidOptionException;
 import com.revature.ECommerce.utilities.HolderClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -52,10 +51,15 @@ public class OrderController {
     public Order persistOrder(@RequestBody HolderClass holder){
         User user= holder.getUser();
         Order order = holder.getOrder();
-        List<Order>temp= user.getListOfOrders();
+
         order=(oServ.checkOut(holder.getUser(), holder.getOrder()));
-        //temp.add(order);
-         //user.setListOfOrders(temp);
+        user= uServ.getUserByUsername(holder.getUser().getUsername());
+        if(user.getListOfOrders()==null){
+            List<Order>tempList = new ArrayList<>();
+            user.setListOfOrders(tempList);
+        }
+        user.getListOfOrders().add(order);
+        uServ.update(user);
         return order;
     }
 

@@ -8,6 +8,8 @@ import com.revature.ECommerce.exceptions.EmptyCartException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,14 +28,14 @@ public class OrderService {
 
     public Order addToOrder(Order order, Sale sale) {
         //
-        sServ.save(sale);
+        //sServ.save(sale);
         if(oRepo.orderExists(order)){
             List<Sale> tempList=new ArrayList<>();
             tempList=order.getSaleList();
             //sale.setOrder(order);
             tempList.add(sale);
             order.setSaleList(tempList);
-            return order;
+            return oRepo.update(order);
         }else{
 
             //order=oRepo.save(order);
@@ -71,17 +73,28 @@ public class OrderService {
 
 
     public Order checkOut(User user, Order order){
+        if(order.getSaleList()==null || order.getSaleList().isEmpty()){
+            throw new EmptyCartException("There's nothing to checkout! This cart is empty");
+        }
         if(user.getUserId()==null|| user.getUserId()==0) {
             //uServ.save(user);
             throw new RuntimeException("Only Registered users can purchase items!");
         }else{
             List<Order>templist= new ArrayList<>();
-            templist=user.getListOfOrders();
+            if(user.getListOfOrders()!=null) {
+                templist = user.getListOfOrders();
+            }
             templist.add(order);
             user.setListOfOrders(templist);
             uServ.update(user);
         }
         order.setUser(user);
+        LocalDateTime now = LocalDateTime.now();
+        Timestamp timestamp=Timestamp.valueOf(now);
+        for(Sale s : order.getSaleList()){
+            s.setDateOfPurchase(timestamp);
+            sServ.updateSale(s);
+        }
         oRepo.save(order);
 
         return order;
