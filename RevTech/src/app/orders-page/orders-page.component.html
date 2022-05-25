@@ -11,7 +11,7 @@
           <p>Product Price: ${{ sale.product.productPrice.toFixed(2) }}</p>
           <p>Quantity: {{ sale.quantity }}</p>
           <p>Total: ${{ sale.cost.toFixed(2) }}</p>
-          <p>Purchase Date: {{ sale.dateOfPurchase | date }}</p>
+          <p>Purchase Date: {{ sale?.dateOfPurchase | date }}</p>
           <p>Shipment Status: {{ shippmentStatus }}</p>
         </div>
       </div>
