@@ -1,7 +1,7 @@
 .product-page{
   min-height: 60vh;
   h2{
-    font-size: 4rem;
+    font-size: 3rem;
     text-decoration: underline;
     color: #3a3c58;
     margin-left: 3.5rem;
@@ -219,9 +219,9 @@
   position: fixed;
   top: 12%;
   right: -100%;
-  width: 20%;
+  width: 25%;
   padding: .8rem 2rem;
-  background:#0093E9;
+  background-image: linear-gradient( 109.6deg,  rgba(102,203,149,1) 11.2%, rgba(39,210,175,1) 98.7% );
   border: 1px solid white;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -240,6 +240,37 @@
     #product-added-icon{
       color: white;
       font-size: 1.25rem
+    }
+  }
+}
+.product-out-of-stock,.product-low-in-stock{
+  position: fixed;
+  top: 12%;
+  right: -100%;
+  width: 25%;
+  padding: .8rem 2rem;
+  background: #ed213a; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ed213a, #93291e); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ed213a, #93291e);
+  border: 1px solid white;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: rgba(128, 0, 144, 0.2) 0px 13px 27px -5px, rgba(128, 0, 144, 0.2) 0px 8px 16px -8px;
+  transition: all .6s ease-in-out;
+  .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    span{
+      font-size: 1.1rem;
+      color: white;
+      width: 100%;
+      text-align: center;
+    }
+    #icon{
+      color: white;
+      font-size: 1.2rem
     }
   }
 }

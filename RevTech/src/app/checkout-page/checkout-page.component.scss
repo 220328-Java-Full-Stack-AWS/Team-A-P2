@@ -165,6 +165,82 @@
     }
   }
 }
+
+.no-payment-notification {
+  position: fixed;
+  top: 12%;
+  right: -100%;
+  width: 40%;
+  padding: .8rem 2rem;
+  background: #ed213a; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ed213a, #93291e); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ed213a, #93291e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border: 1px solid white;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: rgba(128, 0, 144, 0.2) 0px 13px 27px -5px, rgba(128, 0, 144, 0.2) 0px 8px 16px -8px;
+  transition: all .3s ease-in-out;
+  .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    p{
+      font-size: 1.5rem;
+      color: white;
+    }
+    span{
+      width: 100%;
+      text-align: center;
+      font-size: 1rem;
+      color: white;
+      margin: .25rem 0;
+    }
+    a{
+      text-decoration: none;
+      color:white;
+      font-size: .9rem;
+      border: solid white 1px;
+      background-color: #6c0d18;
+      padding: .2rem .5rem;
+      border-radius: 5px;
+    }
+  }
+}
+.success-purchase {
+  position: fixed;
+  top: 12%;
+  right: -100%;
+  width: 40%;
+  padding: .8rem 2rem;
+  background-image: linear-gradient( 109.6deg,  rgba(102,203,149,1) 11.2%, rgba(39,210,175,1) 98.7% );
+  border: 1px solid white;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: rgba(128, 0, 144, 0.2) 0px 13px 27px -5px, rgba(128, 0, 144, 0.2) 0px 8px 16px -8px;
+  transition: all .3s ease-in-out;
+  .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    p{
+      font-size: 1.5rem;
+      color: white;
+    }
+    span{
+      width: 100%;
+      text-align: center;
+      font-size: 1rem;
+      color: white;
+      margin: .25rem 0;
+    }
+    #icon{
+      color: white;
+      font-size: 1.25rem;
+    }
+  }
+}
 .showAdded {
   right: 0;
 }

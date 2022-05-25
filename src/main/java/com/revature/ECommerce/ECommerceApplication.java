@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -136,8 +138,34 @@ public class ECommerceApplication {
 		session.save(payment5);
 		user3.setAddress(address5);
 		user3.setPayment(payment5);
+		address5.setAddress("420 High Street");
+		address5.setCity("Los Angeles");
+		address5.setState("CA");
+		address5.setZipCode("90210");
+		address5.setCountry("USA");
+		payment5.setCardNumber("1234-5678-9012-3456");
+		payment5.setCvc("911");
+		payment5.setExpDate("2022-06-30");
+		session.update(payment5);
+		session.update(address5);
+		session.update(user3);
 
+		Timestamp SaleTimestamp = new Timestamp(System.currentTimeMillis());
+		Sale purchase = new Sale(2, SaleTimestamp, p4);
+		List<Sale> sale = new LinkedList<Sale>();
+		sale.add(purchase);
+		Order leoOrder = new Order();
+		List<Order> orders = new LinkedList<Order>();
 
+		leoOrder.setUser(leo);
+		leoOrder.setSaleList(sale);
+		List<Order> leoOrders = new LinkedList<>();
+		leoOrders.add(leoOrder);
+		leo.setListOfOrders(leoOrders);
+
+		session.save(purchase);
+		session.save(leoOrder);
+		session.save(leo);
 
 		tx.commit();
 	}

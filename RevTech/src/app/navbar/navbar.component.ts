@@ -81,7 +81,7 @@ export class NavbarComponent implements OnInit {
   public checkout() {
     //let order2 = JSON.parse(sessionStorage.getItem('key'));
     let daUser: User;
-    this.userService.getUserByUsername(this.username1).subscribe((data: User) => {
+    this.userService.getUserByUsername(this.auth.username.value).subscribe((data: User) => {
       daUser = data;
       let holder = new Holder(this.order, this.sale1, daUser);
       this.orderService.persistOrder(holder).subscribe((data: Order) => {

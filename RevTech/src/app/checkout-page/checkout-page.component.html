@@ -63,3 +63,19 @@
     <fa-icon id="icon" [icon]="faFaceAngry" [spin]="true"></fa-icon>
   </div>
 </div>
+
+<div class="no-payment-notification" id="noPaymentMethod">
+  <div class="content">
+    <p>No Payment Method!</p>
+    <span>A payment method must be linked to your account to checkout. You can add a payment method in profile page</span>
+    <a routerLink="/profile" routerLinkActive="active">Profile</a>
+  </div>
+</div>
+
+<div class="success-purchase" id="successPurchase">
+  <div class="content">
+    <p>Success!</p>
+    <span>Checkout completed sucessfully! Thank you for your purchase!</span>
+    <fa-icon id="icon" [icon]="faFaceGrinTongueSquint" [spin]="true"></fa-icon>
+  </div>
+</div>

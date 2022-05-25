@@ -64,8 +64,8 @@ export class ProfilesComponent implements OnInit {
     const anim = this.gsap;
     const profile = '#profile';
     const profileTitle = '#profile-page-title';
-    anim.slideIn(profile);
-    anim.slideIn(profileTitle);
+    anim.fadeIn(profile, 0.4, 0, 0.4);
+    anim.fadeIn(profileTitle, 0.4, 0, 0.4);
   }
 
   public getUserData(){
@@ -100,7 +100,17 @@ export class ProfilesComponent implements OnInit {
         sessionStorage.setItem("firstName", response.firstName);
         sessionStorage.setItem("lastName", response.lastName);
         sessionStorage.setItem("phone", response.phone);
-        location.reload();
+
+        // animation
+        const screen = document.getElementById('screen');
+        screen?.classList.remove('show');
+        const modal = document.getElementById('edit-account-modal');
+        modal?.classList.remove('show');
+        const SuccessNotification = document.getElementById('SuccessNotification');
+        SuccessNotification?.classList.add('showAdded3');
+        setTimeout(() => SuccessNotification?.classList.remove('showAdded3'), 3000);
+        setTimeout(() => location.reload(), 4000);
+        this.getUserData();
       }
     );
   }
@@ -123,7 +133,50 @@ export class ProfilesComponent implements OnInit {
         sessionStorage.setItem("state", response.state);
         sessionStorage.setItem("zip", response.zipCode);
         sessionStorage.setItem("country", response.country);
-        location.reload();
+        // location.reload();
+        this.getUserData();
+        const screen = document.getElementById('screen');
+        screen?.classList.remove('show');
+        const modal = document.getElementById('edit-address-modal');
+        modal?.classList.remove('show');
+        // animation
+        const SuccessNotification = document.getElementById('SuccessNotification');
+        SuccessNotification?.classList.add('showAdded3');
+        setTimeout(() => SuccessNotification?.classList.remove('showAdded3'), 3000);
+
+      }
+    );
+  }
+
+  public addAddress(editAddressForm: NgForm): void{
+    let address: Address = {
+      addressId: parseInt(sessionStorage.getItem("userid")!),
+      address: editAddressForm.value.address,
+      city: editAddressForm.value.city,
+      state: editAddressForm.value.state,
+      zipCode: editAddressForm.value.zip,
+      country: editAddressForm.value.country
+    }
+
+    this.addressService.updateAddress(address).subscribe(
+      (response: Address) => {
+        console.log(response);
+        sessionStorage.setItem("address", response.address);
+        sessionStorage.setItem("city", response.city);
+        sessionStorage.setItem("state", response.state);
+        sessionStorage.setItem("zip", response.zipCode);
+        sessionStorage.setItem("country", response.country);
+        // location.reload();
+        this.getUserData();
+        const screen = document.getElementById('screen');
+        screen?.classList.remove('show');
+        const modal = document.getElementById('add-address-modal');
+        modal?.classList.remove('show');
+        // animation
+        const SuccessNotification = document.getElementById('SuccessNotification');
+        SuccessNotification?.classList.add('showAdded3');
+        setTimeout(() => SuccessNotification?.classList.remove('showAdded3'), 3000);
+
       }
     );
   }
@@ -143,7 +196,44 @@ export class ProfilesComponent implements OnInit {
         sessionStorage.setItem('cardnumber', response.cardNumber);
         sessionStorage.setItem('cvc', response.cvc);
         sessionStorage.setItem('expirationdate', response.expDate);
-        location.reload();
+        // location.reload();
+        this.getUserData();
+        const screen = document.getElementById('screen');
+        screen?.classList.remove('show');
+        const modal = document.getElementById('edit-payment-modal');
+        modal?.classList.remove('show');
+        // animation
+        const SuccessNotification = document.getElementById('SuccessNotification');
+        SuccessNotification?.classList.add('showAdded3');
+        setTimeout(() => SuccessNotification?.classList.remove('showAdded3'), 3000);
+      }
+    )
+  }
+  public addPayment(editPaymentForm: NgForm): void{
+    let payment: Payment = {
+      paymentId: parseInt(sessionStorage.getItem("userid")!),
+      cardNumber: editPaymentForm.value.cardNumber,
+      cvc: editPaymentForm.value.cvc,
+      expDate: editPaymentForm.value.expDate
+    }
+    console.log(editPaymentForm.value);
+
+    this.paymentService.updatePayment(payment).subscribe(
+      (response: Payment) => {
+        console.log(response);
+        sessionStorage.setItem('cardnumber', response.cardNumber);
+        sessionStorage.setItem('cvc', response.cvc);
+        sessionStorage.setItem('expirationdate', response.expDate);
+        // location.reload();
+        this.getUserData();
+        const screen = document.getElementById('screen');
+        screen?.classList.remove('show');
+        const modal = document.getElementById('add-payment-modal');
+        modal?.classList.remove('show');
+        // animation
+        const SuccessNotification = document.getElementById('SuccessNotification');
+        SuccessNotification?.classList.add('showAdded3');
+        setTimeout(() => SuccessNotification?.classList.remove('showAdded3'), 3000);
       }
     )
   }
@@ -165,7 +255,7 @@ export class ProfilesComponent implements OnInit {
       zipCode: null,
       country: null
     }
-    
+
     this.addressService.updateAddress(address).subscribe(
       () => {
         sessionStorage.removeItem("address");
@@ -173,7 +263,16 @@ export class ProfilesComponent implements OnInit {
         sessionStorage.removeItem("state");
         sessionStorage.removeItem("zip");
         sessionStorage.removeItem("country");
-        location.reload();
+        // location.reload();
+        this.getUserData();
+        const screen = document.getElementById('screen');
+        screen?.classList.remove('show');
+        const modal = document.getElementById('delete-address-modal');
+        modal?.classList.remove('show');
+        // animation
+        const SuccessNotification = document.getElementById('SuccessNotification');
+        SuccessNotification?.classList.add('showAdded3');
+        setTimeout(() => SuccessNotification?.classList.remove('showAdded3'), 3000);
       }
     );}
 
@@ -190,7 +289,17 @@ export class ProfilesComponent implements OnInit {
         sessionStorage.removeItem("cardnumber");
         sessionStorage.removeItem("expirationdate");
         sessionStorage.removeItem("cvc");
-        location.reload();
+        // location.reload();
+        this.getUserData();
+        const screen = document.getElementById('screen');
+        screen?.classList.remove('show');
+        const modal = document.getElementById('delete-payment-modal');
+        modal?.classList.remove('show');
+
+        // animation
+        const SuccessNotification = document.getElementById('SuccessNotification');
+        SuccessNotification?.classList.add('showAdded3');
+        setTimeout(() => SuccessNotification?.classList.remove('showAdded3'), 3000);
       }
     );}
 
@@ -208,31 +317,4 @@ export class ProfilesComponent implements OnInit {
     const modal = document.getElementById(`${mode}-${type}-modal`);
     modal?.classList.remove('show');
   }
-
-    /*
-  public addPayment(addForm: NgForm): void{
-    this.paymentService.addNewPayment(addForm.value).subscribe(
-      (response: Payment)=> {
-        this.getUserData();
-        console.log(response);
-        const screen = document.getElementById('screen');
-        screen?.classList.remove('show');
-        const modal = document.getElementById('add-modal');
-        modal?.classList.remove('show');
-
-        // animation
-        const SuccessNotification = document.getElementById('SuccessNotification');
-        SuccessNotification?.classList.add('showAdded3');
-        setTimeout(() => SuccessNotification?.classList.remove('showAdded3'), 3000);
-      },
-      (error: HttpErrorResponse) =>{
-        console.log(error.message);
-        // animation
-        const ErrorNotification = document.getElementById('ErrorNotification');
-        ErrorNotification?.classList.add('showAdded3');
-        setTimeout(() => ErrorNotification?.classList.remove('showAdded3'), 3000);
-      }
-    )
-  }
-*/
 }
