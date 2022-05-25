@@ -87,15 +87,21 @@ public class ECommerceApplication {
 		User user2 = new User("bakgeo", "bakgeo@gmail.com", "gbsw0rd!", "Geo", "Bak", "832-543-2432");
 		User user3 = new User("gb", "gb@gmail.com", "simplepassword", "G", "B", "219-999-4543");
 		User admin = new User("Admin", "admin@gmail.com", "Password", "admin", "admin", "333-222-1111");
-		Timestamp timestamp = new Timestamp(2055, 12, 12, 12, 12, 12,0);
+
+		Timestamp timestamp = new Timestamp(2024, 12, 18, 12, 12, 12,0);
+		Timestamp timestamp2 = new Timestamp(2023, 4, 11, 9, 9, 9,0);
+
 		Payment pay1 = new Payment(435555334, timestamp, 443);
-		Payment pay2 = new Payment(4332221, timestamp, 233);
+		Payment pay2 = new Payment(4332221, timestamp2, 233);
+
 		Address a1= new Address("23 Skidoo Ln.", "New York", "NY", 66666, "USA");
 		//Address a2 = new Address("69420 High St.", "Los Angeles", "CA", 90210, "USA");
 		Address leoA = new Address("630 Shore Rd.", "Long Beach", "New York", 11561, "USA");
 
 		leoA.setUser(leo);
 		leo.setAddress(leoA);
+		pay2.setUser(leo);
+		leo.setPayment(pay2);
 
 		a1.setUser(admin);
 		pay1.setUser(admin);
@@ -104,12 +110,14 @@ public class ECommerceApplication {
 
 		session.save(a1);
 		session.save(pay1);
+		session.save(pay2);
 		session.save(admin);
 		session.save(user1);
 		session.save(user2);
 		session.save(user3);
 
-		Sale purchase = new Sale(2, timestamp, p4);
+		Timestamp SaleTimestamp = new Timestamp(System.currentTimeMillis());
+		Sale purchase = new Sale(2, SaleTimestamp, p4);
 		List<Sale> sale = new LinkedList<Sale>();
 		sale.add(purchase);
 		Order leoOrder = new Order();
@@ -121,10 +129,10 @@ public class ECommerceApplication {
 		leoOrders.add(leoOrder);
 		leo.setListOfOrders(leoOrders);
 
-
 		session.save(purchase);
 		session.save(leoOrder);
 		session.save(leo);
+
 		tx.commit();
 	}
 
