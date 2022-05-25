@@ -1,13 +1,14 @@
 package com.revature.ECommerce.utilities;
 
 import com.revature.ECommerce.entities.Order;
-import com.revature.ECommerce.entities.Sale;
 import com.revature.ECommerce.entities.User;
+import com.revature.ECommerce.entities.Sale;
 
 public class HolderClass {
     private Order order;
     private Sale sale;
     private User user;
+
     public HolderClass(){
 
     }
@@ -15,6 +16,7 @@ public class HolderClass {
         this.sale=sale;
         this.order=order;
         this.user=user;
+
     }
 
     public User getUser() {
@@ -40,4 +42,6 @@ public class HolderClass {
     public void setSale(Sale sale) {
         this.sale = sale;
     }
+
+
 }

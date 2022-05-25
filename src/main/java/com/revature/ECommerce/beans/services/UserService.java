@@ -23,7 +23,7 @@ public class UserService {
         return userRepository.getAll();
     }
 
-    public User getUserById(Integer id ) {
+    public User getUserById(Integer id) {
         return userRepository.getById(id);
     }
 

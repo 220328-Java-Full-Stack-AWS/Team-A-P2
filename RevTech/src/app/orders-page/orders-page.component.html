@@ -1,5 +1,22 @@
 <div *ngIf="data?.listOfOrders !== null" class="orders-page">
-  <h2>Orders</h2>
+  <h2 id="orders-page-title">Orders</h2>
+  <div class="orders">
+    <div class="order" *ngFor="let order of data?.listOfOrders">
+      <div class="sale" *ngFor="let sale of order.saleList">
+        <div class="sale-image">
+          <img src="{{ sale.product.productImage }}" alt="{{ sale.product.productName }}">
+        </div>
+        <div class="sale-info" id="sale-info">
+          <h5>{{ sale.product.productName }}</h5>
+          <p>Product Price: ${{ sale.product.productPrice.toFixed(2) }}</p>
+          <p>Quantity: {{ sale.quantity }}</p>
+          <p>Total: ${{ sale.cost.toFixed(2) }}</p>
+          <p>Purchase Date: {{ sale.dateOfPurchase | date }}</p>
+          <p>Shipment Status: {{ shippmentStatus }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="data?.listOfOrders === null" class="no-orders-page">

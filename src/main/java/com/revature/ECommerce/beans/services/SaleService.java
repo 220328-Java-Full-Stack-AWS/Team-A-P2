@@ -29,7 +29,7 @@ public class SaleService {
 
     public List<Sale> getAllSalesWithProductId(Integer id) { return saleRepository.getAllSalesWithProductId(id);}
 
-    public Sale getSaleByOrder(Integer id){ return saleRepository.getSaleByOrderId(id); }
+    public Sale getSalesByOrderId(Integer id){ return saleRepository.getSaleByOrderId(id); }
 
     public void delete(Sale sale){
         saleRepository.delete(sale);

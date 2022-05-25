@@ -4,38 +4,38 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Address } from '../dto/address';
 import { User } from '../dto/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-
-
-  constructor( private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
 
   private apiServiceUrl = environment.apiBaseUrl;
 
-  public username =  new BehaviorSubject<any>(sessionStorage.getItem('username'));
+  public username = new BehaviorSubject<any>(sessionStorage.getItem('username'));
+  public userId = new BehaviorSubject<number>(parseInt(sessionStorage.getItem('username')!));
 
   public loggedIn = new BehaviorSubject<boolean>(this.checkLoginStatus());
 
-  get isLoggedIn(){
+  get isLoggedIn() {
     return this.loggedIn.asObservable();
   }
 
-  checkLoginStatus() : boolean {
+  checkLoginStatus(): boolean {
     var loginCookie = sessionStorage.getItem('LoggedIn');
-    if(loginCookie == "1"){
+    if (loginCookie == "1") {
       return true;
-    }else{
-    return false;
+    } else {
+      return false;
     }
   }
 
-  public login(loginForm: NgForm):void{
-    let user : User = {
+  public login(loginForm: NgForm): void {
+    let user: User = {
       userId: 0,
       username: loginForm.value.username,
       email: "",
@@ -43,32 +43,18 @@ export class AuthenticationService {
       firstName: "",
       lastName: "",
       phone: "",
-      address: {
-        addressId: 0,
-        address: "",
-        city: "",
-        state: "",
-        zipCode: 0,
-        country: ""
-      },
-      payment: {
-        paymentId: 0,
-        cardNumber: 0,
-        experationDate: "",
-        cvc: 0
-      }
     }
 
     this.Login(user).subscribe(
       (response: User) => {
         user = response;
-        sessionStorage.setItem('userid', user.userId.toString());
-        sessionStorage.setItem('username', user.username);
-        sessionStorage.setItem('email', user.email);
-        sessionStorage.setItem('password', user.password);
-        sessionStorage.setItem('firstname', user.firstName);
-        sessionStorage.setItem('lastname', user.lastName);
-        sessionStorage.setItem('phone', user.phone);
+        sessionStorage.setItem('userid', response.userId.toString());
+        sessionStorage.setItem('username', response.username);
+        sessionStorage.setItem('email', response.email);
+        sessionStorage.setItem('firstname', response.firstName);
+        sessionStorage.setItem('lastname', response.lastName);
+        sessionStorage.setItem('phone', response.phone);
+        sessionStorage.setItem('password', response.password);
 
         this.loggedIn.next(true);
         this.router.navigateByUrl('/shop');
@@ -86,7 +72,7 @@ export class AuthenticationService {
     )
   }
 
-  private Login(user: User): Observable<User>{
+  private Login(user: User): Observable<User> {
     return this.http.post<User>(
       `${this.apiServiceUrl}/users`,// url
       user, // object being passed
@@ -99,7 +85,7 @@ export class AuthenticationService {
     );
   }
 
-  public logout(){
+  public logout() {
     this.loggedIn.next(false);
     this.router.navigateByUrl('/login');
     sessionStorage.clear();

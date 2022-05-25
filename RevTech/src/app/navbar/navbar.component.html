@@ -44,7 +44,6 @@
 <!--View Cart Start-->
 <div class="cart">
   <div class="close-card">
-
     <button (click)="viewCart()" id="closeBtn">
       <fa-icon [icon]="faWindowClose"></fa-icon>
     </button>
@@ -59,7 +58,7 @@
     </div>
   </div>
   <div class="cart-confirm">
-    <button>Check out</button>
+    <button (click)="checkout()">Check out</button>
   </div>
 </div>
 <!--View Cart end-->
