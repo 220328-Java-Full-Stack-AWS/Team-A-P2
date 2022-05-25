@@ -220,17 +220,16 @@ export class ProductsComponent implements OnInit {
           this.order = this.salesService.invokeOrderFunction(this.order, sale, "add");
 
 
-          // animation
-          const CartNotification = document.getElementById('CartNotification');
-          CartNotification?.classList.add('showAdded');
-          setTimeout(() => CartNotification?.classList.remove('showAdded'), 3000);
-
         });
       });
 
 
       this.salesService.orderTotal += sale.cost;
       alert("Item successfully added to cart");
+      // animation
+      const CartNotification = document.getElementById('CartNotification');
+      CartNotification?.classList.add('showAdded');
+      setTimeout(() => CartNotification?.classList.remove('showAdded'), 3000);
 
 
       localStorage.setItem("product", JSON.stringify(product));
