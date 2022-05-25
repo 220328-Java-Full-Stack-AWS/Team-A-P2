@@ -13,11 +13,11 @@ public class Payment implements Serializable {
     @Id
     private Integer paymentId;
     @Column(name = "card_number")
-    private Integer cardNumber;
+    private String cardNumber;
     @Column(name = "exp_date")
-    private Timestamp expDate;
+    private String expDate;
     @Column(name = "cvc")
-    private Integer cvc;
+    private String cvc;
 
     @JsonBackReference
     @OneToOne
@@ -27,9 +27,9 @@ public class Payment implements Serializable {
 
     public Payment(){}
 
-    public Payment(Integer cardNumber, Timestamp experationDate, Integer cvc, Integer paymentId){
+    public Payment(String cardNumber, String expDate, String cvc, Integer paymentId){
         this.cardNumber=cardNumber;
-        this.expDate=experationDate;
+        this.expDate=expDate;
         this.cvc=cvc;
         this.paymentId = paymentId;
     }
@@ -50,27 +50,27 @@ public class Payment implements Serializable {
         this.user = user;
     }
 
-    public Integer getCardNumber() {
+    public String getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(Integer cardNumber) {
+    public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 
-    public Timestamp getExpDate() {
+    public String getExpDate() {
         return expDate;
     }
 
-    public void setExpDate(Timestamp experationDate) {
-        this.expDate = experationDate;
+    public void setExpDate(String expDate) {
+        this.expDate = expDate;
     }
 
-    public Integer getCvc() {
+    public String getCvc() {
         return cvc;
     }
 
-    public void setCvc(Integer cvc) {
+    public void setCvc(String cvc) {
         this.cvc = cvc;
     }
 

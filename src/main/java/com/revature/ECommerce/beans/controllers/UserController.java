@@ -84,6 +84,8 @@ public class UserController {
     @DeleteMapping()
     @ResponseStatus(HttpStatus.OK)
     public void delete(@RequestHeader("user_id") String id){
+        aServ.deleteAddress(Integer.parseInt(id));
+        pServ.delete(Integer.parseInt(id));
         uServ.delete(Integer.parseInt(id));
     }
 }

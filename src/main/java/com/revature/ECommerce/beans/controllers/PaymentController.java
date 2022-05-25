@@ -41,6 +41,7 @@ public class PaymentController {
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.OK)
     public Payment updatePayment(@RequestBody Payment payment){
+        System.out.println("you have reached here");
         return paymentService.updatePayment(payment);
     }
 

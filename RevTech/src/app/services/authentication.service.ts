@@ -17,6 +17,7 @@ export class AuthenticationService {
   private apiServiceUrl = environment.apiBaseUrl;
 
   public username =  new BehaviorSubject<any>(sessionStorage.getItem('username'));
+  public userId = new BehaviorSubject<number>(parseInt(sessionStorage.getItem('username')!));
 
   public loggedIn = new BehaviorSubject<boolean>(this.checkLoginStatus());
 
@@ -54,20 +55,6 @@ export class AuthenticationService {
         sessionStorage.setItem('lastname', response.lastName);
         sessionStorage.setItem('phone', response.phone);
         sessionStorage.setItem('password', response.password);
-
-/*
-        sessionStorage.setItem('address', user.address.address);
-        sessionStorage.setItem('city', user.address.city);
-        sessionStorage.setItem('state', user.address.state);
-        sessionStorage.setItem('zip', user.address.zipCode.toString());
-        sessionStorage.setItem('country', user.address.country);
-
-      //  if(user.payment != null){
-          sessionStorage.setItem('paymentid', user.payment.paymentId.toString());
-          sessionStorage.setItem('cardnumber', user.payment.cardNumber.toString());
-          sessionStorage.setItem('expirationdate', user.payment.expirationDate);
-          sessionStorage.setItem('cvc', user.payment.cvc.toString());
-        //}*/
 
         this.loggedIn.next(true);
         this.router.navigateByUrl('/shop');

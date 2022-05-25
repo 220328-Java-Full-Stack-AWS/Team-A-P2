@@ -24,8 +24,8 @@ export class AddressService {
   }
 
   // add address
-  public addNewAddress(address: Address): Observable<Address> {
-    return this.http.post<Address>(`${this.apiServiceUrl}/address/add`, address);
+  public addNewAddress(address: Address, id: number): Observable<Address> {
+    return this.http.post<Address>(`${this.apiServiceUrl}/address/add/${id}`, address);
   }
 
   // update address

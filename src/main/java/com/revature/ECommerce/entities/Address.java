@@ -17,7 +17,7 @@ public class Address implements Serializable {
     @Column(name = "state")
     private String state;
     @Column(name = "zip")
-    private Integer zipCode;
+    private String zipCode;
     @Column(name = "country")
     private String country;
 
@@ -29,7 +29,7 @@ public class Address implements Serializable {
 
     public Address(){}
 
-    public Address(String address, String city, String state, Integer zipCode, String country, Integer addressId){
+    public Address(String address, String city, String state, String zipCode, String country, Integer addressId){
         this.address=address;
         this.city=city;
         this.state=state;
@@ -78,11 +78,11 @@ public class Address implements Serializable {
         this.state = state;
     }
 
-    public Integer getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(Integer zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 

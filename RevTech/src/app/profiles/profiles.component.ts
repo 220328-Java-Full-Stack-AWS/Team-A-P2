@@ -31,106 +31,15 @@ export class ProfilesComponent implements OnInit {
 
   constructor(public auth: AuthenticationService, public userService: UserService, public paymentService: PaymentService,  public addressService: AddressService, private router: Router, public gsap: GsapService) { }
 
+  public payment: Payment = {} as Payment;
+  public address: Address = {} as Address;
+  public user: User = {} as User;
+  public data: any = {};
 
-  public updateUser(choice: string){
-    if(choice == "address"){
-      let address: Address = {
-        addressId: parseInt(sessionStorage.getItem("userid")!),
-        address: prompt("Address")!,
-        city: prompt("City")!,
-        state: prompt("State")!,
-        zipCode: parseInt(prompt("Zip")!),
-        country: prompt("Country")!
-      }
-
-      this.addressService.updateAddress(address).subscribe(
-        (response: Address) => {
-          sessionStorage.setItem("address", response.address);
-          sessionStorage.setItem("city", response.city);
-          sessionStorage.setItem("state", response.state);
-          sessionStorage.setItem("zip", response.zipCode.toString());
-          sessionStorage.setItem("country", response.country);
-          location.reload();
-        }
-      );
-    }
-    else if(choice == "payment"){
-      let payment: Payment = {
-        paymentId: parseInt(sessionStorage.getItem("userid")!),
-        cardNumber: parseInt(prompt("Card Number")!),
-        cvc: parseInt(prompt("cvc")!),
-        expDate: prompt("Exp Date")
-      }
-
-      this.paymentService.updatePayment(payment).subscribe(
-        (response: Payment) => {
-          sessionStorage.setItem('cardnumber', response.cardNumber.toString());
-          sessionStorage.setItem('cvc', response.cvc.toString());
-          sessionStorage.setItem('expirationdate', response.expDate);
-          location.reload();
-        }
-      )
-    }
-    else {
-      if(choice == "name"){
-        sessionStorage.setItem("firstname", prompt("First name")!);
-        sessionStorage.setItem("lastname", prompt("Last name")!);
-      }
-
-      if(choice == "username"){
-        sessionStorage.setItem("username", prompt("Username")!);
-      }
-
-      if(choice == "email"){
-        sessionStorage.setItem("email", prompt("Email")!);
-      }
-
-      if(choice == "phone"){
-        sessionStorage.setItem("phone", prompt("Phone")!);
-      }
-
-      if(choice == "password"){
-        sessionStorage.setItem("password", prompt("Password")!);
-      }
-
-      let user : User = {
-        userId: parseInt(sessionStorage.getItem("userid")!),
-        username: sessionStorage.getItem("username")!,
-        email: sessionStorage.getItem("email")!,
-        password: sessionStorage.getItem("password")!,
-        firstName: sessionStorage.getItem("firstname")!,
-        lastName: sessionStorage.getItem("lastname")!,
-        phone: sessionStorage.getItem("phone")!,
-      }
-
-      this.userService.updateUser(user).subscribe(
-        () => {
-          location.reload();
-        }
-      );
-    }
+  ngOnInit(): void {
+    this.getUserData();
+    this.openingAnimation();
   }
-
-  public deleteUser(){
-    this.userService.deleteUser(parseInt(sessionStorage.getItem("userid")!)).subscribe(
-      () => {
-        this.router.navigateByUrl('/login');
-      }
-  );}
-
-  public deleteAddress(){
-    this.addressService.deleteAddress(parseInt(sessionStorage.getItem("userid")!)).subscribe(
-      () => {}
-    )
-  }
-
-  public deletePayment(){
-    this.paymentService.deletePayment(parseInt(sessionStorage.getItem("userid")!)).subscribe(
-      () => {}
-    )
-  }
-
-
 
   // Front end logos
   public faUserAstronaut = faUserAstronaut;
@@ -151,16 +60,6 @@ export class ProfilesComponent implements OnInit {
     this.show2 = !this.show2;
   }
 
-
-  public payment: Payment = {} as Payment;
-  public address: Address = {} as Address;
-  public user: User = {} as User;
-
-  ngOnInit(): void {
-    this.getUserData();
-    this.openingAnimation();
-  }
-
   public openingAnimation(){
     const anim = this.gsap;
     const profile = '#profile';
@@ -172,8 +71,8 @@ export class ProfilesComponent implements OnInit {
   public getUserData(){
     this.userService.getUserByUsername(this.auth.username.value).subscribe(
       (response: User) => {
-        this.user = response;
-        console.log(response);
+        this.data = response;
+        console.log(this.data);
       },
       (error: HttpErrorResponse) => {
         console.log(error.message)
@@ -182,9 +81,136 @@ export class ProfilesComponent implements OnInit {
   }
 
   // forms
-  public onEditUser(editForm: NgForm): void{
+  public editUser(editUserForm: NgForm): void{
+    let user : User = {
+      userId: parseInt(sessionStorage.getItem("userid")!),
+      username: editUserForm.value.username,
+      email: editUserForm.value.email,
+      password: editUserForm.value.password,
+      firstName: editUserForm.value.firstName,
+      lastName: editUserForm.value.lastName,
+      phone: editUserForm.value.phone,
+    }
+
+    this.userService.updateUser(user).subscribe(
+      (response: User) => {
+        sessionStorage.setItem("username", response.username);
+        sessionStorage.setItem("email", response.email);
+        sessionStorage.setItem("password", response.password);
+        sessionStorage.setItem("firstName", response.firstName);
+        sessionStorage.setItem("lastName", response.lastName);
+        sessionStorage.setItem("phone", response.phone);
+        location.reload();
+      }
+    );
   }
-  public onAddPayment(addForm: NgForm): void{
+
+  public editAddress(editAddressForm: NgForm): void{
+    let address: Address = {
+      addressId: parseInt(sessionStorage.getItem("userid")!),
+      address: editAddressForm.value.address,
+      city: editAddressForm.value.city,
+      state: editAddressForm.value.state,
+      zipCode: editAddressForm.value.zip,
+      country: editAddressForm.value.country
+    }
+
+    this.addressService.updateAddress(address).subscribe(
+      (response: Address) => {
+        console.log(response);
+        sessionStorage.setItem("address", response.address);
+        sessionStorage.setItem("city", response.city);
+        sessionStorage.setItem("state", response.state);
+        sessionStorage.setItem("zip", response.zipCode);
+        sessionStorage.setItem("country", response.country);
+        location.reload();
+      }
+    );
+  }
+
+  public editPayment(editPaymentForm: NgForm): void{
+    let payment: Payment = {
+      paymentId: parseInt(sessionStorage.getItem("userid")!),
+      cardNumber: editPaymentForm.value.cardNumber,
+      cvc: editPaymentForm.value.cvc,
+      expDate: editPaymentForm.value.expDate
+    }
+    console.log(editPaymentForm.value);
+
+    this.paymentService.updatePayment(payment).subscribe(
+      (response: Payment) => {
+        console.log(response);
+        sessionStorage.setItem('cardnumber', response.cardNumber);
+        sessionStorage.setItem('cvc', response.cvc);
+        sessionStorage.setItem('expirationdate', response.expDate);
+        location.reload();
+      }
+    )
+  }
+
+
+  public deleteUser(){
+    this.userService.deleteUser(parseInt(sessionStorage.getItem("userid")!)).subscribe(
+      () => {
+        this.router.navigateByUrl('/login');
+      }
+  );}
+
+  public deleteAddress(){
+    let address: Address = {
+      addressId: parseInt(sessionStorage.getItem("userid")!),
+      address: null,
+      city: null,
+      state: null,
+      zipCode: null,
+      country: null
+    }
+    
+    this.addressService.updateAddress(address).subscribe(
+      () => {
+        sessionStorage.removeItem("address");
+        sessionStorage.removeItem("city");
+        sessionStorage.removeItem("state");
+        sessionStorage.removeItem("zip");
+        sessionStorage.removeItem("country");
+        location.reload();
+      }
+    );}
+
+  public deletePayment(){
+    let payment: Payment = {
+      paymentId: parseInt(sessionStorage.getItem("userid")!),
+      cardNumber: null,
+      cvc: null,
+      expDate: null
+    }
+
+    this.paymentService.updatePayment(payment).subscribe(
+      () => {
+        sessionStorage.removeItem("cardnumber");
+        sessionStorage.removeItem("expirationdate");
+        sessionStorage.removeItem("cvc");
+        location.reload();
+      }
+    );}
+
+  // modals
+  public onOpenModal(mode: string, type: string): void {
+    const screen = document.getElementById('screen');
+    screen?.classList.toggle('show');
+    const modal = document.getElementById(`${mode}-${type}-modal`);
+    modal?.classList.toggle('show');
+  }
+
+  public onCloseModal(mode: string, type: string){
+    const screen = document.getElementById('screen');
+    screen?.classList.remove('show');
+    const modal = document.getElementById(`${mode}-${type}-modal`);
+    modal?.classList.remove('show');
+  }
+
+    /*
+  public addPayment(addForm: NgForm): void{
     this.paymentService.addNewPayment(addForm.value).subscribe(
       (response: Payment)=> {
         this.getUserData();
@@ -208,19 +234,5 @@ export class ProfilesComponent implements OnInit {
       }
     )
   }
-
-  // modals
-  public onOpenModal(mode: string, type: string): void {
-    const screen = document.getElementById('screen');
-    screen?.classList.toggle('show');
-    const modal = document.getElementById(`${mode}-${type}-modal`);
-    modal?.classList.toggle('show');
-  }
-
-  public onCloseModal(mode: string, type: string){
-    const screen = document.getElementById('screen');
-    screen?.classList.remove('show');
-    const modal = document.getElementById(`${mode}-${type}-modal`);
-    modal?.classList.remove('show');
-  }
+*/
 }

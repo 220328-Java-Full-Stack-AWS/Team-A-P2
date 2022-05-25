@@ -2,7 +2,7 @@ import { User } from "./user";
 
 export interface Payment {
     paymentId: number;
-    cardNumber: number;
+    cardNumber: any;
     expDate: any;
-    cvc: number;
+    cvc: any;
   }
