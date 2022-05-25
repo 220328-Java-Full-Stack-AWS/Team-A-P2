@@ -1,5 +1,5 @@
 <div *ngIf="data?.listOfOrders !== null" class="orders-page">
-  <h2 id="orders-page-title">Orders</h2>
+  <h2 id="orders-page-title" *ngIf="data?.listOfOrders?.length !== 0">Orders</h2>
   <div class="orders">
     <div class="order" *ngFor="let order of data?.listOfOrders">
       <div class="sale" *ngFor="let sale of order.saleList">
@@ -17,13 +17,12 @@
       </div>
     </div>
   </div>
-</div>
-
-<div *ngIf="data?.listOfOrders === null" class="no-orders-page">
-  <div class="no-order">
-    <h2>No Orders</h2>
-    <fa-icon id="icon" [icon]="faFaceAngry" [spin]="true"></fa-icon>
-    <span>Seems like you have some shopping to do!</span>
-    <a routerLink="/shop" routerLinkActive="active">Shop</a>
+  <div *ngIf="data?.listOfOrders?.length == 0" class="no-orders-page">
+    <div class="no-order">
+      <h2>No Orders</h2>
+      <fa-icon id="icon" [icon]="faFaceAngry" [spin]="true"></fa-icon>
+      <span>Seems like you have some shopping to do!</span>
+      <a routerLink="/shop" routerLinkActive="active">Shop</a>
+    </div>
   </div>
 </div>

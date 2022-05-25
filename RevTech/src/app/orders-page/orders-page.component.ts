@@ -29,7 +29,7 @@ export class OrdersPageComponent implements OnInit {
     this.userService.getUserByUsername(this.auth.username.value).subscribe(
       (response: any) => {
         this.data = response;
-        console.log(this.data);
+        // console.log(this.data);
       },
       (error: HttpErrorResponse) => {
         console.log(error.message)
