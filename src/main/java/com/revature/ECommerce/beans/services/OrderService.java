@@ -128,4 +128,7 @@ public class OrderService {
         return oRepo.update(order);
     }
 
+    public List<Order> getByUserId(Integer id){
+        return oRepo.getByUserId(id);
+    }
 }

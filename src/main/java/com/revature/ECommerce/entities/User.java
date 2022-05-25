@@ -36,6 +36,7 @@ public class User implements Serializable {
     @JsonManagedReference
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Payment payment;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Order> listOfOrders;

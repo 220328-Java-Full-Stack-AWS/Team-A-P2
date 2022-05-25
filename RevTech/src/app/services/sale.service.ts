@@ -86,6 +86,10 @@ export class SaleService {
     return this.http.post<Sale>(`${this.apiServiceUrl}/sale/add`, sale);
   }
 
+  public getSalesByOrderId(id: number): Observable<Sale[]> {
+    return this.http.get<any>(`${this.apiServiceUrl}/sale/${id}`)
+  }
+
   public updateSale(sale: Sale): Observable<Sale> {
     return this.http.put<Sale>(`${this.apiServiceUrl}/sale/update`, sale);
   }

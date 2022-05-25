@@ -12,6 +12,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 @SpringBootApplication(scanBasePackages = "com.revature.ECommerce.beans")
 public class ECommerceApplication {
@@ -82,7 +84,7 @@ public class ECommerceApplication {
 		User user2 = new User("bakgeo", "bakgeo@gmail.com", "gbsw0rd!", "Geo", "Bak", "832-543-2432");
 		User user3 = new User("gb", "gb@gmail.com", "simplepassword", "G", "B", "219-999-4543");
 		User admin = new User("Admin", "admin@gmail.com", "Password", "admin", "admin", "333-222-1111");
-
+		
 		session.save(admin);
 		session.save(user1);
 		session.save(user2);
@@ -132,6 +134,7 @@ public class ECommerceApplication {
 		session.save(payment5);
 		user3.setAddress(address5);
 		user3.setPayment(payment5);
+
 
 		tx.commit();
 	}
