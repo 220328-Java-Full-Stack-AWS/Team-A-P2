@@ -25,8 +25,11 @@ body {
       background-color: white;
     }
   }
-  #checkout-cart-title, #productPageTitle, #profile-page-title, #profile-dark, #checkout-cart-total, #checkout-cart-page-title{
+  #checkout-cart-title, #productPageTitle, #profile-page-title, #profile-dark, #checkout-cart-total, #checkout-cart-page-title, #orders-page-title, #sale-info{
     color: white;
+    p,h5{
+      color: white;
+    }
   }
   .profile{
     background: rgb(194, 193, 193);
