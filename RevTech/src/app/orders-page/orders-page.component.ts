@@ -1,9 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { faFaceAngry } from '@fortawesome/free-solid-svg-icons';
-import { Order } from '../dto/order';
-import { Sale } from '../dto/sale';
-import { User } from '../dto/user';
 import { AuthenticationService } from '../services/authentication.service';
 import { OrderService } from '../services/order.service';
 import { SaleService } from '../services/sale.service';
@@ -16,7 +13,7 @@ import { UserService } from '../services/user.service';
 })
 export class OrdersPageComponent implements OnInit {
 
-  constructor(public auth: AuthenticationService, public userService: UserService, public orderService: OrderService, public saleService: SaleService) { }
+  constructor(public auth: AuthenticationService, public userService: UserService) { }
 
   public data: any = {};
   public username = sessionStorage.getItem('username');
@@ -38,5 +35,4 @@ export class OrdersPageComponent implements OnInit {
       }
     )
   }
-
 }
