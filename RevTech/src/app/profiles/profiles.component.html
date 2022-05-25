@@ -145,7 +145,7 @@
     <h2>Add Address</h2>
     <button (click)="onCloseModal('add','address')">x</button>
   </div>
-  <form #addAddressForm="ngForm" (ngSubmit)="editAddress(addAddressForm)" ngNativeValidate>
+  <form #addAddressForm="ngForm" (ngSubmit)="addAddress(addAddressForm)" ngNativeValidate>
     <div class="modal-body">
       <div class="modal-input">
         <label for="address">Address</label>
@@ -181,7 +181,7 @@
     <h2>Add Payment</h2>
     <button (click)="onCloseModal('add','payment')">x</button>
   </div>
-  <form #addPaymentForm="ngForm" (ngSubmit)="editPayment(addPaymentForm)" ngNativeValidate>
+  <form #addPaymentForm="ngForm" (ngSubmit)="addPayment(addPaymentForm)" ngNativeValidate>
     <div class="modal-body">
       <div class="modal-input">
         <input ngModel="{{ user.userId }}" type="hidden" id="userId" name="userId">
