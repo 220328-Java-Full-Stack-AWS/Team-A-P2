@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -148,6 +150,22 @@ public class ECommerceApplication {
 		session.update(address5);
 		session.update(user3);
 
+		Timestamp SaleTimestamp = new Timestamp(System.currentTimeMillis());
+		Sale purchase = new Sale(2, SaleTimestamp, p4);
+		List<Sale> sale = new LinkedList<Sale>();
+		sale.add(purchase);
+		Order leoOrder = new Order();
+		List<Order> orders = new LinkedList<Order>();
+
+		leoOrder.setUser(leo);
+		leoOrder.setSaleList(sale);
+		List<Order> leoOrders = new LinkedList<>();
+		leoOrders.add(leoOrder);
+		leo.setListOfOrders(leoOrders);
+
+		session.save(purchase);
+		session.save(leoOrder);
+		session.save(leo);
 
 		tx.commit();
 	}

@@ -39,13 +39,13 @@
         </div>
       </div>
       <div class="profile-data">
-        <p>Email</p>
+        <p>Email Address</p>
         <div class="data">
           <span>{{ data?.email }}</span>
         </div>
       </div>
       <div class="profile-data">
-        <p>Phone</p>
+        <p>Phone Number</p>
         <div class="data">
           <span>{{ data?.phone }}</span>
         </div>
@@ -67,12 +67,11 @@
         <h5>Address</h5>
         <div class="option">
           <button *ngIf="data?.address?.address === null" (click)="onOpenModal('add','address')">Add Address</button>
-          <button *ngIf="data?.address?.address !== null" (click)="onOpenModal('edit', 'address')">Edit</button>
-          <button id="delete" *ngIf="data?.address?.address !== null"
-            (click)="onOpenModal('delete', 'address')">Delete</button>
+          <button *ngIf="data?.address?.address !== null"(click)="onOpenModal('edit', 'address')">Edit</button>
+          <button *ngIf="data?.address?.address !== null"id="delete" (click)="onOpenModal('delete', 'address')">Delete</button>
         </div>
       </div>
-      <div class="address" *ngIf="data?.address.address !== null">
+      <div class="address" *ngIf="data?.address?.address !== null">
         <div class="address-data">
           <p>Street</p>
           <span>{{ data?.address?.address }}</span>
@@ -96,7 +95,7 @@
       </div>
       <!-- if user has no address -->
       <div class="none" *ngIf="data?.address?.address === null">
-        <br>
+          <br>
         <h4>No Address</h4>
       </div>
     </div>
@@ -108,8 +107,7 @@
         <div class="option">
           <button *ngIf="data?.payment?.cardNumber === null" (click)="onOpenModal('add','payment')">Add Payment</button>
           <button *ngIf="data?.payment?.cardNumber !== null" (click)="onOpenModal('edit', 'payment')">Edit</button>
-          <button id="delete" *ngIf="data?.payment?.cardNumber !== null"
-            (click)="onOpenModal('delete', 'payment')">Remove</button>
+          <button *ngIf="data?.payment?.cardNumber !== null" id="delete" (click)="onOpenModal('delete', 'payment')">Remove</button>
         </div>
       </div>
       <div class="payment" *ngIf="data?.payment?.cardNumber !== null">
@@ -119,20 +117,18 @@
         </div>
         <div class="payment-data">
           <p>Expiration Date</p>
-          <span>{{ data?.payment?.expDate }}</span>
+          <span>{{ data?.payment?.expDate | date }}</span>
         </div>
         <div class="payment-data" style="border:none;">
-          <p>Cvc</p>
+          <p>CVC</p>
           <form class="data">
-            <input ngModel="{{ data?.payment?.cvc }}" [type]="show2 ? 'text' : 'password'" name="cvc" id="cvc"
-              placeholder="CVC" />
-            <span id="showP" (click)="showPassword2()">
-              <fa-icon [icon]="faFaceRollingEyes"></fa-icon>{{show2 ? 'Hide CVC' : 'View CVC' }}
-            </span>
+            <span>{{ data?.payment?.cvc}}</span>
+            <!-- <input ngModel="{{ data?.payment?.cvc }}"  [type]="show2 ? 'text' : 'password'" name="cvc" id="cvc" placeholder="CVC" />
+            <span id="showP" (click)="showPassword2()"><fa-icon [icon]="faFaceRollingEyes"></fa-icon>{{show2 ? 'Hide CVC' : 'View CVC' }}</span> -->
           </form>
         </div>
       </div>
-      <div class="none" *ngIf="data?.payment?.cardNumber === null">
+      <div class="none" *ngIf="data?.payment?.cardNumber === null" >
         <br>
         <h4>No Payment Method</h4>
       </div>
@@ -221,31 +217,28 @@
       <div class="modal-input">
         <input ngModel type="hidden" id="user_id" name="user_id">
         <label for="firstName">First Name</label>
-        <input ngModel="{{ user.firstName }}" type="text" name="firstName" id="firstName" placeholder="First Name" />
+        <input ngModel="{{ data?.firstName }}"  type="text" name="firstName" id="firstName" placeholder="First Name" />
       </div>
       <div class="modal-input">
         <label for="lastName">Last Name</label>
-        <input ngModel="{{ user.lastName }}" type="text" name="lastName" id="lastName" placeholder="Last Name" />
+        <input ngModel="{{ data?.lastName }}"  type="text" name="lastName" id="lastName" placeholder="Last Name" />
       </div>
       <div class="modal-input">
         <label for="username">Username</label>
-        <input ngModel="{{ user.username }}" type="text" name="username" id="username" placeholder="Username" />
+        <input ngModel="{{ data?.username }}"  type="text" name="username" id="username" placeholder="Username" />
       </div>
       <div class="modal-input">
-        <label for="Email">Email</label>
-        <input ngModel="{{ user.email }}" type="email" name="email" id="email" placeholder="Email" />
+        <label for="Email">Email Address</label>
+        <input ngModel="{{ data?.email }}"  type="email" name="email" id="email" placeholder="Email" />
       </div>
       <div class="modal-input">
-        <label for="phone">Phone</label>
-        <input ngModel="{{ user.phone }}" type="text" name="phone" id="phone" placeholder="Phone" />
+        <label for="phone">Phone Number</label>
+        <input ngModel="{{ data?.phone }}"  type="text" name="phone" id="phone" placeholder="Phone" />
       </div>
       <div class="modal-input">
         <label for="password">Password</label>
-        <input ngModel="{{ user.password }}" [type]="show ? 'text' : 'password'" type="password" name="password"
-          id="password" placeholder="Password" />
-        <span (click)="showPassword()">
-          <fa-icon [icon]="faFaceRollingEyes"></fa-icon>{{show ? 'Hide Password' : 'Show Password' }}
-        </span>
+        <input ngModel="{{ data?.password }}"  [type]="show ? 'text' : 'password'"type="password" name="password" id="password" placeholder="Password" />
+        <span (click)="showPassword()"><fa-icon [icon]="faFaceRollingEyes"></fa-icon>{{show ? 'Hide Password' : 'Show Password' }}</span>
       </div>
     </div>
     <div class="modal-footer">
@@ -264,26 +257,23 @@
     <div class="modal-body">
       <div class="modal-input">
         <label for="address">Address</label>
-        <input ngModel="{{ address?.address }}" type="text" name="address" id="address" placeholder="Address 1..."
-          required />
+        <input ngModel="{{ data?.address?.address }}" type="text" name="address" id="address" placeholder="Address 1..." required />
       </div>
       <div class="modal-input">
         <label for="city">City</label>
-        <input ngModel="{{ address?.city }}" type="text" name="city" id="city" placeholder="City" required />
+        <input ngModel="{{ data?.address?.city }}" type="text" name="city" id="city" placeholder="City" required />
       </div>
       <div class="modal-input">
         <label for="zip">Zip Code</label>
-        <input ngModel="{{ address?.zipCode }}" type="text" name="zip" id="zip" pattern="^[0-9]{5}$"
-          autocomplete="postal-code" placeholder="XXXXX" required />
+        <input ngModel="{{ data?.address?.zipCode }}"  type="text" name="zip" id="zip" pattern="^[0-9]{5}$" autocomplete="postal-code" placeholder="XXXXX" required />
       </div>
       <div class="modal-input">
         <label for="state">State</label>
-        <input ngModel="{{ address?.state }}" type="text" name="state" id="state" placeholder="State" required />
+        <input ngModel="{{ data?.address?.state }}"  type="text" name="state" id="state" placeholder="State" required />
       </div>
       <div class="modal-input">
         <label for="country">Country</label>
-        <input ngModel="{{ address?.country }}" type="text" name="country" id="country" placeholder="Country..."
-          required />
+        <input ngModel="{{ data?.address?.country }}"  type="text" name="country" id="country" placeholder="Country..." required />
       </div>
     </div>
     <div class="modal-footer">
@@ -291,6 +281,7 @@
     </div>
   </form>
 </div>
+
 <!-- edit payment -->
 <div class="modal" id="edit-payment-modal">
   <div class="modal-title">
@@ -301,18 +292,17 @@
     <div class="modal-body">
       <div class="modal-input">
         <label for="cardNumber">Card Number</label>
-        <input ngModel="{{ payment?.cardNumber }}" type="tel" inputmode="numeric"
+        <input ngModel="{{ data?.payment?.cardNumber }}" type="tel" inputmode="numeric"
           pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" autocomplete="cc-number" maxlength="19"
           placeholder="XXXX-XXXX-XXXX-XXXX" name="cardNumber" id="cardNumber" required />
       </div>
       <div class="modal-input">
         <label for="expDate">Expiration Date</label>
-        <input ngModel="{{ payment?.expDate }}" type="date" name="expDate" id="expDate" required />
+        <input ngModel="{{ data?.payment?.expDate | date }}" type="date" name="expDate" id="expDate" required />
       </div>
       <div class="modal-input">
         <label for="cvc">CVC</label>
-        <input ngModel="{{ payment?.cvc }}" type="text" pattern="^[0-9]{3,4}$" autocomplete="cc-csc" maxlength="4"
-          id="cvc" name="cvc" placeholder="XXX or XXXX" required />
+        <input ngModel="{{ data?.payment?.cvc }}" type="text" pattern="^[0-9]{3,4}$" autocomplete="cc-csc" maxlength="4" id="cvc" name="cvc" placeholder="XXX or XXXX" required />
       </div>
     </div>
     <div class="modal-footer">
