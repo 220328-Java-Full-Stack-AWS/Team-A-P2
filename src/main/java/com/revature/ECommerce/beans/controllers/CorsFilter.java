@@ -36,11 +36,11 @@ public class CorsFilter extends OncePerRequestFilter {
 
         if (req.getMethod().equals(HttpMethod.OPTIONS.name())) {
             resp.setStatus(HttpStatus.NO_CONTENT.value());
+            System.out.println("OPTIONS RECEIVED");
             return;
         }
 
         chain.doFilter(req, resp);
-        System.out.println("HELLO I AM HERE IN THE CORS FILTER");
     }
 
 }
