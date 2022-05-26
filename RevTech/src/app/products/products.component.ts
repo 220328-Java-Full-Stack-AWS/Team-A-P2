@@ -48,7 +48,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
-
+    this.openingAnimation();
     this.addressService.getAddressByAddressId(parseInt(sessionStorage.getItem("userid")!)).subscribe(
       (response: Address) => {
         sessionStorage.setItem('address', response.address);
@@ -73,8 +73,6 @@ export class ProductsComponent implements OnInit {
         sessionStorage.setItem('expirationdate', response.expDate);
       }
     )
-
-    this.openingAnimation();
   }
 
   quantityUpdate(value: any) {
@@ -140,16 +138,15 @@ export class ProductsComponent implements OnInit {
   public searchProduct(key: string): void {
     const results: Product[] = [];
     for (const product of this.products) {
-      if (product.productName.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        product.productCategory.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        product.productStatus.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      if (product.productName.toLowerCase().indexOf(key.toLowerCase().trim()) !== -1 ||
+        product.productCategory.toLowerCase().indexOf(key.toLowerCase().trim()) !== -1 ||
+        product.productStatus.toLowerCase().indexOf(key.toLowerCase().trim()) !== -1
       ) {
         results.push(product);
       }
       this.products = results;
-      if (results.length === 0 || !key) {
+      if (key.length === 0) {
         this.getProducts();
-
       }
     }
   }

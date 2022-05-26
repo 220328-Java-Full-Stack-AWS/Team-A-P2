@@ -1,7 +1,7 @@
 <div class="product-page">
   <div class="sort-filter-search">
     <form>
-      <input type="search" (ngModelChange)="searchProduct(key.value)" ngModel #key="ngModel" name="key"
+      <input type="search" ngModel #key="ngModel" (ngModelChange)="searchProduct(key.value)" name="key"
         placeholder="Search Products..." required>
     </form>
     <div class="wrapper">
@@ -68,7 +68,7 @@
   </div>
   <!-- product end -->
   <div *ngIf="products?.length == 0" class="noProducts">
-    <h2>NO PRODUCTS</h2>
+    <h2 style="color:white">NO PRODUCTS</h2>
     <span>Sorry for the inconvenience!</span>
   </div>
 </div>
