@@ -1,6 +1,8 @@
 package com.revature.ECommerce.beans.controllers;
 
+import com.revature.ECommerce.beans.enums.LoggingLevel;
 import com.revature.ECommerce.beans.services.AddressService;
+import com.revature.ECommerce.beans.services.LoggingService;
 import com.revature.ECommerce.beans.services.PaymentService;
 import com.revature.ECommerce.beans.services.UserService;
 import com.revature.ECommerce.dtos.AuthDto;
@@ -21,12 +23,14 @@ public class UserController {
     private UserService uServ;
     private AddressService aServ;
     private PaymentService pServ;
+    private LoggingService lServ;
 
     @Autowired
-    public UserController(UserService uServ, AddressService aServ, PaymentService pServ){
+    public UserController(UserService uServ, AddressService aServ, PaymentService pServ, LoggingService loggingService){
         this.uServ=uServ;
         this.aServ=aServ;
         this.pServ=pServ;
+        this.lServ=loggingService;
     }
 
     @GetMapping()
@@ -69,6 +73,7 @@ public class UserController {
                 return newUser;
             case "login":
                 AuthDto auth = new AuthDto(user.getUsername(), user.getPassword());
+                lServ.log(LoggingLevel.INFO, "Logging for Mode Header: " + mode + "\nUser: " + user + "\nAuthDto: " + auth);
                 return uServ.authenticateUser(auth);
             default:
                 throw new InvalidOptionException("That isn't a valid option");
