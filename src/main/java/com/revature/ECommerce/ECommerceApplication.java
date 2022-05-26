@@ -170,7 +170,7 @@ public class ECommerceApplication {
 		tx.commit();
 	}
 
-
+/*
 	@Bean
 	public CorsFilter corsFilter() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
@@ -190,6 +190,6 @@ public class ECommerceApplication {
 		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
 		return new CorsFilter(urlBasedCorsConfigurationSource);
 	}
-
+*/
 
 }
