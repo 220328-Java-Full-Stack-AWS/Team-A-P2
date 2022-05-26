@@ -1,6 +1,9 @@
 package com.revature.ECommerce;
 
+import com.revature.ECommerce.beans.enums.LoggingLevel;
+import com.revature.ECommerce.beans.enums.LoggingMode;
 import com.revature.ECommerce.beans.services.HibernateManager;
+import com.revature.ECommerce.beans.services.LoggingService;
 import com.revature.ECommerce.entities.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -170,6 +173,10 @@ public class ECommerceApplication {
 		session.save(leo);
 
 		tx.commit();
+
+		LoggingService loggingService = context.getBean(LoggingService.class);
+		loggingService.setLoggingThreshold(LoggingLevel.INFO); //log level 1 - info and everything greater
+		loggingService.setLoggingMode(LoggingMode.DATASOURCE); //log mode 1 - file logging
 	}
 
 /*
