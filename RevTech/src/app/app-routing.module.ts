@@ -8,12 +8,14 @@ import { OrdersComponent } from './orders/orders.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { OrdersPageComponent } from './orders-page/orders-page.component';
 import { AdminComponent } from './admin/admin.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AuthGuard } from './auth.guard';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
+  { path: 'resetPassword', component: ResetPasswordComponent },
   { path: 'shop', component: ProductsComponent , canActivate:[AuthGuard] },
   { path: 'profile', component: ProfilesComponent, canActivate:[AuthGuard] },
   { path: 'orders', component: OrdersPageComponent, canActivate:[AuthGuard]},

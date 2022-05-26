@@ -68,8 +68,12 @@
     }
   }
   .help{
+    display: flex;
+    flex-direction: column;
     margin-top: 1rem;
+    text-align: center;
     span{
+      margin-bottom: .3rem;
       color: #2b2d42;
       font-size: .9rem;
       a{
