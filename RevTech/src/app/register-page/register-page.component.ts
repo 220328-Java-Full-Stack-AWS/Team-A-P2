@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faFaceRollingEyes } from '@fortawesome/free-solid-svg-icons';
+import { faFaceRollingEyes, faFaceGrinTongueSquint } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
 import { User } from '../dto/user';
 import { UserService } from '../services/user.service';
@@ -22,6 +22,7 @@ export class RegisterPageComponent implements OnInit {
 
   // Front end fun
   public faFaceRollingEyes = faFaceRollingEyes;
+  public faFaceGrinTongueSquint = faFaceGrinTongueSquint;
   // variable - default false
   show: boolean = false;
   show2: boolean = false;
@@ -38,6 +39,11 @@ export class RegisterPageComponent implements OnInit {
       this.userService.registerUser(registerForm.value).subscribe(
         (response: User) => {
           alert("Registration successful!");
+          // animation
+          const RegisterSuccess = document.getElementById('register-success');
+          RegisterSuccess?.classList.add('showAdded4');
+          setTimeout(() => RegisterSuccess?.classList.remove('showAdded4'), 3000);
+
           this.router.navigateByUrl('/login');
 
         },
@@ -76,7 +82,7 @@ export class RegisterPageComponent implements OnInit {
         (error: HttpErrorResponse) => {
           this.checkEmail(registerForm, validation);
         },
-      ); 
+      );
   }
 
   public registerUser(registerForm: NgForm): void {
@@ -90,7 +96,7 @@ export class RegisterPageComponent implements OnInit {
     invuser!.style.display = "none";
     invphone!.style.display = "none";
     invemail!.style.display = "none";
-    
+
 
     this.userService.getUserByUsername(registerForm.value.username).subscribe(
       (response: User) => {
@@ -102,5 +108,5 @@ export class RegisterPageComponent implements OnInit {
         this.checkPhone(registerForm, validation);
       },
     );
-  } 
+  }
 }

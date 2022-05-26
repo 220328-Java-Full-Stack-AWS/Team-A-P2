@@ -117,3 +117,35 @@
     color: red;
   }
 }
+
+.register-success{
+  position: fixed;
+  top: 12%;
+  right: -100%;
+  width: 25%;
+  padding: .8rem 2rem;
+  background-image: linear-gradient( 109.6deg,  rgba(102,203,149,1) 11.2%, rgba(39,210,175,1) 98.7% );
+  border: 1px solid white;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: rgba(128, 0, 144, 0.2) 0px 13px 27px -5px, rgba(128, 0, 144, 0.2) 0px 8px 16px -8px;
+  transition: all .6s ease-in-out;
+  .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    span{
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: white;
+    }
+    #icon{
+      color: white;
+      font-size: 1.25rem
+    }
+  }
+}
+.showAdded4 {
+  right: 0;
+}

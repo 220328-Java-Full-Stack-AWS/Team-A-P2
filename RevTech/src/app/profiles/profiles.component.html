@@ -233,7 +233,7 @@
       </div>
       <div class="modal-input">
         <label for="phone">Phone Number</label>
-        <input ngModel="{{ data?.phone }}"  type="text" name="phone" id="phone" placeholder="Phone" />
+        <input ngModel="{{ data?.phone }}"  pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$" type="tel" name="phone" id="phone" placeholder="Phone" />
       </div>
       <div class="modal-input">
         <label for="password">Password</label>
