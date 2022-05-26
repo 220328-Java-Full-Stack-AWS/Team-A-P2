@@ -5,20 +5,20 @@
       <div class="input-container">
         <label for="firstName">First Name</label>
         <input ngModel required
-            type="text"  
-            name="firstName" 
-            id="firstName"  
-            placeholder="First Name..." 
+            type="text"
+            name="firstName"
+            id="firstName"
+            placeholder="First Name..."
             pattern="^[a-zA-Z]{1,12}$"
             title="Uppercase/Lowercase Latin Alphabet of length 1-12" />
       </div>
       <div class="input-container">
         <label for="lastName">Last Name</label>
         <input ngModel required
-            type="text" 
-            name="lastName" 
-            id="lastName" 
-            placeholder="Last Name..." 
+            type="text"
+            name="lastName"
+            id="lastName"
+            placeholder="Last Name..."
             pattern="^[a-zA-Z]{1,12}$"
             title="Uppercase/Lowercase Latin Alphabet of length 1-12" />
       </div>
@@ -27,10 +27,10 @@
       <div class="input-container">
         <label for="username">Username</label>
         <input ngModel required
-            type="text" 
-            name="username" 
+            type="text"
+            name="username"
             id="username"
-            placeholder="Username..." 
+            placeholder="Username..."
             pattern="^[a-zA-Z0-9]{3,12}$"
             title="Uppercase/Lowercase Latin Alphabet + 0-9 Digits of length 3-12" />
         <span style ="text-decoration: none; cursor: auto;" id="usernametaken">This username is already taken</span>
@@ -38,10 +38,10 @@
       <div class="input-container">
         <label for="phone">Phone</label>
         <input ngModel required
-            type="tel" 
-            name="phone" 
-            id="phone" 
-            placeholder="###-###-####" 
+            type="tel"
+            name="phone"
+            id="phone"
+            placeholder="###-###-####"
             pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
             title="(###)###-#### format of 0-9 digits" />
         <span style ="text-decoration: none; cursor: auto;" id="phoneused">This phone number is already taken</span>
@@ -51,10 +51,10 @@
       <div class="input-container">
         <label for="Email">Email</label>
         <input ngModel required
-            type="email" 
-            name="email" 
-            id="email" 
-            placeholder="RevTech@revature.com" 
+            type="email"
+            name="email"
+            id="email"
+            placeholder="RevTech@revature.com"
             pattern="^[a-zA-Z0-9!$]{3,12}@[a-zA-Z0-9]{3,12}.[a-z]{2,3}$"
             title="Format (a-Z,0-9 length of 3-12)@(a-Z,0-9 length of 3-12).(a-z length of 2-3)" />
         <span id="emailused">This email is already taken</span>
@@ -64,9 +64,9 @@
       <div class="input-container">
         <label for="password">Password</label>
         <input ngModel required
-            [type]="show ? 'text' : 'password'" 
-            name="password" id="password" 
-            placeholder="Password..." 
+            [type]="show ? 'text' : 'password'"
+            name="password" id="password"
+            placeholder="Password..."
             pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])[a-zA-Z0-9!@#$%^&*-]{8,24}$"
             title="Password must contain 1 Uppercase, 1 Lowercase, 1 Digit & 1 Symbol from list {!@#$%^&*-} of length 8 to 24" />
         <span (click)="password()"><fa-icon [icon]="faFaceRollingEyes" id="icon"></fa-icon>{{show ? 'Hide Password' : 'Show Password' }}</span>
@@ -74,9 +74,9 @@
       <div class="input-container">
         <label for="confirmPassword">Confirm Password</label>
         <input ngModel required
-            [type]="show2 ? 'text' : 'password'" 
-            name="confirmPassword" id="confirmPassword"  
-            placeholder="Confirm Password..." 
+            [type]="show2 ? 'text' : 'password'"
+            name="confirmPassword" id="confirmPassword"
+            placeholder="Confirm Password..."
             pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])[a-zA-Z0-9!@#$%^&*-]{8,24}$" />
         <span (click)="confirmPassword()"><fa-icon [icon]="faFaceRollingEyes" id="icon"></fa-icon>{{show2 ? 'Hide Password' : 'Show Password' }}</span>
       </div>
@@ -86,5 +86,12 @@
   </form>
   <div class="help">
     <span><a routerLink="/login" routerLinkActive="active">Already registered? Click here to login</a></span>
+  </div>
+</div>
+
+<div class="register-success" id="register-success">
+  <div class="content">
+    <span>Registered Suucessfully!</span>
+    <fa-icon id="icon" [icon]="faFaceGrinTongueSquint" [spin]="true"></fa-icon>
   </div>
 </div>
