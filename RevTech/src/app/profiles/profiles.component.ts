@@ -242,7 +242,8 @@ export class ProfilesComponent implements OnInit {
   public deleteUser(){
     this.userService.deleteUser(parseInt(sessionStorage.getItem("userid")!)).subscribe(
       () => {
-        this.router.navigateByUrl('/login');
+        this.auth.logout();
+        // this.router.navigateByUrl('/login');
       }
   );}
 
