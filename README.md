@@ -32,13 +32,12 @@ RevTech is an e-commerce single page application focused on allowing consumers t
  - Unit test coverage for service-layer classes
 
 ### Stretch Goals:
- - Application is merged, tested, and deployed with a fully functional CI/CD Pipeline
+ - Application is merged, tested, and deployed with a fully functional CI/CD Pipeline.
 
-The persistence layer shall use Hibernate ORM to translate between the database and the application server. The API layer shall abstract away the low-level servlets with Spring Web MVC. The client shall use Angular to produce an SPA which is styled to be functional and readable. The server should follow a proper layered architecture, and have adequate unit testing of the service layer. The client and server should communicate in a RESTful manner, and the server should be stateless. 
+The persistence layer uses Hibernate ORM to translate between the database and the application server. The API layer abstracts away the low-level servlets with Spring Web MVC. The end users uses Angular to produce an SPA which is styled to be functional and readable. The server is in a proper layered architecture, and have adequate unit testing of the service layer. The client and server communicates in a RESTful manner, and the server is stateless. 
 
 
 ## User Stories
-### Requirements:
 #### Guest
  - As a guest, I can register for an account.
  - As a guest, I can log in to my account.
@@ -48,8 +47,6 @@ The persistence layer shall use Hibernate ORM to translate between the database 
  - As a user, I can browse products and add them to my cart.
  - As a user, I can remove items from my cart.
  - As a user, I can checkout to purchase the items in my cart.
-
-### Stretch Goals:
  - As a User, I should be able to select an amount of an item to add to my cart as I am adding an item
  - As a User, I should be able to search the product list to better find the item(s) I am interested in
  - As a User, I should be able to see and purchase items that are on sale for a lower price.
