@@ -22,10 +22,6 @@ RevTech is an e-commerce single page application focused on allowing consumers t
    - Spring MVC
  - Angular
 
-## Forbidden Abstractions:
- - Spring Data JPA - Spring Data JPA uses Hibernate as an ORM provider. Before we get to that level of abstraction, we will use hibernate directly ourselves.
-
-
 # Functional Requirements
 ### Required:
  - Domain objects persisted in relational database via ORM
