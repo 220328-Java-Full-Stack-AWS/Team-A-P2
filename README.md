@@ -1,7 +1,7 @@
 # Project 2 - E-Commerce SPA
 
 ## Executive Summary
-The E-Commerce Single-Page Application will allow consumers to browse, search, and buy products. Users will be able to browse our catelog of products, or search for a specific item, and add these to a cart. Users can register accounts which includes a profile. There are a number of stretch goals to choose from. Please update this text to summarize additional features. This text is fairly generic, your project will be unique, this text should be re-written to reflect your final deliverable.
+RevTech is an e-commerce single page application focused on allowing consumers to browse, search, and buy electronic products. Consumers can register accounts, view and edit their profiles, view and edit their addresses and payment methods, and view their previous orders. Products can be filtered by whether they're currently on a sale, being featured, by product category, or by price. Consumers can select the specific electronic product they enjoy, add it to a cart, then checkout. If they change their mind about products in their cart, they can remove them before they checkout. Revtech is also rich with features such as a toggle to switch between a dark and light theme, change password, notifications and more.   
 
 
 # Tech Stack
