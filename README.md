@@ -61,9 +61,4 @@ The persistence layer shall use Hibernate ORM to translate between the database 
  - As a User, my session should be maintained until I log out.
  - As a User, I should be able to reset my password.
  - As a User, I should be able to change the color scheme from the normal mode to a dark mode option.
- - As a User, I should receive notifications when a transaction has occurred or a transfer has been completed.
-
-# Submission
-### Due Date: Thursday 5/26/2022 at 9:00 AM CST
-Your project needs to be pushed into the main branch of your team's P2 repository no later than the due data and time above. Commits after this deadline will not be considered. On the due date there will be a presentation. You will be expected to briefly cover your project, and should be prepared to discuss it with QC.
-
+ - As a User, I should receive notifications when a transaction has occurred or a transfer has been completed
