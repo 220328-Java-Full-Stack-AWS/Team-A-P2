@@ -23,7 +23,6 @@ RevTech is an e-commerce single page application focused on allowing consumers t
  - Angular
 
 # Functional Requirements
-### Required:
  - Domain objects persisted in relational database via ORM
  - All CRUD functionality accessible via RESTful API
  - Single page web UI to consume RESTful API
