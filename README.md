@@ -54,3 +54,8 @@ The persistence layer uses Hibernate ORM to translate between the database and t
  - As a User, I am able to reset my password.
  - As a User, I am able to change the color scheme from the normal mode to a dark mode option.
  - As a User, I receive notifications when a transaction has occurred or a transfer has been completed
+
+#### Admin:
+ - As a admin, i can login into my admin account.
+ - As admin, i can view all products in the system.
+ -  - As admin, i can view add, edit and update a product in the system.
